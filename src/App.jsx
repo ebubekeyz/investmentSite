@@ -9,8 +9,8 @@ import {
   Register,
   SinglePageError,
   Error,
-  Dashboard,
-  DashboardLanding,
+  // Dashboard,
+  // DashboardLanding,
   Faqs,
   Contact,
   Investment,
@@ -64,18 +64,18 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: '/dashboard',
-    element: <Dashboard />,
-    errorElement: <Error />,
-    children: [
-      {
-        index: true,
-        element: <DashboardLanding />,
-        errorElement: <SinglePageError />,
-      },
-    ],
-  },
+  // {
+  //   path: '/dashboard',
+  //   element: <Dashboard />,
+  //   errorElement: <Error />,
+  //   children: [
+  //     {
+  //       index: true,
+  //       element: <DashboardLanding />,
+  //       errorElement: <SinglePageError />,
+  //     },
+  //   ],
+  // },
   {
     path: '/register',
     element: <Register />,
