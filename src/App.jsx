@@ -34,7 +34,7 @@ const router = createBrowserRouter([
         index: true,
         element: <Landing />,
         errorElement: <SinglePageError />,
-        loader: landingLoader(queryClient),
+        loader: landingLoader,
       },
       {
         path: '/about',

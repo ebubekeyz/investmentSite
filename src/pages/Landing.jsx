@@ -36,25 +36,31 @@ const API = import.meta.env.VITE_COIN_API;
 
 const coinsUrl = `https://coinlib.io/api/v1/coinlist?key=${API}f&pref=BTC&page=1&order=volume_desc`;
 
-const coinsQuery = () => {
-  return {
-    queryKey: ['coins'],
-    queryFn: async () => {
-      const response = await axios.get(`${coinsUrl}`);
-      return { coins: response.data.coins };
-    },
-  };
-};
+// const coinsQuery = () => {
+//   return {
+//     queryKey: ['coins'],
+//     queryFn: async () => {
+//       const response = await axios.get(`${coinsUrl}`);
+//       return { coins: response.data.coins };
+//     },
+//   };
+// };
 
-export const loader = (queryClient) => async () => {
-  await queryClient.ensureQueryData(coinsQuery());
-  return { coins };
+// export const loader = (queryClient) => async () => {
+//   await queryClient.ensureQueryData(coinsQuery());
+//   return { coins };
+// };
+
+export const loader = async () => {
+  const response = await axios.get(`${coinsUrl}`, {});
+
+  return response;
 };
 
 const Landing = () => {
-  // const {coins} = useLoaderData();
-  const { coins } = useQuery(coinsQuery());
-  console.log(coins);
+  const response = useLoaderData();
+  // const { coins } = useQuery(coinsQuery());
+  console.log(response);
   return (
     <>
       {/* <Submenu /> */}
