@@ -6,6 +6,7 @@ import Wrapper from '../assets/wrappers/Landing';
 import Wrapper2 from '../assets/wrappers/AboutPage';
 import Wrapper3 from '../assets/wrappers/Landing2';
 import Wrapper4 from '../assets/wrappers/Card';
+import Wrapper5 from '../assets/wrappers/Coins';
 import { FaArrowRight } from 'react-icons/fa';
 import image1 from '../assets/mission.jfif';
 import image2 from '../assets/value.jpg';
@@ -31,6 +32,7 @@ import { FaRegHeart } from 'react-icons/fa';
 import { CiDeliveryTruck } from 'react-icons/ci';
 import { TbDeviceIpadSearch } from 'react-icons/tb';
 import Ceo from '../components/Ceo';
+import btcImg from '../assets/btc.png';
 
 const API = import.meta.env.VITE_COIN_API;
 
@@ -65,6 +67,55 @@ const Landing = () => {
     <>
       {/* <Submenu /> */}
       <Hero />
+      <Wrapper5>
+        <section className="coins-main">
+          <article className="coins">
+            <div className="coins-inner">
+              <img src={btcImg} alt="btc-image" />
+              <h5>Bitcoin</h5>
+              <span>[BTC]</span>
+              <span>$0.34</span>
+              <span className="last">+1.57%</span>
+            </div>
+          </article>
+          <article className="coins">
+            <div className="coins-inner">
+              <img src={btcImg} alt="btc-image" />
+              <h5>Bitcoin</h5>
+              <span>[BTC]</span>
+              <span>$0.34</span>
+              <span className="last">+1.57%</span>
+            </div>
+          </article>
+          <article className="coins">
+            <div className="coins-inner">
+              <img src={btcImg} alt="btc-image" />
+              <h5>Bitcoin</h5>
+              <span>[BTC]</span>
+              <span>$0.34</span>
+              <span className="last">+1.57%</span>
+            </div>
+          </article>
+          <article className="coins">
+            <div className="coins-inner">
+              <img src={btcImg} alt="btc-image" />
+              <h5>Bitcoin</h5>
+              <span>[BTC]</span>
+              <span>$0.34</span>
+              <span className="last">+1.57%</span>
+            </div>
+          </article>
+          <article className="coins">
+            <div className="coins-inner">
+              <img src={btcImg} alt="btc-image" />
+              <h5>Bitcoin</h5>
+              <span>[BTC]</span>
+              <span>$0.34</span>
+              <span className="last">+1.57%</span>
+            </div>
+          </article>
+        </section>
+      </Wrapper5>
 
       <Wrapper>
         <div className="landing">
