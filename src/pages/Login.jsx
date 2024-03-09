@@ -32,7 +32,7 @@ const Login = () => {
               marginBottom: '1rem',
             }}
           >
-            <Link to="/">FxRealTrade.co</Link>
+            <Link to="/">Trest-Holding.</Link>
           </h2>
           <h4>Login </h4>
           <div className="form-control">
@@ -63,7 +63,7 @@ const Login = () => {
               </Link>
             </p>
             <p style={{ marginTop: '1rem' }}>
-              © Copyright &nbsp;<span>{mainDate}&nbsp;</span> Fxidealtrade.Co
+              © Copyright &nbsp;<span>{mainDate}&nbsp;</span> Trest-Holding.
               &nbsp; All Rights Reserved.
             </p>
           </div>

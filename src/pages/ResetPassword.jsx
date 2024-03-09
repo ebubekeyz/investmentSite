@@ -32,7 +32,7 @@ const ResetPassword = () => {
               marginBottom: '1rem',
             }}
           >
-            <Link to="/">FxRealTrade.co</Link>
+            <Link to="/">Trest-Holding</Link>
           </h2>
           <h4>ResetPassword </h4>
           <div className="form-control">

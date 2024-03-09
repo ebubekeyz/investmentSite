@@ -5,6 +5,7 @@ import Submenu from '../components/Submenu';
 import Wrapper from '../assets/wrappers/Landing';
 import Wrapper2 from '../assets/wrappers/AboutPage';
 import Wrapper3 from '../assets/wrappers/Landing2';
+import Wrapper4 from '../assets/wrappers/Card';
 import { FaArrowRight } from 'react-icons/fa';
 import image1 from '../assets/mission.jfif';
 import image2 from '../assets/value.jpg';
@@ -40,7 +41,9 @@ const Landing = () => {
             <h2>Investment With us is Easy</h2>
           </article>
           <article className="land-inner">
-            <h4>The new frontier to FINANCE is here already- fxrealtrade.co</h4>
+            <h4>
+              The new frontier to FINANCE is here already- Trest-Holding.com
+            </h4>
           </article>
 
           <article className="know-arrow">
@@ -94,7 +97,7 @@ const Landing = () => {
             <img src={image2} alt="abt2" className="abt-img" />
             <h4 style={{ marginBottom: '0.8rem' }}>Our Value</h4>
             <p>
-              fxREALtrade.co is a distinctive investment platform offering
+              Trest-Holding.com is a distinctive investment platform offering
               investors a wide range of investment opportunities. We emphasize
               on understanding our client’s goals so we can help them achieve.
             </p>
@@ -335,6 +338,162 @@ const Landing = () => {
           Well poised and covered to get you where you want to be economically.
         </p>
       </section>
+
+      <Wrapper4>
+        <section className="card-main">
+          <article className="card">
+            <div>
+              <FaCarAlt
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>
+                Automotive
+              </h3>
+            </div>
+
+            <div>
+              <SlEarphones
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>
+                Community Service
+              </h3>
+            </div>
+
+            <div>
+              <PiShoppingCartSimpleLight
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>Retail</h3>
+            </div>
+
+            <div>
+              <BiBookBookmark
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>
+                Education
+              </h3>
+            </div>
+
+            <div>
+              <RiMoneyDollarBoxLine
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>
+                Financial Service
+              </h3>
+            </div>
+
+            <div>
+              <TbDeviceIpadSearch
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>
+                Publishing
+              </h3>
+            </div>
+          </article>
+
+          <article className="card">
+            <div>
+              <MdOutlineSupportAgent
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>Support</h3>
+            </div>
+
+            <div>
+              <GoBriefcase
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>Travel</h3>
+            </div>
+
+            <div>
+              <CiMusicNote1
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>
+                Media and Entertainment
+              </h3>
+            </div>
+
+            <div>
+              <CiDeliveryTruck
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>
+                Logistics and Distribution
+              </h3>
+            </div>
+
+            <div>
+              <IoIosFlash
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>Mining</h3>
+            </div>
+
+            <div>
+              <FaRegHeart
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>
+                Healthcare
+              </h3>
+            </div>
+          </article>
+        </section>
+      </Wrapper4>
 
       <Title2
         title="Invest in the future of finance"

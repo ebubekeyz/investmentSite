@@ -23,7 +23,7 @@ const Navbar = () => {
       <div className="nav-center">
         <div className="nav-header">
           <span className="logo">
-            <Link to="/">FxRealTrade</Link>
+            <Link to="/">Trest-Holding</Link>
           </span>
           <button className="nav-toggle" onClick={toggleNav}>
             <CiMenuFries className="toggle-btn" />

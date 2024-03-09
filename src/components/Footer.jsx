@@ -12,7 +12,7 @@ const Footer = () => {
       <section>
         <div className="footer">
           <article className="logo-text">
-            <span className="logo">FxRealTrade</span>
+            <span className="logo">Trest-Holding</span>
             <p style={{ color: 'red' }}>
               We provide unique opportunities for you. Your success is our
               success, we ensure maximum satisfaction to all our clients
@@ -94,7 +94,7 @@ const Footer = () => {
               121 Collins St L 21, Melbourne, Victoria, 3000, Australia.
             </p>
 
-            <h5 style={{ fontWeight: '700' }}>support@fxidealtrade.co</h5>
+            <h5 style={{ fontWeight: '700' }}>support@Trest-Holding.com</h5>
           </article>
         </div>
 
@@ -105,7 +105,7 @@ const Footer = () => {
             color: 'var(--grey-400)',
           }}
         >
-          @Copyright <span>{mainDate}</span> fxRealTrade.co
+          @Copyright <span>{mainDate}</span> Trest-Holding.co
         </p>
       </section>
     </Wrapper>

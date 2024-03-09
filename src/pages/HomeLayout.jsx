@@ -24,7 +24,7 @@ const HomeLayout = () => {
           <Outlet context={{ questions }} />
         )}
       </section>
-      <Whatsapp />
+      {/* <Whatsapp /> */}
       <Footer />
     </div>
   );

@@ -32,7 +32,7 @@ const Login = () => {
               marginBottom: '1rem',
             }}
           >
-            <Link to="/">FxRealTrade.co</Link>
+            <Link to="/">Trest-Holding</Link>
           </h2>
           <h4>Register </h4>
           <div className="form-control">
