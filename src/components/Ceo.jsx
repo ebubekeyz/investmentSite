@@ -4,14 +4,14 @@ import Wrapper from '../assets/wrappers/Ceo';
 function Ceo() {
   return (
     <Wrapper>
-      <section class="about-section">
-        <div class="about-center section-center">
-          <div class="about-img">
-            <img src={img} class="about-photo" alt="" />
+      <section className="about-section">
+        <div className="about-center section-center">
+          <div className="about-img">
+            <img src={img} className="about-photo" alt="" />
           </div>
 
-          <article class="about-text">
-            <div class="section-title about-title">
+          <article className="about-text">
+            <div className="section-title about-title">
               <h3>Changpeng Zhao</h3>
               <h3>CEO</h3>
             </div>

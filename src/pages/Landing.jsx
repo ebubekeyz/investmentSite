@@ -34,7 +34,7 @@ import Ceo from '../components/Ceo';
 
 const API = import.meta.env.VITE_COIN_API;
 
-const coinsUrl = `https://coinlib.io/api/v1/coinlist?key=${API}f&pref=BTC&page=1&order=volume_desc`;
+const coinsUrl = `https://coinlib.io/api/v1/coinlist?key=${API}&pref=BTC&page=1&order=volume_desc`;
 
 // const coinsQuery = () => {
 //   return {
@@ -51,16 +51,16 @@ const coinsUrl = `https://coinlib.io/api/v1/coinlist?key=${API}f&pref=BTC&page=1
 //   return { coins };
 // };
 
-export const loader = async () => {
-  const response = await axios.get(`${coinsUrl}`, {});
+// export const loader = async () => {
+//   const response = await axios.get(`${coinsUrl}`);
 
-  return response;
-};
+//   return response;
+// };
 
 const Landing = () => {
-  const response = useLoaderData();
+  // const response = useLoaderData();
   // const { coins } = useQuery(coinsQuery());
-  console.log(response);
+  // console.log(response);
   return (
     <>
       {/* <Submenu /> */}
