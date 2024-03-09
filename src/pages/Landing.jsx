@@ -22,6 +22,8 @@ import { CiMusicNote1 } from 'react-icons/ci';
 import { SlEarphones } from 'react-icons/sl';
 import { PiShoppingCartSimpleLight } from 'react-icons/pi';
 import { MdOutlineSupportAgent } from 'react-icons/md';
+import axios from 'axios';
+import { useLoaderData } from 'react-router-dom';
 import { GoBriefcase } from 'react-icons/go';
 import { FaCarAlt } from 'react-icons/fa';
 import { IoIosFlash } from 'react-icons/io';
@@ -34,7 +36,25 @@ const API = import.meta.env.VITE_COIN_API;
 
 const coinsUrl = `https://coinlib.io/api/v1/coinlist?key=${API}f&pref=BTC&page=1&order=volume_desc`;
 
+const coinsQuery = () => {
+  return {
+    queryKey: ['coins'],
+    queryFn: async () => {
+      const response = await axios.get(`${coinsUrl}`);
+      return { coins: response.data.coins };
+    },
+  };
+};
+
+export const loader = (queryClient) => async () => {
+  await queryClient.ensureQueryData(coinsQuery());
+  return { coins };
+};
+
 const Landing = () => {
+  // const {coins} = useLoaderData();
+  const { coins } = useQuery(coinsQuery());
+  console.log(coins);
   return (
     <>
       {/* <Submenu /> */}
