@@ -18,7 +18,7 @@ export const list = [
     id: nanoid(),
     image: '/hero.jpg',
     name: 'Get Started Now',
-    title: 'Welcome to FTrest-holding',
+    title: 'Welcome to Trest holding',
     quote: 'A total new way to Invest',
   },
   {
