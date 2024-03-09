@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 
   .about-img::before {
     content: '';
-    background: var(--grey-400);
+    background: rgba(100, 0, 0, 0.4);
     position: absolute;
     top: -10%;
     left: 0;
@@ -22,7 +22,7 @@ const Wrapper = styled.div`
   }
   .about-img::after {
     content: '';
-    background: var(--primary-500);
+    background: rgba(0, 120, 0, 0.4);
     position: absolute;
     top: -5%;
     left: 5%;
