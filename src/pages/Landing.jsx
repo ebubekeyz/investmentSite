@@ -30,6 +30,10 @@ import { CiDeliveryTruck } from 'react-icons/ci';
 import { TbDeviceIpadSearch } from 'react-icons/tb';
 import Ceo from '../components/Ceo';
 
+const API = import.meta.env.VITE_COIN_API;
+
+const coinsUrl = `https://coinlib.io/api/v1/coinlist?key=${API}f&pref=BTC&page=1&order=volume_desc`;
+
 const Landing = () => {
   return (
     <>
