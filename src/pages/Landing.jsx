@@ -28,6 +28,7 @@ import { IoIosFlash } from 'react-icons/io';
 import { FaRegHeart } from 'react-icons/fa';
 import { CiDeliveryTruck } from 'react-icons/ci';
 import { TbDeviceIpadSearch } from 'react-icons/tb';
+import Ceo from '../components/Ceo';
 
 const Landing = () => {
   return (
@@ -605,6 +606,8 @@ const Landing = () => {
       </Wrapper>
 
       <InvestmentCard />
+
+      <Ceo />
 
       <section>
         <h2
