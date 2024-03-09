@@ -3,8 +3,7 @@ export { default as Landing } from './Landing';
 export { default as Login } from './Login';
 export { default as Register } from './Register';
 export { default as Error } from './Error';
-export { default as Dashboard } from './Dashboard';
-export { default as DashboardLanding } from './DashboardLanding';
+
 export { default as SinglePageError } from './SinglePageError';
 export { default as About } from './About';
 export { default as Terms } from './Terms';
