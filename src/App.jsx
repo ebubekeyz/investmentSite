@@ -21,8 +21,6 @@ import {
   ResetPassword,
 } from './pages';
 
-import { loader as landingLoader } from './pages/DashboardLanding';
-
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -75,7 +73,6 @@ const router = createBrowserRouter([
         index: true,
         element: <DashboardLanding />,
         errorElement: <SinglePageError />,
-        loader: landingLoader,
       },
     ],
   },
