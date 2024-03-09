@@ -18,7 +18,7 @@ export const list = [
     id: nanoid(),
     image: '/hero.jpg',
     name: 'Get Started Now',
-    title: 'Welcome to FxRealTrade.co',
+    title: 'Welcome to FTrest-holding',
     quote: 'A total new way to Invest',
   },
   {
@@ -34,18 +34,18 @@ export const questions = [
   {
     id: nanoid(),
     title: 'Why does fxrealtrade offer investment to investors?',
-    info: 'fxrealtrade sees the numerous opportunity in the financial markets and seeks to make this accessible to all and sundry.The popularization of digital assets has further strengthened our position as one of the top platforms changing lives through these assets. It is easy to understand that the more working capital is involved in the process of exchange transactions and the more people become interested in this business, the closer we are to our goals and the higher the income level of our customers is.',
+    info: 'Trest-holding sees the numerous opportunity in the financial markets and seeks to make this accessible to all and sundry.The popularization of digital assets has further strengthened our position as one of the top platforms changing lives through these assets. It is easy to understand that the more working capital is involved in the process of exchange transactions and the more people become interested in this business, the closer we are to our goals and the higher the income level of our customers is.',
   },
   {
     id: nanoid(),
     title:
       'What are the mechanism of making profit in the company with investors fund',
-    info: 'fxrealtrade.co accepts funds from its investors worldwide and creates consolidated financial flows of investment funds, carefully analyzing all aspects that may affect the conclusion of a particular exchange transaction. Making a profit, we divide it between clients in accordance with a fixed percentage of profitability, and use the remaining profit directly at our discretion.',
+    info: 'Trest-holding accepts funds from its investors worldwide and creates consolidated financial flows of investment funds, carefully analyzing all aspects that may affect the conclusion of a particular exchange transaction. Making a profit, we divide it between clients in accordance with a fixed percentage of profitability, and use the remaining profit directly at our discretion.',
   },
   {
     id: 3,
-    title: 'Is fxrealtrade a registered and authorixed trading company?',
-    info: 'Yes fxidealtrade.co is legally registered company with Financial Industry Regulatory Authority(FINRA)fxidealtrade.co is also regulated by the U.S. Security and Exchange Commission(SEC) and incorporated in the state of Maryland.',
+    title: 'Is Trest-holding a registered and authorixed trading company?',
+    info: 'Yes Trest-holding is legally registered company with Financial Industry Regulatory Authority Trest-holding is also regulated by the U.S. Security and Exchange Commission(SEC) and incorporated in the state of Maryland.',
   },
   {
     id: nanoid(),
