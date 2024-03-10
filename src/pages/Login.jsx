@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/Login';
 import { useState } from 'react';
+import logo from '../assets/logo.png';
 
 const Login = () => {
   const [date, setDate] = useState(new Date());
@@ -32,9 +33,11 @@ const Login = () => {
               marginBottom: '1rem',
             }}
           >
-            <Link to="/">Trest-Holding.</Link>
+            <Link to="/">
+              <img src={logo} alt="logo" className="logo2" />
+            </Link>
           </h2>
-          <h4>Login </h4>
+          <h4 style={{ color: 'var(--grey-400)' }}>Login </h4>
           <div className="form-control">
             <input
               type="text "

@@ -14,6 +14,9 @@ const Wrapper = styled.section`
     right: 0; */
     padding-bottom: 1rem;
   }
+  .logo2 {
+    width: 250px;
+  }
   .logo-text p,
   .q-nav aside p {
     margin: 1rem 0;

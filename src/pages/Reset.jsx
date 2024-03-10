@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/Login';
 import { useState } from 'react';
+import logo from '../assets/logo.png';
 
 const Reset = () => {
   const [date, setDate] = useState(new Date());
@@ -32,9 +33,11 @@ const Reset = () => {
               marginBottom: '1rem',
             }}
           >
-            <Link to="/">Trest-Holding</Link>
+            <Link to="/">
+              <img src={logo} alt="logo" className="logo2" />
+            </Link>
           </h2>
-          <h4>Password Reset </h4>
+          <h4 style={{ color: 'var(--grey-400)' }}>Reset </h4>
           <div className="form-control">
             <input
               type="text "

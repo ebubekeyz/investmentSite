@@ -50,7 +50,7 @@ const coinsUrl = `https://coinlib.io/api/v1/coinlist?key=${API}&pref=BTC&page=1&
 
 // export const loader = (queryClient) => async () => {
 //   await queryClient.ensureQueryData(coinsQuery());
-//   return { coins };
+//   return { coins: response.data.coins  };
 // };
 
 // export const loader = async () => {
@@ -62,7 +62,7 @@ const coinsUrl = `https://coinlib.io/api/v1/coinlist?key=${API}&pref=BTC&page=1&
 const Landing = () => {
   // const response = useLoaderData();
   // const { coins } = useQuery(coinsQuery());
-  // console.log(response);
+  // console.log(coins);
   return (
     <>
       {/* <Submenu /> */}

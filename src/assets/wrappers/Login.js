@@ -18,6 +18,9 @@ const Wrapper = styled.div`
     color: var(--grey-400);
     text-align: center;
   }
+  .logo2 {
+    width: 200px;
+  }
   .reg {
     color: red;
   }

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/Footer';
 import { useState } from 'react';
+import logo from '../assets/logo.png';
 
 const Footer = () => {
   const [date, setIsDate] = useState(new Date());
@@ -12,7 +13,9 @@ const Footer = () => {
       <section>
         <div className="footer">
           <article className="logo-text">
-            <span className="logo">Trest-Holding</span>
+            <Link to="/">
+              <img src={logo} alt="logo" className="logo2" />
+            </Link>
             <p style={{ color: 'red' }}>
               We offer distinctive opportunities for you. Your success is our
               success, and we strive for maximum satisfaction for all our

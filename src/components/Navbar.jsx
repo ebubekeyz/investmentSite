@@ -1,4 +1,4 @@
-import logo from '../assets/react.svg';
+import logo from '../assets/logo.png';
 import { CiMenuFries } from 'react-icons/ci';
 import { Link, NavLink } from 'react-router-dom';
 import { navbarData } from '../utils';
@@ -23,7 +23,9 @@ const Navbar = () => {
       <div className="nav-center">
         <div className="nav-header">
           <span className="logo">
-            <Link to="/">Trest-Holding</Link>
+            <Link to="/">
+              <img src={logo} alt="logo" className="logo" />
+            </Link>
           </span>
           <button className="nav-toggle" onClick={toggleNav}>
             <CiMenuFries className="toggle-btn" />
