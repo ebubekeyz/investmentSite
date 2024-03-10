@@ -36,7 +36,7 @@ import btcImg from '../assets/btc.png';
 
 const API = import.meta.env.VITE_COIN_API;
 
-const coinsUrl = `https://coinlib.io/api/v1/coinlist?key=${API}&pref=BTC&page=1&order=volume_desc`;
+const coinsUrl = `https://coinlib.io/api/v1/coinlist?key=d2dbfcc4787f6c5e&pref=BTC&page=1&order=volume_desc`;
 
 // const coinsQuery = () => {
 //   return {
