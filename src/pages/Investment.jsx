@@ -16,13 +16,13 @@ const Investment = () => {
         name=""
         title="Investment Plan"
         id={nanoid()}
-        quote="Our Expertise. Know more about what we do"
+        quote="Our Proficiency. Learn more about our activities."
         image={img}
       />
       <InvestmentCard />
       <Title2
-        title="FUND OBJECTIVE"
-        text="The fund’s objective is to outperform gold as a long-term benchmark. The fund will aim to achieve this by using margin lending and arbitrage strategies to earn a yield over and above the gold spot price.The Fund will offer investors an innovative, cost-efficient and secure way to have exposure to the gold market.The Fund will hold cryptoasset gold tokens, namelyTether Gold (XAUT) and PAX Gold (PAXG), with a small portion invested in the Margin Lending Fund"
+        title="Objective of the Fund"
+        text="The fund's goal is to surpass gold as a long-term benchmark. It intends to achieve this by employing margin lending and arbitrage strategies to generate a yield exceeding the gold spot price. Providing investors with an innovative, cost-effective, and secure means of gaining exposure to the gold market, the fund will hold cryptoasset gold tokens, specifically Tether Gold (XAUT) and PAX Gold (PAXG), with a minor portion invested in the Margin Lending Fund."
       />
       <Know />
     </>

@@ -33,70 +33,73 @@ export const list = [
 export const questions = [
   {
     id: nanoid(),
-    title: 'Why does fxrealtrade offer investment to investors?',
-    info: 'Trest-holding sees the numerous opportunity in the financial markets and seeks to make this accessible to all and sundry.The popularization of digital assets has further strengthened our position as one of the top platforms changing lives through these assets. It is easy to understand that the more working capital is involved in the process of exchange transactions and the more people become interested in this business, the closer we are to our goals and the higher the income level of our customers is.',
+    title:
+      'What is the reason behind Trexholding providing investment opportunities to investors?',
+    info: 'Trexholding recognizes abundant opportunities in financial markets and aims to make them accessible to everyone. The growing popularity of digital assets has reinforced our standing as a leading platform transforming lives through these assets. Its evident that as the exchange transaction process involves more working capital and attracts increased interest, we move closer to our goals, leading to higher income levels for our customers.',
   },
   {
     id: nanoid(),
     title:
-      'What are the mechanism of making profit in the company with investors fund',
-    info: 'Trest-holding accepts funds from its investors worldwide and creates consolidated financial flows of investment funds, carefully analyzing all aspects that may affect the conclusion of a particular exchange transaction. Making a profit, we divide it between clients in accordance with a fixed percentage of profitability, and use the remaining profit directly at our discretion.',
+      'What are the mechanisms for generating profit in the company using investors funds?',
+    info: 'Trexholding globally receives investments from its clients and consolidates investment funds, meticulously analyzing factors that may impact specific exchange transactions. Upon generating profits, we distribute them among clients based on a predetermined percentage of profitability, while the remaining profit is utilized at our discretion.',
   },
   {
     id: 3,
-    title: 'Is Trest-holding a registered and authorixed trading company?',
-    info: 'Yes Trest-holding is legally registered company with Financial Industry Regulatory Authority Trest-holding is also regulated by the U.S. Security and Exchange Commission(SEC) and incorporated in the state of Maryland.',
+    title: 'Is Trexholding a registered and authorized trading company?',
+    info: 'Certainly, Trexholding is a lawfully registered company with the Financial Industry Regulatory Authority. Furthermore, Trexholding is subject to regulation by the U.S. Securities and Exchange Commission (SEC) and is incorporated in the state of Maryland',
   },
   {
     id: nanoid(),
-    title: 'How can i register to start earning?',
-    info: 'Simply click on the sign up button to register for free in the company, choose any investment package you can afford. kindly enter the amount you want to start with on the website and make the exact payment by transferring to the company wallet address and then you will finish up your deposit process by clicking on the save and wait for the company to approve your deposit. Once we verify your deposit we will definitely approve the deposit, then we will enable your dashboard for earning and at the agreed time on the investment package you selected.',
-  },
-  {
-    id: nanoid(),
-    title: 'How does withdrawal take to enter wallet?',
-    info: 'The withdrawal is always instantly, and immediately your withdrawal request is received in the company, the transfer of the specified amount you want to withdraw is automatically send directly into your Bitcoin or Etherum wallet address registered in the company, this amount enters your wallet backoffice immediately after passing 3 to 4 confirmation process by the blockchain service. ',
-  },
-  {
-    id: nanoid(),
-    title: 'Is anyone from any country allowed to participate?',
-    info: 'For anyone to take advantage of our investment opportunity, the person must be at least 18 years of age and must have agreed to our Terms of Service. It doesn’t matter the country you’re located; as long as you have an internet connection, you can participate.',
+    title: 'How do I sign up to commence earning?',
+    info: 'To begin earning, click on the sign-up button for free registration with the company. Select an investment package within your budget, enter the desired starting amount on the website, and make the payment by transferring to the companys wallet address. Complete the deposit process by clicking save and await approval from the company. Once your deposit is verified, we will approve it, activate your dashboard for earning, and adhere to the agreed-upon schedule for the selected investment package.',
   },
   {
     id: nanoid(),
     title:
-      'Whats the main activities that allows you to generate such interest?',
-    info: 'We invest in high value assets using indepth analysis, market forensics and high end technology. Our Experts are able to make high yields due to our exceptional stratagies. Based on Bitcoin & Etherum mining volume and the state-of-the-art technology that we use for Bitcoin and Etherum mining, we are able to provide interest that’s higher than the market average. Also, the fact that we are expanding our services globally helps us to accelerate and reach new heights. In order to keep our status as one of the world’s best BTC / ETH mining companies available today, we have to work by standards and concepts that apply to modern-day technology. As a result of constant and purposefully teamwork we are able to provide lucrative interest to our clients.',
+      'How long does it take for withdrawals to be credited to the wallet?',
+    info: 'Withdrawals are processed instantly. Once the company receives your withdrawal request, the specified amount is automatically transferred directly to your registered Bitcoin or Ethereum wallet address. The amount reflects in your wallet back office shortly after undergoing a 3 to 4 confirmation process by the blockchain service.',
   },
   {
     id: nanoid(),
-    title: 'What is your offer? How much will i earn?',
-    info: 'The main concept behind our investment plan is that you will receive interest on daily basis based on the investment plan you activate/choose. This means that after your deposit has been added into your account, each day from that point on interest will be applied to your account balance. All your active deposits are stored in your account “Investment List” section; from there you can withdraw your principal or part of it. As long as you have an active deposit you will receive interest from it. As soon as you withdraw all your principal, your deposit will no longer be active and interest will no longer be applied.',
-  },
-  {
-    id: nanoid(),
-    title: 'What is minimum and maximum deposit amount?',
-    info: 'The minimum deposit amount is $50 USD and the maximum amount as per deposit is $50000. You may have as many active investments at the time as you wish.',
-  },
-  {
-    id: nanoid(),
-    title: 'What is the affiliate program and how can i benefit from it?',
-    info: 'Our affiliate program’s main concept is to provide an extra financial opportunity to our members by referring others to our project. All you have to do is share your referral link (available in your account) with other individuals, and you will be awarded with 7% from their deposit into your account balance. If you would like to earn even higher (10%) commission from your referrals’ deposits, please apply for Representative status.',
+    title: 'Is participation open to individuals from any country?',
+    info: 'To avail oneself of our investment opportunity, one must be a minimum of 18 years old and must have agreed to our Terms of Service. Regardless of your location, as long as you have an internet connection, you are eligible to participate.',
   },
   {
     id: nanoid(),
     title:
-      'What is the main difference between standard affiliate program and regional representatives program?',
-    info: 'Please check out our plans to view available offers. You can also contact support.',
+      'What are the primary activities that enable you to generate such interest?',
+    info: 'We engage in high-value asset investments through in-depth analysis, market forensics, and advanced technology. Our experts yield high returns owing to our exceptional strategies. Leveraging Bitcoin and Ethereum mining volumes, coupled with cutting-edge technology, enables us to offer interest rates higher than the market average. Global expansion accelerates our growth, and to maintain our status as one of the worlds top BTC/ETH mining companies, we adhere to modern technology standards and concepts. The consistent and purposeful teamwork allows us to provide lucrative interest to our clients.',
   },
   {
     id: nanoid(),
-    title: 'I would like to be a representative? What should i do',
-    info: 'In order to become a Regional Representative of Digital Capital Markets you have to have the ability to support and promote our project in your region via different ways, such as a personal blog, online / offline presentation, meetings with clients etc. Please email us at support@fxidealtrade.co for application.',
+    title: 'What is your proposition? How much can I expect to earn?',
+    info: 'The fundamental idea behind our investment plan is that you will earn daily interest depending on the activated/chosen investment plan. After your deposit is credited to your account, interest will be accrued to your account balance each day. Your active deposits are listed in the "Investment List" section of your account, allowing you to withdraw either the full principal or a portion of it. As long as you maintain an active deposit, you will continue to receive interest. Once you withdraw the entire principal, your deposit becomes inactive, and no further interest will be applied.',
   },
   {
     id: nanoid(),
-    title: 'My account is inactive why?',
-    info: 'If you account is inactive, you might have broken one of our terms/services. Please contact support to have it rectified.',
+    title: 'What are the minimum and maximum deposit amounts?',
+    info: 'The minimum deposit is $50 USD, and the maximum deposit per transaction is $50,000. You can have as many active investments as you desire concurrently.',
+  },
+  {
+    id: nanoid(),
+    title:
+      'What does the affiliate program entail, and how can I take advantage of its benefits?',
+    info: 'The primary idea behind our affiliate program is to offer our members an additional financial opportunity by encouraging them to refer others to our project. Simply share your referral link, found in your account, with others, and you will receive a 7% commission from their deposits credited to your account balance. If you aspire to earn an even higher commission (10%) from your referrals deposits, you can apply for Representative status.',
+  },
+  {
+    id: nanoid(),
+    title:
+      'What distinguishes the standard affiliate program from the regional representatives program?',
+    info: 'Kindly review our plans to explore the available offers. Feel free to reach out to our support team for further assistance.',
+  },
+  {
+    id: nanoid(),
+    title: 'How can I become a representative?',
+    info: 'To qualify as a Regional Representative for Digital Capital Markets, you need the capability to endorse and advocate for our project in your region through various means, such as maintaining a personal blog, conducting online/offline presentations, and organizing client meetings. For application, please send an email to trexholding539@gmail.com.',
+  },
+  {
+    id: nanoid(),
+    title: 'Why is my account currently inactive?',
+    info: 'If your account is inactive, its possible that you may have violated one of our terms or services. Please reach out to our support team for assistance in resolving this issue.',
   },
 ];

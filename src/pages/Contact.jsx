@@ -12,7 +12,7 @@ const Contact = () => {
           name=""
           title="Contact Us"
           id={nanoid()}
-          quote="Support@Fxidealtrade.Co"
+          quote="trexholding539@gmail.com"
           image={img}
         />
 
@@ -33,10 +33,12 @@ const Contact = () => {
                 color: 'var(--primary-600)',
               }}
             >
-              Let’s talk about your investment and how we can make it happen.
+              Let's discuss your investment and explore ways to bring it to
+              fruition.
             </h2>
             <p style={{ fontSize: '1rem', marginBottom: '1rem' }}>
-              Let’s talk about your investment and how we can make it happen.
+              Let's delve into your investment and explore the possibilities of
+              realizing it.
             </p>
           </article>
 
@@ -56,7 +58,7 @@ const Contact = () => {
                 marginBottom: '2rem',
               }}
             >
-              Need assistance? please fill the form
+              Require help? Kindly complete the form for assistance.
             </h1>
 
             <input
@@ -96,7 +98,7 @@ const Contact = () => {
             >
               <input type="checkbox" name="agree" value="false" />
               <span style={{ color: 'var(--grey-400)' }}>
-                I agree to talk about my investment with fxrealtrade.co
+                I consent to discussing my investment with trexholding.com.
               </span>
             </div>
 

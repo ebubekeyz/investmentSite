@@ -14,9 +14,9 @@ const Faqs = () => {
     <div>
       <Hero2
         name=""
-        title="Frequently Asked questions"
+        title="Commonly Asked Questions"
         id={nanoid()}
-        quote="If you have a question that is not answered here, please contact us"
+        quote="Should you have an inquiry not addressed here, feel free to reach out to us."
         image={img}
       />
       <FaqsCard questions={questions} />

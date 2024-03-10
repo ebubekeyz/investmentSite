@@ -16,19 +16,20 @@ const About = () => {
       <div>
         <Hero2
           name=""
-          title="About fxrealtrade.co"
+          title="About trexholding.com"
           id={nanoid()}
-          quote="Know more about what we do"
+          quote="Learn more about our activities."
           image={img}
         />
 
         <Title2
-          title="fxrealtrade.co is a registered broker-dealer specializing in private securities."
-          text="Collaboration with us is a high-tech process of integrating each client into fxidealtrade.co's unique investor community to strengthen the financial stability of each of them and to obtain a stable profit without risk of losing capital. We are not just a trading company. fxidealtrade.co is a tool that allows everyone to develop potential, making investments based on our technologies.
+          title="
+Trexholding is a licensed broker-dealer that specializes in private securities."
+          text="Collaborating with us involves a sophisticated process of seamlessly integrating each client into Trexholding's distinctive investor community. This aims to enhance the financial stability of every individual and secure a consistent profit without risking capital. We transcend being just a trading company; fxidealtrade.co serves as a tool enabling everyone to realize their potential through investments based on our cutting-edge technologies.
 
-We offer our partners attractive terms of collaboration. The right to use the company's brand, a well-established algorithm for conducting business, comprehensive support from company specialists. Attractive conditions for investing in the fastest-growing company will help you to invite potential clients for cooperation easily.
+We extend attractive collaboration terms to our partners, granting them the right to use our company's brand, employing a well-established business algorithm, and offering comprehensive support from our team of specialists. These favorable conditions for investing in our rapidly growing company make it effortless for you to attract potential clients for collaboration.
 
-Our goal is to provide all parties with the information they need, allowing a smooth progression in our transactions from the pre-marketing phase to the close. We make it easy for you to focus on deals while we run the compliance functions."
+Our objective is to furnish all parties with the necessary information, ensuring a seamless progression in our transactions from the pre-marketing phase to closure. By handling compliance functions, we enable you to focus on your deals with ease."
         />
 
         <aside>
@@ -41,7 +42,8 @@ Our goal is to provide all parties with the information they need, allowing a sm
                 <span>
                   <FaCheck style={{ color: 'red' }} />
                 </span>
-                Broker-dealer firm in business since 2019.<span></span>
+                A brokerage firm established and operating since 2014.
+                <span></span>
               </li>
               <li>
                 <span>
@@ -49,8 +51,9 @@ Our goal is to provide all parties with the information they need, allowing a sm
                 </span>
                 <span>
                   {' '}
-                  Supervised over 1000 successful transactions in private deals
-                  ranging from $1 million to over $100 million.
+                  Managed more than 1000 successful transactions in private
+                  dealings, with values spanning from $1 million to over $100
+                  million.
                 </span>
               </li>
               <li>
@@ -59,23 +62,24 @@ Our goal is to provide all parties with the information they need, allowing a sm
                 </span>
                 <span>
                   {' '}
-                  Specialize in capital raises, M&A opportunities and secondary
-                  sales of private stock.
+                  Specialized in facilitating capital raises, exploring M&A
+                  opportunities, and overseeing secondary sales of private
+                  stock.
                 </span>
               </li>
               <li>
                 <span>
                   <FaCheck style={{ color: 'red' }} />
                 </span>
-                <span>Registered in 12 states and Territories</span>
+                <span>Officially registered in 12 states and territories.</span>
               </li>
               <li>
                 <span>
                   <FaCheck style={{ color: 'red' }} />
                 </span>
                 <span>
-                  Headquartered in Massachusetts, with registered
-                  representatives in some countries
+                  Based in Massachusetts, with registered representatives
+                  operating in certain countries.
                 </span>
               </li>
             </ul>
@@ -83,54 +87,60 @@ Our goal is to provide all parties with the information they need, allowing a sm
         </aside>
 
         <Title2
-          title="Delivering Results"
-          text="We are one of the world’s leading private multi-asset alternative investment firms."
+          title="Achieving outcomes."
+          text="We stand as one of the premier global firms specializing in private multi-asset alternative investments."
         />
 
         <aside>
           <article>
             <div className="others">
               <h2>99%</h2>
-              <p>A totally new way to grow your Investment</p>
+              <p>
+                An entirely innovative approach to expanding your investment.
+              </p>
               <p style={{ borderBottom: '2px solid #e9e9e9' }}></p>
             </div>
 
             <div className="others">
               <h2>Increased</h2>
-              <p>Award-winning Capital Investment platform</p>
+              <p>
+                A platform for capital investment that has received prestigious
+                awards.
+              </p>
               <p style={{ borderBottom: '2px solid #e9e9e9' }}></p>
             </div>
 
             <div className="others">
               <h2>Improved</h2>
-              <p>We are adding extra value for your Investment</p>
+              <p>We are enhancing the value of your investment.</p>
               <p style={{ borderBottom: '2px solid #e9e9e9' }}></p>
             </div>
           </article>
 
           <article>
             <p>
-              At fxidealtrade.co, we pride ourselves on asking questions,
-              planning and creating something out of nothing. We are
-              entrepreneurs, inventors, scientists, and engineers shaping the
-              future of finance in a collaborative, stimulating environment.
+              At Trexholding, we take pride in inquiring, strategizing, and
+              innovating to build something meaningful from scratch. We are a
+              collective of entrepreneurs, inventors, scientists, and engineers
+              actively shaping the future of finance within a collaborative and
+              dynamic environment.
             </p>
 
             <div>
               <div className="facts">
-                <h3>The fxrealtrade.co platform</h3>
+                <h3>The platform provided by Trexholding.</h3>
                 <ul className="list">
                   <li>
                     <span>
                       <FaCheck style={{ color: 'red' }} />
                     </span>
-                    Built by brokers for brokers<span></span>
+                    Developed by brokers, for brokers.<span></span>
                   </li>
                   <li>
                     <span>
                       <FaCheck style={{ color: 'red' }} />
                     </span>
-                    <span> Independent contractor model</span>
+                    <span>Model based on independent contractors.</span>
                   </li>
                   <li>
                     <span>
@@ -138,8 +148,8 @@ Our goal is to provide all parties with the information they need, allowing a sm
                     </span>
                     <span>
                       {' '}
-                      Proprietary software supports many private placement deal
-                      types
+                      Our proprietary software accommodates various private
+                      placement deal types.
                     </span>
                   </li>
                   <li>
@@ -147,21 +157,21 @@ Our goal is to provide all parties with the information they need, allowing a sm
                       <FaCheck style={{ color: 'red' }} />
                     </span>
                     <span>
-                      Chaperone service enables foreign placement agents to show
-                      mandates to US institutional investors
+                      The chaperone service facilitates foreign placement agents
+                      in presenting mandates to US institutional investors.
                     </span>
                   </li>
                 </ul>
               </div>
 
               <div className="facts">
-                <h3>fxrealtrade.co Transactions Since 2019</h3>
+                <h3>Trexholding Transactions from 2014 Onward</h3>
                 <ul className="list">
                   <li>
                     <span>
                       <FaCheck style={{ color: 'red' }} />
                     </span>
-                    Over $1 Billion in transaction value<span></span>
+                    Transaction value exceeding $1 billion.<span></span>
                   </li>
                   <li>
                     <span>
@@ -169,7 +179,8 @@ Our goal is to provide all parties with the information they need, allowing a sm
                     </span>
                     <span>
                       {' '}
-                      More than 800 domestic private placement transactions
+                      Over 800 private placement transactions conducted
+                      domestically.
                     </span>
                   </li>
                   <li>
@@ -178,22 +189,24 @@ Our goal is to provide all parties with the information they need, allowing a sm
                     </span>
                     <span>
                       {' '}
-                      Over 61,000,000 euros and 39,000,000 pounds in transaction
-                      value
+                      Transaction value exceeding 61 million euros and 39
+                      million pounds.
                     </span>
                   </li>
                   <li>
                     <span>
                       <FaCheck style={{ color: 'red' }} />
                     </span>
-                    <span>Over $35M commissions generated by reps</span>
+                    <span>
+                      Reps generated commissions surpassing $35 million.
+                    </span>
                   </li>
                   <li>
                     <span>
                       <FaCheck style={{ color: 'red' }} />
                     </span>
                     <span>
-                      More than 900 institutional or accredited investors served
+                      Served over 900 institutional or accredited investors.
                     </span>
                   </li>
                 </ul>
@@ -202,7 +215,7 @@ Our goal is to provide all parties with the information they need, allowing a sm
           </article>
         </aside>
 
-        <Title2 title="WHY CHOOSE fxirealtrade.co" text="Lets Get Started." />
+        <Title2 title="Why opt for Trexholding?" text="Lets begin." />
 
         <AboutGallery />
 
