@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
+  overflow-x: hidden;
   .about-gal {
     width: 90vw;
     margin: 0 auto;

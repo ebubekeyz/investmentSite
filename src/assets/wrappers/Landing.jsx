@@ -4,6 +4,7 @@ const Wrapper = styled.div`
   width: 90vw;
   margin: 4rem auto;
   max-width: 1170px;
+  overflow-x: hidden;
 
   .landing article {
     margin-bottom: 1rem;
