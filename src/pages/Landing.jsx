@@ -120,7 +120,7 @@ const Landing = () => {
       <Wrapper>
         <div className="landing">
           <article>
-            <h2>Investing with us is straightforward.</h2>
+            <h2>Investing with us is straightforward</h2>
           </article>
           <article className="land-inner">
             <h4>The future of finance has arrived – trexholding.com.</h4>
