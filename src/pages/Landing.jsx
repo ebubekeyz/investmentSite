@@ -36,7 +36,7 @@ import btcImg from '../assets/btc.png';
 
 const API = import.meta.env.VITE_COIN_API;
 
-const coinsUrl = `https://coinlib.io/api/v1/coinlist?key=d2dbfcc4787f6c5e&pref=BTC&page=1&order=volume_desc`;
+// const coinsUrl = `https://coinlib.io/api/v1/coinlist?key=d2dbfcc4787f6c5e&pref=BTC&page=1&order=volume_desc`;
 
 // const coinsQuery = () => {
 //   return {
@@ -53,16 +53,16 @@ const coinsUrl = `https://coinlib.io/api/v1/coinlist?key=d2dbfcc4787f6c5e&pref=B
 //   return { coins: response.data.coins  };
 // };
 
-export const loader = async () => {
-  const response = await axios.get(`${coinsUrl}`);
+// export const loader = async () => {
+//   const response = await axios.get(`${coinsUrl}`);
 
-  return { coins: response.data.coins };
-};
+//   return { coins: response.data.coins };
+// };
 
 const Landing = () => {
-  const { coins } = useLoaderData();
+  // const { coins } = useLoaderData();
   // const { coins } = useQuery(coinsQuery());
-  console.log(coins);
+  // console.log(coins);
   return (
     <>
       {/* <Submenu /> */}

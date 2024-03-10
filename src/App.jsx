@@ -20,7 +20,7 @@ import {
   Reset,
   ResetPassword,
 } from './pages';
-import { loader as landingLoader } from './pages/Landing.jsx';
+// import { loader as landingLoader } from './pages/Landing.jsx';
 
 const queryClient = new QueryClient();
 
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
         index: true,
         element: <Landing />,
         errorElement: <SinglePageError />,
-        loader: landingLoader,
+        // loader: landingLoader,
       },
       {
         path: '/about',
