@@ -53,16 +53,16 @@ const coinsUrl = `https://coinlib.io/api/v1/coinlist?key=${API}&pref=BTC&page=1&
 //   return { coins: response.data.coins  };
 // };
 
-// export const loader = async () => {
-//   const response = await axios.get(`${coinsUrl}`);
+export const loader = async () => {
+  const response = await axios.get(`${coinsUrl}`);
 
-//   return response;
-// };
+  return { coins: response.data.coins };
+};
 
 const Landing = () => {
-  // const response = useLoaderData();
+  const { coins } = useLoaderData();
   // const { coins } = useQuery(coinsQuery());
-  // console.log(coins);
+  console.log(coins);
   return (
     <>
       {/* <Submenu /> */}
