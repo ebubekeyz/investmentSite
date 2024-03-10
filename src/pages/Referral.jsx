@@ -16,17 +16,17 @@ const Referral = () => {
           name=""
           title="Affliate Program"
           id={nanoid()}
-          quote="Success isn’t really that difficult. There is a significant portion of the population, that actually want and need success"
+          quote="Achieving success is not overly challenging. A substantial portion of the population both desires and requires success."
           image={img}
         />
 
         <div className="ref-text">
           <article>
-            <h3>What You'll Get as Affiliate Partner</h3>
+            <h3>What You'll Receive as an Affiliate Partner</h3>
             <p>
-              Earn Unlimited Commissions with fxidealtrade.co Affiliate
-              Program.Our partner program can increase your income by receiving
-              percentage from the purchases made by your referrals into.
+              Generate unlimited commissions through the trexholding Affiliate
+              Program. Increase your income by receiving a percentage from the
+              purchases made by your referrals.
             </p>
           </article>
 
@@ -36,9 +36,9 @@ const Referral = () => {
               <div className="ref-num-inner">
                 <h4>Join Our Program</h4>
                 <p>
-                  Once you sign up, you’ll get a personalized link to send to
-                  your friends.Click Join Now below and start EARNING in just a
-                  few clicks.
+                  Upon signing up, you will receive a personalized link to share
+                  with your friends. Click "Join Now" below and start earning in
+                  just a few clicks.
                 </p>
               </div>
             </div>
@@ -48,8 +48,8 @@ const Referral = () => {
               <div className="ref-num-inner">
                 <h4>Promote</h4>
                 <p>
-                  Share your referral link wherever, whenever (don’t be
-                  selfish).Monetize your traffic with a Tracking Link.
+                  Share your referral link everywhere and at any time (don't be
+                  selfish). Monetize your traffic using a Tracking Link.
                 </p>
               </div>
             </div>
@@ -59,8 +59,9 @@ const Referral = () => {
               <div className="ref-num-inner">
                 <h4>Earn</h4>
                 <p>
-                  Get up to 7% commission. Earn from ALL products with your 30
-                  day cookie, not just those you advertise.
+                  Receive up to a 7% commission. Earn from ALL products with
+                  your 30-day cookie, not limited to those you specifically
+                  advertise.
                 </p>
               </div>
             </div>
@@ -68,8 +69,8 @@ const Referral = () => {
         </div>
 
         <Title2
-          title="Diversity, along with innovative collaboration"
-          text="We are a creative company, who works with passion and love. We provide the best services you need. We help you to get better, We take pride in helping our clients deliver marvelous results when it comes to their Investment."
+          title="Diversity coupled with innovative collaboration."
+          text="We are a company fueled by creativity, working with passion and love to deliver the finest services you require. Our commitment is to assist you in improvement, taking pride in helping our clients achieve remarkable results in their investments."
         />
 
         <div className="information">
@@ -87,11 +88,11 @@ const Referral = () => {
             </div>
 
             <p style={{ color: 'white' }}>
-              Investors are constrained by high admin costs, unnecessary
-              intermediaries, slow execution and limited transparency. At
-              fxidealtrade.co, we believe that blockchain technology will
-              radically transform this industry to the benefit of investors
-              across the globe.
+              Investors face challenges such as high administrative costs,
+              unnecessary intermediaries, slow execution, and limited
+              transparency. At fxidealtrade.co, we believe that blockchain
+              technology will revolutionize this industry, providing significant
+              benefits to investors worldwide.
             </p>
           </article>
 
@@ -102,10 +103,10 @@ const Referral = () => {
             </div>
 
             <p style={{ color: 'white' }}>
-              We believe that the future of finance looks very different to how
-              it looks today and we offer qualifying investors the opportunity
-              in the companies and products that are building the future of
-              finance.
+              We envision a future of finance that differs significantly from
+              its current state, and we provide eligible investors with the
+              opportunity to invest in companies and products that are shaping
+              the future of finance.
             </p>
           </article>
         </div>

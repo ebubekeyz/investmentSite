@@ -18,15 +18,15 @@ export const list = [
     id: nanoid(),
     image: '/hero.jpg',
     name: 'Get Started Now',
-    title: 'Welcome to Trest holding',
-    quote: 'A total new way to Invest',
+    title: 'Welcome to Trexholding',
+    quote: 'A completely new approach to investing.',
   },
   {
     id: nanoid(),
     image: '/hero2.jpg',
     name: 'Read more',
-    title: 'Earn Profit Without Compromising',
-    quote: 'We support the growth of investment in promising innovations',
+    title: 'Generate profits without compromising.',
+    quote: 'We endorse the expansion of investments in promising innovations.',
   },
 ];
 

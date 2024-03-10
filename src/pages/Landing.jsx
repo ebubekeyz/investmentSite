@@ -120,12 +120,10 @@ const Landing = () => {
       <Wrapper>
         <div className="landing">
           <article>
-            <h2>Investment With us is Easy</h2>
+            <h2>Investing with us is straightforward.</h2>
           </article>
           <article className="land-inner">
-            <h4>
-              The new frontier to FINANCE is here already- Trest-Holding.com
-            </h4>
+            <h4>The future of finance has arrived – trexholding.com.</h4>
           </article>
 
           <article className="know-arrow">
@@ -142,9 +140,10 @@ const Landing = () => {
             <img src={image1} alt="abt1" className="abt-img2" />
             <h4 style={{ marginBottom: '0.8rem' }}>Mission and vision</h4>
             <p>
-              We believe that the future belongs to those who prepare now for
-              it. We offer qualifying investors the opportunity to invest in the
-              companies and products that are building the future humanity.
+              We believe that those who prepare for the future now will be its
+              rightful owners. We extend the opportunity to qualified investors
+              to invest in companies and products that are shaping the future of
+              humanity.
             </p>
             <div
               style={{
@@ -179,9 +178,10 @@ const Landing = () => {
             <img src={image2} alt="abt2" className="abt-img" />
             <h4 style={{ marginBottom: '0.8rem' }}>Our Value</h4>
             <p>
-              Trest-Holding.com is a distinctive investment platform offering
-              investors a wide range of investment opportunities. We emphasize
-              on understanding our client’s goals so we can help them achieve.
+              Trexholding stands out as a unique investment platform that
+              provides a diverse array of investment opportunities for
+              investors. Our focus is on comprehending our clients' goals to
+              assist them in achieving success.
             </p>
             <div
               style={{
@@ -216,9 +216,9 @@ const Landing = () => {
             <img src={image3} alt="abt3" className="abt-img" />
             <h4 style={{ marginBottom: '0.8rem' }}>Our Aim</h4>
             <p>
-              We Genuinely Want Our Clients to Succeed. Once you open an account
-              with us, we will hold your capital in trust and grow it masterly
-              for you.
+              We sincerely desire success for our clients. When you open an
+              account with us, we will prudently manage and grow your capital in
+              trust for you.
             </p>
             <div
               style={{
@@ -271,9 +271,9 @@ const Landing = () => {
               Quality Circle Program
             </h3>
             <p>
-              A unique of its kind initiative to impart financial awareness
-              among people and to tell them about basic do’s and dont’s of
-              financial management.
+              A one-of-a-kind initiative aimed at spreading financial awareness
+              among people and educating them about the fundamental dos and
+              don'ts of financial management.
             </p>
             <div
               style={{
@@ -323,9 +323,9 @@ const Landing = () => {
                 Careers with us
               </h3>
               <p style={{ color: 'white' }}>
-                There’s always room for intelligent people who are excited about
-                the Capital world and are continually looking forward to seeing
-                what’s next.
+                There is always space for individuals with intelligence who are
+                enthusiastic about the world of finance and are consistently
+                eager to anticipate what comes next.
               </p>
             </div>
           </article>
@@ -414,10 +414,11 @@ const Landing = () => {
             fontSize: '2.4rem',
           }}
         >
-          We Focus On The Best Performing Industries And Assets
+          Our emphasis lies on industries and assets with the best performance.
         </h2>
         <p style={{ color: 'white' }}>
-          Well poised and covered to get you where you want to be economically.
+          Well-positioned and equipped to guide you towards your economic
+          aspirations.
         </p>
       </section>
 
@@ -578,8 +579,8 @@ const Landing = () => {
       </Wrapper4>
 
       <Title2
-        title="Invest in the future of finance"
-        text="Invest in the disruption of a multi-trillion dollar industry the smart way."
+        title="Invest in the future of financial innovation."
+        text="Invest intelligently in the disruption of a multi-trillion-dollar industry."
       />
 
       <Wrapper>
@@ -594,8 +595,9 @@ const Landing = () => {
               </h3>
             </div>
             <p className="bond-text" style={{ marginTop: '1.2rem' }}>
-              We have an active, growing community of over 15,000 investors from
-              more than 150 countries. Blockchain knows no borders.
+              Our vibrant community of investors has surpassed 15,000 members
+              from over 150 countries. Blockchain transcends geographical
+              boundaries.
             </p>
           </article>
 
@@ -609,10 +611,11 @@ const Landing = () => {
               </h3>
             </div>
             <p className="bond-text" style={{ marginTop: '1.2rem' }}>
-              We use bank-grade security procedures including secure socket
-              layers, two factor authentication and are registered with our
-              Monetary Authority to run a securities business and transfer funds
-              in secure, dedicated client money accounts.
+              We implement security measures equivalent to those of banks,
+              including secure socket layers and two-factor authentication.
+              Additionally, we are registered with our Monetary Authority to
+              conduct securities business and facilitate secure fund transfers
+              through dedicated client money accounts.
             </p>
           </article>
 
@@ -630,9 +633,9 @@ const Landing = () => {
               </h3>
             </div>
             <p className="bond-text" style={{ marginTop: '1.2rem' }}>
-              Receive professional grade protections through our unique pooled
-              investment structure so your investments can grow in a
-              tax-efficient way.
+              Experience professional-grade protection with our distinctive
+              pooled investment structure, enabling your investments to grow in
+              a tax-efficient manner.
             </p>
           </article>
 
@@ -646,9 +649,9 @@ const Landing = () => {
               </h3>
             </div>
             <p className="bond-text" style={{ marginTop: '1.2rem' }}>
-              We are the largest global online investment community of
-              professional investors all investing in financial innovation and
-              technology.
+              We stand as the world's largest online investment community,
+              comprised of professional investors dedicated to investing in
+              financial innovation and technology.
             </p>
           </article>
 
@@ -662,9 +665,9 @@ const Landing = () => {
               </h3>
             </div>
             <p className="bond-text" style={{ marginTop: '1.2rem' }}>
-              Investors and businesses can easily keep-in-touch online
+              Investors and businesses can conveniently stay connected online
               throughout the investment lifecycle and store all documentation in
-              one place.
+              a centralized location.
             </p>
           </article>
 
@@ -678,9 +681,9 @@ const Landing = () => {
               </h3>
             </div>
             <p className="bond-text" style={{ marginTop: '1.2rem' }}>
-              We are the digital alternative to traditional asset management -
-              borderless, hyper-efficient and usable from any smartphone. No
-              paperwork required.
+              We serve as the digital alternative to traditional asset
+              management—borderless, hyper-efficient, and accessible from any
+              smartphone. No paperwork is necessary.
             </p>
           </article>
         </section>
@@ -721,10 +724,10 @@ const Landing = () => {
             <img src={image1} alt="abt1" className="abt-img" />
             <h4 style={{ marginBottom: '0.8rem', fontSize: '1rem' }}>Legal</h4>
             <p>
-              We are A reputable broker establishemt. We have been around for
-              long and about us our clients from all over the world have nothing
-              but positive things to say. We offer only a market-leading,
-              industry-standard brokerage service.
+              We are a well-established and reputable brokerage firm. With our
+              extensive experience, clients from all over the world have
+              consistently expressed positive feedback. Our commitment is to
+              provide a market-leading, industry-standard brokerage service.
             </p>
             <div
               style={{
@@ -761,9 +764,9 @@ const Landing = () => {
               Operations
             </h4>
             <p>
-              We Are Well-regulated and Safe To Trade With. Tested and trusted
-              by thousands. Forex Birds easily circumvents this concern as we
-              are registered with and duly regulated by the UK's Securities and
+              We are a well-regulated and secure trading platform, trusted by
+              thousands. Forex Birds addresses this concern effectively, being
+              registered with and duly regulated by the UK's Securities and
               Investments Commission (ASIC).
             </p>
             <div
@@ -801,8 +804,9 @@ const Landing = () => {
               Finance
             </h4>
             <p>
-              We have raised millions in venture capital funding, to secure
-              against markets harzads, funds are fully insured.
+              We secured millions in venture capital funding to safeguard
+              against market hazards, ensuring full insurance coverage for our
+              funds.
             </p>
             <div
               style={{

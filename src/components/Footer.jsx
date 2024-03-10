@@ -14,8 +14,9 @@ const Footer = () => {
           <article className="logo-text">
             <span className="logo">Trest-Holding</span>
             <p style={{ color: 'red' }}>
-              We provide unique opportunities for you. Your success is our
-              success, we ensure maximum satisfaction to all our clients
+              We offer distinctive opportunities for you. Your success is our
+              success, and we strive for maximum satisfaction for all our
+              clients.
             </p>
           </article>
 
@@ -91,10 +92,10 @@ const Footer = () => {
               />
             </span>
             <p style={{ marginBottom: '1rem' }}>
-              121 Collins St L 21, Melbourne, Victoria, 3000, Australia.
+              101 Collins St L 21, Melbourne, Victoria, 3000, Australia.
             </p>
 
-            <h5 style={{ fontWeight: '700' }}>support@Trest-Holding.com</h5>
+            <h5 style={{ fontWeight: '700' }}>trexhoding539@gmail.com</h5>
           </article>
         </div>
 
