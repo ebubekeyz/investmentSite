@@ -59,7 +59,7 @@ const Referral = () => {
               <div className="ref-num-inner">
                 <h4>Earn</h4>
                 <p>
-                  Receive up to a 7% commission. Earn from ALL products with
+                  Receive up to a 10% commission. Earn from ALL products with
                   your 30-day cookie, not limited to those you specifically
                   advertise.
                 </p>

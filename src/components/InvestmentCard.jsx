@@ -2,534 +2,455 @@ import { Link } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/Investment';
 import { FaArrowRight } from 'react-icons/fa';
 import Title from '../components/Title';
+import { LuBadgeCheck } from 'react-icons/lu';
+import { FaCheck } from 'react-icons/fa';
 
 const InvestmentCard = () => {
   return (
     <Wrapper>
-      <div>
-        <Title
-          title="CHOOSE A PLAN THAT FITS YOU"
-          text="DESIGNED FOR A WIDE RANGE OF NEEDS"
-        />
+      <section>
+        <div>
+          <Title title="Pricing plans" text="" />
+        </div>
 
-        <aside style={{ width: '90vw', maxWidth: '1170px', margin: '0 auto' }}>
-          <div
-            className="invest"
-            style={{
-              display: 'grid',
-              gridTemplateColumn: '1fr',
+        <aside className="invest">
+          <article>
+            <h3>C-H1 Plan</h3>
 
-              justifyContent: 'center',
-              placeItems: 'center',
-            }}
-          >
-            <article
-              style={{
-                background: 'white',
-                padding: '2rem 1rem',
-                margin: '1rem 0',
-                boxShadow: 'var(--shadow-3)',
-                textAlign: 'center',
-                width: '16rem',
+            <LuBadgeCheck className="badge" />
 
-                gap: '2rem',
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: '1.5rem',
-                  fontWeight: '700',
-                  marginBottom: '1.5rem',
-                  color: 'var(--primary-500)',
-                }}
-              >
-                STANDARD
-              </h3>
-              <span style={{ fontWeight: '600', color: 'var(--primary-500)' }}>
-                For Fledglings
-              </span>
+            <div className="percent-main">
+              <div className="percent">
+                <span>%</span>
+                <h1 className="change-color">
+                  50
+                  <span className="percent-inner" style={{ fontSize: '1rem' }}>
+                    Min
+                  </span>
+                </h1>
+              </div>
+            </div>
 
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  margin: '1.5rem 0',
-                  color: 'var(--primary-500)',
-                }}
-              >
-                <span
-                  style={{
-                    color: 'var(--primary-500)',
-                    fontSize: '1.5rem',
-                    fontWeight: '700',
-                  }}
-                >
-                  %
+            <div className="check-main">
+              <p className="split">
+                <span>Easy to use</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
                 </span>
-                <h1 style={{ fontWeight: '700', fontSize: '4.2rem' }}>5</h1>
-              </div>
-
-              <p
-                style={{
-                  marginBottom: '0.5rem',
-                  color: 'rgb(117, 78, 51)',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                }}
-              >
-                Min: $50
               </p>
-              <p
-                style={{
-                  marginBottom: '0.5rem',
-                  color: 'rgb(117, 78, 51)',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                }}
-              >
-                Max: $999
-              </p>
-              <p
-                style={{
-                  marginBottom: '0.5rem',
-                  color: 'rgb(117, 78, 51)',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                }}
-              >
-                24 Hours Return
-              </p>
-              <p
-                style={{
-                  marginBottom: '0.5rem',
-                  color: 'rgb(117, 78, 51)',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                }}
-              >
-                Instant Withdrawal
-              </p>
-              <p
-                style={{
-                  color: 'rgb(117, 78, 51)',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                  marginBottom: '1.5rem',
-                }}
-              >
-                24/7 Support
-              </p>
+            </div>
 
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-
-                  background: 'var(--primary-500)',
-                  borderRadius: '2rem',
-                  color: 'white',
-                  width: '10rem',
-                  margin: '0 auto',
-                }}
-                className="selectText"
-              >
-                <Link
-                  to="/dashboard"
-                  style={{
-                    fontWeight: '700',
-                    color: 'white',
-                    padding: '0.8rem 0.5rem',
-                  }}
-                >
-                  select Plan
-                </Link>
-                <FaArrowRight
-                  style={{ marginLeft: '1rem', fontWeight: '700' }}
-                />
-              </div>
-            </article>
-            <article
-              style={{
-                background: 'white',
-                padding: '2rem 1rem',
-                margin: '1rem 0',
-                boxShadow: 'var(--shadow-3)',
-                textAlign: 'center',
-                width: '16rem',
-
-                gap: '2rem',
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: '1.5rem',
-                  fontWeight: '700',
-                  marginBottom: '1.5rem',
-                  color: 'var(--primary-500)',
-                }}
-              >
-                PREMIUM
-              </h3>
-              <span style={{ fontWeight: '600', color: 'var(--primary-500)' }}>
-                Ready to grow? This is for you
-              </span>
-
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  margin: '1.5rem 0',
-                  color: 'var(--primary-500)',
-                }}
-              >
-                <span
-                  style={{
-                    color: 'var(--primary-500)',
-                    fontSize: '1.5rem',
-                    fontWeight: '700',
-                  }}
-                >
-                  %
+            <div className="check-main">
+              <p className="split">
+                <span>Affiliate Com 10%</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
                 </span>
-                <h1 style={{ fontWeight: '700', fontSize: '4.2rem' }}>10</h1>
-              </div>
-
-              <p
-                style={{
-                  marginBottom: '0.5rem',
-                  color: 'rgb(117, 78, 51)',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                }}
-              >
-                Min: $1000
               </p>
-              <p
-                style={{
-                  marginBottom: '0.5rem',
-                  color: 'rgb(117, 78, 51)',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                }}
-              >
-                Max: $4999
-              </p>
-              <p
-                style={{
-                  marginBottom: '0.5rem',
-                  color: 'rgb(117, 78, 51)',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                }}
-              >
-                48 hours Return
-              </p>
-              <p
-                style={{
-                  marginBottom: '0.5rem',
-                  color: 'rgb(117, 78, 51)',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                }}
-              >
-                Instant Withdrawal
-              </p>
-              <p
-                style={{
-                  color: 'rgb(117, 78, 51)',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                  marginBottom: '1.5rem',
-                }}
-              >
-                24/7 Support
-              </p>
+            </div>
 
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-
-                  background: 'var(--primary-500)',
-                  borderRadius: '2rem',
-                  color: 'white',
-                  width: '10rem',
-                  margin: '0 auto',
-                }}
-                className="selectText"
-              >
-                <Link
-                  to="/dashboard"
-                  style={{
-                    fontWeight: '700',
-                    color: 'white',
-                    padding: '0.8rem 0.5rem',
-                  }}
-                >
-                  select Plan
-                </Link>
-                <FaArrowRight
-                  style={{ marginLeft: '1rem', fontWeight: '700' }}
-                />
-              </div>
-            </article>
-            <article
-              style={{
-                background: 'white',
-                padding: '2rem 1rem',
-                margin: '1rem 0',
-                boxShadow: 'var(--shadow-3)',
-                textAlign: 'center',
-                width: '16rem',
-
-                gap: '2rem',
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: '1.5rem',
-                  fontWeight: '700',
-                  marginBottom: '1.5rem',
-                  color: 'var(--primary-500)',
-                }}
-              >
-                UTILITY
-              </h3>
-              <span style={{ fontWeight: '600', color: 'var(--primary-500)' }}>
-                Go big with our utility plan
-              </span>
-
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  margin: '1.5rem 0',
-                  color: 'var(--primary-500)',
-                }}
-              >
-                <span
-                  style={{
-                    color: 'var(--primary-500)',
-                    fontSize: '1.5rem',
-                    fontWeight: '700',
-                  }}
-                >
-                  %
+            <div className="check-main">
+              <p className="split">
+                <span>5% ROI Daily</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
                 </span>
-                <h1 style={{ fontWeight: '700', fontSize: '4.2rem' }}>30</h1>
-              </div>
-
-              <p
-                style={{
-                  marginBottom: '0.5rem',
-                  color: 'rgb(117, 78, 51)',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                }}
-              >
-                Min: $5000
               </p>
-              <p
-                style={{
-                  marginBottom: '0.5rem',
-                  color: 'rgb(117, 78, 51)',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                }}
-              >
-                Max: $9999
-              </p>
-              <p
-                style={{
-                  marginBottom: '0.5rem',
-                  color: 'rgb(117, 78, 51)',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                }}
-              >
-                72 hours Return
-              </p>
-              <p
-                style={{
-                  marginBottom: '0.5rem',
-                  color: 'rgb(117, 78, 51)',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                }}
-              >
-                Instant Withdrawal
-              </p>
-              <p
-                style={{
-                  color: 'rgb(117, 78, 51)',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                  marginBottom: '1.5rem',
-                }}
-              >
-                24/7 Support
-              </p>
+            </div>
 
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-
-                  background: 'var(--primary-500)',
-                  borderRadius: '2rem',
-                  color: 'white',
-                  width: '10rem',
-                  margin: '0 auto',
-                }}
-                className="selectText"
-              >
-                <Link
-                  to="/dashboard"
-                  style={{
-                    fontWeight: '700',
-                    color: 'white',
-                    padding: '0.8rem 0.5rem',
-                  }}
-                >
-                  select Plan
-                </Link>
-                <FaArrowRight
-                  style={{ marginLeft: '1rem', fontWeight: '700' }}
-                />
-              </div>
-            </article>
-            <article
-              style={{
-                background: 'white',
-                padding: '2rem 1rem',
-                margin: '1rem 0',
-                boxShadow: 'var(--shadow-3)',
-                textAlign: 'center',
-                width: '16rem',
-
-                gap: '2rem',
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: '1.5rem',
-                  fontWeight: '700',
-                  marginBottom: '1.5rem',
-                  color: 'var(--primary-500)',
-                }}
-              >
-                PEAK
-              </h3>
-              <span style={{ fontWeight: '600', color: 'var(--primary-500)' }}>
-                Get VIP treatment with this plan
-              </span>
-
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  margin: '1.5rem 0',
-                  color: 'var(--primary-500)',
-                }}
-              >
-                <span
-                  style={{
-                    color: 'var(--primary-500)',
-                    fontSize: '1.5rem',
-                    fontWeight: '700',
-                  }}
-                >
-                  %
+            <div className="check-main">
+              <p className="split">
+                <span>$3,000 Maximum</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
                 </span>
-                <h1 style={{ fontWeight: '700', fontSize: '4.2rem' }}>60</h1>
+              </p>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>Duration : 24Hrs</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <Link to="/dashboard" className="btn">
+              INVEST NOW
+            </Link>
+          </article>
+
+          <article>
+            <h3>C-H2 Plan</h3>
+
+            <LuBadgeCheck className="badge" />
+
+            <div className="percent-main">
+              <div className="percent">
+                <span>%</span>
+                <h1>
+                  3,100
+                  <span className="percent-inner" style={{ fontSize: '1rem' }}>
+                    Min
+                  </span>
+                </h1>
               </div>
+            </div>
 
-              <p
-                style={{
-                  marginBottom: '0.5rem',
-                  color: 'rgb(117, 78, 51)',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                }}
-              >
-                Min: $10000
+            <div className="check-main">
+              <p className="split">
+                <span>Easy to use</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
               </p>
-              <p
-                style={{
-                  marginBottom: '0.5rem',
-                  color: 'rgb(117, 78, 51)',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                }}
-              >
-                Max: $50000
-              </p>
-              <p
-                style={{
-                  marginBottom: '0.5rem',
-                  color: 'rgb(117, 78, 51)',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                }}
-              >
-                Weekly Return
-              </p>
-              <p
-                style={{
-                  marginBottom: '0.5rem',
-                  color: 'rgb(117, 78, 51)',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                }}
-              >
-                Instant Withdrawal
-              </p>
-              <p
-                style={{
-                  color: 'rgb(117, 78, 51)',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                  marginBottom: '1.5rem',
-                }}
-              >
-                24/7 Support
-              </p>
+            </div>
 
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
+            <div className="check-main">
+              <p className="split">
+                <span>Affiliate Com 12%</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
 
-                  background: 'var(--primary-500)',
-                  borderRadius: '2rem',
-                  color: 'white',
-                  width: '10rem',
-                  margin: '0 auto',
-                }}
-                className="selectText"
-              >
-                <Link
-                  to="/dashboard"
-                  style={{
-                    fontWeight: '700',
-                    color: 'white',
-                    padding: '0.8rem 0.5rem',
-                  }}
-                >
-                  select Plan
-                </Link>
-                <FaArrowRight
-                  style={{ marginLeft: '1rem', fontWeight: '700' }}
-                />
+            <div className="check-main">
+              <p className="split">
+                <span>5% ROI Daily</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>$7,000 Maximum</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>Duration : 2 Days</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <Link to="/dashboard" className="btn">
+              INVEST NOW
+            </Link>
+          </article>
+
+          <article>
+            <h3>C-H3 Plan</h3>
+
+            <LuBadgeCheck className="badge" />
+
+            <div className="percent-main">
+              <div className="percent">
+                <span>%</span>
+                <h1 className="change-color">
+                  7,100
+                  <span className="percent-inner" style={{ fontSize: '1rem' }}>
+                    Min
+                  </span>
+                </h1>
               </div>
-            </article>
-          </div>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>Easy to use</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>Affiliate Com 10%</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>18% ROI Daily</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>$20,000 Maximum</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>Duration : 72Hrs</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <Link to="/dashboard" className="btn">
+              INVEST NOW
+            </Link>
+          </article>
+
+          <article>
+            <h3>C-H4 Plan</h3>
+
+            <LuBadgeCheck className="badge" />
+
+            <div className="percent-main">
+              <div className="percent">
+                <span>%</span>
+                <h1>
+                  20,500
+                  <span className="percent-inner" style={{ fontSize: '1rem' }}>
+                    Min
+                  </span>
+                </h1>
+              </div>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>Easy to use</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>Affiliate Com 10%</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>24% ROI Daily</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>$40,000 Maximum</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>Duration : 96Hrs</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <Link to="/dashboard" className="btn">
+              INVEST NOW
+            </Link>
+          </article>
         </aside>
-      </div>
+      </section>
+
+      <section>
+        <div>
+          <Title title="Partnership Plans (Apex Investors Grade)" text="" />
+        </div>
+
+        <aside className="invest">
+          <article>
+            <h3>C-H STAKE1 Plan</h3>
+
+            <LuBadgeCheck className="badge" />
+
+            <div className="percent-main">
+              <div className="percent">
+                <span>%</span>
+                <h1 className="change-color">
+                  41,000
+                  <span className="percent-inner" style={{ fontSize: '1rem' }}>
+                    Min
+                  </span>
+                </h1>
+              </div>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>7% ROI Daily</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>$90,000 Maximum</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <Link to="/dashboard" className="btn">
+              INVEST NOW
+            </Link>
+          </article>
+
+          <article>
+            <h3>C-H STAKE2 Plan</h3>
+
+            <LuBadgeCheck className="badge" />
+
+            <div className="percent-main">
+              <div className="percent">
+                <span>%</span>
+                <h1 className="change-color">
+                  91,000
+                  <span className="percent-inner" style={{ fontSize: '1rem' }}>
+                    Min
+                  </span>
+                </h1>
+              </div>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>9.5% ROI AFTER 15HRS</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>$200,000 Maximum</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <Link to="/dashboard" className="btn">
+              INVEST NOW
+            </Link>
+          </article>
+
+          <article>
+            <h3>C-H STAKE3 Plan</h3>
+
+            <LuBadgeCheck className="badge" />
+
+            <div className="percent-main">
+              <div className="percent">
+                <span>%</span>
+                <h1 className="change-color">
+                  201,000
+                  <span className="percent-inner" style={{ fontSize: '1rem' }}>
+                    Min
+                  </span>
+                </h1>
+              </div>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>10% ROI AFTER 12 HRS</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>$500,000 Maximum</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <Link to="/dashboard" className="btn">
+              INVEST NOW
+            </Link>
+          </article>
+
+          <article>
+            <h3>C-H STAKE4 Plan</h3>
+
+            <LuBadgeCheck className="badge" />
+
+            <div className="percent-main">
+              <div className="percent">
+                <span>%</span>
+                <h1 className="change-color">
+                  501,000
+                  <span className="percent-inner" style={{ fontSize: '1rem' }}>
+                    Min
+                  </span>
+                </h1>
+              </div>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>25% ROI AFTER 24HRS</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <div className="check-main">
+              <p className="split">
+                <span>$5,000,000 Maximum</span>{' '}
+                <span className="check-inner">
+                  <FaCheck />
+                </span>
+              </p>
+            </div>
+
+            <Link to="/dashboard" className="btn">
+              INVEST NOW
+            </Link>
+          </article>
+        </aside>
+      </section>
     </Wrapper>
   );
 };
