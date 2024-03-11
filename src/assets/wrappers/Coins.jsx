@@ -1,17 +1,24 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
+  overflow-x: hidden;
+  background: white;
   .coins {
-    background: white;
-    width: 100vw;
+  }
+
+  .coins-main {
+    width: 300%;
+    animation: move 30s linear infinite;
   }
   .coins-inner {
-    animation: move 30s linear infinite;
     display: flex;
     place-items: center;
     padding: 0.8rem;
     gap: 0.2rem;
     width: 100%;
+  }
+  .coins-main:hover {
+    animation-play-state: paused;
   }
 
   .coins-inner h5 {
@@ -38,7 +45,7 @@ const Wrapper = styled.div`
   }
   @keyframes move {
     to {
-      transform: translateX(-2000px);
+      transform: translateX(-100%);
     }
   }
   @media screen and (min-width: 800px) {

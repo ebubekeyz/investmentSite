@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigation } from 'react-router-dom';
 import Hero from '../components/Hero';
 import InvestmentCard from '../components/InvestmentCard';
 import Submenu from '../components/Submenu';
@@ -44,6 +44,7 @@ import bchImg from '../assets/bch.png';
 import tetherImg from '../assets/tether.png';
 import trxImg from '../assets/trx.png';
 import daiImg from '../assets/dai.png';
+
 const API = import.meta.env.VITE_COIN_API;
 
 // const coinsQuery = () => {
