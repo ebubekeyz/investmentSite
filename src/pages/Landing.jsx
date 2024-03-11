@@ -33,10 +33,18 @@ import { CiDeliveryTruck } from 'react-icons/ci';
 import { TbDeviceIpadSearch } from 'react-icons/tb';
 import Ceo from '../components/Ceo';
 import btcImg from '../assets/btc.png';
-
+import { coinFetch } from '../utils';
+import { nanoid } from 'nanoid';
+import ethImg from '../assets/eth.png';
+import bnbImg from '../assets/bnb.png';
+import dogeImg from '../assets/doge.png';
+import xrpImg from '../assets/xrp.png';
+import ltcImg from '../assets/ltc.png';
+import bchImg from '../assets/bch.png';
+import tetherImg from '../assets/tether.png';
+import trxImg from '../assets/trx.png';
+import daiImg from '../assets/dai.png';
 const API = import.meta.env.VITE_COIN_API;
-
-// const coinsUrl = `https://coinlib.io/api/v1/coinlist?key=d2dbfcc4787f6c5e&pref=BTC&page=1&order=volume_desc`;
 
 // const coinsQuery = () => {
 //   return {
@@ -53,16 +61,22 @@ const API = import.meta.env.VITE_COIN_API;
 //   return { coins: response.data.coins  };
 // };
 
-// export const loader = async () => {
-//   const response = await axios.get(`${coinsUrl}`);
+export const loader = async () => {
+  const response = await coinFetch.get(`api/coins`);
 
-//   return { coins: response.data.coins };
-// };
+  return { coins: response.data.coins };
+};
 
 const Landing = () => {
-  // const { coins } = useLoaderData();
+  const { coins } = useLoaderData();
   // const { coins } = useQuery(coinsQuery());
-  // console.log(coins);
+  console.log(coins[0]);
+
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  });
+
   return (
     <>
       {/* <Submenu /> */}
@@ -71,47 +85,128 @@ const Landing = () => {
         <section className="coins-main">
           <article className="coins">
             <div className="coins-inner">
+              <img src={tetherImg} alt="btc-image" />
+              <h5>{coins[0].name}</h5>
+              <span>[{coins[0].symbol}]</span>
+              <span>{formatter.format(Number(coins[0].price).toFixed(2))}</span>
+              <span
+                style={{
+                  color: Number(coins[0].delta_24h) >= 0 ? 'green' : 'red',
+                }}
+              >
+                {coins[0].delta_24h}%
+              </span>
+            </div>
+          </article>
+
+          <article className="coins">
+            <div className="coins-inner">
               <img src={btcImg} alt="btc-image" />
-              <h5>Bitcoin</h5>
-              <span>[BTC]</span>
-              <span>$0.34</span>
-              <span className="last">+1.57%</span>
+              <h5>{coins[1].name}</h5>
+              <span>[{coins[1].symbol}]</span>
+              <span>{formatter.format(Number(coins[1].price).toFixed(2))}</span>
+              <span
+                style={{
+                  color: Number(coins[1].delta_24h) < 0 ? 'red' : 'green',
+                }}
+              >
+                {coins[1].delta_24h}%
+              </span>
+            </div>
+          </article>
+
+          <article className="coins">
+            <div className="coins-inner">
+              <img src={ethImg} alt="btc-image" />
+              <h5>{coins[2].name}</h5>
+              <span>[{coins[2].symbol}]</span>
+              <span>{formatter.format(Number(coins[2].price).toFixed(2))}</span>
+              <span
+                style={{
+                  color: coins[2].delta_24h < 0 ? 'red' : 'green',
+                }}
+              >
+                {coins[2].delta_24h}%
+              </span>
             </div>
           </article>
           <article className="coins">
             <div className="coins-inner">
-              <img src={btcImg} alt="btc-image" />
-              <h5>Bitcoin</h5>
-              <span>[BTC]</span>
-              <span>$0.34</span>
-              <span className="last">+1.57%</span>
+              <img src={bnbImg} alt="btc-image" />
+              <h5>{coins[3].name}</h5>
+              <span>[{coins[3].symbol}]</span>
+              <span>{formatter.format(Number(coins[3].price).toFixed(2))}</span>
+              <span
+                style={{
+                  color: coins[3].delta_24h < 0 ? 'red' : 'green',
+                }}
+              >
+                {coins[3].delta_24h}%
+              </span>
             </div>
           </article>
           <article className="coins">
             <div className="coins-inner">
-              <img src={btcImg} alt="btc-image" />
-              <h5>Bitcoin</h5>
-              <span>[BTC]</span>
-              <span>$0.34</span>
-              <span className="last">+1.57%</span>
+              <img src={dogeImg} alt="btc-image" />
+              <h5>{coins[4].name}</h5>
+              <span>[{coins[4].symbol}]</span>
+              <span>{formatter.format(Number(coins[4].price).toFixed(2))}</span>
+              <span
+                style={{
+                  color: coins[4].delta_24h < 0 ? 'red' : 'green',
+                }}
+              >
+                {coins[4].delta_24h}%
+              </span>
             </div>
           </article>
           <article className="coins">
             <div className="coins-inner">
-              <img src={btcImg} alt="btc-image" />
-              <h5>Bitcoin</h5>
-              <span>[BTC]</span>
-              <span>$0.34</span>
-              <span className="last">+1.57%</span>
+              <img src={xrpImg} alt="btc-image" />
+              <h5>{coins[8].name}</h5>
+              <span>[{coins[8].symbol}]</span>
+              <span>{formatter.format(Number(coins[8].price).toFixed(2))}</span>
+              <span
+                style={{
+                  color: coins[8].delta_24h < 0 ? 'red' : 'green',
+                }}
+              >
+                {coins[8].delta_24h}%
+              </span>
             </div>
           </article>
           <article className="coins">
             <div className="coins-inner">
-              <img src={btcImg} alt="btc-image" />
-              <h5>Bitcoin</h5>
-              <span>[BTC]</span>
-              <span>$0.34</span>
-              <span className="last">+1.57%</span>
+              <img src={ltcImg} alt="btc-image" />
+              <h5>{coins[15].name}</h5>
+              <span>[{coins[15].symbol}]</span>
+              <span>
+                {formatter.format(Number(coins[15].price).toFixed(2))}
+              </span>
+              <span
+                style={{
+                  color: coins[15].delta_24h < 0 ? 'red' : 'green',
+                }}
+              >
+                {coins[15].delta_24h}%
+              </span>
+            </div>
+          </article>
+          <article className="coins">
+            <div className="coins-inner">
+              <img src={trxImg} alt="btc-image" />
+              <h5>{coins[24].name}</h5>
+              <span>[{coins[24].symbol}]</span>
+              <span>
+                {formatter.format(Number(coins[24].price).toFixed(2))}
+              </span>
+              <span
+                style={{
+                  color: Number(coins[24].delta_24h) >= 0 ? 'green' : 'red',
+                }}
+              >
+                {coins[24].delta_24h}%
+              </span>
             </div>
           </article>
         </section>

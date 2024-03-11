@@ -103,3 +103,10 @@ export const questions = [
     info: 'If your account is inactive, its possible that you may have violated one of our terms or services. Please reach out to our support team for assistance in resolving this issue.',
   },
 ];
+
+export const coinFetch = axios.create({
+  baseURL: 'https://trex-holding-server.onrender.com',
+  headers: {
+    Accept: 'application/json',
+  },
+});

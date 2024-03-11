@@ -6,7 +6,7 @@ const Wrapper = styled.div`
     width: 100vw;
   }
   .coins-inner {
-    animation: move 20s linear infinite;
+    animation: move 30s linear infinite;
     display: flex;
     place-items: center;
     padding: 0.8rem;
@@ -38,7 +38,7 @@ const Wrapper = styled.div`
   }
   @keyframes move {
     to {
-      transform: translateX(-200%);
+      transform: translateX(-2000px);
     }
   }
   @media screen and (min-width: 800px) {
