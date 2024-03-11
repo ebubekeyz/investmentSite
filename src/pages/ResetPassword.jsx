@@ -1,11 +1,37 @@
-import { Link } from 'react-router-dom';
+import { Form, Link, useNavigation } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/Login';
 import { useState } from 'react';
 import logo from '../assets/logo.png';
+import { toast } from 'react-toastify';
+import { mainFetch } from '../utils';
+
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+
+  const url = new URL(request.url);
+
+  const idCard = url.searchParams.get('id');
+  console.log(idCard);
+  const resetUrl = 'api/v1/auth';
+  try {
+    const response = await mainFetch.patch(`/api/v1/auth/${idCard}`, data);
+    console.log(data);
+    toast.success('Password successfully reset. Please login');
+    return redirect('/login');
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+    console.log(error);
+    return error;
+  }
+};
 
 const ResetPassword = () => {
   const [date, setDate] = useState(new Date());
   const mainDate = date.getFullYear();
+
+  const navigation = useNavigation();
+  const submitting = navigation.state === 'submitting';
   return (
     <Wrapper>
       <div
@@ -16,7 +42,8 @@ const ResetPassword = () => {
           background: 'rgba(0,0,0,0.5)',
         }}
       >
-        <form
+        <Form
+          method="PATCH"
           style={{
             position: 'absolute',
             top: '50%',
@@ -48,11 +75,11 @@ const ResetPassword = () => {
             <input
               type="password "
               className="form-input"
-              name="confirmPassword"
+              name="password"
               placeholder="Confirm Password"
             />
             <button type="submit" className="btn">
-              ResetPassword
+              {submitting ? 'submitting' : 'Reset Password'}
             </button>
             <p>
               <Link to="/login" className="reg">
@@ -64,7 +91,7 @@ const ResetPassword = () => {
               &nbsp; All Rights Reserved.
             </p>
           </div>
-        </form>
+        </Form>
       </div>
     </Wrapper>
   );

@@ -118,7 +118,7 @@ const InvestmentCard = () => {
 
             <div className="check-main">
               <p className="split">
-                <span>5% ROI Daily</span>{' '}
+                <span>12% ROI Daily</span>{' '}
                 <span className="check-inner">
                   <FaCheck />
                 </span>

@@ -23,6 +23,8 @@ import {
 import { loader as landingLoader } from './pages/Landing.jsx';
 import { action as actionLoader } from './pages/Login.jsx';
 import { action as actionLoader2 } from './pages/Register.jsx';
+import { action as actionLoader3 } from './pages/Reset.jsx';
+import { action as actionLoader4 } from './pages/ResetPassword.jsx';
 
 const queryClient = new QueryClient();
 
@@ -96,11 +98,13 @@ const router = createBrowserRouter([
     path: '/reset',
     element: <Reset />,
     errorElement: <SinglePageError />,
+    action: actionLoader3,
   },
   {
     path: '/resetPassword',
     element: <ResetPassword />,
     errorElement: <SinglePageError />,
+    action: actionLoader4,
   },
 ]);
 
