@@ -1,11 +1,35 @@
-import { Link } from 'react-router-dom';
+import { Form, Link, redirect, useNavigation } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/Login';
 import { useState } from 'react';
 import logo from '../assets/logo.png';
+import { mainFetch } from '../utils';
+import { toast } from 'react-toastify';
+
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  console.log(data);
+
+  try {
+    const response = await mainFetch.post('/api/v1/auth/register', data, {
+      withCredentials: true,
+    });
+
+    toast.success(response.data.msg);
+    return redirect('/login');
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+    console.log(error);
+    return error;
+  }
+};
 
 const Login = () => {
   const [date, setDate] = useState(new Date());
   const mainDate = date.getFullYear();
+
+  const navigation = useNavigation();
+  const submitting = navigation.state === 'submitting';
   return (
     <Wrapper>
       <div
@@ -16,7 +40,8 @@ const Login = () => {
           background: 'rgba(0,0,0,0.5)',
         }}
       >
-        <form
+        <Form
+          method="POST"
           style={{
             position: 'fixed',
             top: '50%',
@@ -67,7 +92,7 @@ const Login = () => {
               type="password"
               className="form-input"
               name="password"
-              Placeholder="Password"
+              placeholder="Password"
             />
 
             <select
@@ -359,7 +384,7 @@ const Login = () => {
             </select>
 
             <button type="submit" className="btn">
-              Register
+              {submitting ? 'submitting' : 'register'}
             </button>
             <p>
               <Link to="/login" className="reg">
@@ -372,7 +397,7 @@ const Login = () => {
               &nbsp; All Rights Reserved.
             </p>
           </div>
-        </form>
+        </Form>
       </div>
     </Wrapper>
   );

@@ -25,7 +25,7 @@ export const list = [
     id: nanoid(),
     image: '/hero2.jpg',
     name: 'Read more',
-    title: 'Generate profits without compromising.',
+    title: 'Create earnings with integrity',
     quote: 'We endorse the expansion of investments in promising innovations.',
   },
 ];

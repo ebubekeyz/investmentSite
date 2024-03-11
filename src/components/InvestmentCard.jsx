@@ -21,7 +21,7 @@ const InvestmentCard = () => {
 
             <div className="percent-main">
               <div className="percent">
-                <span>%</span>
+                <span>$</span>
                 <h1 className="change-color">
                   50
                   <span className="percent-inner" style={{ fontSize: '1rem' }}>
@@ -88,7 +88,7 @@ const InvestmentCard = () => {
 
             <div className="percent-main">
               <div className="percent">
-                <span>%</span>
+                <span>$</span>
                 <h1>
                   3,100
                   <span className="percent-inner" style={{ fontSize: '1rem' }}>
@@ -155,7 +155,7 @@ const InvestmentCard = () => {
 
             <div className="percent-main">
               <div className="percent">
-                <span>%</span>
+                <span>$</span>
                 <h1 className="change-color">
                   7,100
                   <span className="percent-inner" style={{ fontSize: '1rem' }}>
@@ -222,7 +222,7 @@ const InvestmentCard = () => {
 
             <div className="percent-main">
               <div className="percent">
-                <span>%</span>
+                <span>$</span>
                 <h1>
                   20,500
                   <span className="percent-inner" style={{ fontSize: '1rem' }}>
@@ -297,7 +297,7 @@ const InvestmentCard = () => {
 
             <div className="percent-main">
               <div className="percent">
-                <span>%</span>
+                <span>$</span>
                 <h1 className="change-color">
                   41,000
                   <span className="percent-inner" style={{ fontSize: '1rem' }}>
@@ -337,7 +337,7 @@ const InvestmentCard = () => {
 
             <div className="percent-main">
               <div className="percent">
-                <span>%</span>
+                <span>$</span>
                 <h1 className="change-color">
                   91,000
                   <span className="percent-inner" style={{ fontSize: '1rem' }}>
@@ -377,7 +377,7 @@ const InvestmentCard = () => {
 
             <div className="percent-main">
               <div className="percent">
-                <span>%</span>
+                <span>$</span>
                 <h1 className="change-color">
                   201,000
                   <span className="percent-inner" style={{ fontSize: '1rem' }}>
@@ -417,7 +417,7 @@ const InvestmentCard = () => {
 
             <div className="percent-main">
               <div className="percent">
-                <span>%</span>
+                <span>$</span>
                 <h1 className="change-color">
                   501,000
                   <span className="percent-inner" style={{ fontSize: '1rem' }}>

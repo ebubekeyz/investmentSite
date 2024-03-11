@@ -22,6 +22,7 @@ import {
 } from './pages';
 import { loader as landingLoader } from './pages/Landing.jsx';
 import { action as actionLoader } from './pages/Login.jsx';
+import { action as actionLoader2 } from './pages/Register.jsx';
 
 const queryClient = new QueryClient();
 
@@ -83,6 +84,7 @@ const router = createBrowserRouter([
     path: '/register',
     element: <Register />,
     errorElement: <SinglePageError />,
+    action: actionLoader2,
   },
   {
     path: '/login',
