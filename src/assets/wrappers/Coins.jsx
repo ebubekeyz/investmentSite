@@ -3,8 +3,6 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   overflow-x: hidden;
   background: white;
-  .coins {
-  }
 
   .coins-main {
     width: 300%;
@@ -64,6 +62,9 @@ const Wrapper = styled.div`
     }
     .coins-inner .last {
       font-size: 0.7rem;
+    }
+    .coins-main {
+      width: 170%;
     }
   }
 `;
