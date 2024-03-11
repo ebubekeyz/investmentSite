@@ -21,6 +21,7 @@ import {
   ResetPassword,
 } from './pages';
 import { loader as landingLoader } from './pages/Landing.jsx';
+import { action as actionLoader } from './pages/Login.jsx';
 
 const queryClient = new QueryClient();
 
@@ -87,6 +88,7 @@ const router = createBrowserRouter([
     path: '/login',
     element: <Login />,
     errorElement: <SinglePageError />,
+    action: actionLoader,
   },
   {
     path: '/reset',

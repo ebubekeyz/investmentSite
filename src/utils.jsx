@@ -110,3 +110,22 @@ export const coinFetch = axios.create({
     Accept: 'application/json',
   },
 });
+// export const coinFetch = axios.create({
+//   baseURL: 'http://localhost:5200',
+//   headers: {
+//     Accept: 'application/json',
+//   },
+// });
+
+export const mainFetch = axios.create({
+  baseURL: 'https://trex-holding-server.onrender.com',
+  headers: {
+    Accept: 'application/json',
+  },
+});
+// export const mainFetch = axios.create({
+//   baseURL: 'http://localhost:5200',
+//   headers: {
+//     Accept: 'application/json',
+//   },
+// });
