@@ -17,7 +17,13 @@ const HomeLayout = () => {
       <Line /> */}
       <Navbar />
       <section className="page">
-        {isPageLoading ? <div className="loading"></div> : <Outlet />}
+        {isPageLoading ? (
+          <aside className="loading-cont">
+            <div className="loading"></div>
+          </aside>
+        ) : (
+          <Outlet />
+        )}
       </section>
       {/* <Whatsapp /> */}
       <Footer />
