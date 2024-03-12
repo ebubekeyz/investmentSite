@@ -2,7 +2,7 @@ import Hero2 from '../components/Hero2';
 import { nanoid } from 'nanoid';
 import img from '../assets/about.jpg';
 import Title2 from '../components/Title2';
-import img2 from '../assets/cert.png';
+import img2 from '../assets/cert.jpg';
 import Wrapper from '../assets/wrappers/AboutPage';
 import { FaCheck } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router-dom';
@@ -35,7 +35,9 @@ Our objective is to furnish all parties with the necessary information, ensuring
         />
 
         <aside>
-          <img src={img2} alt="certificate" className="cert" />
+          <a href="/src/assets/cert.jpg">
+            <img src={img2} alt="certificate" className="cert" />
+          </a>
           <article className="facts">
             <h3>FAST FACTS</h3>
 

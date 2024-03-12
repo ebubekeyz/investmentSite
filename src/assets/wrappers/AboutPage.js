@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   overflow-x: hidden;
+
   p {
     line-height: 2;
     color: var(--grey-500);
