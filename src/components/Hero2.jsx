@@ -16,7 +16,7 @@ const Hero2 = ({ image, name, title, quote, id }) => {
             style={{ width: '100%', height: '70vh', objectFit: 'cover' }}
           />
 
-          <div className="info">
+          <div className="info" style={{ padding: '0 2rem' }}>
             <h2 className="title">{title}</h2>
             <p className="text" style={{ textAlign: 'center', color: 'white' }}>
               {quote}

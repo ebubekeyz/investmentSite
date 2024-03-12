@@ -43,6 +43,7 @@ const router = createBrowserRouter([
       {
         path: '/about',
         element: <About />,
+        // loader: aboutLoader,
       },
       {
         path: '/faqs',

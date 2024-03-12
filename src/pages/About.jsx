@@ -5,10 +5,12 @@ import Title2 from '../components/Title2';
 import img2 from '../assets/cert.png';
 import Wrapper from '../assets/wrappers/AboutPage';
 import { FaCheck } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 import Know from '../components/Know';
 import AboutGallery from '../components/AboutGallery';
+import { useEffect } from 'react';
+import { mainFetch } from '../utils';
 
 const About = () => {
   return (
@@ -16,7 +18,7 @@ const About = () => {
       <div>
         <Hero2
           name=""
-          title="About trexholding.com"
+          title="About trexholding"
           id={nanoid()}
           quote="Learn more about our activities."
           image={img}

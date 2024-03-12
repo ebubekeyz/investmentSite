@@ -1,15 +1,47 @@
 import logo from '../assets/logo.png';
 import { CiMenuFries } from 'react-icons/ci';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, redirect } from 'react-router-dom';
 import { mainFetch, navbarData } from '../utils';
 import { useState, useRef, useEffect } from 'react';
 
-const Navbar = ({ users, setUsers }) => {
-  console.log(users);
+const Navbar = () => {
+  const [users, setUsers] = useState('');
+
+  const fetchUser = async () => {
+    try {
+      const response = await mainFetch.get('/api/v1/users/showMe', {
+        withCredentials: true,
+      });
+      const username = response.data.user.username;
+      if (response.status === 200) {
+        setUsers(username);
+      }
+      return { username };
+    } catch (error) {
+      console.log(error);
+      console.log(error.response.data.msg);
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, [fetchUser]);
   const [showLinks, setShowLinks] = useState(false);
   const toggleNav = () => {
     setShowLinks(!showLinks);
   };
+
+  const logout = async () => {
+    try {
+      await mainFetch.get('/api/v1/auth/logout', {
+        withCredentials: true,
+      });
+      setUsers(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const linkContainerRef = useRef(null);
   const linkRef = useRef(null);
 
@@ -74,6 +106,31 @@ const Navbar = ({ users, setUsers }) => {
         <div>
           {users ? (
             <ul className="social-icons">
+              <p style={{ fontWeight: 'bold' }}>Welcome</p>
+              <p
+                style={{
+                  margin: '0 1rem',
+                  fontWeight: 'bold',
+                  textTransform: 'capitalize',
+                }}
+              >
+                {users}
+              </p>
+              <button
+                className="btn"
+                onClick={logout}
+                style={{
+                  background: 'black',
+                  fontWeight: '600',
+                  textTransform: 'capitalize',
+                  color: 'white',
+                }}
+              >
+                Logout
+              </button>
+            </ul>
+          ) : (
+            <ul className="social-icons">
               <span>
                 <NavLink
                   to="/login"
@@ -97,8 +154,6 @@ const Navbar = ({ users, setUsers }) => {
                 </Link>
               </span>
             </ul>
-          ) : (
-            <div>{}</div>
           )}
         </div>
       </div>

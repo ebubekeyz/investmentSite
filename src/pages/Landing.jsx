@@ -71,7 +71,6 @@ export const loader = async () => {
 const Landing = () => {
   const { coins } = useLoaderData();
   // const { coins } = useQuery(coinsQuery());
-  console.log(coins[0]);
 
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',

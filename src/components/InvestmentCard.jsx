@@ -15,7 +15,7 @@ const InvestmentCard = () => {
 
         <aside className="invest">
           <article>
-            <h3>C-H1 Plan</h3>
+            <h3>T-H1 Plan</h3>
 
             <LuBadgeCheck className="badge" />
 
@@ -82,7 +82,7 @@ const InvestmentCard = () => {
           </article>
 
           <article>
-            <h3>C-H2 Plan</h3>
+            <h3>T-H2 Plan</h3>
 
             <LuBadgeCheck className="badge" />
 
@@ -149,7 +149,7 @@ const InvestmentCard = () => {
           </article>
 
           <article>
-            <h3>C-H3 Plan</h3>
+            <h3>T-H3 Plan</h3>
 
             <LuBadgeCheck className="badge" />
 
@@ -216,7 +216,7 @@ const InvestmentCard = () => {
           </article>
 
           <article>
-            <h3>C-H4 Plan</h3>
+            <h3>T-H4 Plan</h3>
 
             <LuBadgeCheck className="badge" />
 
@@ -291,7 +291,7 @@ const InvestmentCard = () => {
 
         <aside className="invest">
           <article>
-            <h3>C-H STAKE1 Plan</h3>
+            <h3>T-H STAKE1 Plan</h3>
 
             <LuBadgeCheck className="badge" />
 
@@ -331,7 +331,7 @@ const InvestmentCard = () => {
           </article>
 
           <article>
-            <h3>C-H STAKE2 Plan</h3>
+            <h3>T-H STAKE2 Plan</h3>
 
             <LuBadgeCheck className="badge" />
 
@@ -371,7 +371,7 @@ const InvestmentCard = () => {
           </article>
 
           <article>
-            <h3>C-H STAKE3 Plan</h3>
+            <h3>T-H STAKE3 Plan</h3>
 
             <LuBadgeCheck className="badge" />
 
@@ -411,7 +411,7 @@ const InvestmentCard = () => {
           </article>
 
           <article>
-            <h3>C-H STAKE4 Plan</h3>
+            <h3>T-H STAKE4 Plan</h3>
 
             <LuBadgeCheck className="badge" />
 

@@ -10,19 +10,14 @@ import { questions as data } from '../utils';
 const HomeLayout = () => {
   const navigation = useNavigation();
   const isPageLoading = navigation.state === 'loading';
-  const [users, setUsers] = useState(false);
 
   return (
     <div>
       {/* <SubNav />
       <Line /> */}
-      <Navbar users={users} setUsers={setUsers} />
+      <Navbar />
       <section className="page">
-        {isPageLoading ? (
-          <div className="loading"></div>
-        ) : (
-          <Outlet context={{ users, setUsers }} />
-        )}
+        {isPageLoading ? <div className="loading"></div> : <Outlet />}
       </section>
       {/* <Whatsapp /> */}
       <Footer />

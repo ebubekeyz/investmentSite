@@ -13,7 +13,6 @@ function Ceo() {
           <article className="about-text">
             <div className="section-title about-title">
               <h3>Changpeng Zhao</h3>
-              <h3>CEO</h3>
             </div>
           </article>
         </div>
