@@ -51,7 +51,7 @@ const API = import.meta.env.VITE_COIN_API;
 //   return {
 //     queryKey: ['coins'],
 //     queryFn: async () => {
-//       const response = await axios.get(`${coinsUrl}`);
+//       const response = await coinFetch.get(`api/coins`);
 //       return { coins: response.data.coins };
 //     },
 //   };

@@ -109,7 +109,7 @@ const Footer = () => {
             color: 'var(--grey-400)',
           }}
         >
-          @Copyright <span>{mainDate}</span> Trest-Holding.co
+          @Copyright <span>{mainDate}</span> trexholding.com
         </p>
       </section>
     </Wrapper>
