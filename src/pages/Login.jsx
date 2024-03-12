@@ -9,8 +9,6 @@ export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 
-  console.log(data);
-
   try {
     const response = await mainFetch.post('/api/v1/auth/login', data, {
       withCredentials: true,

@@ -1,10 +1,11 @@
 import logo from '../assets/logo.png';
 import { CiMenuFries } from 'react-icons/ci';
 import { Link, NavLink } from 'react-router-dom';
-import { navbarData } from '../utils';
-import { useState, useRef } from 'react';
+import { mainFetch, navbarData } from '../utils';
+import { useState, useRef, useEffect } from 'react';
 
-const Navbar = () => {
+const Navbar = ({ users, setUsers }) => {
+  console.log(users);
   const [showLinks, setShowLinks] = useState(false);
   const toggleNav = () => {
     setShowLinks(!showLinks);
@@ -71,30 +72,34 @@ const Navbar = () => {
         </div>
 
         <div>
-          <ul className="social-icons">
-            <span>
-              <NavLink
-                to="/login"
-                className="btn mark link-btn"
-                style={{ background: 'var(--primary-500)', color: 'white' }}
-              >
-                Login
-              </NavLink>
-            </span>
+          {users ? (
+            <ul className="social-icons">
+              <span>
+                <NavLink
+                  to="/login"
+                  className="btn mark link-btn"
+                  style={{ background: 'var(--primary-500)', color: 'white' }}
+                >
+                  Login
+                </NavLink>
+              </span>
 
-            <span>
-              <Link
-                to="/register"
-                className="btn mark link-btn"
-                style={{
-                  background: 'var(--grey-800)',
-                  color: 'white',
-                }}
-              >
-                register
-              </Link>
-            </span>
-          </ul>
+              <span>
+                <Link
+                  to="/register"
+                  className="btn mark link-btn"
+                  style={{
+                    background: 'var(--grey-800)',
+                    color: 'white',
+                  }}
+                >
+                  register
+                </Link>
+              </span>
+            </ul>
+          ) : (
+            <div>{}</div>
+          )}
         </div>
       </div>
     </nav>

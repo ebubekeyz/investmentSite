@@ -68,6 +68,30 @@ const router = createBrowserRouter([
         path: '/referral',
         element: <Referral />,
       },
+      {
+        path: '/register',
+        element: <Register />,
+        errorElement: <SinglePageError />,
+        action: actionLoader2,
+      },
+      {
+        path: '/login',
+        element: <Login />,
+        errorElement: <SinglePageError />,
+        action: actionLoader,
+      },
+      {
+        path: '/reset',
+        element: <Reset />,
+        errorElement: <SinglePageError />,
+        action: actionLoader3,
+      },
+      {
+        path: '/resetPassword',
+        element: <ResetPassword />,
+        errorElement: <SinglePageError />,
+        action: actionLoader4,
+      },
     ],
   },
   // {
@@ -82,30 +106,6 @@ const router = createBrowserRouter([
   //     },
   //   ],
   // },
-  {
-    path: '/register',
-    element: <Register />,
-    errorElement: <SinglePageError />,
-    action: actionLoader2,
-  },
-  {
-    path: '/login',
-    element: <Login />,
-    errorElement: <SinglePageError />,
-    action: actionLoader,
-  },
-  {
-    path: '/reset',
-    element: <Reset />,
-    errorElement: <SinglePageError />,
-    action: actionLoader3,
-  },
-  {
-    path: '/resetPassword',
-    element: <ResetPassword />,
-    errorElement: <SinglePageError />,
-    action: actionLoader4,
-  },
 ]);
 
 const App = () => {
