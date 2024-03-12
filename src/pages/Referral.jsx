@@ -90,7 +90,7 @@ const Referral = () => {
             <p style={{ color: 'white' }}>
               Investors face challenges such as high administrative costs,
               unnecessary intermediaries, slow execution, and limited
-              transparency. At fxidealtrade.co, we believe that blockchain
+              transparency. At trex-holding, we believe that blockchain
               technology will revolutionize this industry, providing significant
               benefits to investors worldwide.
             </p>
