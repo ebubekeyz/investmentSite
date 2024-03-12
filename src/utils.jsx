@@ -46,7 +46,7 @@ export const questions = [
   {
     id: 3,
     title: 'Is Trexholding a registered and authorized trading company?',
-    info: 'Certainly, Trexholding is a lawfully registered company with the Financial Industry Regulatory Authority. Furthermore, Trexholding is subject to regulation by the U.S. Securities and Exchange Commission (SEC) and is incorporated in the state of Maryland',
+    info: 'Certainly, Trexholding is a lawfully registered company with the Financial Industry Regulatory Authority. Furthermore, Trexholding is subject to regulation by the Australia Securities and Exchange Commission (SEC) and is incorporated in the state of Maryland',
   },
   {
     id: nanoid(),

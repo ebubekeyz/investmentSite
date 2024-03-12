@@ -89,7 +89,7 @@ const Login = () => {
               </Link>
             </p>
             <p style={{ marginTop: '1rem' }}>
-              © Copyright &nbsp;<span>{mainDate}&nbsp;</span> Trest-Holding.
+              © Copyright &nbsp;<span>{mainDate}&nbsp;</span> Trexhoding.com
               &nbsp; All Rights Reserved.
             </p>
           </div>

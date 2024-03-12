@@ -501,7 +501,7 @@ const Landing = () => {
           color: 'white',
         }}
       >
-        <h2
+        <h3
           style={{
             fontWeight: 'bold',
             maxWidth: '60rem',
@@ -509,8 +509,8 @@ const Landing = () => {
             fontSize: '2.4rem',
           }}
         >
-          Our emphasis lies on industries and assets with the best performance.
-        </h2>
+          Our emphasis lies on industries and assets.
+        </h3>
         <p style={{ color: 'white' }}>
           Well-positioned and equipped to guide you towards your economic
           aspirations.

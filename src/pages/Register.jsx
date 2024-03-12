@@ -393,7 +393,7 @@ const Login = () => {
               if you already have an account
             </p>
             <p style={{ marginTop: '1rem' }}>
-              © Copyright &nbsp;<span>{mainDate}&nbsp;</span> Fxidealtrade.Co
+              © Copyright &nbsp;<span>{mainDate}&nbsp;</span> Trexhoding.com
               &nbsp; All Rights Reserved.
             </p>
           </div>
