@@ -27,7 +27,7 @@ const About = () => {
         <Title2
           title="
 Trexholding is a licensed broker-dealer that specializes in private securities."
-          text="Collaborating with us involves a sophisticated process of seamlessly integrating each client into Trexholding's distinctive investor community. This aims to enhance the financial stability of every individual and secure a consistent profit without risking capital. We transcend being just a trading company; fxidealtrade.co serves as a tool enabling everyone to realize their potential through investments based on our cutting-edge technologies.
+          text="Collaborating with us involves a sophisticated process of seamlessly integrating each client into Trexholding's distinctive investor community. This aims to enhance the financial stability of every individual and secure a consistent profit without risking capital. We transcend being just a trading company; Trexholding serves as a tool enabling everyone to realize their potential through investments based on our cutting-edge technologies.
 
 We extend attractive collaboration terms to our partners, granting them the right to use our company's brand, employing a well-established business algorithm, and offering comprehensive support from our team of specialists. These favorable conditions for investing in our rapidly growing company make it effortless for you to attract potential clients for collaboration.
 
