@@ -21,23 +21,22 @@ const Wrapper = styled.div`
 
   .cont p {
     color: white;
-    margin-bottom: 1rem;
   }
   .others h2 {
     color: red;
     font-weight: 700;
+    padding-top: 2rem;
   }
   .cont .btn:hover {
     background: black;
   }
-  .others p {
-    width: 25rem;
-  }
+
   aside {
     width: 90vw;
     max-width: 1170px;
     margin: 0 auto;
   }
+
   .cert {
     width: 20rem;
     margin-bottom: 1rem;
@@ -90,6 +89,7 @@ const Wrapper = styled.div`
     aside {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      gap: 2rem;
     }
     .about-gal {
       display: grid;
