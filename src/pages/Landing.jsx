@@ -673,6 +673,8 @@ const Landing = () => {
         </section>
       </Wrapper4>
 
+      <Ceo />
+
       <Title2
         title="Invest in the future of financial innovation."
         text="Invest intelligently in the disruption of a multi-trillion-dollar industry."
@@ -785,8 +787,6 @@ const Landing = () => {
       </Wrapper>
 
       <InvestmentCard />
-
-      <Ceo />
 
       <section>
         <h2
