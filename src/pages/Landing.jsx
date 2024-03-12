@@ -443,9 +443,7 @@ const Landing = () => {
               <RiMoneyDollarBoxLine
                 style={{ marginRight: '2rem', color: 'red', fontSize: '3rem' }}
               />
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
-                CRYPTOCURRENCY
-              </h3>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>CRYPTO</h3>
             </div>
           </article>
 
