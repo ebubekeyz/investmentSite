@@ -39,7 +39,7 @@ const Wrapper = styled.div`
     margin: 0 auto;
   }
   .cert {
-    width: 25rem;
+    width: 20rem;
     margin-bottom: 1rem;
   }
   .facts h3 {

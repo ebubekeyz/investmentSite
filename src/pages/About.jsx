@@ -36,7 +36,12 @@ Our objective is to furnish all parties with the necessary information, ensuring
 
         <aside>
           <a href={img2}>
-            <img src={img2} alt="certificate" className="cert" />
+            <img
+              src={img2}
+              alt="certificate"
+              className="cert"
+              target="_blank"
+            />
           </a>
           <article className="facts">
             <h3>FAST FACTS</h3>
