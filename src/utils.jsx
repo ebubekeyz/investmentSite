@@ -46,7 +46,7 @@ export const questions = [
   {
     id: 3,
     title: 'Is Trexholding a registered and authorized trading company?',
-    info: 'Certainly, Trexholding is a lawfully registered company with the Financial Industry Regulatory Authority. Furthermore, Trexholding is subject to regulation by the Australia Securities and Exchange Commission (SEC) and is incorporated in the state of Maryland',
+    info: 'Certainly, Trexholding is a lawfully registered company with the Financial Industry Regulatory Authority. Furthermore, Trexholding is subject to regulation by the Australia Securities and Exchange Commission (SEC) and is incorporated in the state of Victoria',
   },
   {
     id: nanoid(),
@@ -78,7 +78,7 @@ export const questions = [
   {
     id: nanoid(),
     title: 'What are the minimum and maximum deposit amounts?',
-    info: 'The minimum deposit is $50 USD, and the maximum deposit per transaction is $50,000. You can have as many active investments as you desire concurrently.',
+    info: 'The minimum deposit is $50 USD, and the maximum deposit per transaction is $200,000. You can have as many active investments as you desire concurrently.',
   },
   {
     id: nanoid(),
