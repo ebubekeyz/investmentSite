@@ -9,8 +9,6 @@ import {
   Register,
   SinglePageError,
   Error,
-  // Dashboard,
-  // DashboardLanding,
   Faqs,
   Contact,
   Investment,
@@ -19,6 +17,7 @@ import {
   Referral,
   Reset,
   ResetPassword,
+  Dashboard,
 } from './pages';
 import { loader as landingLoader } from './pages/Landing.jsx';
 import { action as actionLoader } from './pages/Login.jsx';
@@ -95,18 +94,11 @@ const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path: '/dashboard',
-  //   element: <Dashboard />,
-  //   errorElement: <Error />,
-  //   children: [
-  //     {
-  //       index: true,
-  //       element: <DashboardLanding />,
-  //       errorElement: <SinglePageError />,
-  //     },
-  //   ],
-  // },
+  {
+    path: '/dashboard',
+    element: <Dashboard />,
+    errorElement: <SinglePageError />,
+  },
 ]);
 
 const App = () => {

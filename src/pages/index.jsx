@@ -13,4 +13,5 @@ export { default as Reset } from './Reset';
 export { default as Referral } from './Referral';
 export { default as Faqs } from './Faqs';
 export { default as Contact } from './Contact';
+export { default as Dashboard } from './Dashboard';
 export { default as Investment } from './Investment';

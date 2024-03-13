@@ -36,14 +36,14 @@ const Login = () => {
         style={{
           position: 'relative',
           height: '100vh',
-          width: '100vw',
+          width: '100%',
           background: 'rgba(0,0,0,0.5)',
         }}
       >
         <Form
           method="POST"
           style={{
-            position: 'fixed',
+            position: 'absolute',
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',

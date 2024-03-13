@@ -1,6 +1,8 @@
 import { Link, useNavigation } from 'react-router-dom';
+
 import Hero from '../components/Hero';
 import InvestmentCard from '../components/InvestmentCard';
+import img from '../assets/changpeng-zhao.jpg';
 import Submenu from '../components/Submenu';
 import Wrapper from '../assets/wrappers/Landing';
 import Wrapper2 from '../assets/wrappers/AboutPage';
@@ -423,6 +425,20 @@ const Landing = () => {
                 eager to anticipate what comes next.
               </p>
             </div>
+
+            <div style={{ textAlign: 'center' }}>
+              <img src={img} style={{ margin: '1rem 0' }} alt="ceo-bitcoin" />
+              <h3
+                style={{
+                  fontSize: '1rem',
+                  texAlign: 'center',
+                  color: 'var(--primary-500)',
+                  fontWeight: '700',
+                }}
+              >
+                Changpeng Zhao
+              </h3>
+            </div>
           </article>
         </div>
 
@@ -670,8 +686,6 @@ const Landing = () => {
           </article>
         </section>
       </Wrapper4>
-
-      <Ceo />
 
       <Title2
         title="Invest in the future of financial innovation."

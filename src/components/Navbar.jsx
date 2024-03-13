@@ -12,11 +12,11 @@ const Navbar = () => {
       const response = await mainFetch.get('/api/v1/users/showMe', {
         withCredentials: true,
       });
-      const username = response.data.user.username;
+      const fullName = response.data.user.fullName;
       if (response.status === 200) {
-        setUsers(username);
+        setUsers(fullName);
       }
-      return { username };
+      return { fullName };
     } catch (error) {
       console.log(error);
       console.log(error.response.data.msg);
@@ -95,18 +95,35 @@ const Navbar = () => {
               </NavLink>
             </li>
 
-            <li>
-              <NavLink to="/contact" className="link-btn">
-                contact
-              </NavLink>
-            </li>
+            {users ? (
+              <div className="log">
+                <li className="link-btn" id="auth">
+                  {users}
+                </li>
+                <button className="btn" id="auth2" onClick={logout}>
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <div className="log">
+                <li>
+                  <NavLink to="/login" className="link-btn" id="auth">
+                    Login
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/register" className="link-btn" id="auth">
+                    Register
+                  </NavLink>
+                </li>
+              </div>
+            )}
           </ul>
         </div>
 
         <div>
           {users ? (
             <ul className="social-icons">
-              <p style={{ fontWeight: 'bold' }}>Welcome</p>
               <p
                 style={{
                   margin: '0 1rem',

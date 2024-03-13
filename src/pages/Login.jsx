@@ -34,7 +34,7 @@ const Login = () => {
         style={{
           position: 'relative',
           height: '100vh',
-          width: '100vw',
+          width: '100%',
           background: 'rgba(0,0,0,0.5)',
         }}
       >

@@ -416,6 +416,7 @@ PROJECT CSS
 nav {
   background: var(--white);
   box-shadow: var(--shadow-1);
+  padding-bottom: 1rem;
 }
 .nav-header {
   display: flex;
@@ -461,7 +462,29 @@ nav {
 .social-icons {
   display: none;
 }
+#auth {
+  color: var(--primary-500);
+  font-size: 1rem;
+  text-transform: capitalize;
+  letter-spacing: var(--letterSpacing);
+  display: block;
+  padding: 0 1rem;
+  transition: var(--transition);
+}
+.log {
+  display: flex;
+  place-items: center;
+  justify-content: center;
+}
+#auth2 {
+  margin: 0 1rem;
+}
 @media screen and (min-width: 800px) {
+  #auth,
+  #auth2 {
+    display: none;
+  }
+
   .nav-center {
     max-width: 1170px;
     margin: 0 auto;
