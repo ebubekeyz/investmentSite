@@ -39,7 +39,7 @@ const Navbar2 = () => {
       await mainFetch.get('/api/v1/auth/logout', {
         withCredentials: true,
       });
-      setUsers(false);
+
       nav('/login');
     } catch (error) {
       console.log(error);
