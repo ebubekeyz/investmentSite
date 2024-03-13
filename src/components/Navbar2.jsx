@@ -1,6 +1,6 @@
 import logo from '../assets/logo2.png';
 import { CiMenuFries } from 'react-icons/ci';
-import { Link, NavLink, redirect } from 'react-router-dom';
+import { Link, NavLink, redirect, useNavigate } from 'react-router-dom';
 import { mainFetch, navbarData } from '../utils';
 import { useState, useRef, useEffect } from 'react';
 import Wrapper from '../assets/wrappers/Navbar2';
@@ -9,7 +9,7 @@ import { RxAvatar } from 'react-icons/rx';
 
 const Navbar2 = () => {
   const [users, setUsers] = useState('');
-
+  const nav = useNavigate();
   const fetchUser = async () => {
     try {
       const response = await mainFetch.get('/api/v1/users/showMe', {
@@ -40,6 +40,7 @@ const Navbar2 = () => {
         withCredentials: true,
       });
       setUsers(false);
+      nav('/login');
     } catch (error) {
       console.log(error);
     }

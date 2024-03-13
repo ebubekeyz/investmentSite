@@ -1,12 +1,12 @@
 import logo from '../assets/logo.png';
 import { CiMenuFries } from 'react-icons/ci';
-import { Link, NavLink, redirect } from 'react-router-dom';
+import { Link, NavLink, redirect, useNavigate } from 'react-router-dom';
 import { mainFetch, navbarData } from '../utils';
 import { useState, useRef, useEffect } from 'react';
 
 const Navbar = () => {
   const [users, setUsers] = useState('');
-
+  const nav = useNavigate();
   const fetchUser = async () => {
     try {
       const response = await mainFetch.get('/api/v1/users/showMe', {
@@ -37,6 +37,7 @@ const Navbar = () => {
         withCredentials: true,
       });
       setUsers(false);
+      nav('/login');
     } catch (error) {
       console.log(error);
     }
