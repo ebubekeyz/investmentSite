@@ -69,7 +69,7 @@ const Login = () => {
               placeholder="Username"
             />
             <input
-              type="password "
+              type="password"
               className="form-input"
               name="password"
               placeholder="Password"
