@@ -32,7 +32,6 @@ const Login = () => {
     <Wrapper>
       <div
         style={{
-          maxWidth: '1170px',
           padding: '4rem 0',
           background: 'var(--grey-500)',
         }}

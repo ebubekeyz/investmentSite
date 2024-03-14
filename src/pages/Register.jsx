@@ -34,15 +34,11 @@ const Register = () => {
     <Wrapper>
       <div
         style={{
-          maxWidth: '1170px',
           padding: '4rem 0',
           background: 'var(--grey-500)',
         }}
       >
-        <Form
-          method="POST"
-          style={{ width: '90vw', margin: '0 auto', margin: '0 auto' }}
-        >
+        <Form method="POST" style={{ width: '90vw', margin: '0 auto' }}>
           <h2
             className="logo"
             style={{

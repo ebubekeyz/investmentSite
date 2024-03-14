@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  background: black;
   form {
-    width: 90vw;
     max-width: var(--fixed-width);
     background: var(--white);
     border-radius: var(--borderRadius);
