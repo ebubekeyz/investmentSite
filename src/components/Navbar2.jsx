@@ -6,6 +6,7 @@ import { useState, useRef, useEffect } from 'react';
 import Wrapper from '../assets/wrappers/Navbar2';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { RxAvatar } from 'react-icons/rx';
+import Cookies from 'js-cookie';
 
 const Navbar2 = () => {
   const [users, setUsers] = useState(false);
@@ -38,6 +39,8 @@ const Navbar2 = () => {
     try {
       await mainFetch.get('/api/v1/auth/logout');
       setUsers(false);
+      const cookies = new Cookies();
+      cookies.remove('token');
       nav('/login');
     } catch (error) {
       console.log(error);
