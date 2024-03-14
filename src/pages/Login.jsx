@@ -32,21 +32,12 @@ const Login = () => {
     <Wrapper>
       <div
         style={{
-          position: 'relative',
-          height: '100vh',
-          width: '100%',
-          background: 'rgba(0,0,0,0.5)',
+          maxWidth: '1170px',
+          padding: '4rem 0',
+          background: 'var(--grey-500)',
         }}
       >
-        <Form
-          method="POST"
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-          }}
-        >
+        <Form method="POST" style={{ width: '90vw', margin: '0 auto' }}>
           <h2
             className="logo"
             style={{
