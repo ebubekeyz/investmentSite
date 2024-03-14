@@ -24,7 +24,7 @@ export const action = async ({ request }) => {
   }
 };
 
-const Login = () => {
+const Register = () => {
   const [date, setDate] = useState(new Date());
   const mainDate = date.getFullYear();
 
@@ -34,21 +34,12 @@ const Login = () => {
     <Wrapper>
       <div
         style={{
-          position: 'relative',
-          height: '100vh',
-          width: '100%',
-          background: 'rgba(0,0,0,0.5)',
+          width: '90vw',
+          margin: '3rem auto',
+          maxWidth: '1170px',
         }}
       >
-        <Form
-          method="POST"
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-          }}
-        >
+        <Form method="POST" style={{ margin: '0 auto' }}>
           <h2
             className="logo"
             style={{
@@ -402,4 +393,4 @@ const Login = () => {
     </Wrapper>
   );
 };
-export default Login;
+export default Register;
