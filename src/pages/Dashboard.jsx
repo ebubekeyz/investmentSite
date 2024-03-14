@@ -4,6 +4,7 @@ import Navbar2 from '../components/Navbar2';
 import Sidebar from '../components/Sidebar';
 import { useEffect, useState } from 'react';
 import { mainFetch } from '../utils';
+import FooterMobile from '../components/FooterMobile';
 
 const Dashboard = () => {
   const nav = useNavigate();
@@ -39,6 +40,7 @@ const Dashboard = () => {
         <section className="dashboard">
           <Navbar2 />
           <Sidebar />
+          <FooterMobile />
         </section>
       )}
     </Wrapper>

@@ -8,7 +8,7 @@ import { IoMdArrowDropdown } from 'react-icons/io';
 import { RxAvatar } from 'react-icons/rx';
 
 const Navbar2 = () => {
-  const [users, setUsers] = useState('');
+  const [users, setUsers] = useState(false);
   const nav = useNavigate();
   const fetchUser = async () => {
     try {
@@ -39,7 +39,7 @@ const Navbar2 = () => {
       await mainFetch.get('/api/v1/auth/logout', {
         withCredentials: true,
       });
-
+      setUsers(false);
       nav('/login');
     } catch (error) {
       console.log(error);

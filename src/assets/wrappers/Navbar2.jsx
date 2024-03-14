@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.nav`
   nav {
-    background: rgb(36, 34, 34);
+    background: rgb(19, 17, 17);
     box-shadow: var(--shadow-1);
   }
 
