@@ -36,9 +36,7 @@ const Navbar2 = () => {
 
   const logout = async () => {
     try {
-      await mainFetch.get('/api/v1/auth/logout', {
-        withCredentials: true,
-      });
+      await mainFetch.get('/api/v1/auth/logout');
       setUsers(false);
       nav('/login');
     } catch (error) {
