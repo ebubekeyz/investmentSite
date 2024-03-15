@@ -47,7 +47,7 @@ const FooterMobile = () => {
             <Link to="" className="home-icon-main">
               <LiaCommentDollarSolid className="icon" />
             </Link>
-            <Link to="" className="link-text">
+            <Link to="/withdraw" className="link-text">
               Withdraw
             </Link>
           </div>
