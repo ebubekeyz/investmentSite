@@ -83,7 +83,6 @@ const Withdraw = () => {
         status: '',
         charge: '',
       });
-      console.log(data);
     } catch (error) {
       console.log(error);
       setIsLoading('withdraw');
@@ -100,7 +99,7 @@ const Withdraw = () => {
       });
 
       const withdrawal = response.data.withdraw;
-      console.log(response.data.withdraw);
+
       if (withdrawal.length !== 0) {
         // console.log('hi');
         const num = withdrawal.length - 1;

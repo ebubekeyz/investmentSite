@@ -54,11 +54,11 @@ const FooterMobile = () => {
         </article>
         <article className="footer-container">
           <div className="footer-content">
-            <Link to="" className="home-icon-main">
+            <Link to="/settings" className="home-icon-main">
               {' '}
               <CiSettings className="icon" />
             </Link>
-            <Link to="" className="link-text">
+            <Link to="/settings" className="link-text">
               Settings
             </Link>
           </div>

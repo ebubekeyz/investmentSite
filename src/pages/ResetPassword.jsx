@@ -39,7 +39,7 @@ const ResetPassword = () => {
           position: 'relative',
           height: '100vh',
           width: '100vw',
-          background: 'rgba(0,0,0,0.5)',
+          background: 'rgb(39, 37, 37)',
         }}
       >
         <Form

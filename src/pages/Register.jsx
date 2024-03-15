@@ -35,7 +35,7 @@ const Register = () => {
       <div
         style={{
           padding: '4rem 0',
-          background: 'var(--grey-500)',
+          background: 'rgb(39, 37, 37)',
         }}
       >
         <Form method="POST" style={{ width: '90vw', margin: '0 auto' }}>

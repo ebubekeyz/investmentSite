@@ -73,20 +73,20 @@ const Settings = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let { fullName, username, email, phone, country, city, zip, state } = user;
+
     try {
       setIsLoading('Updating..');
       const response = await mainFetch.patch(
         `/api/v1/users/${id.userId}`,
         {
-          fullName: fullName,
-          username: username,
-          email: email,
-          phone: phone,
-          country: country,
-          city: city,
-          zip: zip,
-          state: state,
+          fullName: user.fullName,
+          username: user.username,
+          //   email: user.email,
+          phone: user.phone,
+          country: user.country,
+          city: user.city,
+          zip: user.zip,
+          state: user.state,
         },
         {
           withCredentials: true,
@@ -94,15 +94,15 @@ const Settings = () => {
       );
       setIsLoading('Updated');
       setUser({
-        fullName: '',
-        username: '',
-        email: '',
-        phone: '',
-        country: '',
-        city: '',
-        zip: '',
-        state: '',
-        userId: '',
+        fullName: id.fullName,
+        username: id.username,
+        // email: '',
+        phone: id.phone,
+        country: id.country,
+        city: id.city,
+        zip: id.zip,
+        state: id.state,
+        userId: id.userId,
       });
       toast.success('Update Successful');
     } catch (error) {
@@ -185,6 +185,7 @@ const Settings = () => {
                   Email
                 </label>
                 <input
+                  readonly
                   type="text"
                   className="input"
                   name="email"
