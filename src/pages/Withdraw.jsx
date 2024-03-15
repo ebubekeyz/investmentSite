@@ -246,7 +246,7 @@ const Withdraw = () => {
           </div>
 
           <div className="pending">
-            <h3>Payment may take 25hours to process. Thank you!</h3>
+            <h3>Payment may take 24hours to process. Thank you!</h3>
           </div>
         </article>
       </section>
