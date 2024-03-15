@@ -5,6 +5,7 @@ import { GoShieldLock } from 'react-icons/go';
 import FooterMobile from '../components/FooterMobile';
 import { mainFetch } from '../utils';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const Settings = () => {
   const [isLoading, setIsLoading] = useState('update');
@@ -131,13 +132,13 @@ const Settings = () => {
           <article className="top2 top">
             <h3>Profile setting</h3>
 
-            <div className="top-inner">
+            <Link to="/changePassword" className="top-inner">
               <span className="space">
                 {' '}
                 <GoShieldLock className="back-icon" onClick={backHandler} />
               </span>
               <span className="change">Change Password</span>
-            </div>
+            </Link>
           </article>
 
           <article className="form-main">
@@ -185,7 +186,7 @@ const Settings = () => {
                   Email
                 </label>
                 <input
-                  readonly
+                  readOnly
                   type="text"
                   className="input"
                   name="email"

@@ -7,6 +7,7 @@ export { default as Error } from './Error';
 export { default as SinglePageError } from './SinglePageError';
 export { default as About } from './About';
 export { default as Terms } from './Terms';
+export { default as ChangePassword } from './ChangePassword';
 export { default as Settings } from './Settings';
 export { default as ResetPassword } from './ResetPassword';
 export { default as Privacy } from './Privacy';

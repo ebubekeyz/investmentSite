@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.section`
   background: rgb(39, 37, 37);
-  height: 100%;
+  height: 100vh;
   width: 100%;
   .section-center {
     width: 90vw;
@@ -17,7 +17,9 @@ const Wrapper = styled.section`
     border-radius: 0.4rem;
     border: 1px solid var(--grey-600);
     padding: 2rem 1rem;
-    margin-bottom: 7rem;
+
+    max-width: 30rem;
+    margin: 8rem auto;
   }
 
   .update-btn {

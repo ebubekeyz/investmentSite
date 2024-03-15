@@ -20,6 +20,7 @@ import {
   Dashboard,
   Withdraw,
   Settings,
+  ChangePassword,
 } from './pages';
 import { loader as landingLoader } from './pages/Landing.jsx';
 import { action as actionLoader } from './pages/Login.jsx';
@@ -111,6 +112,11 @@ const router = createBrowserRouter([
   {
     path: '/settings',
     element: <Settings />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/changePassword',
+    element: <ChangePassword />,
     errorElement: <SinglePageError />,
   },
 ]);
