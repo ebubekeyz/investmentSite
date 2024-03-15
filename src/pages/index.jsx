@@ -9,6 +9,7 @@ export { default as About } from './About';
 export { default as Terms } from './Terms';
 export { default as ResetPassword } from './ResetPassword';
 export { default as Privacy } from './Privacy';
+export { default as Withdraw } from './Withdraw';
 export { default as Reset } from './Reset';
 export { default as Referral } from './Referral';
 export { default as Faqs } from './Faqs';

@@ -18,12 +18,14 @@ import {
   Reset,
   ResetPassword,
   Dashboard,
+  Withdraw,
 } from './pages';
 import { loader as landingLoader } from './pages/Landing.jsx';
 import { action as actionLoader } from './pages/Login.jsx';
 import { action as actionLoader2 } from './pages/Register.jsx';
 import { action as actionLoader3 } from './pages/Reset.jsx';
 import { action as actionLoader4 } from './pages/ResetPassword.jsx';
+import { loader as withdrawLoader } from './pages/Withdraw.jsx';
 
 const queryClient = new QueryClient();
 
@@ -98,6 +100,12 @@ const router = createBrowserRouter([
     path: '/dashboard',
     element: <Dashboard />,
     errorElement: <SinglePageError />,
+  },
+  {
+    path: '/withdraw',
+    element: <Withdraw />,
+    errorElement: <SinglePageError />,
+    loader: withdrawLoader,
   },
 ]);
 

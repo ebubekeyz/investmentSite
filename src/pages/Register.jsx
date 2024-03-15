@@ -90,7 +90,7 @@ const Register = () => {
               name="country"
               style={{ color: 'var(--grey-400)' }}
             >
-              <option value="United States">United States</option>
+              <option value="United States">Australia</option>
               <option value="Afghanistan">Afghanistan</option>
               <option value="Albania">Albania</option>
               <option value="Algeria">Algeria</option>

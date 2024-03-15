@@ -33,7 +33,6 @@ const Dashboard = () => {
     fetchUsers();
   }, [fetchUsers]);
 
-  console.log(user);
   return (
     <Wrapper>
       {user && (

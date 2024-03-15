@@ -15,7 +15,7 @@ export const action = async ({ request }) => {
     });
     toast.success(response.data.msg);
 
-    return redirect('/dashboard');
+    return redirect('/withdraw');
   } catch (error) {
     toast.error(error?.response?.data?.msg);
     console.log(error);
@@ -69,13 +69,13 @@ const Login = () => {
             </button>
             <p>
               <Link to="/reset" className="reg">
-                Reset{' '}
+                Forgotten Password?{' '}
               </Link>
             </p>
             <p>
               <span>Dont have an account yet? </span>
               <Link to="/register" className="reg">
-                Register{' '}
+                Sign Up{' '}
               </Link>
             </p>
             <p style={{ marginTop: '1rem' }}>

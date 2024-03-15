@@ -35,22 +35,19 @@ const Navbar2 = () => {
     setShowLinks(!showLinks);
   };
 
-  const logout = async () => {
-    try {
-      await mainFetch.get('/api/v1/auth/logout');
-      setUsers(false);
-      const cookies = new Cookies();
-      cookies.remove('token');
-      nav('/login');
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const [show, setShow] = useState(false);
 
   const showNavToggle = () => {
     setShow(!show);
+  };
+
+  const logout = async () => {
+    try {
+      await mainFetch.get('/api/v1/auth/logout');
+      nav('/login');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -64,17 +61,13 @@ const Navbar2 = () => {
           </article>
 
           <article>
-            {users ? (
-              <aside>
-                <div className="nav-info-inner">
-                  <RxAvatar className="icon icon2" />
-                  <p>{users}</p>
-                  <IoMdArrowDropdown onClick={showNavToggle} className="icon" />
-                </div>
-              </aside>
-            ) : (
-              <Link to="/login">Login</Link>
-            )}
+            <aside>
+              <div className="nav-info-inner">
+                <RxAvatar className="icon icon2" />
+                <p>{users}</p>
+                <IoMdArrowDropdown onClick={showNavToggle} className="icon" />
+              </div>
+            </aside>
           </article>
         </div>
       </nav>
