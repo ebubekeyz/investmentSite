@@ -33,7 +33,7 @@ const Navbar = () => {
 
   const logout = async () => {
     try {
-      await mainFetch.get('/api/v1/auth/logout');
+      await mainFetch.get('/api/v1/auth/logout', { withCredentials: true });
       setUsers(false);
       nav('/login');
     } catch (error) {

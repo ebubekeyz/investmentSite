@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Wrapper from '../assets/wrappers/Withdraw';
 import FooterMobile from '../components/FooterMobile';
 import Navbar2 from '../components/Navbar2';
@@ -8,31 +8,15 @@ import { mainFetch } from '../utils';
 import { toast } from 'react-toastify';
 import { useQuery } from '@tanstack/react-query';
 
-export const loader = async () => {
-  const response = await mainFetch.get(`api/v1/withdraw/showUserWithdraw`, {
-    withCredentials: true,
-  });
+// export const loader = async () => {
+//   const response = await mainFetch.get(`api/v1/withdraw/showUserWithdraw`, {
+//     withCredentials: true,
+//   });
 
-  return { withdrawal: response.data.withdraw };
-};
+//   return { withdrawal: response.data.withdraw };
+// };
 
 const Withdraw = () => {
-  const { withdrawal } = useLoaderData();
-
-  const num = withdrawal.length - 1;
-
-  const percent = (withdrawal[num].amount - withdrawal[num].amount * 10) / 100;
-  let withdrawAmt = withdrawal[num].amount - percent;
-
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  });
-
-  withdrawAmt = formatter.format(Number(withdrawAmt).toFixed(2));
-  const navigation = useNavigation();
-  const submitting = navigation.state === 'submitting';
-
   const [isLoading, setIsLoading] = useState('withdraw');
 
   const [withdraw, setWithdraw] = useState({
@@ -107,13 +91,61 @@ const Withdraw = () => {
     }
   };
 
-  //   const { data, isError, error } = useQuery({
-  //     queryKey: ['withdraw'],
-  //     queryFn: async () => {
-  //       const { data } = await mainFetch.get('/api/v1/withdraw/showUserWithdraw');
-  //       return data;
-  //     },
+  const [withdrawAmt, setWithdrawAmt] = useState(0);
+
+  const withdrawalFetch = async () => {
+    try {
+      const response = await mainFetch.get(`api/v1/withdraw/showUserWithdraw`, {
+        withCredentials: true,
+      });
+
+      const withdrawal = response.data.withdraw;
+      console.log(response.data.withdraw);
+      if (withdrawal.length !== 0) {
+        // console.log('hi');
+        const num = withdrawal.length - 1;
+        const percent =
+          (withdrawal[num].amount - withdrawal[num].amount * 10) / 100;
+        const withdrawAmtCalc = withdrawal[num].amount - percent;
+        setWithdrawAmt(withdrawAmtCalc);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    withdrawalFetch();
+  }, [withdrawalFetch]);
+
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  });
+
+  //   withdrawAmt = formatter.format(Number(withdrawAmt).toFixed(2));
+  //   const { withdrawal } = useLoaderData();
+
+  //   let withdrawAmt;
+
+  //   if (withdrawal) {
+  //     const num = withdrawal.length - 1;
+
+  //     const percent =
+  //       (withdrawal[num].amount - withdrawal[num].amount * 10) / 100;
+  //     withdrawAmt = withdrawal[num].amount - percent;
+  //   } else {
+  //     withdrawAmt = 0;
+  //   }
+
+  //   const formatter = new Intl.NumberFormat('en-US', {
+  //     style: 'currency',
+  //     currency: 'USD',
   //   });
+
+  //   withdrawAmt = formatter.format(Number(withdrawAmt).toFixed(2));
+  const navigation = useNavigation();
+  const submitting = navigation.state === 'submitting';
 
   return (
     <Wrapper>
@@ -238,7 +270,7 @@ const Withdraw = () => {
         <article className="withdraw-pending">
           <div className="pending">
             <h3>Pending withdrawal</h3>
-            <p>{withdrawAmt}</p>
+            <p>{formatter.format(Number(withdrawAmt).toFixed(2))}</p>
           </div>
 
           <div className="pending">
