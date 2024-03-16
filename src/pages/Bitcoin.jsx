@@ -2,10 +2,11 @@ import { LiaTimesSolid } from 'react-icons/lia';
 import Wrapper from '../assets/wrappers/Bitcoin';
 import FooterMobile from '../components/FooterMobile';
 import { FaArrowLeft } from 'react-icons/fa';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { mainFetch } from '../utils';
 import copy from 'copy-to-clipboard';
+import axios from 'axios';
 
 const Bitcoin = () => {
   const [copyText, setCopyText] = useState({
@@ -35,28 +36,59 @@ const Bitcoin = () => {
     copy(copyText.tron);
     toast.success(`You have copied ${copyText.tron}`);
   };
-  const [receipt, setReceipt] = useState();
+  let [receipt, setReceipt] = useState();
+  let [imageValue, setImageValue] = useState(null);
   const [isLoading, setIsLoading] = useState('Send Receipt');
 
-  const handleSubmit = async (e) => {
+  const submitReceipt = async (e) => {
     e.preventDefault();
+    const imageFile = e.target.files[0];
 
+    const formData = new FormData();
+
+    formData.append('image', imageFile);
     try {
       setIsLoading('Sending Receipt...');
-      const response = await mainFetch.post(
-        '/api/v1/receipt',
-        { receipt: receipt },
-        { withCredentials: true }
-      );
+      const response = await mainFetch.post('/api/v1/receipt', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      const { src } = response.data.image;
+      setImageValue(src);
 
       setIsLoading('Receipt Sent');
       toast.success('Receipt Sent Successfully.');
     } catch (error) {
+      setImageValue(null);
       console.log(error);
-      toast.error(error.response.data.msg);
+
       setIsLoading('Send Receipt');
     }
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      console.log(imageValue);
+      setIsLoading('Sending Receipt...');
+      const response = await mainFetch.post(
+        '/api/v1/payReceipt',
+        { receipt: imageValue },
+        { withCredentials: true }
+      );
+
+      const { receipt } = response.data.payReceipt;
+      console.log(receipt);
+      setIsLoading('Receipt Sent');
+      toast.success('Receipt Sent Successfully');
+    } catch (error) {
+      console.log(error);
+      setIsLoading('Send Receipt');
+      toast.error(error.response.data.msg);
+    }
+  };
+
   const backHandler = () => {
     window.history.back();
   };
@@ -123,8 +155,13 @@ const Bitcoin = () => {
           </div>
 
           <div className="pending">
-            <form className="receipt-form" onSubmit={handleSubmit}>
-              <input type="file" name="receipt" value={receipt} />
+            <form onSubmit={handleSubmit} className="receipt-form">
+              <input
+                onChange={submitReceipt}
+                type="file"
+                name="receipt"
+                value={receipt}
+              />
               <button type="submit" className="receipt-btn btn">
                 {isLoading}
               </button>
