@@ -68,7 +68,7 @@ const ChangePassword = () => {
     <Wrapper>
       <section className="section-center">
         <article className="top">
-          <h4></h4>
+          <h4>Password</h4>
 
           <div className="top-inner">
             <span className="space">
@@ -79,6 +79,7 @@ const ChangePassword = () => {
           </div>
         </article>
         <article className="form-main">
+          <h3>Change password</h3>
           <form onSubmit={handleSubmit}>
             <div className="form-container">
               <label htmlFor="oldPassword" className="label">

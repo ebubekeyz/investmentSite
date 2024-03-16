@@ -3,9 +3,11 @@ export { default as Landing } from './Landing';
 export { default as Login } from './Login';
 export { default as Register } from './Register';
 export { default as Error } from './Error';
+export { default as Deposit } from './Deposit';
 
 export { default as SinglePageError } from './SinglePageError';
 export { default as About } from './About';
+export { default as Bitcoin } from './Bitcoin';
 export { default as Terms } from './Terms';
 export { default as ChangePassword } from './ChangePassword';
 export { default as Settings } from './Settings';

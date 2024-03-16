@@ -16,7 +16,7 @@ const FooterMobile = () => {
               {' '}
               <IoFolderOpenOutline className="icon" />
             </Link>
-            <Link to="" className="link-text">
+            <Link to="/deposit" className="link-text">
               Deposit
             </Link>
           </div>

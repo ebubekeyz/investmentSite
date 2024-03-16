@@ -21,6 +21,12 @@ const Wrapper = styled.section`
     max-width: 30rem;
     margin: 8rem auto;
   }
+  .form-main h3 {
+    font-weight: 700;
+    border-bottom: 1px solid var(--grey-700);
+    padding-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
 
   .update-btn {
     width: 100%;

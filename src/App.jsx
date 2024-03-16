@@ -21,6 +21,8 @@ import {
   Withdraw,
   Settings,
   ChangePassword,
+  Deposit,
+  Bitcoin,
 } from './pages';
 import { loader as landingLoader } from './pages/Landing.jsx';
 import { action as actionLoader } from './pages/Login.jsx';
@@ -117,6 +119,16 @@ const router = createBrowserRouter([
   {
     path: '/changePassword',
     element: <ChangePassword />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/deposit',
+    element: <Deposit />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/bitcoin',
+    element: <Bitcoin />,
     errorElement: <SinglePageError />,
   },
 ]);
