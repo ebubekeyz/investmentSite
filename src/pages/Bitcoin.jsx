@@ -97,7 +97,7 @@ const Bitcoin = () => {
       setIsLoading('Receipt Sent');
       toast.success('Receipt Sent Successfully');
     } catch (error) {
-      nav('/investment');
+      // nav('/investment');
       console.log(error);
       setIsLoading('Send Receipt');
       toast.error(error.response.data.msg);
