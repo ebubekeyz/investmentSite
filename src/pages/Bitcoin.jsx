@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { mainFetch } from '../utils';
 import copy from 'copy-to-clipboard';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Bitcoin = () => {
   const [copyText, setCopyText] = useState({
@@ -16,9 +17,28 @@ const Bitcoin = () => {
     tron: '0x21B7256e1c1D08420DbcDaD780e70',
   });
 
-  //   const handleCopyText = (e) => {
-  //     setCopyText(e.target.value);
-  //   };
+  const nav = useNavigate();
+
+  const [amountId, setAmountId] = useState('');
+
+  const showAmountId = async () => {
+    try {
+      const res = await mainFetch.get('/api/v1/amount', {
+        withCredentials: true,
+      });
+      const amountMajor = res.data.amount;
+      const num = amountMajor.length - 1;
+      const { _id } = amountMajor[num];
+      setAmountId(_id);
+    } catch (error) {
+      console.log(error);
+      console.log(error.res.data.msg);
+    }
+  };
+
+  useEffect(() => {
+    showAmountId();
+  }, [showAmountId]);
 
   const copyBitcoin = () => {
     copy(copyText.bitcoin);
@@ -48,7 +68,6 @@ const Bitcoin = () => {
 
     formData.append('image', imageFile);
     try {
-      setIsLoading('Sending Receipt...');
       const response = await mainFetch.post('/api/v1/receipt', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -56,14 +75,9 @@ const Bitcoin = () => {
       });
       const { src } = response.data.image;
       setImageValue(src);
-
-      setIsLoading('Receipt Sent');
-      toast.success('Receipt Sent Successfully.');
     } catch (error) {
       setImageValue(null);
       console.log(error);
-
-      setIsLoading('Send Receipt');
     }
   };
 
@@ -74,7 +88,7 @@ const Bitcoin = () => {
       setIsLoading('Sending Receipt...');
       const response = await mainFetch.post(
         '/api/v1/payReceipt',
-        { receipt: imageValue },
+        { receipt: imageValue, amount: amountId },
         { withCredentials: true }
       );
 
@@ -83,6 +97,7 @@ const Bitcoin = () => {
       setIsLoading('Receipt Sent');
       toast.success('Receipt Sent Successfully');
     } catch (error) {
+      nav('/investment');
       console.log(error);
       setIsLoading('Send Receipt');
       toast.error(error.response.data.msg);

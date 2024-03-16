@@ -1,311 +1,314 @@
-import { useEffect, useState } from 'react';
-import Wrapper from '../assets/wrappers/Settings';
-import { FaArrowLeft } from 'react-icons/fa6';
-import { GoShieldLock } from 'react-icons/go';
-import FooterMobile from '../components/FooterMobile';
-import { mainFetch } from '../utils';
-import { toast } from 'react-toastify';
+// import { useEffect, useState } from 'react';
+// import Wrapper from '../assets/wrappers/Settings';
+// import { FaArrowLeft } from 'react-icons/fa6';
+// import { GoShieldLock } from 'react-icons/go';
+// import FooterMobile from '../components/FooterMobile';
+// import { mainFetch } from '../utils';
+// import { toast } from 'react-toastify';
 
-const Settings = () => {
-  const [isLoading, setIsLoading] = useState('update');
-  const [user, setUser] = useState({
-    fullName: '',
-    username: '',
-    email: '',
-    phone: '',
-    country: '',
-    city: '',
-    zip: '',
-    state: '',
-  });
+// const Settings = () => {
+//   const [isLoading, setIsLoading] = useState('update');
+//   const [user, setUser] = useState({
+//     fullName: '',
+//     username: '',
+//     email: '',
+//     phone: '',
+//     country: '',
+//     city: '',
+//     zip: '',
+//     state: '',
+//   });
 
-  const [id, setId] = useState({
-    fullName: '',
-    username: '',
-    email: '',
-    phone: '',
-    country: '',
-    city: '',
-    zip: '',
-    state: '',
-    userId: '',
-  });
-  const backHandler = () => {
-    window.history.back();
-  };
+//   const [id, setId] = useState({
+//     fullName: '',
+//     username: '',
+//     email: '',
+//     phone: '',
+//     country: '',
+//     city: '',
+//     zip: '',
+//     state: '',
+//     userId: '',
+//   });
+//   const backHandler = () => {
+//     window.history.back();
+//   };
 
-  const showId = async () => {
-    try {
-      const response = await mainFetch.get('/api/v1/users/showMe', {
-        withCredentials: true,
-      });
+//   const showId = async () => {
+//     try {
+//       const response = await mainFetch.get('/api/v1/users/showMe', {
+//         withCredentials: true,
+//       });
 
-      const {
-        userId,
-        fullName,
-        username,
-        email,
-        phone,
-        country,
-        city,
-        zip,
-        state,
-      } = response.data.user;
-      setId({
-        fullName: fullName,
-        username: username,
-        email: email,
-        phone: phone,
-        country: country,
-        city: city,
-        zip: zip,
-        state: state,
-        userId: userId,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+//       const {
+//         userId,
+//         fullName,
+//         username,
+//         email,
+//         phone,
+//         country,
+//         city,
+//         zip,
+//         state,
+//       } = response.data.user;
+//       setId({
+//         fullName: fullName,
+//         username: username,
+//         email: email,
+//         phone: phone,
+//         country: country,
+//         city: city,
+//         zip: zip,
+//         state: state,
+//         userId: userId,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
 
-  useEffect(() => {
-    showId();
-  }, [showId]);
+//   useEffect(() => {
+//     showId();
+//   }, [showId]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    let { fullName, username, email, phone, country, city, zip, state } = user;
-    try {
-      setIsLoading('Updating..');
-      const response = await mainFetch.patch(
-        `/api/v1/users/${id.userId}`,
-        {
-          fullName: fullName,
-          username: username,
-          email: email,
-          phone: phone,
-          country: country,
-          city: city,
-          zip: zip,
-          state: state,
-        },
-        {
-          withCredentials: true,
-        }
-      );
-      setIsLoading('Updated');
-      setUser({
-        fullName: '',
-        username: '',
-        email: '',
-        phone: '',
-        country: '',
-        city: '',
-        zip: '',
-        state: '',
-        userId: '',
-      });
-      toast.success('Update Successful');
-    } catch (error) {
-      console.log(error);
-      toast.error(error.response.data.msg);
-      setIsLoading('update');
-    }
-  };
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     let { fullName, username, email, phone, country, city, zip, state } = user;
+//     try {
+//       setIsLoading('Updating..');
+//       const response = await mainFetch.patch(
+//         `/api/v1/users/${id.userId}`,
+//         {
+//           fullName: fullName,
+//           username: username,
+//           email: email,
+//           phone: phone,
+//           country: country,
+//           city: city,
+//           zip: zip,
+//           state: state,
+//         },
+//         {
+//           withCredentials: true,
+//         }
+//       );
+//       setIsLoading('Updated');
+//       setUser({
+//         fullName: '',
+//         username: '',
+//         email: '',
+//         phone: '',
+//         country: '',
+//         city: '',
+//         zip: '',
+//         state: '',
+//         userId: '',
+//       });
+//       toast.success('Update Successful');
+//     } catch (error) {
+//       console.log(error);
+//       toast.error(error.response.data.msg);
+//       setIsLoading('update');
+//     }
+//   };
 
-  return (
-    <Wrapper>
-      <section>
-        <div className="section-center">
-          <article className="top">
-            <h4>Authentication</h4>
+//   return (
+//     <Wrapper>
+//       <section>
+//         <div className="section-center">
+//           <article className="top">
+//             <h4>Authentication</h4>
 
-            <div className="top-inner">
-              <span className="space">
-                {' '}
-                <FaArrowLeft className="back-icon" onClick={backHandler} />
-              </span>
-              <span className="back">Back</span>
-            </div>
-          </article>
+//             <div className="top-inner">
+//               <span className="space">
+//                 {' '}
+//                 <FaArrowLeft className="back-icon" onClick={backHandler} />
+//               </span>
+//               <span className="back">Back</span>
+//             </div>
+//           </article>
 
-          <article className="top2 top">
-            <h3>Profile setting</h3>
+//           <article className="top2 top">
+//             <h3>Profile setting</h3>
 
-            <div className="top-inner">
-              <span className="space">
-                {' '}
-                <GoShieldLock className="back-icon" onClick={backHandler} />
-              </span>
-              <span className="change">Change Password</span>
-            </div>
-          </article>
+//             <div className="top-inner">
+//               <span className="space">
+//                 {' '}
+//                 <GoShieldLock className="back-icon" onClick={backHandler} />
+//               </span>
+//               <span className="change">Change Password</span>
+//             </div>
+//           </article>
 
-          <article className="form-main">
-            <form onSubmit={handleSubmit}>
-              <div className="form-container">
-                <label htmlFor="firstName" className="label">
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  className="input"
-                  name="fullName"
-                  placeholder={id.fullName}
-                  value={user.fullName}
-                  onChange={(e) => {
-                    setUser({
-                      ...user,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
-              </div>
+//           <article className="form-main">
+//             <form onSubmit={handleSubmit}>
+//               <div className="form-container">
+//                 <label htmlFor="firstName" className="label">
+//                   Full Name
+//                 </label>
+//                 <input
+//                   type="text"
+//                   className="input"
+//                   name="fullName"
+//                   placeholder={id.fullName}
+//                   value={user.fullName}
+//                   onChange={(e) => {
+//                     setUser({
+//                       ...user,
+//                       [e.target.name]: e.target.value,
+//                     });
+//                   }}
+//                 />
+//               </div>
 
-              <div className="form-container">
-                <label htmlFor="username" className="label">
-                  Username
-                </label>
-                <input
-                  type="text"
-                  className="input"
-                  name="username"
-                  placeholder={id.username}
-                  value={user.username}
-                  onChange={(e) => {
-                    setUser({
-                      ...user,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
-              </div>
+//               <div className="form-container">
+//                 <label htmlFor="username" className="label">
+//                   Username
+//                 </label>
+//                 <input
+//                   type="text"
+//                   className="input"
+//                   name="username"
+//                   placeholder={id.username}
+//                   value={user.username}
+//                   onChange={(e) => {
+//                     setUser({
+//                       ...user,
+//                       [e.target.name]: e.target.value,
+//                     });
+//                   }}
+//                 />
+//               </div>
 
-              <div className="form-container">
-                <label htmlFor="email" className="label">
-                  Email
-                </label>
-                <input
-                  type="text"
-                  className="input"
-                  name="email"
-                  placeholder={id.email}
-                  value={user.email}
-                  onChange={(e) => {
-                    setUser({
-                      ...user,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
-              </div>
+//               <div className="form-container">
+//                 <label htmlFor="email" className="label">
+//                   Email
+//                 </label>
+//                 <input
+//                   type="text"
+//                   className="input"
+//                   name="email"
+//                   placeholder={id.email}
+//                   value={user.email}
+//                   onChange={(e) => {
+//                     setUser({
+//                       ...user,
+//                       [e.target.name]: e.target.value,
+//                     });
+//                   }}
+//                 />
+//               </div>
 
-              <div className="form-container">
-                <label htmlFor="phone" className="label">
-                  Phone
-                </label>
-                <input
-                  type="text"
-                  className="input"
-                  name="phone"
-                  placeholder={id.phone}
-                  value={user.phone}
-                  onChange={(e) => {
-                    setUser({
-                      ...user,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
-              </div>
+//               <div className="form-container">
+//                 <label htmlFor="phone" className="label">
+//                   Phone
+//                 </label>
+//                 <input
+//                   type="text"
+//                   className="input"
+//                   name="phone"
+//                   placeholder={id.phone}
+//                   value={user.phone}
+//                   onChange={(e) => {
+//                     setUser({
+//                       ...user,
+//                       [e.target.name]: e.target.value,
+//                     });
+//                   }}
+//                 />
+//               </div>
 
-              <div className="form-container">
-                <label htmlFor="country" className="label">
-                  Country
-                </label>
-                <input
-                  type="text"
-                  className="input"
-                  name="country"
-                  placeholder={id.country}
-                  value={user.country}
-                  onChange={(e) => {
-                    setUser({
-                      ...user,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
-              </div>
+//               <div className="form-container">
+//                 <label htmlFor="country" className="label">
+//                   Country
+//                 </label>
+//                 <input
+//                   type="text"
+//                   className="input"
+//                   name="country"
+//                   placeholder={id.country}
+//                   value={user.country}
+//                   onChange={(e) => {
+//                     setUser({
+//                       ...user,
+//                       [e.target.name]: e.target.value,
+//                     });
+//                   }}
+//                 />
+//               </div>
 
-              <div className="form-container">
-                <label htmlFor="city" className="label">
-                  City
-                </label>
-                <input
-                  type="text"
-                  className="input"
-                  name="city"
-                  placeholder={id.city}
-                  value={user.city}
-                  onChange={(e) => {
-                    setUser({
-                      ...user,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
-              </div>
+//               <div className="form-container">
+//                 <label htmlFor="city" className="label">
+//                   City
+//                 </label>
+//                 <input
+//                   type="text"
+//                   className="input"
+//                   name="city"
+//                   placeholder={id.city}
+//                   value={user.city}
+//                   onChange={(e) => {
+//                     setUser({
+//                       ...user,
+//                       [e.target.name]: e.target.value,
+//                     });
+//                   }}
+//                 />
+//               </div>
 
-              <div className="form-container">
-                <label htmlFor="zip" className="label">
-                  Zip
-                </label>
-                <input
-                  type="text"
-                  className="input"
-                  name="zip"
-                  placeholder={id.zip}
-                  value={user.zip}
-                  onChange={(e) => {
-                    setUser({
-                      ...user,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
-              </div>
+//               <div className="form-container">
+//                 <label htmlFor="zip" className="label">
+//                   Zip
+//                 </label>
+//                 <input
+//                   type="text"
+//                   className="input"
+//                   name="zip"
+//                   placeholder={id.zip}
+//                   value={user.zip}
+//                   onChange={(e) => {
+//                     setUser({
+//                       ...user,
+//                       [e.target.name]: e.target.value,
+//                     });
+//                   }}
+//                 />
+//               </div>
 
-              <div className="form-container">
-                <label htmlFor="state" className="label">
-                  State
-                </label>
-                <input
-                  type="text"
-                  className="input"
-                  name="state"
-                  placeholder={id.state}
-                  value={user.state}
-                  onChange={(e) => {
-                    setUser({
-                      ...user,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
-              </div>
+//               <div className="form-container">
+//                 <label htmlFor="state" className="label">
+//                   State
+//                 </label>
+//                 <input
+//                   type="text"
+//                   className="input"
+//                   name="state"
+//                   placeholder={id.state}
+//                   value={user.state}
+//                   onChange={(e) => {
+//                     setUser({
+//                       ...user,
+//                       [e.target.name]: e.target.value,
+//                     });
+//                   }}
+//                 />
+//               </div>
 
-              <div className="btn-info">
-                <button type="submit" className="update-btn btn">
-                  {isLoading}
-                </button>
-              </div>
-            </form>
-          </article>
-        </div>
-      </section>
+//               <div className="btn-info">
+//                 <button type="submit" className="update-btn btn">
+//                   {isLoading}
+//                 </button>
+//               </div>
+//             </form>
+//           </article>
+//         </div>
+//       </section>
 
-      <FooterMobile />
-    </Wrapper>
-  );
-};
-export default Settings;
+//       <FooterMobile />
+//     </Wrapper>
+//   );
+// };
+// export default Settings;
+
+coin, user, plan;
+amount; charge, payment Date, upcoming payment

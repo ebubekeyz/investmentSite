@@ -1,11 +1,262 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/Investment';
 import { FaArrowRight } from 'react-icons/fa';
 import Title from '../components/Title';
 import { LuBadgeCheck } from 'react-icons/lu';
 import { FaCheck } from 'react-icons/fa';
+import { useState } from 'react';
+import { mainFetch } from '../utils';
 
 const InvestmentCard = () => {
+  const [invest, setInvest] = useState({
+    plan: 'T-H1 Plan',
+    amount: 50,
+    percent: 5,
+    days: 1,
+  });
+
+  const [invest2, setInvest2] = useState({
+    plan: 'T-H2 Plan',
+    amount: 3100,
+    percent: 12,
+    days: 2,
+  });
+
+  const [invest3, setInvest3] = useState({
+    plan: 'T-H3 Plan',
+    amount: 7100,
+    percent: 18,
+    days: 3,
+  });
+
+  const [invest4, setInvest4] = useState({
+    plan: 'T-H4 Plan',
+    amount: 20500,
+    percent: 24,
+    days: 4,
+  });
+
+  const [invest5, setInvest5] = useState({
+    plan: 'T-H STAKE Plan',
+    amount: 41000,
+    percent: 7,
+    days: 1,
+  });
+
+  const [invest6, setInvest6] = useState({
+    plan: 'T-H STAKE2 Plan',
+    amount: 91000,
+    percent: 9.1,
+    days: 1,
+  });
+
+  const [invest7, setInvest7] = useState({
+    plan: 'T-H STAKE3 Plan',
+    amount: 201000,
+    percent: 10,
+    days: 1,
+  });
+
+  const [invest8, setInvest8] = useState({
+    plan: 'T-H4 STAKE4 Plan',
+    amount: 501000,
+    percent: 25,
+    days: 1,
+  });
+
+  const nav = useNavigate();
+
+  const handleInvest = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await mainFetch.post(
+        '/api/v1/invest',
+        {
+          plan: invest.plan,
+          amount: invest.amount,
+          percent: invest.percent,
+          days: invest.days,
+        },
+        { withCredentials: true }
+      );
+      console.log(response.data.invest);
+
+      nav('/deposit');
+    } catch (error) {
+      nav('/login');
+      console.log(error);
+      console.log(error.response.data.msg);
+    }
+  };
+
+  const handleInvest2 = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await mainFetch.post(
+        '/api/v1/invest',
+        {
+          plan: invest2.plan,
+          amount: invest2.amount,
+          percent: invest2.percent,
+          days: invest2.days,
+        },
+        { withCredentials: true }
+      );
+      console.log(response.data.invest);
+
+      nav('/deposit');
+    } catch (error) {
+      nav('/login');
+      console.log(error);
+      console.log(error.response.data.msg);
+    }
+  };
+
+  const handleInvest3 = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await mainFetch.post(
+        '/api/v1/invest',
+        {
+          plan: invest3.plan,
+          amount: invest3.amount,
+          percent: invest3.percent,
+          days: invest3.days,
+        },
+        { withCredentials: true }
+      );
+      console.log(response.data.invest);
+
+      nav('/deposit');
+    } catch (error) {
+      nav('/login');
+      console.log(error);
+      console.log(error.response.data.msg);
+    }
+  };
+
+  const handleInvest4 = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await mainFetch.post(
+        '/api/v1/invest',
+        {
+          plan: invest4.plan,
+          amount: invest4.amount,
+          percent: invest4.percent,
+          days: invest4.days,
+        },
+        { withCredentials: true }
+      );
+      console.log(response.data.invest);
+
+      nav('/deposit');
+    } catch (error) {
+      nav('/login');
+      console.log(error);
+      console.log(error.response.data.msg);
+    }
+  };
+
+  const handleInvest5 = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await mainFetch.post(
+        '/api/v1/invest',
+        {
+          plan: invest5.plan,
+          amount: invest5.amount,
+          percent: invest5.percent,
+          days: invest5.days,
+        },
+        { withCredentials: true }
+      );
+      console.log(response.data.invest);
+
+      nav('/deposit');
+    } catch (error) {
+      nav('/login');
+      console.log(error);
+      console.log(error.response.data.msg);
+    }
+  };
+
+  const handleInvest6 = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await mainFetch.post(
+        '/api/v1/invest',
+        {
+          plan: invest6.plan,
+          amount: invest6.amount,
+          percent: invest6.percent,
+          days: invest6.days,
+        },
+        { withCredentials: true }
+      );
+      console.log(response.data.invest);
+
+      nav('/deposit');
+    } catch (error) {
+      nav('/login');
+      console.log(error);
+      console.log(error.response.data.msg);
+    }
+  };
+
+  const handleInvest7 = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await mainFetch.post(
+        '/api/v1/invest',
+        {
+          plan: invest7.plan,
+          amount: invest7.amount,
+          percent: invest7.percent,
+          days: invest7.days,
+        },
+        { withCredentials: true }
+      );
+      console.log(response.data.invest);
+
+      nav('/deposit');
+    } catch (error) {
+      nav('/login');
+      console.log(error);
+      console.log(error.response.data.msg);
+    }
+  };
+
+  const handleInvest8 = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await mainFetch.post(
+        '/api/v1/invest',
+        {
+          plan: invest8.plan,
+          amount: invest8.amount,
+          percent: invest8.percent,
+          days: invest8.days,
+        },
+        { withCredentials: true }
+      );
+      console.log(response.data.invest);
+
+      nav('/deposit');
+    } catch (error) {
+      nav('/login');
+      console.log(error);
+      console.log(error.response.data.msg);
+    }
+  };
   return (
     <Wrapper>
       <section>
@@ -15,7 +266,7 @@ const InvestmentCard = () => {
 
         <aside className="invest">
           <article>
-            <h3>T-H1 Plan</h3>
+            <h3>{invest.plan}</h3>
 
             <LuBadgeCheck className="badge" />
 
@@ -23,7 +274,7 @@ const InvestmentCard = () => {
               <div className="percent">
                 <span>$</span>
                 <h1 className="change-color">
-                  50
+                  {invest.amount}
                   <span className="percent-inner" style={{ fontSize: '1rem' }}>
                     Min
                   </span>
@@ -51,7 +302,7 @@ const InvestmentCard = () => {
 
             <div className="check-main">
               <p className="split">
-                <span>5% ROI Daily</span>{' '}
+                <span>{invest.percent}% ROI Daily</span>{' '}
                 <span className="check-inner">
                   <FaCheck />
                 </span>
@@ -76,13 +327,13 @@ const InvestmentCard = () => {
               </p>
             </div>
 
-            <Link to="/dashboard" className="btn">
+            <button onClick={handleInvest} className="btn">
               INVEST NOW
-            </Link>
+            </button>
           </article>
 
           <article>
-            <h3>T-H2 Plan</h3>
+            <h3>{invest2.plan}</h3>
 
             <LuBadgeCheck className="badge" />
 
@@ -90,7 +341,7 @@ const InvestmentCard = () => {
               <div className="percent">
                 <span>$</span>
                 <h1>
-                  3,100
+                  {invest2.amount}
                   <span className="percent-inner" style={{ fontSize: '1rem' }}>
                     Min
                   </span>
@@ -118,7 +369,7 @@ const InvestmentCard = () => {
 
             <div className="check-main">
               <p className="split">
-                <span>12% ROI Daily</span>{' '}
+                <span>{invest2.percent}% ROI Daily</span>{' '}
                 <span className="check-inner">
                   <FaCheck />
                 </span>
@@ -143,9 +394,9 @@ const InvestmentCard = () => {
               </p>
             </div>
 
-            <Link to="/dashboard" className="btn">
+            <button onClick={handleInvest2} className="btn">
               INVEST NOW
-            </Link>
+            </button>
           </article>
 
           <article>
@@ -210,9 +461,9 @@ const InvestmentCard = () => {
               </p>
             </div>
 
-            <Link to="/dashboard" className="btn">
+            <button onClick={handleInvest3} className="btn">
               INVEST NOW
-            </Link>
+            </button>
           </article>
 
           <article>
@@ -277,9 +528,9 @@ const InvestmentCard = () => {
               </p>
             </div>
 
-            <Link to="/dashboard" className="btn">
+            <button onClick={handleInvest4} className="btn">
               INVEST NOW
-            </Link>
+            </button>
           </article>
         </aside>
       </section>
@@ -325,9 +576,9 @@ const InvestmentCard = () => {
               </p>
             </div>
 
-            <Link to="/dashboard" className="btn">
+            <button onClick={handleInvest5} className="btn">
               INVEST NOW
-            </Link>
+            </button>
           </article>
 
           <article>
@@ -365,9 +616,9 @@ const InvestmentCard = () => {
               </p>
             </div>
 
-            <Link to="/dashboard" className="btn">
+            <button onClick={handleInvest6} className="btn">
               INVEST NOW
-            </Link>
+            </button>
           </article>
 
           <article>
@@ -405,9 +656,9 @@ const InvestmentCard = () => {
               </p>
             </div>
 
-            <Link to="/dashboard" className="btn">
+            <button onClick={handleInvest7} className="btn">
               INVEST NOW
-            </Link>
+            </button>
           </article>
 
           <article>
@@ -445,9 +696,9 @@ const InvestmentCard = () => {
               </p>
             </div>
 
-            <Link to="/dashboard" className="btn">
+            <button onClick={handleInvest8} className="btn">
               INVEST NOW
-            </Link>
+            </button>
           </article>
         </aside>
       </section>
