@@ -72,7 +72,6 @@ const InvestLog = () => {
               </article>
 
               {receipt?.map((item) => {
-                // console.log(item);
                 const {
                   _id: id,
                   receipt,
@@ -101,8 +100,8 @@ const InvestLog = () => {
                       {new Date(createdAt).getFullYear()}
                     </h4>
                     <h4>
-                      {new Date().getDate() + days}/
-                      {new Date().getMonth() + days}/{new Date().getFullYear()}
+                      {new Date().getDate() + days}/{new Date().getMonth() + 1}/
+                      {new Date().getFullYear()}
                     </h4>
                   </article>
                 );
