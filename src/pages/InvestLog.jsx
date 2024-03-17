@@ -3,6 +3,7 @@ import Wrapper from '../assets/wrappers/InvestLog';
 import FooterMobile from '../components/FooterMobile';
 import { useEffect, useState } from 'react';
 import { mainFetch } from '../utils';
+import { toast } from 'react-toastify';
 
 const InvestLog = () => {
   const [receipt, setReceipt] = useState([]);
@@ -17,6 +18,7 @@ const InvestLog = () => {
       const payMajor = res.data.payReceipt;
       setReceipt(payMajor);
     } catch (error) {
+      toast.error('Network error, please try again.');
       console.log(error);
       console.log(error.res.data.msg);
     }
