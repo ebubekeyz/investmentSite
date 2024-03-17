@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.section`
   background: rgb(39, 37, 37);
-  padding-bottom: 10rem;
+  padding-bottom: 15rem;
   .section-center {
     width: 90vw;
     margin: 0 auto;
