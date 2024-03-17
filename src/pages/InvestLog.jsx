@@ -73,7 +73,7 @@ const InvestLog = () => {
                 <h4>UPCOMING PAYMENT</h4>
               </article>
 
-              {receipt?.map((item) => {
+              {receipt.map((item) => {
                 const {
                   _id: id,
                   receipt,
@@ -81,7 +81,7 @@ const InvestLog = () => {
                   amount: {
                     amount: amt,
                     coin: {
-                      // coinType: coin,
+                      coinType: coin,
                       invest: { days: days, percent: percent, plan: plan },
                     },
                   },
