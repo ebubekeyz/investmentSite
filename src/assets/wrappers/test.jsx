@@ -311,4 +311,4 @@
 // export default Settings;
 
 coin, user, plan;
-amount; charge, payment Date, upcoming payment
+amount;  charge, payment Date, upcoming payment

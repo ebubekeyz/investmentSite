@@ -23,6 +23,7 @@ import {
   ChangePassword,
   Deposit,
   Bitcoin,
+  InvestLog,
 } from './pages';
 import { loader as landingLoader } from './pages/Landing.jsx';
 import { action as actionLoader } from './pages/Login.jsx';
@@ -129,6 +130,11 @@ const router = createBrowserRouter([
   {
     path: '/bitcoin',
     element: <Bitcoin />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/investLog',
+    element: <InvestLog />,
     errorElement: <SinglePageError />,
   },
 ]);

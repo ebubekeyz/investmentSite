@@ -65,7 +65,6 @@ const Deposit = () => {
     showCoinId();
   }, [showCoinId]);
 
- 
   const handleCoin1 = async (e) => {
     e.preventDefault();
     try {
@@ -74,11 +73,11 @@ const Deposit = () => {
         { coinType: coinType.btc, invest: investId },
         { withCredentials: true }
       );
-      console.log(response.data.coin);
+
       setOpen(true);
     } catch (error) {
       toast.error('Please select an investment plan');
-      nav('/investment')
+      nav('/investment');
       console.log(error);
       console.log(error.response.data.msg);
     }
@@ -92,11 +91,11 @@ const Deposit = () => {
         { coinType: coinType.eth, invest: investId },
         { withCredentials: true }
       );
-      console.log(response.data.coin);
+
       setOpen(true);
     } catch (error) {
       toast.error('Please select an investment plan');
-       nav('/investment');
+      nav('/investment');
       console.log(error);
       console.log(error.response.data.msg);
     }
@@ -110,7 +109,7 @@ const Deposit = () => {
         { coinType: coinType.doge, invest: investId },
         { withCredentials: true }
       );
-      console.log(response.data.coin);
+
       setOpen(true);
     } catch (error) {
       nav('/investment');
@@ -128,11 +127,11 @@ const Deposit = () => {
         { coinType: coinType.tron, invest: investId },
         { withCredentials: true }
       );
-      console.log(response.data.coin);
+
       setOpen(true);
     } catch (error) {
       nav('/investment');
-      toast.error('Please select an investment plan')
+      toast.error('Please select an investment plan');
       console.log(error);
       console.log(error.response.data.msg);
     }
@@ -159,7 +158,7 @@ const Deposit = () => {
         { amount: investAmount, coin: coinId },
         { withCredentials: true }
       );
-      console.log(response.data.amount);
+
       setAmountMain({
         amount: '',
       });
@@ -178,7 +177,7 @@ const Deposit = () => {
 
   return (
     <Wrapper>
-      <section section-center>
+      <section>
         <article className="top2 top">
           <h4>Password</h4>
 

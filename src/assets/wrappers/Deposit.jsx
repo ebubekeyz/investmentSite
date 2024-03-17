@@ -64,7 +64,7 @@ const Wrapper = styled.section`
 
   .top h4 {
     color: white;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   .update-btn {

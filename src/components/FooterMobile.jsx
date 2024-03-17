@@ -23,12 +23,12 @@ const FooterMobile = () => {
         </article>
         <article className="footer-container">
           <div className="footer-content">
-            <Link to="" className="home-icon-main">
+            <Link to="/investLog" className="home-icon-main">
               {' '}
               <FaRegMoneyBillAlt className="icon" />
             </Link>
-            <Link to="" className="link-text">
-              Invest
+            <Link to="/investLog" className="link-text">
+              My Invest
             </Link>
           </div>
         </article>

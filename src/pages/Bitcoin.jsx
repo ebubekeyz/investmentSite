@@ -84,7 +84,6 @@ const Bitcoin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(imageValue);
       setIsLoading('Sending Receipt...');
       const response = await mainFetch.post(
         '/api/v1/payReceipt',
@@ -93,7 +92,7 @@ const Bitcoin = () => {
       );
 
       const { receipt } = response.data.payReceipt;
-      console.log(receipt);
+
       setIsLoading('Receipt Sent');
       toast.success('Receipt Sent Successfully');
     } catch (error) {
