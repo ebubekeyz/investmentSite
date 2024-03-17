@@ -31,8 +31,8 @@ const Wrapper = styled.section`
     border: 1px solid var(--grey-700);
   }
   .deposit-img {
-    height: 9rem;
-    width: 9rem;
+    height: 8rem;
+    width: 8rem;
     object-fit: contain;
   }
   .deposit-text {
