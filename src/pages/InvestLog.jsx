@@ -81,7 +81,7 @@ const InvestLog = () => {
                   amount: {
                     amount: amt,
                     coin: {
-                      coinType: coin,
+                      // coinType: coin,
                       invest: { days: days, percent: percent, plan: plan },
                     },
                   },
@@ -89,7 +89,7 @@ const InvestLog = () => {
 
                 return (
                   <article key={id} className="header">
-                    <h4>{coin}</h4>
+                    <h4>{}</h4>
 
                     <h4>{plan}</h4>
                     <h4>{formatter.format(Number(amt).toFixed(2))}</h4>
