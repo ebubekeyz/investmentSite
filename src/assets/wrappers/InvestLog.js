@@ -100,6 +100,11 @@ const Wrapper = styled.section`
     font-size: 1rem;
     color: white;
   }
+  .empty{
+    text-align: center;
+    padding: 6rem;
+    font-size: 1rem;
+  }
 `;
 
 export default Wrapper;

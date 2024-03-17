@@ -6,12 +6,14 @@ import { mainFetch } from '../utils';
 
 const InvestLog = () => {
   const [receipt, setReceipt] = useState([]);
+  const [sow, setShow] = useState(false);
 
   const showAmountId = async () => {
     try {
       const res = await mainFetch.get('/api/v1/payReceipt/showUserPayReceipt', {
         withCredentials: true,
       });
+      setShow(true);
       const payMajor = res.data.payReceipt;
       setReceipt(payMajor);
     } catch (error) {
@@ -108,7 +110,7 @@ const InvestLog = () => {
               })}
             </div>
           ) : (
-            <h3>No Log Found</h3>
+            <h3 className="empty">No Log Found</h3>
           )}
         </article>
       </section>
