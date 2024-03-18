@@ -11,7 +11,31 @@ const Wrapper = styled.section`
   .box {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-self: center;
     gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  #acc-bal-1 {
+    background: linear-gradient(
+      to right,
+      rgba(226, 48, 17, 0.8),
+      rgba(226, 48, 17, 0.2)
+    );
+  }
+  #acc-bal-3 {
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0.2)
+    );
+  }
+  #acc-bal-2 {
+    background: linear-gradient(
+      to right,
+      rgba(17, 48, 226, 0.8),
+      rgba(17, 48, 226, 0.2)
+    );
   }
   .acc-bal {
     background: linear-gradient(

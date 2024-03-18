@@ -105,7 +105,11 @@ const Withdraw = () => {
         const num = withdrawal.length - 1;
         const percent = (withdrawal[num].amount * 10) / 100;
         const withdrawAmtCalc = withdrawal[num].amount - percent;
-        setWithdrawAmt(withdrawAmtCalc);
+        if (withdrawal[num].status === 'confirmed') {
+          setWithdrawAmt(0);
+        } else {
+          setWithdrawAmt(withdrawAmtCalc);
+        }
       }
     } catch (error) {
       console.log(error);

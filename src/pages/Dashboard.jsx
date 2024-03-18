@@ -70,7 +70,7 @@ const Dashboard = () => {
     calculateTotalPercent();
   }, []);
 
-  // console.log(calculateTotalPercent());
+  console.log(calculateTotalPercent());
 
   const profit = () => {
     const date = new Date();
@@ -232,7 +232,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     withdrawalFetch();
-  }, [withdrawalFetch]);
+  }, []);
 
   console.log(withdrawAmt);
 
@@ -243,7 +243,7 @@ const Dashboard = () => {
   console.log(reduceWithdrawal);
 
   const accBalance = async () => {
-    const balance = 200 + totalAmount + profit() - reduceWithdrawal;
+    const balance = bonus + totalAmount + profit();
     try {
       const response = await mainFetch.post(
         '/api/v1/balance',
@@ -257,7 +257,7 @@ const Dashboard = () => {
   };
   useEffect(() => {
     accBalance();
-  }, [accBalance]);
+  }, []);
 
   // const [profitChanges, setProfitChanges] = useState(profit());
   // console.log(profit());
@@ -282,16 +282,16 @@ const Dashboard = () => {
 
             <h4>
               {formatter.format(
-                Number(200 + totalAmount + profit() - reduceWithdrawal).toFixed(
-                  2
-                )
+                Number(
+                  bonus + totalAmount + profit() - reduceWithdrawal
+                ).toFixed(2)
               )}
             </h4>
           </article>
         </div>
 
         <aside className="box">
-          <div className="acc-bal">
+          <div className="acc-bal" id="acc-bal-1">
             <article>
               <div className="circle">
                 <h3 id="circle-one"></h3>
@@ -300,11 +300,11 @@ const Dashboard = () => {
 
               <p>Total Withdraw</p>
 
-              <h4>{formatter.format(200)}</h4>
+              <h4>{formatter.format((reduceWithdrawal * 10) / 100)}</h4>
             </article>
           </div>
 
-          <div className="acc-bal">
+          <div className="acc-bal" id="acc-bal-2">
             <article>
               <div className="circle">
                 <h3 id="circle-one"></h3>
@@ -313,24 +313,24 @@ const Dashboard = () => {
 
               <p>Total profit</p>
 
-              <h4>{formatter.format(Number(300).toFixed(2))}</h4>
+              <h4>{formatter.format(Number(profit()).toFixed(2))}</h4>
             </article>
           </div>
 
-          <div className="acc-bal">
+          <div className="acc-bal" id="acc-bal-3">
             <article>
               <div className="circle">
                 <h3 id="circle-one"></h3>
                 <h3 id="circ-two"></h3>
               </div>
 
-              <p>Amount Invested</p>
+              <p>Total Amount Invested</p>
 
-              <h4>{formatter.format(200)}</h4>
+              <h4>{formatter.format(totalAmount)}</h4>
             </article>
           </div>
 
-          <div className="acc-bal">
+          {/* <div className="acc-bal">
             <article>
               <div className="circle">
                 <h3 id="circle-one"></h3>
@@ -341,7 +341,7 @@ const Dashboard = () => {
 
               <h4>{formatter.format(Number(profit()).toFixed(2))}</h4>
             </article>
-          </div>
+          </div> */}
         </aside>
       </section>
       <FooterMobile />
