@@ -28,7 +28,6 @@ const Dashboard = () => {
     showBalance();
   }, []);
 
-  console.log(balance);
   const totalAmount = balance?.reduce((acc, curr) => {
     const {
       amount: { amount: amt },
@@ -215,8 +214,26 @@ const Dashboard = () => {
     profit();
   }, []);
 
+  const accBalance = async () => {
+    const balance = 200 + totalAmount + profit();
+    try {
+      const response = await mainFetch.post(
+        '/api/v1/balance',
+        { balance: balance },
+        { withCredentials: true }
+      );
+      console.log(response.data.balance);
+    } catch (error) {
+      console.log(error);
+      console.log(error.response.data.msg);
+    }
+  };
+  useEffect(() => {
+    accBalance();
+  }, [accBalance]);
+
   // const [profitChanges, setProfitChanges] = useState(profit());
-  console.log(profit());
+  // console.log(profit());
   const calcPercent = () => {};
   const formatter = new Intl.NumberFormat('en-DE', {
     style: 'currency',

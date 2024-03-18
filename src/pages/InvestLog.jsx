@@ -26,7 +26,7 @@ const InvestLog = () => {
 
   useEffect(() => {
     showAmountId();
-  }, []);
+  }, [showAmountId]);
 
   const backHandler = () => {
     window.history.back();

@@ -86,7 +86,7 @@ const Withdraw = () => {
     } catch (error) {
       console.log(error);
       setIsLoading('withdraw');
-      toast.error(error?.res?.data?.msg);
+      toast.error(error.res.data.msg);
     }
   };
 
@@ -103,8 +103,7 @@ const Withdraw = () => {
       if (withdrawal.length !== 0) {
         // console.log('hi');
         const num = withdrawal.length - 1;
-        const percent =
-          (withdrawal[num].amount - withdrawal[num].amount * 10) / 100;
+        const percent = (withdrawal[num].amount * 10) / 100;
         const withdrawAmtCalc = withdrawal[num].amount - percent;
         setWithdrawAmt(withdrawAmtCalc);
       }
@@ -122,6 +121,29 @@ const Withdraw = () => {
     currency: 'EUR',
   });
 
+  const [mainBalance, setMainBalance] = useState('');
+
+  const showBalance = async () => {
+    try {
+      const res = await mainFetch.get('/api/v1/balance', {
+        withCredentials: true,
+      });
+
+      const bal = res.data.balance;
+      const num = bal.length - 1;
+      const { balance } = bal[num];
+      setMainBalance(balance);
+    } catch (error) {
+      console.log(error);
+      console.log(error.res.data.msg);
+    }
+  };
+
+  useEffect(() => {
+    showBalance();
+  }, [showBalance]);
+
+  console.log(mainBalance);
   //   withdrawAmt = formatter.format(Number(withdrawAmt).toFixed(2));
   //   const { withdrawal } = useLoaderData();
 
@@ -153,7 +175,10 @@ const Withdraw = () => {
         <article>
           <form className="withdrawForm" onSubmit={handleSubmit}>
             <div className="withdrawForm-inner">
-              <h4>Current balance € 200.00</h4>
+              <h4>
+                Current balance{' '}
+                {formatter.format(Number(mainBalance).toFixed(2))}
+              </h4>
               <h4>Withdraw Method</h4>
               <select
                 className="form-input"
