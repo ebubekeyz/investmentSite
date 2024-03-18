@@ -117,9 +117,9 @@ const Withdraw = () => {
     withdrawalFetch();
   }, [withdrawalFetch]);
 
-  const formatter = new Intl.NumberFormat('en-US', {
+  const formatter = new Intl.NumberFormat('en-DE', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'EUR',
   });
 
   //   withdrawAmt = formatter.format(Number(withdrawAmt).toFixed(2));

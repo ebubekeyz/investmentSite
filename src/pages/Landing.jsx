@@ -74,9 +74,9 @@ const Landing = () => {
   const { coins } = useLoaderData();
   // const { coins } = useQuery(coinsQuery());
 
-  const formatter = new Intl.NumberFormat('en-US', {
+  const formatter = new Intl.NumberFormat('en-DE', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'EUR',
   });
 
   return (

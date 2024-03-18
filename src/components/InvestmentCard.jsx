@@ -272,7 +272,7 @@ const InvestmentCard = () => {
 
             <div className="percent-main">
               <div className="percent">
-                <span>$</span>
+                <span>€</span>
                 <h1 className="change-color">
                   {invest.amount}
                   <span className="percent-inner" style={{ fontSize: '1rem' }}>
@@ -311,7 +311,7 @@ const InvestmentCard = () => {
 
             <div className="check-main">
               <p className="split">
-                <span>$3,000 Maximum</span>{' '}
+                <span>€3,000 Maximum</span>{' '}
                 <span className="check-inner">
                   <FaCheck />
                 </span>
@@ -339,7 +339,7 @@ const InvestmentCard = () => {
 
             <div className="percent-main">
               <div className="percent">
-                <span>$</span>
+                <span>€</span>
                 <h1>
                   {invest2.amount}
                   <span className="percent-inner" style={{ fontSize: '1rem' }}>
@@ -378,7 +378,7 @@ const InvestmentCard = () => {
 
             <div className="check-main">
               <p className="split">
-                <span>$7,000 Maximum</span>{' '}
+                <span>€7,000 Maximum</span>{' '}
                 <span className="check-inner">
                   <FaCheck />
                 </span>
@@ -406,7 +406,7 @@ const InvestmentCard = () => {
 
             <div className="percent-main">
               <div className="percent">
-                <span>$</span>
+                <span>€</span>
                 <h1 className="change-color">
                   7,100
                   <span className="percent-inner" style={{ fontSize: '1rem' }}>
@@ -445,7 +445,7 @@ const InvestmentCard = () => {
 
             <div className="check-main">
               <p className="split">
-                <span>$20,000 Maximum</span>{' '}
+                <span>€20,000 Maximum</span>{' '}
                 <span className="check-inner">
                   <FaCheck />
                 </span>
@@ -473,7 +473,7 @@ const InvestmentCard = () => {
 
             <div className="percent-main">
               <div className="percent">
-                <span>$</span>
+                <span>€</span>
                 <h1>
                   20,500
                   <span className="percent-inner" style={{ fontSize: '1rem' }}>
@@ -512,7 +512,7 @@ const InvestmentCard = () => {
 
             <div className="check-main">
               <p className="split">
-                <span>$40,000 Maximum</span>{' '}
+                <span>€40,000 Maximum</span>{' '}
                 <span className="check-inner">
                   <FaCheck />
                 </span>
@@ -548,7 +548,7 @@ const InvestmentCard = () => {
 
             <div className="percent-main">
               <div className="percent">
-                <span>$</span>
+                <span>€</span>
                 <h1 className="change-color">
                   41,000
                   <span className="percent-inner" style={{ fontSize: '1rem' }}>
@@ -569,7 +569,7 @@ const InvestmentCard = () => {
 
             <div className="check-main">
               <p className="split">
-                <span>$90,000 Maximum</span>{' '}
+                <span>€90,000 Maximum</span>{' '}
                 <span className="check-inner">
                   <FaCheck />
                 </span>
@@ -588,7 +588,7 @@ const InvestmentCard = () => {
 
             <div className="percent-main">
               <div className="percent">
-                <span>$</span>
+                <span>€</span>
                 <h1 className="change-color">
                   91,000
                   <span className="percent-inner" style={{ fontSize: '1rem' }}>
@@ -609,7 +609,7 @@ const InvestmentCard = () => {
 
             <div className="check-main">
               <p className="split">
-                <span>$200,000 Maximum</span>{' '}
+                <span>€200,000 Maximum</span>{' '}
                 <span className="check-inner">
                   <FaCheck />
                 </span>
@@ -628,7 +628,7 @@ const InvestmentCard = () => {
 
             <div className="percent-main">
               <div className="percent">
-                <span>$</span>
+                <span>€</span>
                 <h1 className="change-color">
                   201,000
                   <span className="percent-inner" style={{ fontSize: '1rem' }}>
@@ -649,7 +649,7 @@ const InvestmentCard = () => {
 
             <div className="check-main">
               <p className="split">
-                <span>$500,000 Maximum</span>{' '}
+                <span>€500,000 Maximum</span>{' '}
                 <span className="check-inner">
                   <FaCheck />
                 </span>
@@ -668,7 +668,7 @@ const InvestmentCard = () => {
 
             <div className="percent-main">
               <div className="percent">
-                <span>$</span>
+                <span>€</span>
                 <h1 className="change-color">
                   501,000
                   <span className="percent-inner" style={{ fontSize: '1rem' }}>
@@ -689,7 +689,7 @@ const InvestmentCard = () => {
 
             <div className="check-main">
               <p className="split">
-                <span>$5,000,000 Maximum</span>{' '}
+                <span>€5,000,000 Maximum</span>{' '}
                 <span className="check-inner">
                   <FaCheck />
                 </span>
