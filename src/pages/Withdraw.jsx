@@ -144,27 +144,35 @@ const Withdraw = () => {
   }, [showBalance]);
 
   console.log(mainBalance);
-  //   withdrawAmt = formatter.format(Number(withdrawAmt).toFixed(2));
-  //   const { withdrawal } = useLoaderData();
 
-  //   let withdrawAmt;
+  const [withdrawAmount, setWithdrawAmount] = useState([]);
 
-  //   if (withdrawal) {
-  //     const num = withdrawal.length - 1;
+  const withdrawMainFetch = async () => {
+    try {
+      const response = await mainFetch.get(`api/v1/withdraw/showUserWithdraw`, {
+        withCredentials: true,
+      });
 
-  //     const percent =
-  //       (withdrawal[num].amount - withdrawal[num].amount * 10) / 100;
-  //     withdrawAmt = withdrawal[num].amount - percent;
-  //   } else {
-  //     withdrawAmt = 0;
-  //   }
+      const withdrawal = response.data.withdraw;
 
-  //   const formatter = new Intl.NumberFormat('en-US', {
-  //     style: 'currency',
-  //     currency: 'USD',
-  //   });
+      setWithdrawAmount(withdrawal);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  //   withdrawAmt = formatter.format(Number(withdrawAmt).toFixed(2));
+  useEffect(() => {
+    withdrawMainFetch();
+  }, [withdrawMainFetch]);
+
+  console.log(withdrawAmount);
+
+  const reduceWithdrawal = withdrawAmount.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
+
+  console.log(reduceWithdrawal);
+
   const navigation = useNavigation();
   const submitting = navigation.state === 'submitting';
 
@@ -177,7 +185,9 @@ const Withdraw = () => {
             <div className="withdrawForm-inner">
               <h4>
                 Current balance{' '}
-                {formatter.format(Number(mainBalance).toFixed(2))}
+                {formatter.format(
+                  Number(mainBalance - reduceWithdrawal).toFixed(2)
+                )}
               </h4>
               <h4>Withdraw Method</h4>
               <select

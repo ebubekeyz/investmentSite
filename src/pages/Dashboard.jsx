@@ -214,15 +214,42 @@ const Dashboard = () => {
     profit();
   }, []);
 
+  const [withdrawAmt, setWithdrawAmt] = useState([]);
+
+  const withdrawalFetch = async () => {
+    try {
+      const response = await mainFetch.get(`api/v1/withdraw/showUserWithdraw`, {
+        withCredentials: true,
+      });
+
+      const withdrawal = response.data.withdraw;
+
+      setWithdrawAmt(withdrawal);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    withdrawalFetch();
+  }, [withdrawalFetch]);
+
+  console.log(withdrawAmt);
+
+  const reduceWithdrawal = withdrawAmt.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
+
+  console.log(reduceWithdrawal);
+
   const accBalance = async () => {
-    const balance = 200 + totalAmount + profit();
+    const balance = 200 + totalAmount + profit() - reduceWithdrawal;
     try {
       const response = await mainFetch.post(
         '/api/v1/balance',
         { balance: balance },
         { withCredentials: true }
       );
-      console.log(response.data.balance);
     } catch (error) {
       console.log(error);
       console.log(error.response.data.msg);
@@ -255,7 +282,9 @@ const Dashboard = () => {
 
             <h4>
               {formatter.format(
-                Number(200 + totalAmount + profit()).toFixed(2)
+                Number(200 + totalAmount + profit() - reduceWithdrawal).toFixed(
+                  2
+                )
               )}
             </h4>
           </article>
