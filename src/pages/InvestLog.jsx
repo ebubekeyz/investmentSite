@@ -32,9 +32,9 @@ const InvestLog = () => {
     window.history.back();
   };
 
-  const formatter = new Intl.NumberFormat('en-US', {
+  const formatter = new Intl.NumberFormat('en-DE', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'EUR',
   });
 
   const [date, setDate] = useState({
