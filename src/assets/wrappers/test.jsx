@@ -28,6 +28,7 @@ const Dashboard = () => {
     showBalance();
   }, []);
 
+  console.log(balance);
   const totalAmount = balance?.reduce((acc, curr) => {
     const {
       amount: { amount: amt },
@@ -83,13 +84,38 @@ const Dashboard = () => {
     const day3 = getDate + 3;
     const day4 = getDate + 4;
     const day5 = getDate + 5;
+    const day6 = getDate + 5;
+    const day7 = getDate + 7;
+    const day8 = getDate + 8;
+    const day9 = getDate + 9;
+    const day10 = getDate + 11;
+    const day11 = getDate + 11;
+    const day12 = getDate + 12;
+    const day13 = getDate + 13;
+    const day14 = getDate + 14;
+    const day15 = getDate + 15;
+    const day16 = getDate + 16;
+    const day17 = getDate + 17;
+    const day18 = getDate + 18;
+    const day19 = getDate + 19;
+    const day20 = getDate + 20;
+    const day21 = getDate + 21;
+    const day22 = getDate + 22;
+    const day23 = getDate + 23;
+    const day24 = getDate + 24;
+    const day25 = getDate + 25;
+    const day26 = getDate + 26;
+    const day27 = getDate + 27;
+    const day28 = getDate + 28;
+    const day29 = getDate + 29;
+    const day30 = getDate + 30;
 
     if (getDate === 30) {
       getDate = 0;
     }
 
     if (getDate) {
-      getDate = num;
+      getDate = 0;
     }
     if (getDate === day1) {
       getDate = num;
@@ -107,6 +133,81 @@ const Dashboard = () => {
     if (getDate === day5) {
       getDate = num * 5;
     }
+    if (getDate === day6) {
+      getDate = num * 6;
+    }
+    if (getDate === day7) {
+      getDate = num * 7;
+    }
+    if (getDate === day8) {
+      getDate = num * 8;
+    }
+    if (getDate === day9) {
+      getDate = num * 9;
+    }
+    if (getDate === day10) {
+      getDate = num * 10;
+    }
+    if (getDate === day11) {
+      getDate = num * 11;
+    }
+    if (getDate === day12) {
+      getDate = num * 12;
+    }
+    if (getDate === day13) {
+      getDate = num * 13;
+    }
+    if (getDate === day14) {
+      getDate = num * 14;
+    }
+    if (getDate === day15) {
+      getDate = num * 15;
+    }
+    if (getDate === day16) {
+      getDate = num * 16;
+    }
+    if (getDate === day17) {
+      getDate = num * 17;
+    }
+    if (getDate === day18) {
+      getDate = num * 18;
+    }
+    if (getDate === day19) {
+      getDate = num * 19;
+    }
+    if (getDate === day20) {
+      getDate = num * 20;
+    }
+    if (getDate === day21) {
+      getDate = num * 21;
+    }
+    if (getDate === day22) {
+      getDate = num * 22;
+    }
+    if (getDate === day23) {
+      getDate = num * 23;
+    }
+    if (getDate === day24) {
+      getDate = num * 24;
+    }
+    if (getDate === day25) {
+      getDate = num * 25;
+    }
+    if (getDate === day26) {
+      getDate = num * 26;
+    }
+    if (getDate === day27) {
+      getDate = num * 27;
+    }
+    if (getDate === day28) {
+      getDate = num * 28;
+    }
+    if (getDate === day29) {
+      getDate = num * 29;
+    }
+    if (getDate === day30) {
+      getDate = num * 30;
+    }
 
     return getDate;
   };
@@ -114,9 +215,8 @@ const Dashboard = () => {
     profit();
   }, []);
 
-  const [profitChanges, setProfitChanges] = useState(profit());
-
-  console.log(profitChanges);
+  // const [profitChanges, setProfitChanges] = useState(profit());
+  console.log(profit());
   const calcPercent = () => {};
   const formatter = new Intl.NumberFormat('en-DE', {
     style: 'currency',
@@ -136,7 +236,11 @@ const Dashboard = () => {
 
             <p>Account balance</p>
 
-            <h4>{formatter.format(200 + totalAmount + profitChanges)}</h4>
+            <h4>
+              {formatter.format(
+                Number(200 + totalAmount + profit()).toFixed(2)
+              )}
+            </h4>
           </article>
         </div>
 
@@ -163,7 +267,7 @@ const Dashboard = () => {
 
               <p>Total profit</p>
 
-              <h4>{formatter.format(Number(profitChanges).toFixed(2))}</h4>
+              <h4>{formatter.format(Number(300).toFixed(2))}</h4>
             </article>
           </div>
 
@@ -189,7 +293,7 @@ const Dashboard = () => {
 
               <p>Total Invest</p>
 
-              <h4>{formatter.format(200)}</h4>
+              <h4>{formatter.format(Number(profit()).toFixed(2))}</h4>
             </article>
           </div>
         </aside>
