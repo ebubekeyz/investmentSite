@@ -1,314 +1,202 @@
-// import { useEffect, useState } from 'react';
-// import Wrapper from '../assets/wrappers/Settings';
-// import { FaArrowLeft } from 'react-icons/fa6';
-// import { GoShieldLock } from 'react-icons/go';
-// import FooterMobile from '../components/FooterMobile';
-// import { mainFetch } from '../utils';
-// import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import Wrapper from '../assets/wrappers/Dashboard';
+import Navbar2 from '../components/Navbar2';
+import Sidebar from '../components/Sidebar';
+import { useEffect, useState } from 'react';
+import { mainFetch } from '../utils';
+import FooterMobile from '../components/FooterMobile';
 
-// const Settings = () => {
-//   const [isLoading, setIsLoading] = useState('update');
-//   const [user, setUser] = useState({
-//     fullName: '',
-//     username: '',
-//     email: '',
-//     phone: '',
-//     country: '',
-//     city: '',
-//     zip: '',
-//     state: '',
-//   });
+const Dashboard = () => {
+  const [bonus, setBonus] = useState(200);
+  const [balance, setBalance] = useState([]);
 
-//   const [id, setId] = useState({
-//     fullName: '',
-//     username: '',
-//     email: '',
-//     phone: '',
-//     country: '',
-//     city: '',
-//     zip: '',
-//     state: '',
-//     userId: '',
-//   });
-//   const backHandler = () => {
-//     window.history.back();
-//   };
+  const showBalance = async () => {
+    try {
+      const res = await mainFetch.get('/api/v1/payReceipt/showUserPayReceipt', {
+        withCredentials: true,
+      });
 
-//   const showId = async () => {
-//     try {
-//       const response = await mainFetch.get('/api/v1/users/showMe', {
-//         withCredentials: true,
-//       });
+      const payMajor = res.data.payReceipt;
+      setBalance(payMajor);
+    } catch (error) {
+      console.log(error);
+      console.log(error.res.data.msg);
+    }
+  };
 
-//       const {
-//         userId,
-//         fullName,
-//         username,
-//         email,
-//         phone,
-//         country,
-//         city,
-//         zip,
-//         state,
-//       } = response.data.user;
-//       setId({
-//         fullName: fullName,
-//         username: username,
-//         email: email,
-//         phone: phone,
-//         country: country,
-//         city: city,
-//         zip: zip,
-//         state: state,
-//         userId: userId,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
+  useEffect(() => {
+    showBalance();
+  }, []);
 
-//   useEffect(() => {
-//     showId();
-//   }, [showId]);
+  const totalAmount = balance?.reduce((acc, curr) => {
+    const {
+      amount: { amount: amt },
+    } = curr;
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     let { fullName, username, email, phone, country, city, zip, state } = user;
-//     try {
-//       setIsLoading('Updating..');
-//       const response = await mainFetch.patch(
-//         `/api/v1/users/${id.userId}`,
-//         {
-//           fullName: fullName,
-//           username: username,
-//           email: email,
-//           phone: phone,
-//           country: country,
-//           city: city,
-//           zip: zip,
-//           state: state,
-//         },
-//         {
-//           withCredentials: true,
-//         }
-//       );
-//       setIsLoading('Updated');
-//       setUser({
-//         fullName: '',
-//         username: '',
-//         email: '',
-//         phone: '',
-//         country: '',
-//         city: '',
-//         zip: '',
-//         state: '',
-//         userId: '',
-//       });
-//       toast.success('Update Successful');
-//     } catch (error) {
-//       console.log(error);
-//       toast.error(error.response.data.msg);
-//       setIsLoading('update');
-//     }
-//   };
+    return acc + amt;
+  }, 0);
 
-//   return (
-//     <Wrapper>
-//       <section>
-//         <div className="section-center">
-//           <article className="top">
-//             <h4>Authentication</h4>
+  const totalPercent = balance?.reduce((acc, curr) => {
+    const {
+      amount: {
+        coin: {
+          invest: { percent: percent },
+        },
+      },
+    } = curr;
 
-//             <div className="top-inner">
-//               <span className="space">
-//                 {' '}
-//                 <FaArrowLeft className="back-icon" onClick={backHandler} />
-//               </span>
-//               <span className="back">Back</span>
-//             </div>
-//           </article>
+    return acc + percent;
+  }, 0);
 
-//           <article className="top2 top">
-//             <h3>Profile setting</h3>
+  const totalDays = balance?.reduce((acc, curr) => {
+    const {
+      amount: {
+        coin: {
+          invest: { days: days },
+        },
+      },
+    } = curr;
 
-//             <div className="top-inner">
-//               <span className="space">
-//                 {' '}
-//                 <GoShieldLock className="back-icon" onClick={backHandler} />
-//               </span>
-//               <span className="change">Change Password</span>
-//             </div>
-//           </article>
+    return acc + days;
+  }, 0);
 
-//           <article className="form-main">
-//             <form onSubmit={handleSubmit}>
-//               <div className="form-container">
-//                 <label htmlFor="firstName" className="label">
-//                   Full Name
-//                 </label>
-//                 <input
-//                   type="text"
-//                   className="input"
-//                   name="fullName"
-//                   placeholder={id.fullName}
-//                   value={user.fullName}
-//                   onChange={(e) => {
-//                     setUser({
-//                       ...user,
-//                       [e.target.name]: e.target.value,
-//                     });
-//                   }}
-//                 />
-//               </div>
+  const [calcPercentage, setCalcPercentage] = useState(0);
+  const calculateTotalPercent = () => {
+    const total = ((totalAmount * totalPercent) / balance.length) * 100;
 
-//               <div className="form-container">
-//                 <label htmlFor="username" className="label">
-//                   Username
-//                 </label>
-//                 <input
-//                   type="text"
-//                   className="input"
-//                   name="username"
-//                   placeholder={id.username}
-//                   value={user.username}
-//                   onChange={(e) => {
-//                     setUser({
-//                       ...user,
-//                       [e.target.name]: e.target.value,
-//                     });
-//                   }}
-//                 />
-//               </div>
+    return total;
+  };
+  useEffect(() => {
+    calculateTotalPercent();
+  }, []);
 
-//               <div className="form-container">
-//                 <label htmlFor="email" className="label">
-//                   Email
-//                 </label>
-//                 <input
-//                   type="text"
-//                   className="input"
-//                   name="email"
-//                   placeholder={id.email}
-//                   value={user.email}
-//                   onChange={(e) => {
-//                     setUser({
-//                       ...user,
-//                       [e.target.name]: e.target.value,
-//                     });
-//                   }}
-//                 />
-//               </div>
+  // console.log(calculateTotalPercent());
 
-//               <div className="form-container">
-//                 <label htmlFor="phone" className="label">
-//                   Phone
-//                 </label>
-//                 <input
-//                   type="text"
-//                   className="input"
-//                   name="phone"
-//                   placeholder={id.phone}
-//                   value={user.phone}
-//                   onChange={(e) => {
-//                     setUser({
-//                       ...user,
-//                       [e.target.name]: e.target.value,
-//                     });
-//                   }}
-//                 />
-//               </div>
+  const profit = () => {
+    const date = new Date();
 
-//               <div className="form-container">
-//                 <label htmlFor="country" className="label">
-//                   Country
-//                 </label>
-//                 <input
-//                   type="text"
-//                   className="input"
-//                   name="country"
-//                   placeholder={id.country}
-//                   value={user.country}
-//                   onChange={(e) => {
-//                     setUser({
-//                       ...user,
-//                       [e.target.name]: e.target.value,
-//                     });
-//                   }}
-//                 />
-//               </div>
+    let getDate = date.getDate();
+    const num = calculateTotalPercent();
 
-//               <div className="form-container">
-//                 <label htmlFor="city" className="label">
-//                   City
-//                 </label>
-//                 <input
-//                   type="text"
-//                   className="input"
-//                   name="city"
-//                   placeholder={id.city}
-//                   value={user.city}
-//                   onChange={(e) => {
-//                     setUser({
-//                       ...user,
-//                       [e.target.name]: e.target.value,
-//                     });
-//                   }}
-//                 />
-//               </div>
+    const day1 = getDate + 1;
+    const day2 = getDate + 2;
+    const day3 = getDate + 3;
+    const day4 = getDate + 4;
+    const day5 = getDate + 5;
 
-//               <div className="form-container">
-//                 <label htmlFor="zip" className="label">
-//                   Zip
-//                 </label>
-//                 <input
-//                   type="text"
-//                   className="input"
-//                   name="zip"
-//                   placeholder={id.zip}
-//                   value={user.zip}
-//                   onChange={(e) => {
-//                     setUser({
-//                       ...user,
-//                       [e.target.name]: e.target.value,
-//                     });
-//                   }}
-//                 />
-//               </div>
+    if (getDate === 30) {
+      getDate = 0;
+    }
 
-//               <div className="form-container">
-//                 <label htmlFor="state" className="label">
-//                   State
-//                 </label>
-//                 <input
-//                   type="text"
-//                   className="input"
-//                   name="state"
-//                   placeholder={id.state}
-//                   value={user.state}
-//                   onChange={(e) => {
-//                     setUser({
-//                       ...user,
-//                       [e.target.name]: e.target.value,
-//                     });
-//                   }}
-//                 />
-//               </div>
+    if (getDate) {
+      getDate = num;
+    }
+    if (getDate === day1) {
+      getDate = num;
+    }
+    if (getDate === day2) {
+      getDate = num * 2;
+    }
 
-//               <div className="btn-info">
-//                 <button type="submit" className="update-btn btn">
-//                   {isLoading}
-//                 </button>
-//               </div>
-//             </form>
-//           </article>
-//         </div>
-//       </section>
+    if (getDate === day3) {
+      getDate = num * 3;
+    }
+    if (getDate === day4) {
+      getDate = num * 4;
+    }
+    if (getDate === day5) {
+      getDate = num * 5;
+    }
 
-//       <FooterMobile />
-//     </Wrapper>
-//   );
-// };
-// export default Settings;
+    return getDate;
+  };
+  useEffect(() => {
+    profit();
+  }, []);
 
-coin, user, plan;
-amount;  charge, payment Date, upcoming payment
+  const [profitChanges, setProfitChanges] = useState(profit());
+
+  console.log(profitChanges);
+  const calcPercent = () => {};
+  const formatter = new Intl.NumberFormat('en-DE', {
+    style: 'currency',
+    currency: 'EUR',
+  });
+
+  return (
+    <Wrapper>
+      <Navbar2 />
+      <section className="dashboard">
+        <div className="acc-bal">
+          <article>
+            <div className="circle">
+              <h3 id="circle-one"></h3>
+              <h3 id="circ-two"></h3>
+            </div>
+
+            <p>Account balance</p>
+
+            <h4>{formatter.format(200 + totalAmount + profitChanges)}</h4>
+          </article>
+        </div>
+
+        <aside className="box">
+          <div className="acc-bal">
+            <article>
+              <div className="circle">
+                <h3 id="circle-one"></h3>
+                <h3 id="circ-two"></h3>
+              </div>
+
+              <p>Total Withdraw</p>
+
+              <h4>{formatter.format(200)}</h4>
+            </article>
+          </div>
+
+          <div className="acc-bal">
+            <article>
+              <div className="circle">
+                <h3 id="circle-one"></h3>
+                <h3 id="circ-two"></h3>
+              </div>
+
+              <p>Total profit</p>
+
+              <h4>{formatter.format(Number(profitChanges).toFixed(2))}</h4>
+            </article>
+          </div>
+
+          <div className="acc-bal">
+            <article>
+              <div className="circle">
+                <h3 id="circle-one"></h3>
+                <h3 id="circ-two"></h3>
+              </div>
+
+              <p>Amount Invested</p>
+
+              <h4>{formatter.format(200)}</h4>
+            </article>
+          </div>
+
+          <div className="acc-bal">
+            <article>
+              <div className="circle">
+                <h3 id="circle-one"></h3>
+                <h3 id="circ-two"></h3>
+              </div>
+
+              <p>Total Invest</p>
+
+              <h4>{formatter.format(200)}</h4>
+            </article>
+          </div>
+        </aside>
+      </section>
+      <FooterMobile />
+      <FooterMobile />
+    </Wrapper>
+  );
+};
+export default Dashboard;

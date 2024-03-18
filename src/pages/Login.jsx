@@ -15,7 +15,7 @@ export const action = async ({ request }) => {
     });
     toast.success(response.data.msg);
 
-    return redirect('/deposit');
+    return redirect('/dashboard');
   } catch (error) {
     toast.error(error?.response?.data?.msg);
     console.log(error);
