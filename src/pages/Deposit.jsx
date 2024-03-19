@@ -1,7 +1,7 @@
 import Wrapper from '../assets/wrappers/Deposit';
 import img1 from '../assets/bitcoin-img.png';
 import img2 from '../assets/etherum-img.png';
-import img3 from '../assets/dogecoin.png';
+import img3 from '../assets/usdt.png';
 import img4 from '../assets/tron.png';
 import { LiaTimesSolid } from 'react-icons/lia';
 import { useEffect, useState } from 'react';
@@ -15,7 +15,7 @@ const Deposit = () => {
   const [coinType, setCoinType] = useState({
     btc: 'BTC',
     eth: 'ETH',
-    doge: 'DOGE',
+    usdt: 'usdt',
     tron: 'TRON',
   });
 
@@ -106,7 +106,7 @@ const Deposit = () => {
     try {
       const response = await mainFetch.post(
         '/api/v1/coin',
-        { coinType: coinType.doge, invest: investId },
+        { coinType: coinType.usdt, invest: investId },
         { withCredentials: true }
       );
 
@@ -207,7 +207,7 @@ const Deposit = () => {
           </article>
           <article>
             <img src={img3} alt="etherum" className="deposit-img img" />
-            <h3 className="deposit-text">DOGECOIN</h3>
+            <h3 className="deposit-text">usdtCOIN</h3>
             <button onClick={handleCoin3} className="btn">
               Pay now
             </button>
