@@ -9,16 +9,32 @@ import copy from 'copy-to-clipboard';
 import { toast } from 'react-toastify';
 
 const Dashboard = () => {
-  const [referralLink, setReferralLink] = useState(
-    'https://investment-b.com/register/smart'
-  );
+  const [userIdd, setUserIdd] = useState('');
 
-  const copyReferral = () => {
-    copy(referralLink);
-    toast.success(`You have copied ${referralLink}`);
+  const fetchUser = async () => {
+    try {
+      const response = await mainFetch.get('/api/v1/users/showMe', {
+        withCredentials: true,
+      });
+      const { userId } = response.data.user;
+
+      setUserIdd(userId);
+    } catch (error) {
+      console.log(error);
+      console.log(error.response.data.msg);
+    }
   };
 
-  const [bonus, setBonus] = useState(200);
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  const copyReferral = () => {
+    copy(userIdd);
+    toast.success(`You have copied ${userIdd}`);
+  };
+
+  // const [bonus, setBonus] = useState(200);
   const [balance, setBalance] = useState([]);
 
   const showBalance = async () => {
@@ -80,8 +96,6 @@ const Dashboard = () => {
   useEffect(() => {
     calculateTotalPercent();
   }, []);
-
-  console.log(calculateTotalPercent());
 
   const profit = () => {
     const date = new Date();
@@ -245,16 +259,12 @@ const Dashboard = () => {
     withdrawalFetch();
   }, []);
 
-  console.log(withdrawAmt);
-
   const reduceWithdrawal = withdrawAmt.reduce((acc, curr) => {
     return acc + curr.amount;
   }, 0);
 
-  console.log(reduceWithdrawal);
-
   const accBalance = async () => {
-    const balance = bonus + totalAmount + profit();
+    const balance = totalAmount + profit();
     try {
       const response = await mainFetch.post(
         '/api/v1/balance',
@@ -298,6 +308,7 @@ const Dashboard = () => {
     planFunc();
   }, []);
 
+  console.log(userIdd);
   return (
     <Wrapper>
       <Navbar2 />
@@ -313,9 +324,7 @@ const Dashboard = () => {
 
             <h4>
               {formatter.format(
-                Number(
-                  bonus + totalAmount + profit() - reduceWithdrawal
-                ).toFixed(2)
+                Number(totalAmount + profit() - reduceWithdrawal).toFixed(2)
               )}
             </h4>
           </article>
@@ -384,9 +393,9 @@ const Dashboard = () => {
         </article>
 
         <article className="upgrade-main">
-          <h3>Your Referral Link</h3>
+          <h3>Your Referral Id</h3>
           <div className="upgrade">
-            <p>{referralLink}</p>
+            <p>{userIdd}</p>
             <button type="btn" onClick={copyReferral} className="upgrade-btn">
               Copy
             </button>

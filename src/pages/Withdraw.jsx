@@ -224,7 +224,7 @@ const Withdraw = () => {
                   }}
                 />
                 <span style={{ color: 'var(--primary-700)' }}>
-                  Min amount & 5000.00 Max amount 100000.00
+                  Min amount & 0.00 Max amount 59999
                 </span>
 
                 <h5 style={{ marginTop: '1.5rem' }}>Bank Name</h5>

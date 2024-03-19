@@ -75,6 +75,12 @@ const Register = () => {
             <input
               type="text "
               className="form-input"
+              name="referralId"
+              placeholder="ReferralId"
+            />
+            <input
+              type="text "
+              className="form-input"
               name="phone"
               placeholder="Phone Number"
             />
