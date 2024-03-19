@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   background: rgb(39, 37, 37);
+  .wall {
+    padding-top: 1rem;
+  }
 
   @media screen and (min-width: 800px) {
     .withdraw {

@@ -22,9 +22,6 @@ const Withdraw = () => {
   const [withdraw, setWithdraw] = useState({
     withdrawalMethod: '',
     amount: '',
-    bankName: '',
-    accountName: '',
-    accountNumber: '',
     currentBalance: '',
     walletAddress: '',
     status: '',
@@ -38,9 +35,6 @@ const Withdraw = () => {
     let {
       withdrawalMethod,
       amount,
-      bankName,
-      accountName,
-      accountNumber,
       currentBalance,
       walletAddress,
       status,
@@ -56,9 +50,6 @@ const Withdraw = () => {
         {
           withdrawalMethod: withdrawalMethod,
           amount: amount,
-          bankName: bankName,
-          accountName: accountName,
-          accountNumber: accountNumber,
           currentBalance: currentBalance,
           walletAddress: walletAddress,
           charge,
@@ -75,9 +66,6 @@ const Withdraw = () => {
       setWithdraw({
         withdrawalMethod: '',
         amount: '',
-        bankName: '',
-        accountName: '',
-        accountNumber: '',
         currentBalance: '',
         walletAddress: '',
         status: '',
@@ -118,7 +106,7 @@ const Withdraw = () => {
 
   useEffect(() => {
     withdrawalFetch();
-  }, [withdrawalFetch]);
+  }, []);
 
   const formatter = new Intl.NumberFormat('en-DE', {
     style: 'currency',
@@ -145,7 +133,7 @@ const Withdraw = () => {
 
   useEffect(() => {
     showBalance();
-  }, [showBalance]);
+  }, []);
 
   console.log(mainBalance);
 
@@ -167,7 +155,7 @@ const Withdraw = () => {
 
   useEffect(() => {
     withdrawMainFetch();
-  }, [withdrawMainFetch]);
+  }, []);
 
   console.log(withdrawAmount);
 
@@ -205,7 +193,6 @@ const Withdraw = () => {
                 }}
               >
                 <option>Select Options</option>
-                <option value="Bank Transfer">Bank Transfer</option>
                 <option value="Bitcoin">Bitcoin</option>
               </select>
 
@@ -223,58 +210,21 @@ const Withdraw = () => {
                     });
                   }}
                 />
-                <span style={{ color: 'var(--primary-700)' }}>
+                <span
+                  style={{
+                    color: 'var(--primary-700)',
+                    fontSize: '1rem',
+                  }}
+                >
                   Min amount & 0.00 Max amount 59999
                 </span>
 
-                <h5 style={{ marginTop: '1.5rem' }}>Bank Name</h5>
-                <input
-                  type="text"
-                  name="bankName"
-                  className="form-input input"
-                  value={withdraw.bankName}
-                  onChange={(e) => {
-                    setWithdraw({
-                      ...withdraw,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
-
-                <h5>Account Name</h5>
-                <input
-                  type="text"
-                  name="accountName"
-                  className="form-input input"
-                  value={withdraw.accountName}
-                  onChange={(e) => {
-                    setWithdraw({
-                      ...withdraw,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
-
-                <h5>Wallet Address</h5>
+                <h5 className="wall">Wallet Address</h5>
                 <input
                   type="text"
                   name="walletAddress"
                   className="form-input input"
                   value={withdraw.walletAddress}
-                  onChange={(e) => {
-                    setWithdraw({
-                      ...withdraw,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
-
-                <h5>Account Number</h5>
-                <input
-                  type="text"
-                  name="accountNumber"
-                  className="form-input input"
-                  value={withdraw.accountNumber}
                   onChange={(e) => {
                     setWithdraw({
                       ...withdraw,
