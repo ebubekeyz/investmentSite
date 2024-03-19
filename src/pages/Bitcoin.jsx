@@ -11,10 +11,11 @@ import { useNavigate } from 'react-router-dom';
 
 const Bitcoin = () => {
   const [copyText, setCopyText] = useState({
-    bitcoin: '0x21B7256e1c1D08420DbcDaD780e',
-    etherium: '0x21B7256e1c1D08420DbcDaD780e70',
-    dogecoin: '0x21B7256e1c1D08420DbcDaD780e70',
-    tron: '0x21B7256e1c1D08420DbcDaD780e70',
+    bitcoin: '16xNKb45QAydgWGBH5a6MWMyRiWEHgHv25',
+    etherium: '0xdcfde8b9f4a1926b9154dd630779bc79a7701dce',
+    usdt: 'TKxYyuuUFKhmxKXy9SsPkd3dhzxP3NcvfT',
+    tron: 'THTEEzjYRxQtfF6UhrQVstzW7Gv5XeiBg3',
+    bnb: '0xdcfde8b9f4a1926b9154dd630779bc79a7701dce',
   });
 
   const nav = useNavigate();
@@ -48,13 +49,17 @@ const Bitcoin = () => {
     copy(copyText.etherium);
     toast.success(`You have copied ${copyText.etherium}`);
   };
-  const copyDogecoin = () => {
-    copy(copyText.dogecoin);
-    toast.success(`You have copied ${copyText.dogecoin}`);
+  const copyUsdt = () => {
+    copy(copyText.usdt);
+    toast.success(`You have copied ${copyText.usdt}`);
   };
   const copyTron = () => {
     copy(copyText.tron);
     toast.success(`You have copied ${copyText.tron}`);
+  };
+  const copyBnb = () => {
+    copy(copyText.bnb);
+    toast.success(`You have copied ${copyText.bnb}`);
   };
   let [receipt, setReceipt] = useState();
   let [imageValue, setImageValue] = useState(null);
@@ -149,9 +154,9 @@ const Bitcoin = () => {
           </div>
 
           <div className="pending">
-            <h3 className="coin">DOGECOIN ADDRESS</h3>
-            <p id="address">{copyText.dogecoin}</p>
-            <button onClick={copyDogecoin} type="button" className="btn">
+            <h3 className="coin">usdt ADDRESS</h3>
+            <p id="address">{copyText.usdt}</p>
+            <button onClick={copyUsdt} type="button" className="btn">
               Copy
             </button>
           </div>
@@ -160,6 +165,13 @@ const Bitcoin = () => {
             <h3 className="coin">TRON ADDRESS</h3>
             <p id="address">{copyText.tron}</p>
             <button onClick={copyTron} type="button" className="btn">
+              Copy
+            </button>
+          </div>
+          <div className="pending">
+            <h3 className="coin">BNB ADDRESS</h3>
+            <p id="address">{copyText.bnb}</p>
+            <button onClick={copyBnb} type="button" className="btn">
               Copy
             </button>
           </div>

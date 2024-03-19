@@ -3,6 +3,7 @@ import img1 from '../assets/bitcoin-img.png';
 import img2 from '../assets/etherum-img.png';
 import img3 from '../assets/usdt.png';
 import img4 from '../assets/tron.png';
+import img5 from '../assets/bnb.png';
 import { LiaTimesSolid } from 'react-icons/lia';
 import { useEffect, useState } from 'react';
 import { mainFetch } from '../utils';
@@ -17,6 +18,7 @@ const Deposit = () => {
     eth: 'ETH',
     usdt: 'usdt',
     tron: 'TRON',
+    bnb: 'BNB',
   });
 
   const [open, setOpen] = useState(false);
@@ -137,6 +139,24 @@ const Deposit = () => {
     }
   };
 
+  const handleCoin5 = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await mainFetch.post(
+        '/api/v1/coin',
+        { coinType: coinType.bnb, invest: investId },
+        { withCredentials: true }
+      );
+
+      setOpen(true);
+    } catch (error) {
+      nav('/investment');
+      toast.error('Please select an investment plan');
+      console.log(error);
+      console.log(error.response.data.msg);
+    }
+  };
+
   const openModal = () => {
     setOpen(true);
   };
@@ -206,16 +226,23 @@ const Deposit = () => {
             </button>
           </article>
           <article>
-            <img src={img3} alt="etherum" className="deposit-img img" />
+            <img src={img3} alt="USDT" className="deposit-img img" />
             <h3 className="deposit-text">usdtCOIN</h3>
             <button onClick={handleCoin3} className="btn">
               Pay now
             </button>
           </article>
           <article>
-            <img src={img4} alt="etherum" className="deposit-img img" />
+            <img src={img4} alt="TRON" className="deposit-img img" />
             <h3 className="deposit-text">TRON</h3>
             <button onClick={handleCoin4} className="btn">
+              Pay now
+            </button>
+          </article>
+          <article>
+            <img src={img5} alt="bnb" className="deposit-img img" />
+            <h3 className="deposit-text">BNB</h3>
+            <button onClick={handleCoin5} className="btn">
               Pay now
             </button>
           </article>
