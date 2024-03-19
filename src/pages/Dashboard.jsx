@@ -277,7 +277,7 @@ const Dashboard = () => {
     style: 'currency',
     currency: 'EUR',
   });
-  const [coin, setCoin] = useState([]);
+  const [plan, setPlan] = useState([]);
 
   const planFunc = async () => {
     try {
@@ -286,13 +286,8 @@ const Dashboard = () => {
       });
 
       const payMajor = res.data.payReceipt;
-      const num = payMajor.length - 1;
-      const {
-        amount: {
-          coin: { coinType: coin },
-        },
-      } = payMajor[num];
-      setCoin(coin);
+
+      setPlan(payMajor);
     } catch (error) {
       console.log(error);
       console.log(error.res.data.msg);
@@ -370,7 +365,18 @@ const Dashboard = () => {
         <article className="upgrade-main">
           <h3>Your Current Level</h3>
           <div className="upgrade">
-            <p>{coin}</p>
+            {plan.map((item) => {
+              const {
+                amount: {
+                  coin: {
+                    invest: { plan: plan },
+                  },
+                },
+              } = item;
+
+              return <p>{plan}</p>;
+            })}
+            {/* <p>{coin}</p> */}
             <Link to="/investment" type="btn" className="upgrade-btn">
               Upgrade
             </Link>
