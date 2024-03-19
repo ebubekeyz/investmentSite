@@ -103,37 +103,12 @@ const Withdraw = () => {
 
   useEffect(() => {
     withdrawalFetch();
-  }, []);
+  }, [withdrawalFetch]);
 
   const formatter = new Intl.NumberFormat('en-DE', {
     style: 'currency',
     currency: 'EUR',
   });
-
-  const [mainBalance, setMainBalance] = useState('');
-
-  const showBalance = async () => {
-    try {
-      const res = await mainFetch.get('/api/v1/balance', {
-        withCredentials: true,
-      });
-
-      const bal = res.data.balance;
-      console.log(bal);
-      const num = bal.length - 1;
-      const { balance } = bal[num];
-      setMainBalance(balance);
-    } catch (error) {
-      console.log(error);
-      console.log(error.res.data.msg);
-    }
-  };
-
-  useEffect(() => {
-    showBalance();
-  }, [showBalance]);
-
-  // console.log(mainBalance);
 
   const [withdrawAmount, setWithdrawAmount] = useState([]);
 
@@ -153,7 +128,7 @@ const Withdraw = () => {
 
   useEffect(() => {
     withdrawMainFetch();
-  }, []);
+  }, [withdrawMainFetch]);
 
   // console.log(withdrawAmount);
 
@@ -162,6 +137,31 @@ const Withdraw = () => {
   }, 0);
 
   // console.log(reduceWithdrawal);
+
+  const [mainBalance, setMainBalance] = useState('');
+
+  const showBalance = async () => {
+    try {
+      const res = await mainFetch.get('/api/v1/balance', {
+        withCredentials: true,
+      });
+
+      const bal = res.data.balance;
+      console.log(bal);
+      const num = bal.length - 1;
+      const { balance } = bal[num];
+      setMainBalance(balance - reduceWithdrawal);
+    } catch (error) {
+      console.log(error);
+      console.log(error.res.data.msg);
+    }
+  };
+
+  useEffect(() => {
+    showBalance();
+  }, [showBalance]);
+
+  // console.log(mainBalance);
 
   const navigation = useNavigation();
   const submitting = navigation.state === 'submitting';
@@ -175,9 +175,7 @@ const Withdraw = () => {
             <div className="withdrawForm-inner">
               <h4>
                 Current balance{' '}
-                {formatter.format(
-                  Number(mainBalance - reduceWithdrawal).toFixed(2)
-                )}
+                {formatter.format(Number(mainBalance).toFixed(2))}
               </h4>
               <h4>Withdraw Method</h4>
               <select
