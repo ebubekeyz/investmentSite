@@ -18,7 +18,6 @@ const InvestLog = () => {
       const payMajor = res.data.payReceipt;
       setReceipt(payMajor);
     } catch (error) {
-      toast.error('Network error, please try again.');
       console.log(error);
       console.log(error.res.data.msg);
     }

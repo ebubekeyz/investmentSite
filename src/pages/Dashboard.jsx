@@ -1,12 +1,23 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/Dashboard';
 import Navbar2 from '../components/Navbar2';
 import Sidebar from '../components/Sidebar';
 import { useEffect, useState } from 'react';
 import { mainFetch } from '../utils';
 import FooterMobile from '../components/FooterMobile';
+import copy from 'copy-to-clipboard';
+import { toast } from 'react-toastify';
 
 const Dashboard = () => {
+  const [referralLink, setReferralLink] = useState(
+    'https://investment-b.com/register/smart'
+  );
+
+  const copyReferral = () => {
+    copy(referralLink);
+    toast.success(`You have copied ${referralLink}`);
+  };
+
   const [bonus, setBonus] = useState(200);
   const [balance, setBalance] = useState([]);
 
@@ -266,6 +277,31 @@ const Dashboard = () => {
     style: 'currency',
     currency: 'EUR',
   });
+  const [coin, setCoin] = useState([]);
+
+  const planFunc = async () => {
+    try {
+      const res = await mainFetch.get('/api/v1/payReceipt/showUserPayReceipt', {
+        withCredentials: true,
+      });
+
+      const payMajor = res.data.payReceipt;
+      const num = payMajor.length - 1;
+      const {
+        amount: {
+          coin: { coinType: coin },
+        },
+      } = payMajor[num];
+      setCoin(coin);
+    } catch (error) {
+      console.log(error);
+      console.log(error.res.data.msg);
+    }
+  };
+
+  useEffect(() => {
+    planFunc();
+  }, []);
 
   return (
     <Wrapper>
@@ -329,20 +365,27 @@ const Dashboard = () => {
               <h4>{formatter.format(totalAmount)}</h4>
             </article>
           </div>
-
-          {/* <div className="acc-bal">
-            <article>
-              <div className="circle">
-                <h3 id="circle-one"></h3>
-                <h3 id="circ-two"></h3>
-              </div>
-
-              <p>Total Invest</p>
-
-              <h4>{formatter.format(Number(profit()).toFixed(2))}</h4>
-            </article>
-          </div> */}
         </aside>
+
+        <article className="upgrade-main">
+          <h3>Your Current Level</h3>
+          <div className="upgrade">
+            <p>{coin}</p>
+            <Link to="/investment" type="btn" className="upgrade-btn">
+              Upgrade
+            </Link>
+          </div>
+        </article>
+
+        <article className="upgrade-main">
+          <h3>Your Referral Link</h3>
+          <div className="upgrade">
+            <p>{referralLink}</p>
+            <button type="btn" onClick={copyReferral} className="upgrade-btn">
+              Copy
+            </button>
+          </div>
+        </article>
       </section>
       <FooterMobile />
       <FooterMobile />

@@ -8,6 +8,35 @@ const Wrapper = styled.section`
     margin: 0 auto;
     max-width: 1170px;
   }
+  .upgrade-main {
+    margin-bottom: 3rem;
+  }
+  .upgrade-main h3 {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0;
+  }
+  .upgrade p {
+    font-size: 1rem;
+    padding-top: 0.3rem;
+  }
+  .upgrade-btn {
+    padding: 0.73rem;
+    cursor: pointer;
+    color: white;
+    background: var(--primary-500);
+    border: none;
+  }
+  .upgrade {
+    display: flex;
+    justify-content: space-between;
+
+    align-self: center;
+    border: 1px solid var(--grey-400);
+    border-radius: 0.3rem;
+    padding-left: 1rem;
+  }
   .box {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -45,7 +74,7 @@ const Wrapper = styled.section`
     );
     padding: 1.5rem;
     border-radius: 0.5rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
   .circle {
     display: flex;
