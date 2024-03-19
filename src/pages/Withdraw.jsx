@@ -118,7 +118,7 @@ const Withdraw = () => {
 
   useEffect(() => {
     withdrawalFetch();
-  }, []);
+  }, [withdrawalFetch]);
 
   const formatter = new Intl.NumberFormat('en-DE', {
     style: 'currency',
@@ -145,7 +145,7 @@ const Withdraw = () => {
 
   useEffect(() => {
     showBalance();
-  }, []);
+  }, [showBalance]);
 
   console.log(mainBalance);
 
@@ -167,7 +167,7 @@ const Withdraw = () => {
 
   useEffect(() => {
     withdrawMainFetch();
-  }, []);
+  }, [withdrawMainFetch]);
 
   console.log(withdrawAmount);
 
