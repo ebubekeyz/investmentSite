@@ -53,7 +53,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     showBalance();
-  }, []);
+  }, [showBalance]);
 
   const totalAmount = balance?.reduce((acc, curr) => {
     const {
@@ -95,13 +95,15 @@ const Dashboard = () => {
   };
   useEffect(() => {
     calculateTotalPercent();
-  }, []);
+  }, [calculateTotalPercent]);
 
   const profit = () => {
     const date = new Date();
 
     let getDate = date.getDate();
     const num = calculateTotalPercent();
+
+    console.log(getDate);
 
     const day1 = getDate + 1;
     const day2 = getDate + 2;
@@ -237,7 +239,7 @@ const Dashboard = () => {
   };
   useEffect(() => {
     profit();
-  }, []);
+  }, [profit]);
 
   const [withdrawAmt, setWithdrawAmt] = useState([]);
 
@@ -257,7 +259,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     withdrawalFetch();
-  }, []);
+  }, [withdrawalFetch]);
 
   const reduceWithdrawal = withdrawAmt.reduce((acc, curr) => {
     return acc + curr.amount;
@@ -279,7 +281,7 @@ const Dashboard = () => {
   };
   useEffect(() => {
     accBalance();
-  }, []);
+  }, [accBalance]);
 
   // const [profitChanges, setProfitChanges] = useState(profit());
   // console.log(profit());
