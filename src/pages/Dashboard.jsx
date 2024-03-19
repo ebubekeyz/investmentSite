@@ -271,6 +271,7 @@ const Dashboard = () => {
         { balance: balance },
         { withCredentials: true }
       );
+      console.log(response.data.balance.balance);
     } catch (error) {
       console.log(error);
       console.log(error.response.data.msg);
@@ -308,7 +309,6 @@ const Dashboard = () => {
     planFunc();
   }, []);
 
-  console.log(userIdd);
   return (
     <Wrapper>
       <Navbar2 />

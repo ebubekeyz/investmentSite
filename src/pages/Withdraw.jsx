@@ -93,11 +93,8 @@ const Withdraw = () => {
         const num = withdrawal.length - 1;
         const percent = (withdrawal[num].amount * 10) / 100;
         const withdrawAmtCalc = withdrawal[num].amount - percent;
-        if (withdrawal[num].status === 'confirmed') {
-          setWithdrawAmt(0);
-        } else {
-          setWithdrawAmt(withdrawAmtCalc);
-        }
+
+        setWithdrawAmt(withdrawAmtCalc);
       }
     } catch (error) {
       console.log(error);
@@ -122,6 +119,7 @@ const Withdraw = () => {
       });
 
       const bal = res.data.balance;
+      console.log(bal);
       const num = bal.length - 1;
       const { balance } = bal[num];
       setMainBalance(balance);
@@ -133,9 +131,9 @@ const Withdraw = () => {
 
   useEffect(() => {
     showBalance();
-  }, []);
+  }, [showBalance]);
 
-  console.log(mainBalance);
+  // console.log(mainBalance);
 
   const [withdrawAmount, setWithdrawAmount] = useState([]);
 
@@ -157,13 +155,13 @@ const Withdraw = () => {
     withdrawMainFetch();
   }, []);
 
-  console.log(withdrawAmount);
+  // console.log(withdrawAmount);
 
   const reduceWithdrawal = withdrawAmount.reduce((acc, curr) => {
     return acc + curr.amount;
   }, 0);
 
-  console.log(reduceWithdrawal);
+  // console.log(reduceWithdrawal);
 
   const navigation = useNavigation();
   const submitting = navigation.state === 'submitting';
