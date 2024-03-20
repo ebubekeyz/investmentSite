@@ -75,7 +75,7 @@ const Navbar2 = () => {
 
       <ul className="toggle2" style={{ display: show && 'block' }}>
         <li>
-          <Link to="settings" style={{ color: 'white' }}>
+          <Link to="/settings" style={{ color: 'white' }}>
             Settings
           </Link>
         </li>
