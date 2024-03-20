@@ -2,6 +2,7 @@ import {
   Form,
   Link,
   redirect,
+  useNavigate,
   useNavigation,
   useParams,
 } from 'react-router-dom';
@@ -11,26 +12,60 @@ import logo from '../assets/logo.png';
 import { mainFetch } from '../utils';
 import { toast } from 'react-toastify';
 
-export const action = async ({ request }) => {
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData);
-
-  try {
-    const response = await mainFetch.post('/api/v1/auth/register', data, {
-      withCredentials: true,
-    });
-
-    toast.success(response.data.msg);
-    return redirect('/login');
-  } catch (error) {
-    toast.error(error?.response?.data?.msg);
-    console.log(error);
-    return error;
-  }
-};
-
 const Register = () => {
+  const [isLoading, setIsLoading] = useState('Register');
+  const [username, setUsername] = useState('');
+  const nav = useNavigate();
   const { id } = useParams();
+
+  const [regUser, setRegUser] = useState({
+    fullName: '',
+    username: '',
+    phone: '',
+    password: '',
+    referralId: '',
+    email: '',
+    country: '',
+  });
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    try {
+      setIsLoading('Registering...');
+      const response = await mainFetch.post(
+        '/api/v1/auth/register',
+        {
+          fullName: regUser.fullName,
+          email: regUser.email,
+          phone: regUser.phone,
+          country: regUser.country,
+          referralId: regUser.referralId,
+          username: regUser.username,
+          password: regUser.password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(response.data.user.username);
+      setUsername(response.data.user.username);
+      setIsLoading('Registered');
+      setRegUser({
+        fullName: '',
+        username: '',
+        phone: '',
+        password: '',
+        referralId: '',
+        email: '',
+        country: '',
+      });
+      toast.success('Registration successful');
+      return nav('/login');
+    } catch (error) {
+      toast.error(error?.response?.data?.msg);
+      console.log(error);
+      return error;
+    }
+  };
 
   const postReferral = async () => {
     try {
@@ -48,7 +83,7 @@ const Register = () => {
 
   useEffect(() => {
     postReferral();
-  }, []);
+  }, [handleRegister]);
 
   const referral = `${id}`;
   const [ref, useRef] = useState(referral);
@@ -65,7 +100,10 @@ const Register = () => {
           background: 'rgb(39, 37, 37)',
         }}
       >
-        <Form method="POST" style={{ width: '90vw', margin: '0 auto' }}>
+        <form
+          onSubmit={handleRegister}
+          style={{ width: '90vw', margin: '0 auto' }}
+        >
           <h2
             className="logo"
             style={{
@@ -86,18 +124,30 @@ const Register = () => {
               className="form-input"
               name="fullName"
               placeholder="Full Name"
+              value={regUser.fullName}
+              onChange={(e) => {
+                setRegUser({ ...regUser, [e.target.name]: e.target.value });
+              }}
             />
             <input
               type="text "
               className="form-input"
               name="username"
               placeholder="Username"
+              value={regUser.username}
+              onChange={(e) => {
+                setRegUser({ ...regUser, [e.target.name]: e.target.value });
+              }}
             />
             <input
               type="text "
               className="form-input"
               name="email"
               placeholder="Email"
+              value={regUser.email}
+              onChange={(e) => {
+                setRegUser({ ...regUser, [e.target.name]: e.target.value });
+              }}
             />
             <input
               readOnly
@@ -107,24 +157,40 @@ const Register = () => {
               name="referralId"
               defaultValue={ref}
               placeholder="Invitation Code"
+              value={id}
+              onChange={(e) => {
+                setRegUser({ ...regUser, [e.target.name]: e.target.value });
+              }}
             />
             <input
               type="text "
               className="form-input"
               name="phone"
               placeholder="Phone Number"
+              value={regUser.phone}
+              onChange={(e) => {
+                setRegUser({ ...regUser, [e.target.name]: e.target.value });
+              }}
             />
             <input
               type="password"
               className="form-input"
               name="password"
               placeholder="Password"
+              value={regUser.password}
+              onChange={(e) => {
+                setRegUser({ ...regUser, [e.target.name]: e.target.value });
+              }}
             />
 
             <select
               className="form-input"
               name="country"
               style={{ color: 'var(--grey-400)' }}
+              value={regUser.country}
+              onChange={(e) => {
+                setRegUser({ ...regUser, [e.target.name]: e.target.value });
+              }}
             >
               <option value="United States">Australia</option>
               <option value="Afghanistan">Afghanistan</option>
@@ -410,7 +476,7 @@ const Register = () => {
             </select>
 
             <button type="submit" className="btn">
-              {submitting ? 'submitting' : 'register'}
+              {isLoading}
             </button>
             <p>
               <Link to="/login" className="reg">
@@ -423,7 +489,7 @@ const Register = () => {
               &nbsp; All Rights Reserved.
             </p>
           </div>
-        </Form>
+        </form>
       </div>
     </Wrapper>
   );
