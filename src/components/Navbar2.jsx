@@ -45,9 +45,6 @@ const Navbar2 = () => {
     await mainFetch.get('/api/v1/auth/logout');
     nav('/login');
   };
-  useEffect(() => {
-    logout();
-  }, []);
 
   return (
     <Wrapper>
