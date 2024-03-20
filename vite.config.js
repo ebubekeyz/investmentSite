@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   sever: {
     proxy: {
-      '/api': 'https://trex-holding-server-main.onrender.com/',
+      '/api': 'https://trex-holding-server.com/',
     },
   },
   plugins: [react()],
