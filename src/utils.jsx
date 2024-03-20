@@ -105,7 +105,7 @@ export const questions = [
 ];
 
 export const coinFetch = axios.create({
-  baseURL: 'https://trex-holding-server.onrender.com',
+  baseURL: 'https://trex-holding-server.com',
   headers: {
     Accept: 'application/json',
   },
@@ -118,7 +118,7 @@ export const coinFetch = axios.create({
 // });
 
 export const mainFetch = axios.create({
-  baseURL: 'https://trex-holding-server.onrender.com',
+  baseURL: 'https://trex-holding-server.com',
   headers: {
     Accept: 'application/json',
   },

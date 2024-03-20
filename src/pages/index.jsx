@@ -4,6 +4,7 @@ export { default as Login } from './Login';
 export { default as Register } from './Register';
 export { default as Error } from './Error';
 export { default as Deposit } from './Deposit';
+export { default as SignUp } from './SignUp';
 
 export { default as SinglePageError } from './SinglePageError';
 export { default as About } from './About';

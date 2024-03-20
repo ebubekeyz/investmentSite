@@ -189,7 +189,11 @@ const Withdraw = () => {
                 }}
               >
                 <option>Select Options</option>
-                <option value="Bitcoin">Bitcoin</option>
+                <option value="Bitcoin">BTC</option>
+                <option value="ETH">ETH</option>
+                <option value="TRON">TRON</option>
+                <option value="BNB">BNB</option>
+                <option value="USDT">USDT</option>
               </select>
 
               <div className="bank">
@@ -262,7 +266,7 @@ const Withdraw = () => {
           </div>
 
           <div className="pending">
-            <h3>Payment may take 24hours to process. Thank you!</h3>
+            <h3>Payment may take 15 Minutes to process. Thank you!</h3>
           </div>
         </article>
       </section>

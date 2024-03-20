@@ -9,10 +9,6 @@ export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 
-  const url = new URL(request.url);
-
-  const idCard = url.searchParams.get('id');
-  console.log(idCard);
   const resetUrl = 'api/v1/auth';
   try {
     const response = await mainFetch.patch(`/api/v1/auth/${idCard}`, data);

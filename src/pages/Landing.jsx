@@ -12,7 +12,10 @@ import Wrapper5 from '../assets/wrappers/Coins';
 import { FaArrowRight } from 'react-icons/fa';
 import image1 from '../assets/mission.jpg';
 import image2 from '../assets/operation.jpg';
-import image3 from '../assets/legal.jpg';
+import image3 from '../assets/aim2.jpg';
+import image4 from '../assets/legal.jpg';
+import image5 from '../assets/operations.jpg';
+import image6 from '../assets/finance.jpg';
 import Title2 from '../components/Title2';
 import Title from '../components/Title';
 import { BiBookBookmark } from 'react-icons/bi';
@@ -291,7 +294,7 @@ const Landing = () => {
               className="selectText"
             >
               <Link
-                to="/register"
+                to="/signUp"
                 style={{
                   fontWeight: '700',
                   color: 'var(--primary-500)',
@@ -328,7 +331,7 @@ const Landing = () => {
               className="selectText"
             >
               <Link
-                to="/register"
+                to="/signUp"
                 style={{
                   fontWeight: '700',
                   color: 'var(--primary-500)',
@@ -828,7 +831,7 @@ const Landing = () => {
       <Wrapper3>
         <div className="about-gal">
           <article>
-            <img src={image1} alt="abt1" className="abt-img" />
+            <img src={image4} alt="abt1" className="abt-img" />
             <h4 style={{ marginBottom: '0.8rem', fontSize: '1rem' }}>Legal</h4>
             <p>
               We are a well-established and reputable brokerage firm. With our
@@ -866,7 +869,7 @@ const Landing = () => {
             </div>
           </article>
           <article>
-            <img src={image2} alt="abt2" className="abt-img" />
+            <img src={image5} alt="abt2" className="abt-img" />
             <h4 style={{ marginBottom: '0.8rem', fontSize: '1rem' }}>
               Operations
             </h4>
@@ -906,7 +909,7 @@ const Landing = () => {
             </div>
           </article>
           <article>
-            <img src={image3} alt="abt3" className="abt-img" />
+            <img src={image6} alt="abt3" className="abt-img" />
             <h4 style={{ marginBottom: '0.8rem', fontSize: '1rem' }}>
               Finance
             </h4>

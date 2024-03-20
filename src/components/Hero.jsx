@@ -32,7 +32,7 @@ const Hero = () => {
                 <div className="info">
                   <h2 className="title">{title}</h2>
                   <p className="text">{quote}</p>
-                  <Link to="/register" type="btn" className="btn hero-btn">
+                  <Link to="/signUp" type="btn" className="btn hero-btn">
                     {name}
                   </Link>
                 </div>

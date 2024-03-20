@@ -111,7 +111,7 @@ const Navbar = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/register" className="link-btn" id="auth">
+                  <NavLink to="/signUp" className="link-btn" id="auth">
                     Register
                   </NavLink>
                 </li>
@@ -159,7 +159,7 @@ const Navbar = () => {
 
               <span>
                 <Link
-                  to="/register"
+                  to="/signUp"
                   className="btn mark link-btn"
                   style={{
                     background: 'var(--grey-800)',

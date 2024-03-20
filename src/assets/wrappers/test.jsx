@@ -1,306 +1,431 @@
-import { useNavigate } from 'react-router-dom';
-import Wrapper from '../assets/wrappers/Dashboard';
-import Navbar2 from '../components/Navbar2';
-import Sidebar from '../components/Sidebar';
+import {
+  Form,
+  Link,
+  redirect,
+  useNavigation,
+  useParams,
+} from 'react-router-dom';
+import Wrapper from '../assets/wrappers/Login';
 import { useEffect, useState } from 'react';
+import logo from '../assets/logo.png';
 import { mainFetch } from '../utils';
-import FooterMobile from '../components/FooterMobile';
+import { toast } from 'react-toastify';
 
-const Dashboard = () => {
-  const [bonus, setBonus] = useState(200);
-  const [balance, setBalance] = useState([]);
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
 
-  const showBalance = async () => {
+  try {
+    const response = await mainFetch.post('/api/v1/auth/register', data, {
+      withCredentials: true,
+    });
+
+    toast.success(response.data.msg);
+    return redirect('/login');
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+    console.log(error);
+    return error;
+  }
+};
+
+const Register = () => {
+  const { id } = useParams();
+
+  const postReferral = async () => {
     try {
-      const res = await mainFetch.get('/api/v1/payReceipt/showUserPayReceipt', {
-        withCredentials: true,
-      });
-
-      const payMajor = res.data.payReceipt;
-      setBalance(payMajor);
+      const response = await mainFetch.post(
+        '/api/v1/referral',
+        { refId: id },
+        { withCredentials: true }
+      );
+      console.log(response.data.referral);
     } catch (error) {
       console.log(error);
-      console.log(error.res.data.msg);
+      console.log(error.response.data.msg);
     }
   };
 
   useEffect(() => {
-    showBalance();
+    postReferral();
   }, []);
 
-  console.log(balance);
-  const totalAmount = balance?.reduce((acc, curr) => {
-    const {
-      amount: { amount: amt },
-    } = curr;
+  const referral = `${id}`;
+  const [ref, useRef] = useState(referral);
+  const [date, setDate] = useState(new Date());
+  const mainDate = date.getFullYear();
 
-    return acc + amt;
-  }, 0);
-
-  const totalPercent = balance?.reduce((acc, curr) => {
-    const {
-      amount: {
-        coin: {
-          invest: { percent: percent },
-        },
-      },
-    } = curr;
-
-    return acc + percent;
-  }, 0);
-
-  const totalDays = balance?.reduce((acc, curr) => {
-    const {
-      amount: {
-        coin: {
-          invest: { days: days },
-        },
-      },
-    } = curr;
-
-    return acc + days;
-  }, 0);
-
-  const [calcPercentage, setCalcPercentage] = useState(0);
-  const calculateTotalPercent = () => {
-    const total = ((totalAmount * totalPercent) / balance.length) * 100;
-
-    return total;
-  };
-  useEffect(() => {
-    calculateTotalPercent();
-  }, []);
-
-  // console.log(calculateTotalPercent());
-
-  const profit = () => {
-    const date = new Date();
-
-    let getDate = date.getDate();
-    const num = calculateTotalPercent();
-
-    const day1 = getDate + 1;
-    const day2 = getDate + 2;
-    const day3 = getDate + 3;
-    const day4 = getDate + 4;
-    const day5 = getDate + 5;
-    const day6 = getDate + 5;
-    const day7 = getDate + 7;
-    const day8 = getDate + 8;
-    const day9 = getDate + 9;
-    const day10 = getDate + 11;
-    const day11 = getDate + 11;
-    const day12 = getDate + 12;
-    const day13 = getDate + 13;
-    const day14 = getDate + 14;
-    const day15 = getDate + 15;
-    const day16 = getDate + 16;
-    const day17 = getDate + 17;
-    const day18 = getDate + 18;
-    const day19 = getDate + 19;
-    const day20 = getDate + 20;
-    const day21 = getDate + 21;
-    const day22 = getDate + 22;
-    const day23 = getDate + 23;
-    const day24 = getDate + 24;
-    const day25 = getDate + 25;
-    const day26 = getDate + 26;
-    const day27 = getDate + 27;
-    const day28 = getDate + 28;
-    const day29 = getDate + 29;
-    const day30 = getDate + 30;
-
-    if (getDate === 30) {
-      getDate = 0;
-    }
-
-    if (getDate) {
-      getDate = 0;
-    }
-    if (getDate === day1) {
-      getDate = num;
-    }
-    if (getDate === day2) {
-      getDate = num * 2;
-    }
-
-    if (getDate === day3) {
-      getDate = num * 3;
-    }
-    if (getDate === day4) {
-      getDate = num * 4;
-    }
-    if (getDate === day5) {
-      getDate = num * 5;
-    }
-    if (getDate === day6) {
-      getDate = num * 6;
-    }
-    if (getDate === day7) {
-      getDate = num * 7;
-    }
-    if (getDate === day8) {
-      getDate = num * 8;
-    }
-    if (getDate === day9) {
-      getDate = num * 9;
-    }
-    if (getDate === day10) {
-      getDate = num * 10;
-    }
-    if (getDate === day11) {
-      getDate = num * 11;
-    }
-    if (getDate === day12) {
-      getDate = num * 12;
-    }
-    if (getDate === day13) {
-      getDate = num * 13;
-    }
-    if (getDate === day14) {
-      getDate = num * 14;
-    }
-    if (getDate === day15) {
-      getDate = num * 15;
-    }
-    if (getDate === day16) {
-      getDate = num * 16;
-    }
-    if (getDate === day17) {
-      getDate = num * 17;
-    }
-    if (getDate === day18) {
-      getDate = num * 18;
-    }
-    if (getDate === day19) {
-      getDate = num * 19;
-    }
-    if (getDate === day20) {
-      getDate = num * 20;
-    }
-    if (getDate === day21) {
-      getDate = num * 21;
-    }
-    if (getDate === day22) {
-      getDate = num * 22;
-    }
-    if (getDate === day23) {
-      getDate = num * 23;
-    }
-    if (getDate === day24) {
-      getDate = num * 24;
-    }
-    if (getDate === day25) {
-      getDate = num * 25;
-    }
-    if (getDate === day26) {
-      getDate = num * 26;
-    }
-    if (getDate === day27) {
-      getDate = num * 27;
-    }
-    if (getDate === day28) {
-      getDate = num * 28;
-    }
-    if (getDate === day29) {
-      getDate = num * 29;
-    }
-    if (getDate === day30) {
-      getDate = num * 30;
-    }
-
-    return getDate;
-  };
-  useEffect(() => {
-    profit();
-  }, []);
-
-  // const [profitChanges, setProfitChanges] = useState(profit());
-  console.log(profit());
-  const calcPercent = () => {};
-  const formatter = new Intl.NumberFormat('en-DE', {
-    style: 'currency',
-    currency: 'EUR',
-  });
-
+  const navigation = useNavigation();
+  const submitting = navigation.state === 'submitting';
   return (
     <Wrapper>
-      <Navbar2 />
-      <section className="dashboard">
-        <div className="acc-bal">
-          <article>
-            <div className="circle">
-              <h3 id="circle-one"></h3>
-              <h3 id="circ-two"></h3>
-            </div>
+      <div
+        style={{
+          padding: '4rem 0',
+          background: 'rgb(39, 37, 37)',
+        }}
+      >
+        <Form method="POST" style={{ width: '90vw', margin: '0 auto' }}>
+          <h2
+            className="logo"
+            style={{
+              zIndex: '4',
+              textAlign: 'center',
+              fontSize: '2rem',
+              marginBottom: '1rem',
+            }}
+          >
+            <Link to="/">
+              <img src={logo} alt="logo" className="logo2" />
+            </Link>
+          </h2>
+          <h4 style={{ color: 'var(--grey-400)' }}>Register </h4>
+          <div className="form-control">
+            <input
+              type="text "
+              className="form-input"
+              name="fullName"
+              placeholder="Full Name"
+            />
+            <input
+              type="text "
+              className="form-input"
+              name="username"
+              placeholder="Username"
+            />
+            <input
+              type="text "
+              className="form-input"
+              name="email"
+              placeholder="Email"
+            />
+            <input
+              readOnly
+              style={{ color: 'var(--grey-400)' }}
+              type="text "
+              className="form-input"
+              name="referralId"
+              defaultValue={ref}
+              placeholder="Invitation Code"
+            />
+            <input
+              type="text "
+              className="form-input"
+              name="phone"
+              placeholder="Phone Number"
+            />
+            <input
+              type="password"
+              className="form-input"
+              name="password"
+              placeholder="Password"
+            />
 
-            <p>Account balance</p>
+            <select
+              className="form-input"
+              name="country"
+              style={{ color: 'var(--grey-400)' }}
+            >
+              <option value="United States">Australia</option>
+              <option value="Afghanistan">Afghanistan</option>
+              <option value="Albania">Albania</option>
+              <option value="Algeria">Algeria</option>
+              <option value="American Samoa">American Samoa</option>
+              <option value="Andorra">Andorra</option>
+              <option value="Angola">Angola</option>
+              <option value="Anguilla">Anguilla</option>
+              <option value="Antartica">Antarctica</option>
+              <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Armenia">Armenia</option>
+              <option value="Aruba">Aruba</option>
+              <option value="Australia">Australia</option>
+              <option value="Austria">Austria</option>
+              <option value="Azerbaijan">Azerbaijan</option>
+              <option value="Bahamas">Bahamas</option>
+              <option value="Bahrain">Bahrain</option>
+              <option value="Bangladesh">Bangladesh</option>
+              <option value="Barbados">Barbados</option>
+              <option value="Belarus">Belarus</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Belize">Belize</option>
+              <option value="Benin">Benin</option>
+              <option value="Bermuda">Bermuda</option>
+              <option value="Bhutan">Bhutan</option>
+              <option value="Bolivia">Bolivia</option>
+              <option value="Bosnia and Herzegowina">
+                Bosnia and Herzegowina
+              </option>
+              <option value="Botswana">Botswana</option>
+              <option value="Bouvet Island">Bouvet Island</option>
+              <option value="Brazil">Brazil</option>
+              <option value="British Indian Ocean Territory">
+                British Indian Ocean Territory
+              </option>
+              <option value="Brunei Darussalam">Brunei Darussalam</option>
+              <option value="Bulgaria">Bulgaria</option>
+              <option value="Burkina Faso">Burkina Faso</option>
+              <option value="Burundi">Burundi</option>
+              <option value="Cambodia">Cambodia</option>
+              <option value="Cameroon">Cameroon</option>
+              <option value="Canada">Canada</option>
+              <option value="Cape Verde">Cape Verde</option>
+              <option value="Cayman Islands">Cayman Islands</option>
+              <option value="Central African Republic">
+                Central African Republic
+              </option>
+              <option value="Chad">Chad</option>
+              <option value="Chile">Chile</option>
+              <option value="China">China</option>
+              <option value="Christmas Island">Christmas Island</option>
+              <option value="Cocos Islands">Cocos (Keeling) Islands</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Comoros">Comoros</option>
+              <option value="Congo">Congo</option>
+              <option value="Congo">
+                Congo, the Democratic Republic of the
+              </option>
+              <option value="Cook Islands">Cook Islands</option>
+              <option value="Costa Rica">Costa Rica</option>
+              <option value="Cota D'Ivoire">Cote d'Ivoire</option>
+              <option value="Croatia">Croatia (Hrvatska)</option>
+              <option value="Cuba">Cuba</option>
+              <option value="Cyprus">Cyprus</option>
+              <option value="Czech Republic">Czech Republic</option>
+              <option value="Denmark">Denmark</option>
+              <option value="Djibouti">Djibouti</option>
+              <option value="Dominica">Dominica</option>
+              <option value="Dominican Republic">Dominican Republic</option>
+              <option value="East Timor">East Timor</option>
+              <option value="Ecuador">Ecuador</option>
+              <option value="Egypt">Egypt</option>
+              <option value="El Salvador">El Salvador</option>
+              <option value="Equatorial Guinea">Equatorial Guinea</option>
+              <option value="Eritrea">Eritrea</option>
+              <option value="Estonia">Estonia</option>
+              <option value="Ethiopia">Ethiopia</option>
+              <option value="Falkland Islands">
+                Falkland Islands (Malvinas)
+              </option>
+              <option value="Faroe Islands">Faroe Islands</option>
+              <option value="Fiji">Fiji</option>
+              <option value="Finland">Finland</option>
+              <option value="France">France</option>
+              <option value="France Metropolitan">France, Metropolitan</option>
+              <option value="French Guiana">French Guiana</option>
+              <option value="French Polynesia">French Polynesia</option>
+              <option value="French Southern Territories">
+                French Southern Territories
+              </option>
+              <option value="Gabon">Gabon</option>
+              <option value="Gambia">Gambia</option>
+              <option value="Georgia">Georgia</option>
+              <option value="Germany">Germany</option>
+              <option value="Ghana">Ghana</option>
+              <option value="Gibraltar">Gibraltar</option>
+              <option value="Greece">Greece</option>
+              <option value="Greenland">Greenland</option>
+              <option value="Grenada">Grenada</option>
+              <option value="Guadeloupe">Guadeloupe</option>
+              <option value="Guam">Guam</option>
+              <option value="Guatemala">Guatemala</option>
+              <option value="Guinea">Guinea</option>
+              <option value="Guinea-Bissau">Guinea-Bissau</option>
+              <option value="Guyana">Guyana</option>
+              <option value="Haiti">Haiti</option>
+              <option value="Heard and McDonald Islands">
+                Heard and Mc Donald Islands
+              </option>
+              <option value="Holy See">Holy See (Vatican City State)</option>
+              <option value="Honduras">Honduras</option>
+              <option value="Hong Kong">Hong Kong</option>
+              <option value="Hungary">Hungary</option>
+              <option value="Iceland">Iceland</option>
+              <option value="India">India</option>
+              <option value="Indonesia">Indonesia</option>
+              <option value="Iran">Iran (Islamic Republic of)</option>
+              <option value="Iraq">Iraq</option>
+              <option value="Ireland">Ireland</option>
+              <option value="Israel">Israel</option>
+              <option value="Italy">Italy</option>
+              <option value="Jamaica">Jamaica</option>
+              <option value="Japan">Japan</option>
+              <option value="Jordan">Jordan</option>
+              <option value="Kazakhstan">Kazakhstan</option>
+              <option value="Kenya">Kenya</option>
+              <option value="Kiribati">Kiribati</option>
+              <option value="Democratic People's Republic of Korea">
+                Korea, Democratic People's Republic of
+              </option>
+              <option value="Korea">Korea, Republic of</option>
+              <option value="Kuwait">Kuwait</option>
+              <option value="Kyrgyzstan">Kyrgyzstan</option>
+              <option value="Lao">Lao People's Democratic Republic</option>
+              <option value="Latvia">Latvia</option>
+              <option value="Lebanon">Lebanon</option>
+              <option value="Lesotho">Lesotho</option>
+              <option value="Liberia">Liberia</option>
+              <option value="Libyan Arab Jamahiriya">
+                Libyan Arab Jamahiriya
+              </option>
+              <option value="Liechtenstein">Liechtenstein</option>
+              <option value="Lithuania">Lithuania</option>
+              <option value="Luxembourg">Luxembourg</option>
+              <option value="Macau">Macau</option>
+              <option value="Macedonia">
+                Macedonia, The Former Yugoslav Republic of
+              </option>
+              <option value="Madagascar">Madagascar</option>
+              <option value="Malawi">Malawi</option>
+              <option value="Malaysia">Malaysia</option>
+              <option value="Maldives">Maldives</option>
+              <option value="Mali">Mali</option>
+              <option value="Malta">Malta</option>
+              <option value="Marshall Islands">Marshall Islands</option>
+              <option value="Martinique">Martinique</option>
+              <option value="Mauritania">Mauritania</option>
+              <option value="Mauritius">Mauritius</option>
+              <option value="Mayotte">Mayotte</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Micronesia">
+                Micronesia, Federated States of
+              </option>
+              <option value="Moldova">Moldova, Republic of</option>
+              <option value="Monaco">Monaco</option>
+              <option value="Mongolia">Mongolia</option>
+              <option value="Montserrat">Montserrat</option>
+              <option value="Morocco">Morocco</option>
+              <option value="Mozambique">Mozambique</option>
+              <option value="Myanmar">Myanmar</option>
+              <option value="Namibia">Namibia</option>
+              <option value="Nauru">Nauru</option>
+              <option value="Nepal">Nepal</option>
+              <option value="Netherlands">Netherlands</option>
+              <option value="Netherlands Antilles">Netherlands Antilles</option>
+              <option value="New Caledonia">New Caledonia</option>
+              <option value="New Zealand">New Zealand</option>
+              <option value="Nicaragua">Nicaragua</option>
+              <option value="Niger">Niger</option>
+              <option value="Nigeria">Nigeria</option>
+              <option value="Niue">Niue</option>
+              <option value="Norfolk Island">Norfolk Island</option>
+              <option value="Northern Mariana Islands">
+                Northern Mariana Islands
+              </option>
+              <option value="Norway">Norway</option>
+              <option value="Oman">Oman</option>
+              <option value="Pakistan">Pakistan</option>
+              <option value="Palau">Palau</option>
+              <option value="Panama">Panama</option>
+              <option value="Papua New Guinea">Papua New Guinea</option>
+              <option value="Paraguay">Paraguay</option>
+              <option value="Peru">Peru</option>
+              <option value="Philippines">Philippines</option>
+              <option value="Pitcairn">Pitcairn</option>
+              <option value="Poland">Poland</option>
+              <option value="Portugal">Portugal</option>
+              <option value="Puerto Rico">Puerto Rico</option>
+              <option value="Qatar">Qatar</option>
+              <option value="Reunion">Reunion</option>
+              <option value="Romania">Romania</option>
+              <option value="Russia">Russian Federation</option>
+              <option value="Rwanda">Rwanda</option>
+              <option value="Saint Kitts and Nevis">
+                Saint Kitts and Nevis
+              </option>
+              <option value="Saint Lucia">Saint LUCIA</option>
+              <option value="Saint Vincent">
+                Saint Vincent and the Grenadines
+              </option>
+              <option value="Samoa">Samoa</option>
+              <option value="San Marino">San Marino</option>
+              <option value="Sao Tome and Principe">
+                Sao Tome and Principe
+              </option>
+              <option value="Saudi Arabia">Saudi Arabia</option>
+              <option value="Senegal">Senegal</option>
+              <option value="Seychelles">Seychelles</option>
+              <option value="Sierra">Sierra Leone</option>
+              <option value="Singapore">Singapore</option>
+              <option value="Slovakia">Slovakia (Slovak Republic)</option>
+              <option value="Slovenia">Slovenia</option>
+              <option value="Solomon Islands">Solomon Islands</option>
+              <option value="Somalia">Somalia</option>
+              <option value="South Africa">South Africa</option>
+              <option value="South Georgia">
+                South Georgia and the South Sandwich Islands
+              </option>
+              <option value="Span">Spain</option>
+              <option value="Sri Lanka">Sri Lanka</option>
+              <option value="St. Helena">St. Helena</option>
+              <option value="St. Pierre and Miguelon">
+                St. Pierre and Miquelon
+              </option>
+              <option value="Sudan">Sudan</option>
+              <option value="Suriname">Suriname</option>
+              <option value="Svalbard">Svalbard and Jan Mayen Islands</option>
+              <option value="Swaziland">Swaziland</option>
+              <option value="Sweden">Sweden</option>
+              <option value="Switzerland">Switzerland</option>
+              <option value="Syria">Syrian Arab Republic</option>
+              <option value="Taiwan">Taiwan, Province of China</option>
+              <option value="Tajikistan">Tajikistan</option>
+              <option value="Tanzania">Tanzania, United Republic of</option>
+              <option value="Thailand">Thailand</option>
+              <option value="Togo">Togo</option>
+              <option value="Tokelau">Tokelau</option>
+              <option value="Tonga">Tonga</option>
+              <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+              <option value="Tunisia">Tunisia</option>
+              <option value="Turkey">Turkey</option>
+              <option value="Turkmenistan">Turkmenistan</option>
+              <option value="Turks and Caicos">Turks and Caicos Islands</option>
+              <option value="Tuvalu">Tuvalu</option>
+              <option value="Uganda">Uganda</option>
+              <option value="Ukraine">Ukraine</option>
+              <option value="United Arab Emirates">United Arab Emirates</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="United States Minor Outlying Islands">
+                United States Minor Outlying Islands
+              </option>
+              <option value="Uruguay">Uruguay</option>
+              <option value="Uzbekistan">Uzbekistan</option>
+              <option value="Vanuatu">Vanuatu</option>
+              <option value="Venezuela">Venezuela</option>
+              <option value="Vietnam">Viet Nam</option>
+              <option value="Virgin Islands (British)">
+                Virgin Islands (British)
+              </option>
+              <option value="Virgin Islands (U.S)">
+                Virgin Islands (U.S.)
+              </option>
+              <option value="Wallis and Futana Islands">
+                Wallis and Futuna Islands
+              </option>
+              <option value="Western Sahara">Western Sahara</option>
+              <option value="Yemen">Yemen</option>
+              <option value="Serbia">Serbia</option>
+              <option value="Zambia">Zambia</option>
+              <option value="Zimbabwe">Zimbabwe</option>
+            </select>
 
-            <h4>
-              {formatter.format(
-                Number(200 + totalAmount + profit()).toFixed(2)
-              )}
-            </h4>
-          </article>
-        </div>
-
-        <aside className="box">
-          <div className="acc-bal">
-            <article>
-              <div className="circle">
-                <h3 id="circle-one"></h3>
-                <h3 id="circ-two"></h3>
-              </div>
-
-              <p>Total Withdraw</p>
-
-              <h4>{formatter.format(200)}</h4>
-            </article>
+            <button type="submit" className="btn">
+              {submitting ? 'submitting' : 'register'}
+            </button>
+            <p>
+              <Link to="/login" className="reg">
+                Login{' '}
+              </Link>
+              if you already have an account
+            </p>
+            <p style={{ marginTop: '1rem' }}>
+              © Copyright &nbsp;<span>{mainDate}&nbsp;</span> Trexhoding.com
+              &nbsp; All Rights Reserved.
+            </p>
           </div>
-
-          <div className="acc-bal">
-            <article>
-              <div className="circle">
-                <h3 id="circle-one"></h3>
-                <h3 id="circ-two"></h3>
-              </div>
-
-              <p>Total profit</p>
-
-              <h4>{formatter.format(Number(300).toFixed(2))}</h4>
-            </article>
-          </div>
-
-          <div className="acc-bal">
-            <article>
-              <div className="circle">
-                <h3 id="circle-one"></h3>
-                <h3 id="circ-two"></h3>
-              </div>
-
-              <p>Amount Invested</p>
-
-              <h4>{formatter.format(200)}</h4>
-            </article>
-          </div>
-
-          <div className="acc-bal">
-            <article>
-              <div className="circle">
-                <h3 id="circle-one"></h3>
-                <h3 id="circ-two"></h3>
-              </div>
-
-              <p>Total Invest</p>
-
-              <h4>{formatter.format(Number(profit()).toFixed(2))}</h4>
-            </article>
-          </div>
-        </aside>
-      </section>
-      <FooterMobile />
-      <FooterMobile />
+        </Form>
+      </div>
     </Wrapper>
   );
 };
-export default Dashboard;
+export default Register;

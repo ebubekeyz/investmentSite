@@ -24,10 +24,12 @@ import {
   Deposit,
   Bitcoin,
   InvestLog,
+  SignUp,
 } from './pages';
 import { loader as landingLoader } from './pages/Landing.jsx';
 import { action as actionLoader } from './pages/Login.jsx';
 import { action as actionLoader2 } from './pages/Register.jsx';
+import { action as actionLoader5 } from './pages/SignUp.jsx';
 import { action as actionLoader3 } from './pages/Reset.jsx';
 import { action as actionLoader4 } from './pages/ResetPassword.jsx';
 // import { loader as withdrawLoader } from './pages/Withdraw.jsx';
@@ -76,7 +78,13 @@ const router = createBrowserRouter([
         element: <Referral />,
       },
       {
-        path: '/register',
+        path: '/signUp',
+        element: <SignUp />,
+        errorElement: <SinglePageError />,
+        action: actionLoader5,
+      },
+      {
+        path: '/register/:id',
         element: <Register />,
         errorElement: <SinglePageError />,
         action: actionLoader2,

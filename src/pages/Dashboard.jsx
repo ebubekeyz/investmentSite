@@ -16,9 +16,9 @@ const Dashboard = () => {
       const response = await mainFetch.get('/api/v1/users/showMe', {
         withCredentials: true,
       });
-      const { userId } = response.data.user;
+      const { username } = response.data.user;
 
-      setUserIdd(userId);
+      setUserIdd(`http://localhost:5173/register/${username}`);
     } catch (error) {
       console.log(error);
       console.log(error.response.data.msg);
@@ -27,7 +27,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchUser();
-  }, [fetchUser]);
+  }, []);
 
   const copyReferral = () => {
     copy(userIdd);
@@ -53,7 +53,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     showBalance();
-  }, [showBalance]);
+  }, []);
 
   const totalAmount = balance?.reduce((acc, curr) => {
     const {
@@ -95,15 +95,13 @@ const Dashboard = () => {
   };
   useEffect(() => {
     calculateTotalPercent();
-  }, [calculateTotalPercent]);
+  }, []);
 
   const profit = () => {
     const date = new Date();
 
     let getDate = date.getDate();
     const num = calculateTotalPercent();
-
-    console.log(getDate);
 
     const day1 = getDate + 1;
     const day2 = getDate + 2;
@@ -239,7 +237,7 @@ const Dashboard = () => {
   };
   useEffect(() => {
     profit();
-  }, [profit]);
+  }, []);
 
   const [withdrawAmt, setWithdrawAmt] = useState([]);
 
@@ -259,7 +257,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     withdrawalFetch();
-  }, [withdrawalFetch]);
+  }, []);
 
   const reduceWithdrawal = withdrawAmt.reduce((acc, curr) => {
     return acc + curr.amount;
@@ -273,7 +271,6 @@ const Dashboard = () => {
         { balance: balance },
         { withCredentials: true }
       );
-      console.log(response.data.balance.balance);
     } catch (error) {
       console.log(error);
       console.log(error.response.data.msg);
@@ -281,7 +278,7 @@ const Dashboard = () => {
   };
   useEffect(() => {
     accBalance();
-  }, [accBalance]);
+  }, []);
 
   // const [profitChanges, setProfitChanges] = useState(profit());
   // console.log(profit());
@@ -311,6 +308,24 @@ const Dashboard = () => {
     planFunc();
   }, []);
 
+  const [refTree, setRefTree] = useState([]);
+  const showReferral = async () => {
+    try {
+      const res = await mainFetch.get('/api/v1/referral/showUserReferral', {
+        withCredentials: true,
+      });
+
+      setRefTree(res.data.referral);
+    } catch (error) {
+      console.log(error);
+      console.log(error.res.data.msg);
+    }
+  };
+
+  useEffect(() => {
+    showReferral();
+  }, [showReferral]);
+
   return (
     <Wrapper>
       <Navbar2 />
@@ -331,7 +346,6 @@ const Dashboard = () => {
             </h4>
           </article>
         </div>
-
         <aside className="box">
           <div className="acc-bal" id="acc-bal-1">
             <article>
@@ -372,7 +386,6 @@ const Dashboard = () => {
             </article>
           </div>
         </aside>
-
         <article className="upgrade-main">
           <h3>Your Current Level</h3>
           <div className="upgrade">
@@ -393,14 +406,26 @@ const Dashboard = () => {
             </Link>
           </div>
         </article>
-
         <article className="upgrade-main">
-          <h3>Your Referral Id</h3>
+          <h3>Invitation Link</h3>
           <div className="upgrade">
             <p>{userIdd}</p>
             <button type="btn" onClick={copyReferral} className="upgrade-btn">
               Copy
             </button>
+          </div>
+        </article>
+
+        <article className="ref-tree">
+          <h4>Reference tree</h4>
+          <div className="main-tree">
+            {refTree.map((item) => {
+              return (
+                <div className="main-tree">
+                  <p>{item.refId}</p>;
+                </div>
+              );
+            })}
           </div>
         </article>
       </section>

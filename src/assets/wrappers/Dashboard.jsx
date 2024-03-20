@@ -20,6 +20,7 @@ const Wrapper = styled.section`
   .upgrade p {
     font-size: 1rem;
     padding-top: 0.3rem;
+    max-width: 1rem;
   }
   .upgrade-btn {
     padding: 0.73rem;
@@ -27,6 +28,31 @@ const Wrapper = styled.section`
     color: white;
     background: var(--primary-500);
     border: none;
+  }
+  .main-tree {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .main-tree p {
+    color: white;
+    text-transform: capitalize;
+    border-bottom: 1px solid black;
+  }
+
+  .ref-tree {
+    background: black;
+
+    border-radius: 0.5rem;
+    margin-bottom: 4rem;
+  }
+  .ref-tree h4 {
+    font-size: 1rem;
+    padding: 1rem;
+    border-bottom: 0.1rem solid var(--grey-600);
+    padding-bottom: 1rem;
   }
   .upgrade {
     display: flex;
