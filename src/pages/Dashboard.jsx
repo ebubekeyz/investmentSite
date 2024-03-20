@@ -8,6 +8,9 @@ import FooterMobile from '../components/FooterMobile';
 import copy from 'copy-to-clipboard';
 import { toast } from 'react-toastify';
 import { IoIosFlash } from 'react-icons/io';
+import { MdHourglassEmpty } from 'react-icons/md';
+import { IoIosWallet } from 'react-icons/io';
+import { GiTwoCoins } from 'react-icons/gi';
 
 const Dashboard = () => {
   const [userIdd, setUserIdd] = useState('');
@@ -405,7 +408,7 @@ const Dashboard = () => {
 
           <article>
             <span className="pend-icon">
-              <IoIosFlash className="icon-main" />
+              <IoIosWallet className="icon-main" />
             </span>
             <h5>Pending Invest</h5>
             <h4>{formatter.format(Number(reduceInvest).toFixed(2))}</h4>
@@ -413,7 +416,7 @@ const Dashboard = () => {
 
           <article>
             <span className="pend-icon">
-              <IoIosFlash className="icon-main" />
+              <MdHourglassEmpty className="icon-main" />
             </span>
             <h5>Pending Withdrawal</h5>
             <h4>{formatter.format(Number(reduceWithdraw).toFixed(2))}</h4>
@@ -421,7 +424,7 @@ const Dashboard = () => {
 
           <article>
             <span className="pend-icon">
-              <IoIosFlash className="icon-main" />
+              <GiTwoCoins className="icon-main" />
             </span>
             <h5>Referral Earn</h5>
             <h4>{formatter.format(Number(0).toFixed(2))}</h4>
