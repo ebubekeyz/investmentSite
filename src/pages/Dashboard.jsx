@@ -22,7 +22,7 @@ const Dashboard = () => {
       });
       const { username } = response.data.user;
 
-      setUserIdd(`http://localhost:5173/register/${username}`);
+      setUserIdd(`https://trex-holding.netlify.app/register/${username}`);
     } catch (error) {
       console.log(error);
       console.log(error.response.data.msg);
@@ -249,7 +249,7 @@ const Dashboard = () => {
       });
 
       const withdrawal = response.data.withdraw;
-    
+
       setWithdrawAmount(withdrawal);
     } catch (error) {
       console.log(error);
