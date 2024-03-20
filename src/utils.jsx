@@ -78,7 +78,7 @@ export const questions = [
   {
     id: nanoid(),
     title: 'What are the minimum and maximum deposit amounts?',
-    info: 'The minimum deposit is $50 USD, and the maximum deposit per transaction is $200,000. You can have as many active investments as you desire concurrently.',
+    info: 'The minimum deposit is €50 USD, and the maximum deposit per transaction is €200,000. You can have as many active investments as you desire concurrently.',
   },
   {
     id: nanoid(),

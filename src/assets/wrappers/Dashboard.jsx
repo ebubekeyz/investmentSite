@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.section`
   background: rgb(39, 37, 37);
-  padding-bottom: 4rem;
+  padding-bottom: 7rem;
   .dashboard {
     width: 90vw;
     margin: 0 auto;
@@ -66,8 +66,7 @@ const Wrapper = styled.section`
   .pending {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    place-items: center;
+    gap: 12px;
   }
   @media screen and (min-width: 800px) {
     .pending {
@@ -78,8 +77,9 @@ const Wrapper = styled.section`
     font-size: 2rem;
   }
   .pend-icon {
+    text-align: center;
     background: orange;
-    padding: 0.7rem;
+    padding: 0.2rem;
     width: 3.5rem;
     border-radius: 0.5rem;
   }
@@ -92,14 +92,13 @@ const Wrapper = styled.section`
   .pending article h4 {
     font-size: 1.2rem;
     letter-spacing: 0;
-    width: 6rem;
   }
   .pending article {
     background: black;
     color: white;
     display: grid;
     grid-template-columns: 1fr;
-    padding: 2rem 3rem;
+    padding: 1.5rem 1rem;
     border-radius: 0.5rem;
   }
   .upgrade {

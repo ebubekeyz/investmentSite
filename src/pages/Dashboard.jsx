@@ -249,7 +249,7 @@ const Dashboard = () => {
       });
 
       const withdrawal = response.data.withdraw;
-      console.log(response.data.withdraw);
+    
       setWithdrawAmount(withdrawal);
     } catch (error) {
       console.log(error);
