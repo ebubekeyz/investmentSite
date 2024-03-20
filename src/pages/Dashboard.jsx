@@ -35,7 +35,12 @@ const Dashboard = () => {
   };
 
   // const [bonus, setBonus] = useState(200);
-  const [balance, setBalance] = useState([]);
+  const [balance, setBalance] = useState({
+    amount: '',
+    percent: '',
+    days: '',
+    plan: '',
+  });
 
   const showBalance = async () => {
     try {
@@ -44,7 +49,21 @@ const Dashboard = () => {
       });
 
       const payMajor = res.data.payReceipt;
-      setBalance(payMajor);
+      const num = payMajor.length - 1;
+      const {
+        amount: {
+          amount: amt,
+          coin: {
+            invest: { percent: percent, days: days, plan: plan },
+          },
+        },
+      } = payMajor[num];
+      setBalance({
+        amount: amt,
+        percent: percent,
+        days: days,
+        plan: plan,
+      });
     } catch (error) {
       console.log(error);
       console.log(error.res.data.msg);
@@ -55,41 +74,43 @@ const Dashboard = () => {
     showBalance();
   }, [showBalance]);
 
-  const totalAmount = balance?.reduce((acc, curr) => {
-    const {
-      amount: { amount: amt },
-    } = curr;
+  console.log(balance);
 
-    return acc + amt;
-  }, 0);
+  // const totalAmount = balance?.reduce((acc, curr) => {
+  //   const {
+  //     amount: { amount: amt },
+  //   } = curr;
 
-  const totalPercent = balance?.reduce((acc, curr) => {
-    const {
-      amount: {
-        coin: {
-          invest: { percent: percent },
-        },
-      },
-    } = curr;
+  //   return acc + amt;
+  // }, 0);
 
-    return acc + percent;
-  }, 0);
+  // const totalPercent = balance?.reduce((acc, curr) => {
+  //   const {
+  //     amount: {
+  //       coin: {
+  //         invest: { percent: percent },
+  //       },
+  //     },
+  //   } = curr;
 
-  const totalDays = balance?.reduce((acc, curr) => {
-    const {
-      amount: {
-        coin: {
-          invest: { days: days },
-        },
-      },
-    } = curr;
+  //   return acc + percent;
+  // }, 0);
 
-    return acc + days;
-  }, 0);
+  // const totalDays = balance?.reduce((acc, curr) => {
+  //   const {
+  //     amount: {
+  //       coin: {
+  //         invest: { days: days },
+  //       },
+  //     },
+  //   } = curr;
+
+  //   return acc + days;
+  // }, 0);
 
   const [calcPercentage, setCalcPercentage] = useState(0);
   const calculateTotalPercent = () => {
-    const total = (totalAmount * totalPercent) / (balance.length * 100);
+    const total = (balance.amount * balance.percent) / 100;
 
     return total;
   };
@@ -103,134 +124,22 @@ const Dashboard = () => {
     let getDate = date.getDate();
     const num = calculateTotalPercent();
 
-    const day1 = getDate + 1;
-    const day2 = getDate + 2;
-    const day3 = getDate + 3;
-    const day4 = getDate + 4;
-    const day5 = getDate + 5;
-    const day6 = getDate + 5;
-    const day7 = getDate + 7;
-    const day8 = getDate + 8;
-    const day9 = getDate + 9;
-    const day10 = getDate + 11;
-    const day11 = getDate + 11;
-    const day12 = getDate + 12;
-    const day13 = getDate + 13;
-    const day14 = getDate + 14;
-    const day15 = getDate + 15;
-    const day16 = getDate + 16;
-    const day17 = getDate + 17;
-    const day18 = getDate + 18;
-    const day19 = getDate + 19;
-    const day20 = getDate + 20;
-    const day21 = getDate + 21;
-    const day22 = getDate + 22;
-    const day23 = getDate + 23;
-    const day24 = getDate + 24;
-    const day25 = getDate + 25;
-    const day26 = getDate + 26;
-    const day27 = getDate + 27;
-    const day28 = getDate + 28;
-    const day29 = getDate + 29;
-    const day30 = getDate + 30;
-
-    if (getDate === 30) {
-      getDate = 0;
-    }
+    // if (getDate === 30) {
+    //   getDate = 0;
+    // }
 
     if (getDate) {
       getDate = 0;
     }
-    if (getDate === day1) {
+    if (getDate === getDate + balance.days) {
       getDate = num;
     }
-    if (getDate === day2) {
-      getDate = num * 2;
-    }
-
-    if (getDate === day3) {
-      getDate = num * 3;
-    }
-    if (getDate === day4) {
-      getDate = num * 4;
-    }
-    if (getDate === day5) {
-      getDate = num * 5;
-    }
-    if (getDate === day6) {
-      getDate = num * 6;
-    }
-    if (getDate === day7) {
-      getDate = num * 7;
-    }
-    if (getDate === day8) {
-      getDate = num * 8;
-    }
-    if (getDate === day9) {
-      getDate = num * 9;
-    }
-    if (getDate === day10) {
-      getDate = num * 10;
-    }
-    if (getDate === day11) {
-      getDate = num * 11;
-    }
-    if (getDate === day12) {
-      getDate = num * 12;
-    }
-    if (getDate === day13) {
-      getDate = num * 13;
-    }
-    if (getDate === day14) {
-      getDate = num * 14;
-    }
-    if (getDate === day15) {
-      getDate = num * 15;
-    }
-    if (getDate === day16) {
-      getDate = num * 16;
-    }
-    if (getDate === day17) {
-      getDate = num * 17;
-    }
-    if (getDate === day18) {
-      getDate = num * 18;
-    }
-    if (getDate === day19) {
-      getDate = num * 19;
-    }
-    if (getDate === day20) {
-      getDate = num * 20;
-    }
-    if (getDate === day21) {
-      getDate = num * 21;
-    }
-    if (getDate === day22) {
-      getDate = num * 22;
-    }
-    if (getDate === day23) {
-      getDate = num * 23;
-    }
-    if (getDate === day24) {
-      getDate = num * 24;
-    }
-    if (getDate === day25) {
-      getDate = num * 25;
-    }
-    if (getDate === day26) {
-      getDate = num * 26;
-    }
-    if (getDate === day27) {
-      getDate = num * 27;
-    }
-    if (getDate === day28) {
-      getDate = num * 28;
-    }
-    if (getDate === day29) {
-      getDate = num * 29;
-    }
-    if (getDate === day30) {
-      getDate = num * 30;
+    if (getDate === getDate + balance.days + 1) {
+      getDate = 0;
+      setBalance({
+        amount: 0,
+      });
+      setWithdrawAmt(0);
     }
 
     return getDate;
@@ -239,7 +148,7 @@ const Dashboard = () => {
     profit();
   }, [profit]);
 
-  const [withdrawAmt, setWithdrawAmt] = useState([]);
+  const [withdrawAmt, setWithdrawAmt] = useState('');
 
   const withdrawalFetch = async () => {
     try {
@@ -248,8 +157,10 @@ const Dashboard = () => {
       });
 
       const withdrawal = response.data.withdraw;
+      const num = withdrawal.length - 1;
+      const { amount } = withdrawal[num];
 
-      setWithdrawAmt(withdrawal);
+      setWithdrawAmt(amount);
     } catch (error) {
       console.log(error);
     }
@@ -259,12 +170,12 @@ const Dashboard = () => {
     withdrawalFetch();
   }, [withdrawalFetch]);
 
-  const reduceWithdrawal = withdrawAmt.reduce((acc, curr) => {
-    return acc + curr.amount;
-  }, 0);
+  // const reduceWithdrawal = withdrawAmt.reduce((acc, curr) => {
+  //   return acc + curr.amount;
+  // }, 0);
 
   const accBalance = async () => {
-    const balance = totalAmount + profit();
+    const balance = balance.amount + profit();
     try {
       const response = await mainFetch.post(
         '/api/v1/balance',
@@ -280,33 +191,10 @@ const Dashboard = () => {
     accBalance();
   }, [accBalance]);
 
-  // const [profitChanges, setProfitChanges] = useState(profit());
-  // console.log(profit());
-  const calcPercent = () => {};
   const formatter = new Intl.NumberFormat('en-DE', {
     style: 'currency',
     currency: 'EUR',
   });
-  const [plan, setPlan] = useState([]);
-
-  const planFunc = async () => {
-    try {
-      const res = await mainFetch.get('/api/v1/payReceipt/showUserPayReceipt', {
-        withCredentials: true,
-      });
-
-      const payMajor = res.data.payReceipt;
-
-      setPlan(payMajor);
-    } catch (error) {
-      console.log(error);
-      console.log(error.res.data.msg);
-    }
-  };
-
-  useEffect(() => {
-    planFunc();
-  }, [planFunc]);
 
   const [refTree, setRefTree] = useState([]);
   const showReferral = async () => {
@@ -341,7 +229,7 @@ const Dashboard = () => {
 
             <h4>
               {formatter.format(
-                Number(totalAmount + profit() - reduceWithdrawal).toFixed(2)
+                Number(balance.amount + profit() - withdrawAmt).toFixed(2)
               )}
             </h4>
           </article>
@@ -356,7 +244,7 @@ const Dashboard = () => {
 
               <p>Total Withdraw</p>
 
-              <h4>{formatter.format((reduceWithdrawal * 10) / 100)}</h4>
+              <h4>{formatter.format((withdrawAmt * 10) / 100)}</h4>
             </article>
           </div>
 
@@ -382,25 +270,15 @@ const Dashboard = () => {
 
               <p>Total Amount Invested</p>
 
-              <h4>{formatter.format(totalAmount)}</h4>
+              <h4>{formatter.format(balance.amount)}</h4>
             </article>
           </div>
         </aside>
         <article className="upgrade-main">
           <h3>Your Current Level</h3>
           <div className="upgrade">
-            {plan.map((item) => {
-              const {
-                amount: {
-                  coin: {
-                    invest: { plan: plan },
-                  },
-                },
-              } = item;
-
-              return <p>{plan}</p>;
-            })}
-            {/* <p>{coin}</p> */}
+            <p style={{ maxWidth: '10rem' }}>{balance.plan}</p>
+            {/* <p>{balance.coin}</p> */}
             <Link to="/investment" type="btn" className="upgrade-btn">
               Upgrade
             </Link>
