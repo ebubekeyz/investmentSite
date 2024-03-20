@@ -7,6 +7,7 @@ import { mainFetch } from '../utils';
 import FooterMobile from '../components/FooterMobile';
 import copy from 'copy-to-clipboard';
 import { toast } from 'react-toastify';
+import { IoIosFlash } from 'react-icons/io';
 
 const Dashboard = () => {
   const [userIdd, setUserIdd] = useState('');
@@ -27,7 +28,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchUser();
-  }, [fetchUser]);
+  }, []);
 
   const copyReferral = () => {
     copy(userIdd);
@@ -40,6 +41,7 @@ const Dashboard = () => {
     percent: '',
     days: '',
     plan: '',
+    status: '',
   });
 
   const showBalance = async () => {
@@ -51,6 +53,7 @@ const Dashboard = () => {
       const payMajor = res.data.payReceipt;
       const num = payMajor.length - 1;
       const {
+        status,
         amount: {
           amount: amt,
           coin: {
@@ -72,41 +75,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     showBalance();
-  }, [showBalance]);
-
-  console.log(balance);
-
-  // const totalAmount = balance?.reduce((acc, curr) => {
-  //   const {
-  //     amount: { amount: amt },
-  //   } = curr;
-
-  //   return acc + amt;
-  // }, 0);
-
-  // const totalPercent = balance?.reduce((acc, curr) => {
-  //   const {
-  //     amount: {
-  //       coin: {
-  //         invest: { percent: percent },
-  //       },
-  //     },
-  //   } = curr;
-
-  //   return acc + percent;
-  // }, 0);
-
-  // const totalDays = balance?.reduce((acc, curr) => {
-  //   const {
-  //     amount: {
-  //       coin: {
-  //         invest: { days: days },
-  //       },
-  //     },
-  //   } = curr;
-
-  //   return acc + days;
-  // }, 0);
+  }, []);
 
   const [calcPercentage, setCalcPercentage] = useState(0);
   const calculateTotalPercent = () => {
@@ -116,17 +85,13 @@ const Dashboard = () => {
   };
   useEffect(() => {
     calculateTotalPercent();
-  }, [calculateTotalPercent]);
+  }, []);
 
   const profit = () => {
     const date = new Date();
 
     let getDate = date.getDate();
     const num = calculateTotalPercent();
-
-    // if (getDate === 30) {
-    //   getDate = 0;
-    // }
 
     if (getDate) {
       getDate = 0;
@@ -146,7 +111,7 @@ const Dashboard = () => {
   };
   useEffect(() => {
     profit();
-  }, [profit]);
+  }, []);
 
   const [withdrawAmt, setWithdrawAmt] = useState('');
 
@@ -168,7 +133,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     withdrawalFetch();
-  }, [withdrawalFetch]);
+  }, []);
 
   // const reduceWithdrawal = withdrawAmt.reduce((acc, curr) => {
   //   return acc + curr.amount;
@@ -212,7 +177,94 @@ const Dashboard = () => {
 
   useEffect(() => {
     showReferral();
-  }, [showReferral]);
+  }, []);
+
+  const [totalBal, setTotalBal] = useState([]);
+
+  const showTotalBal = async () => {
+    try {
+      const res = await mainFetch.get('/api/v1/payReceipt/showUserPayReceipt', {
+        withCredentials: true,
+      });
+
+      const payMajor = res.data.payReceipt;
+      setTotalBal(payMajor);
+    } catch (error) {
+      console.log(error);
+      console.log(error.res.data.msg);
+    }
+  };
+
+  useEffect(() => {
+    showTotalBal();
+  }, []);
+
+  const totalAmount = totalBal?.reduce((acc, curr) => {
+    const {
+      amount: { amount: amt },
+    } = curr;
+
+    return acc + amt;
+  }, 0);
+
+  const [invest, setInvest] = useState([]);
+
+  const showInvest = async () => {
+    try {
+      const response = await mainFetch.get(
+        '/api/v1/payReceipt/showUserPayReceipt',
+        {
+          withCredentials: true,
+        }
+      );
+
+      setInvest(response.data.payReceipt);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    showInvest();
+  }, []);
+
+  const filterInvest = invest.filter((item) => item.status === 'pending');
+
+  const reduceInvest = filterInvest.reduce((acc, curr) => {
+    const {
+      amount: { amount: amt },
+    } = curr;
+    return acc + amt;
+  }, 0);
+
+  const [withdrawAmount, setWithdrawAmount] = useState([]);
+
+  const withdrawMainFetch = async () => {
+    try {
+      const response = await mainFetch.get(`api/v1/withdraw/showUserWithdraw`, {
+        withCredentials: true,
+      });
+
+      const withdrawal = response.data.withdraw;
+      console.log(response.data.withdraw);
+      setWithdrawAmount(withdrawal);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    withdrawMainFetch();
+  }, []);
+
+  const filterWithdraw = withdrawAmount.filter(
+    (item) => item.status === 'pending'
+  );
+  console.log(filterWithdraw);
+
+  const reduceWithdraw = filterWithdraw.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
 
   return (
     <Wrapper>
@@ -244,7 +296,7 @@ const Dashboard = () => {
 
               <p>Total Withdraw</p>
 
-              <h4>{formatter.format((withdrawAmt * 10) / 100)}</h4>
+              <h4>{formatter.format(withdrawAmt)}</h4>
             </article>
           </div>
 
@@ -268,9 +320,22 @@ const Dashboard = () => {
                 <h3 id="circ-two"></h3>
               </div>
 
-              <p>Total Amount Invested</p>
+              <p>Current Invest</p>
 
               <h4>{formatter.format(balance.amount)}</h4>
+            </article>
+          </div>
+
+          <div className="acc-bal" id="acc-bal-1">
+            <article>
+              <div className="circle">
+                <h3 id="circle-one"></h3>
+                <h3 id="circ-two"></h3>
+              </div>
+
+              <p>Total Invest</p>
+
+              <h4>{formatter.format(Number(totalAmount).toFixed(2))}</h4>
             </article>
           </div>
         </aside>
@@ -306,6 +371,40 @@ const Dashboard = () => {
             })}
           </div>
         </article>
+
+        <div className="pending">
+          <article>
+            <span className="pend-icon">
+              <IoIosFlash className="icon-main" />
+            </span>
+            <h5>Current Plan</h5>
+            <h4>{balance.plan}</h4>
+          </article>
+
+          <article>
+            <span className="pend-icon">
+              <IoIosFlash className="icon-main" />
+            </span>
+            <h5>Pending Invest</h5>
+            <h4>{formatter.format(Number(reduceInvest).toFixed(2))}</h4>
+          </article>
+
+          <article>
+            <span className="pend-icon">
+              <IoIosFlash className="icon-main" />
+            </span>
+            <h5>Pending Withdrawal</h5>
+            <h4>{formatter.format(Number(reduceWithdraw).toFixed(2))}</h4>
+          </article>
+
+          <article>
+            <span className="pend-icon">
+              <IoIosFlash className="icon-main" />
+            </span>
+            <h5>Referral Earn</h5>
+            <h4>{formatter.format(Number(0).toFixed(2))}</h4>
+          </article>
+        </div>
       </section>
       <FooterMobile />
       <FooterMobile />

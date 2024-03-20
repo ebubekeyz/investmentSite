@@ -54,6 +54,45 @@ const Wrapper = styled.section`
     border-bottom: 0.1rem solid var(--grey-600);
     padding-bottom: 1rem;
   }
+  .pending {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    place-items: center;
+  }
+  @media screen and (min-width: 800px) {
+    .pending {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+  .icon-main {
+    font-size: 2rem;
+  }
+  .pend-icon {
+    background: orange;
+    padding: 0.7rem;
+    width: 3.5rem;
+    border-radius: 0.5rem;
+  }
+  .pending article h5 {
+    font-size: 1rem;
+    letter-spacing: 0;
+    padding: 1rem 0;
+    padding-bottom: 0;
+  }
+  .pending article h4 {
+    font-size: 1.2rem;
+    letter-spacing: 0;
+    width: 6rem;
+  }
+  .pending article {
+    background: black;
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 2rem 3rem;
+    border-radius: 0.5rem;
+  }
   .upgrade {
     display: flex;
     justify-content: space-between;
