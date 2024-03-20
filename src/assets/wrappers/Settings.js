@@ -2,12 +2,9 @@ import styled from 'styled-components';
 
 const Wrapper = styled.section`
   background: rgb(39, 37, 37);
-  height: 100%;
-  width: 100%;
+  padding-top: 0.5rem;
   .section-center {
-    width: 90vw;
-    max-width: 1170px;
-    margin: 0 auto;
+    width: 90%;
     color: white;
     padding: 1rem 0;
     padding-bottom: 0.2rem;
@@ -46,6 +43,13 @@ const Wrapper = styled.section`
   .top2 {
     margin: 1.5rem 0;
   }
+  .top2 h3 {
+    font-size: 1.2rem;
+  }
+
+  .top h4 {
+    font-size: 1.2rem;
+  }
 
   .change {
     color: white;
@@ -73,6 +77,18 @@ const Wrapper = styled.section`
     justify-content: space-between;
     place-items: center;
     align-self: center;
+  }
+  @media screen and (min-width: 800px) {
+    .settings {
+      width: 100%;
+      margin: 0;
+    }
+    .container {
+      display: grid;
+
+      grid-template-columns: 25% 70%;
+      gap: 2rem;
+    }
   }
 `;
 

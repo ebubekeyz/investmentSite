@@ -3,11 +3,7 @@ import styled from 'styled-components';
 const Wrapper = styled.section`
   background: rgb(39, 37, 37);
   padding-bottom: 15rem;
-  .section-center {
-    width: 90vw;
-    margin: 0 auto;
-    max-width: 1170px;
-  }
+  
   .back {
     color: var(--grey-400);
   }
@@ -104,6 +100,21 @@ const Wrapper = styled.section`
     text-align: center;
     padding: 6rem;
     font-size: 1rem;
+  }
+
+    @media screen and (min-width: 800px) {
+    .section-center {
+      width: 100%;
+      margin: 0;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 25% 70%;
+      gap: 2rem;
+    }
+    .header h4 {
+      font-size: 0.7rem
+    }
   }
 `;
 

@@ -6,6 +6,7 @@ import FooterMobile from '../components/FooterMobile';
 import { mainFetch } from '../utils';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import Sidebar from '../components/Sidebar';
 
 const Settings = () => {
   const [isLoading, setIsLoading] = useState('update');
@@ -115,196 +116,199 @@ const Settings = () => {
 
   return (
     <Wrapper>
-      <section>
-        <div className="section-center">
-          <article className="top">
-            <h4>Authentication</h4>
+      <div className="container">
+        <Sidebar />
+        <section className="settings">
+          <div className="section-center">
+            <article className="top">
+              <h4>Authentication</h4>
 
-            <div className="top-inner">
-              <span className="space">
-                {' '}
-                <FaArrowLeft className="back-icon" onClick={backHandler} />
-              </span>
-              <span className="back">Back</span>
-            </div>
-          </article>
-
-          <article className="top2 top">
-            <h3>Profile setting</h3>
-
-            <Link to="/changePassword" className="top-inner">
-              <span className="space">
-                {' '}
-                <GoShieldLock className="back-icon" onClick={backHandler} />
-              </span>
-              <span className="change">Change Password</span>
-            </Link>
-          </article>
-
-          <article className="form-main">
-            <form onSubmit={handleSubmit}>
-              <div className="form-container">
-                <label htmlFor="firstName" className="label">
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  className="input"
-                  name="fullName"
-                  placeholder={id.fullName}
-                  value={user.fullName}
-                  onChange={(e) => {
-                    setUser({
-                      ...user,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
+              <div className="top-inner">
+                <span className="space">
+                  {' '}
+                  <FaArrowLeft className="back-icon" onClick={backHandler} />
+                </span>
+                <span className="back">Back</span>
               </div>
+            </article>
 
-              <div className="form-container">
-                <label htmlFor="username" className="label">
-                  Username
-                </label>
-                <input
-                  type="text"
-                  className="input"
-                  name="username"
-                  placeholder={id.username}
-                  value={user.username}
-                  onChange={(e) => {
-                    setUser({
-                      ...user,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
-              </div>
+            <article className="top2 top">
+              <h3>Profile setting</h3>
 
-              <div className="form-container">
-                <label htmlFor="email" className="label">
-                  Email
-                </label>
-                <input
-                  readOnly
-                  type="text"
-                  className="input"
-                  name="email"
-                  placeholder={id.email}
-                  value={user.email}
-                  onChange={(e) => {
-                    setUser({
-                      ...user,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
-              </div>
+              <Link to="/changePassword" className="top-inner">
+                <span className="space">
+                  {' '}
+                  <GoShieldLock className="back-icon" onClick={backHandler} />
+                </span>
+                <span className="change">Change Password</span>
+              </Link>
+            </article>
 
-              <div className="form-container">
-                <label htmlFor="phone" className="label">
-                  Phone
-                </label>
-                <input
-                  type="text"
-                  className="input"
-                  name="phone"
-                  placeholder={id.phone}
-                  value={user.phone}
-                  onChange={(e) => {
-                    setUser({
-                      ...user,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
-              </div>
+            <article className="form-main">
+              <form onSubmit={handleSubmit}>
+                <div className="form-container">
+                  <label htmlFor="firstName" className="label">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    className="input"
+                    name="fullName"
+                    placeholder={id.fullName}
+                    value={user.fullName}
+                    onChange={(e) => {
+                      setUser({
+                        ...user,
+                        [e.target.name]: e.target.value,
+                      });
+                    }}
+                  />
+                </div>
 
-              <div className="form-container">
-                <label htmlFor="country" className="label">
-                  Country
-                </label>
-                <input
-                  type="text"
-                  className="input"
-                  name="country"
-                  placeholder={id.country}
-                  value={user.country}
-                  onChange={(e) => {
-                    setUser({
-                      ...user,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
-              </div>
+                <div className="form-container">
+                  <label htmlFor="username" className="label">
+                    Username
+                  </label>
+                  <input
+                    type="text"
+                    className="input"
+                    name="username"
+                    placeholder={id.username}
+                    value={user.username}
+                    onChange={(e) => {
+                      setUser({
+                        ...user,
+                        [e.target.name]: e.target.value,
+                      });
+                    }}
+                  />
+                </div>
 
-              <div className="form-container">
-                <label htmlFor="city" className="label">
-                  City
-                </label>
-                <input
-                  type="text"
-                  className="input"
-                  name="city"
-                  placeholder={id.city}
-                  value={user.city}
-                  onChange={(e) => {
-                    setUser({
-                      ...user,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
-              </div>
+                <div className="form-container">
+                  <label htmlFor="email" className="label">
+                    Email
+                  </label>
+                  <input
+                    readOnly
+                    type="text"
+                    className="input"
+                    name="email"
+                    placeholder={id.email}
+                    value={user.email}
+                    onChange={(e) => {
+                      setUser({
+                        ...user,
+                        [e.target.name]: e.target.value,
+                      });
+                    }}
+                  />
+                </div>
 
-              <div className="form-container">
-                <label htmlFor="zip" className="label">
-                  Zip
-                </label>
-                <input
-                  type="text"
-                  className="input"
-                  name="zip"
-                  placeholder={id.zip}
-                  value={user.zip}
-                  onChange={(e) => {
-                    setUser({
-                      ...user,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
-              </div>
+                <div className="form-container">
+                  <label htmlFor="phone" className="label">
+                    Phone
+                  </label>
+                  <input
+                    type="text"
+                    className="input"
+                    name="phone"
+                    placeholder={id.phone}
+                    value={user.phone}
+                    onChange={(e) => {
+                      setUser({
+                        ...user,
+                        [e.target.name]: e.target.value,
+                      });
+                    }}
+                  />
+                </div>
 
-              <div className="form-container">
-                <label htmlFor="state" className="label">
-                  State
-                </label>
-                <input
-                  type="text"
-                  className="input"
-                  name="state"
-                  placeholder={id.state}
-                  value={user.state}
-                  onChange={(e) => {
-                    setUser({
-                      ...user,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
-              </div>
+                <div className="form-container">
+                  <label htmlFor="country" className="label">
+                    Country
+                  </label>
+                  <input
+                    type="text"
+                    className="input"
+                    name="country"
+                    placeholder={id.country}
+                    value={user.country}
+                    onChange={(e) => {
+                      setUser({
+                        ...user,
+                        [e.target.name]: e.target.value,
+                      });
+                    }}
+                  />
+                </div>
 
-              <div className="btn-info">
-                <button type="submit" className="update-btn btn">
-                  {isLoading}
-                </button>
-              </div>
-            </form>
-          </article>
-        </div>
-      </section>
+                <div className="form-container">
+                  <label htmlFor="city" className="label">
+                    City
+                  </label>
+                  <input
+                    type="text"
+                    className="input"
+                    name="city"
+                    placeholder={id.city}
+                    value={user.city}
+                    onChange={(e) => {
+                      setUser({
+                        ...user,
+                        [e.target.name]: e.target.value,
+                      });
+                    }}
+                  />
+                </div>
+
+                <div className="form-container">
+                  <label htmlFor="zip" className="label">
+                    Zip
+                  </label>
+                  <input
+                    type="text"
+                    className="input"
+                    name="zip"
+                    placeholder={id.zip}
+                    value={user.zip}
+                    onChange={(e) => {
+                      setUser({
+                        ...user,
+                        [e.target.name]: e.target.value,
+                      });
+                    }}
+                  />
+                </div>
+
+                <div className="form-container">
+                  <label htmlFor="state" className="label">
+                    State
+                  </label>
+                  <input
+                    type="text"
+                    className="input"
+                    name="state"
+                    placeholder={id.state}
+                    value={user.state}
+                    onChange={(e) => {
+                      setUser({
+                        ...user,
+                        [e.target.name]: e.target.value,
+                      });
+                    }}
+                  />
+                </div>
+
+                <div className="btn-info">
+                  <button type="submit" className="update-btn btn">
+                    {isLoading}
+                  </button>
+                </div>
+              </form>
+            </article>
+          </div>
+        </section>
+      </div>
 
       <FooterMobile />
     </Wrapper>

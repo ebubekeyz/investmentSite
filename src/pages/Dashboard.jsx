@@ -294,143 +294,146 @@ const Dashboard = () => {
   return (
     <Wrapper>
       <Navbar2 />
-      <section className="dashboard">
-        <div className="acc-bal">
-          <article>
-            <div className="circle">
-              <h3 id="circle-one"></h3>
-              <h3 id="circ-two"></h3>
+      <div className="container">
+        <Sidebar className="" />
+        <section className="dashboard">
+          <div className="acc-bal">
+            <article>
+              <div className="circle">
+                <h3 id="circle-one"></h3>
+                <h3 id="circ-two"></h3>
+              </div>
+
+              <p>Account balance</p>
+
+              <h4>
+                {formatter.format(
+                  Number(balance.amount + profit() - withdrawAmt).toFixed(2)
+                )}
+              </h4>
+            </article>
+          </div>
+          <aside className="box">
+            <div className="acc-bal" id="acc-bal-1">
+              <article>
+                <div className="circle">
+                  <h3 id="circle-one"></h3>
+                  <h3 id="circ-two"></h3>
+                </div>
+
+                <p>Total Withdraw</p>
+
+                <h4>{formatter.format(reduceTotalWithdrawal)}</h4>
+              </article>
             </div>
 
-            <p>Account balance</p>
-
-            <h4>
-              {formatter.format(
-                Number(balance.amount + profit() - withdrawAmt).toFixed(2)
-              )}
-            </h4>
-          </article>
-        </div>
-        <aside className="box">
-          <div className="acc-bal" id="acc-bal-1">
-            <article>
-              <div className="circle">
-                <h3 id="circle-one"></h3>
-                <h3 id="circ-two"></h3>
-              </div>
-
-              <p>Total Withdraw</p>
-
-              <h4>{formatter.format(reduceTotalWithdrawal)}</h4>
-            </article>
-          </div>
-
-          <div className="acc-bal" id="acc-bal-2">
-            <article>
-              <div className="circle">
-                <h3 id="circle-one"></h3>
-                <h3 id="circ-two"></h3>
-              </div>
-
-              <p>Total profit</p>
-
-              <h4>{formatter.format(Number(profit()).toFixed(2))}</h4>
-            </article>
-          </div>
-
-          <div className="acc-bal" id="acc-bal-3">
-            <article>
-              <div className="circle">
-                <h3 id="circle-one"></h3>
-                <h3 id="circ-two"></h3>
-              </div>
-
-              <p>Current Invest</p>
-
-              <h4>{formatter.format(balance.amount)}</h4>
-            </article>
-          </div>
-
-          <div className="acc-bal" id="acc-bal-1">
-            <article>
-              <div className="circle">
-                <h3 id="circle-one"></h3>
-                <h3 id="circ-two"></h3>
-              </div>
-
-              <p>Total Invest</p>
-
-              <h4>{formatter.format(Number(totalAmount).toFixed(2))}</h4>
-            </article>
-          </div>
-        </aside>
-        <article className="upgrade-main">
-          <h3>Your Current Level</h3>
-          <div className="upgrade">
-            <p style={{ maxWidth: '10rem' }}>{balance.plan}</p>
-            {/* <p>{balance.coin}</p> */}
-            <Link to="/investment" type="btn" className="upgrade-btn">
-              Upgrade
-            </Link>
-          </div>
-        </article>
-        <article className="upgrade-main">
-          <h3>Invitation Link</h3>
-          <div className="upgrade">
-            <p>{userIdd}</p>
-            <button type="btn" onClick={copyReferral} className="upgrade-btn">
-              Copy
-            </button>
-          </div>
-        </article>
-
-        <article className="ref-tree">
-          <h4>Reference tree</h4>
-          <div className="main-tree">
-            {refTree.map((item) => {
-              return (
-                <div className="main-tree">
-                  <p>{item.refId}</p>;
+            <div className="acc-bal" id="acc-bal-2">
+              <article>
+                <div className="circle">
+                  <h3 id="circle-one"></h3>
+                  <h3 id="circ-two"></h3>
                 </div>
-              );
-            })}
+
+                <p>Total profit</p>
+
+                <h4>{formatter.format(Number(profit()).toFixed(2))}</h4>
+              </article>
+            </div>
+
+            <div className="acc-bal" id="acc-bal-3">
+              <article>
+                <div className="circle">
+                  <h3 id="circle-one"></h3>
+                  <h3 id="circ-two"></h3>
+                </div>
+
+                <p>Current Invest</p>
+
+                <h4>{formatter.format(balance.amount)}</h4>
+              </article>
+            </div>
+
+            <div className="acc-bal" id="acc-bal-1">
+              <article>
+                <div className="circle">
+                  <h3 id="circle-one"></h3>
+                  <h3 id="circ-two"></h3>
+                </div>
+
+                <p>Total Invest</p>
+
+                <h4>{formatter.format(Number(totalAmount).toFixed(2))}</h4>
+              </article>
+            </div>
+          </aside>
+          <article className="upgrade-main">
+            <h3>Your Current Level</h3>
+            <div className="upgrade">
+              <p style={{ maxWidth: '10rem' }}>{balance.plan}</p>
+              {/* <p>{balance.coin}</p> */}
+              <Link to="/investment" type="btn" className="upgrade-btn">
+                Upgrade
+              </Link>
+            </div>
+          </article>
+          <article className="upgrade-main">
+            <h3>Invitation Link</h3>
+            <div className="upgrade">
+              <p>{userIdd}</p>
+              <button type="btn" onClick={copyReferral} className="upgrade-btn">
+                Copy
+              </button>
+            </div>
+          </article>
+
+          <article className="ref-tree">
+            <h4>Reference tree</h4>
+            <div className="main-tree">
+              {refTree.map((item) => {
+                return (
+                  <div className="main-tree">
+                    <p>{item.refId}</p>;
+                  </div>
+                );
+              })}
+            </div>
+          </article>
+
+          <div className="pending">
+            <article>
+              <span className="pend-icon" id="icon1">
+                <IoIosFlash className="icon-main" />
+              </span>
+              <h5>Current Plan</h5>
+              <h4>{balance.plan}</h4>
+            </article>
+
+            <article>
+              <span className="pend-icon" id="icon2">
+                <IoIosWallet className="icon-main" />
+              </span>
+              <h5>Pending Invest</h5>
+              <h4>{formatter.format(Number(reduceInvest).toFixed(2))}</h4>
+            </article>
+
+            <article>
+              <span className="pend-icon" id="icon3">
+                <MdHourglassEmpty className="icon-main" />
+              </span>
+              <h5>Pending Withdrawal</h5>
+              <h4>{formatter.format(Number(reduceWithdraw).toFixed(2))}</h4>
+            </article>
+
+            <article>
+              <span className="pend-icon" id="icon4">
+                <GiTwoCoins className="icon-main" id="icon4" />
+              </span>
+              <h5>Referral Earn</h5>
+              <h4>{formatter.format(Number(0).toFixed(2))}</h4>
+            </article>
           </div>
-        </article>
-
-        <div className="pending">
-          <article>
-            <span className="pend-icon" id="icon1">
-              <IoIosFlash className="icon-main" />
-            </span>
-            <h5>Current Plan</h5>
-            <h4>{balance.plan}</h4>
-          </article>
-
-          <article>
-            <span className="pend-icon" id="icon2">
-              <IoIosWallet className="icon-main" />
-            </span>
-            <h5>Pending Invest</h5>
-            <h4>{formatter.format(Number(reduceInvest).toFixed(2))}</h4>
-          </article>
-
-          <article>
-            <span className="pend-icon" id="icon3">
-              <MdHourglassEmpty className="icon-main" />
-            </span>
-            <h5>Pending Withdrawal</h5>
-            <h4>{formatter.format(Number(reduceWithdraw).toFixed(2))}</h4>
-          </article>
-
-          <article>
-            <span className="pend-icon" id="icon4">
-              <GiTwoCoins className="icon-main" id="icon4" />
-            </span>
-            <h5>Referral Earn</h5>
-            <h4>{formatter.format(Number(0).toFixed(2))}</h4>
-          </article>
-        </div>
-      </section>
+        </section>
+      </div>
       <FooterMobile />
       <FooterMobile />
     </Wrapper>

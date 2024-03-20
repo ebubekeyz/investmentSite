@@ -78,7 +78,7 @@ export const questions = [
   {
     id: nanoid(),
     title: 'What are the minimum and maximum deposit amounts?',
-    info: 'The minimum deposit is €50 USD, and the maximum deposit per transaction is €200,000. You can have as many active investments as you desire concurrently.',
+    info: 'The minimum deposit is $50 USD, and the maximum deposit per transaction is $200,000. You can have as many active investments as you desire concurrently.',
   },
   {
     id: nanoid(),
@@ -104,28 +104,28 @@ export const questions = [
   },
 ];
 
-export const coinFetch = axios.create({
-  baseURL: 'https://trex-holding-server.com',
-  headers: {
-    Accept: 'application/json',
-  },
-});
 // export const coinFetch = axios.create({
-//   baseURL: 'http://localhost:5200',
+//   baseURL: 'https://trex-holding-server.com',
 //   headers: {
 //     Accept: 'application/json',
 //   },
 // });
-
-export const mainFetch = axios.create({
-  baseURL: 'https://trex-holding-server.com',
+export const coinFetch = axios.create({
+  baseURL: 'http://localhost:5200',
   headers: {
     Accept: 'application/json',
   },
 });
+
 // export const mainFetch = axios.create({
-//   baseURL: 'http://localhost:5200',
+//   baseURL: 'https://trex-holding-server.com',
 //   headers: {
 //     Accept: 'application/json',
 //   },
 // });
+export const mainFetch = axios.create({
+  baseURL: 'http://localhost:5200',
+  headers: {
+    Accept: 'application/json',
+  },
+});

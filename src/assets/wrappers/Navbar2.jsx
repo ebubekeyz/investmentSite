@@ -1,11 +1,17 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.nav`
-  nav {
+  .nav-cont {
+    display: flex;
+    justify-content: space-between;
     background: rgb(19, 17, 17);
-    box-shadow: var(--shadow-1);
+    align-self: center;
+    padding: 1rem 1.5rem;
   }
-
+  .avatar {
+    display: flex;
+    align-self: center;
+  }
   .logo {
     height: 45px;
   }
@@ -23,7 +29,7 @@ const Wrapper = styled.nav`
     padding: 1.7rem;
     display: none;
     border-radius: 0.5rem;
-    margin: 0.2rem auto;
+
     position: absolute;
     right: 1rem;
   }
@@ -36,13 +42,13 @@ const Wrapper = styled.nav`
 
   .nav-info-inner {
     display: flex;
-    align-self: center;
+
     justify-content: space-between;
     place-items: center;
   }
   .nav-info-inner {
     border: 1px solid var(--grey-600);
-    padding: 0.3rem 0.3rem;
+    padding: 0.3rem 0rem;
     border-radius: 0.5rem;
   }
   .nav-info-inner p {
@@ -52,12 +58,9 @@ const Wrapper = styled.nav`
   }
 
   .nav-center {
-    max-width: 1170px;
-    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem;
   }
 
   @media screen and (min-width: 600px) {
@@ -70,7 +73,8 @@ const Wrapper = styled.nav`
   @media screen and (min-width: 800px) {
     .toggle2 {
       position: absolute;
-      right: 7rem;
+      right: 0.8rem;
+      top: 5.5rem;
     }
     .icon2 {
       display: block;
@@ -85,9 +89,7 @@ const Wrapper = styled.nav`
     .nav-toggle {
       display: none;
     }
-    .links-container {
-      height: auto !important;
-    }
+
     .links {
       display: flex;
       gap: 1rem;
@@ -114,11 +116,9 @@ const Wrapper = styled.nav`
   }
 
   .logo {
-    font-size: clamp(1.5rem, 3vw, 3rem);
     color: var(--primary-500);
     font-weight: 700;
     letter-spacing: 2px;
-    font-style: italic;
   }
 `;
 

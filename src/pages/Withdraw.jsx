@@ -7,6 +7,7 @@ import { nanoid } from 'nanoid';
 import { mainFetch } from '../utils';
 import { toast } from 'react-toastify';
 import { useQuery } from '@tanstack/react-query';
+import Sidebar from '../components/Sidebar';
 
 // export const loader = async () => {
 //   const response = await mainFetch.get(`api/v1/withdraw/showUserWithdraw`, {
@@ -170,107 +171,113 @@ const Withdraw = () => {
   return (
     <Wrapper>
       <Navbar2 />
-      <section className="withdraw">
-        <article>
-          <form className="withdrawForm" onSubmit={handleSubmit}>
-            <div className="withdrawForm-inner">
-              {/* <h4>
+      <div className="container">
+        <Sidebar />
+        <section className="withdraw">
+          <article>
+            <form className="withdrawForm" onSubmit={handleSubmit}>
+              <div className="withdrawForm-inner">
+                {/* <h4>
                 Current balance{' '}
                 {formatter.format(Number(mainBalance).toFixed(2))}
               </h4> */}
-              <h4>Withdraw Method</h4>
-              <select
-                className="form-input"
-                id="select"
-                name="withdrawalMethod"
-                style={{ color: 'var(--grey-400)' }}
-                value={withdraw.withdrawalMethod}
-                onChange={(e) => {
-                  setWithdraw({ ...withdraw, [e.target.name]: e.target.value });
-                }}
-              >
-                <option>Select Options</option>
-                <option value="Bitcoin">BTC</option>
-                <option value="ETH">ETH</option>
-                <option value="TRON">TRON</option>
-                <option value="BNB">BNB</option>
-                <option value="USDT">USDT</option>
-              </select>
-
-              <div className="bank">
-                <h5>Withdraw Amount</h5>
-                <input
-                  type="text"
-                  name="amount"
-                  className="form-input input"
-                  value={withdraw.amount}
+                <h4>Withdraw Method</h4>
+                <select
+                  className="form-input"
+                  id="select"
+                  name="withdrawalMethod"
+                  style={{ color: 'var(--grey-400)' }}
+                  value={withdraw.withdrawalMethod}
                   onChange={(e) => {
                     setWithdraw({
                       ...withdraw,
                       [e.target.name]: e.target.value,
                     });
-                  }}
-                />
-                <span
-                  style={{
-                    color: 'var(--primary-700)',
-                    fontSize: '1rem',
                   }}
                 >
-                  Min amount & 0.00 Max amount 59999
-                </span>
+                  <option>Select Options</option>
+                  <option value="Bitcoin">BTC</option>
+                  <option value="ETH">ETH</option>
+                  <option value="TRON">TRON</option>
+                  <option value="BNB">BNB</option>
+                  <option value="USDT">USDT</option>
+                </select>
 
-                <h5 className="wall">Wallet Address</h5>
-                <input
-                  type="text"
-                  name="walletAddress"
-                  className="form-input input"
-                  value={withdraw.walletAddress}
-                  onChange={(e) => {
-                    setWithdraw({
-                      ...withdraw,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
+                <div className="bank">
+                  <h5>Withdraw Amount</h5>
+                  <input
+                    type="text"
+                    name="amount"
+                    className="form-input input"
+                    value={withdraw.amount}
+                    onChange={(e) => {
+                      setWithdraw({
+                        ...withdraw,
+                        [e.target.name]: e.target.value,
+                      });
+                    }}
+                  />
+                  <span
+                    style={{
+                      color: 'var(--primary-700)',
+                      fontSize: '1rem',
+                    }}
+                  >
+                    Min amount & 0.00 Max amount 59999
+                  </span>
 
-                <h5>Withdraw Charge</h5>
-                <input
-                  type="text"
-                  name="charge"
-                  className="form-input input"
-                  value={(withdraw.amount * 10) / 100}
-                  onChange={(e) => {
-                    setWithdraw({
-                      ...withdraw,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
+                  <h5 className="wall">Wallet Address</h5>
+                  <input
+                    type="text"
+                    name="walletAddress"
+                    className="form-input input"
+                    value={withdraw.walletAddress}
+                    onChange={(e) => {
+                      setWithdraw({
+                        ...withdraw,
+                        [e.target.name]: e.target.value,
+                      });
+                    }}
+                  />
+
+                  <h5>Withdraw Charge</h5>
+                  <input
+                    type="text"
+                    name="charge"
+                    className="form-input input"
+                    value={(withdraw.amount * 10) / 100}
+                    onChange={(e) => {
+                      setWithdraw({
+                        ...withdraw,
+                        [e.target.name]: e.target.value,
+                      });
+                    }}
+                  />
+                </div>
+
+                <button type="submit" className="btn">
+                  {isLoading}
+                </button>
               </div>
+            </form>
+          </article>
 
-              <button type="submit" className="btn">
-                {isLoading}
-              </button>
+          <article className="withdraw-pending">
+            <div className="pending">
+              <h3>Pending withdrawal</h3>
+              <p>{formatter.format(Number(withdrawAmt).toFixed(2))}</p>
             </div>
-          </form>
-        </article>
 
-        <article className="withdraw-pending">
-          <div className="pending">
-            <h3>Pending withdrawal</h3>
-            <p>{formatter.format(Number(withdrawAmt).toFixed(2))}</p>
-          </div>
+            <div className="pending">
+              <h3>Withdraw Instruction</h3>
+            </div>
 
-          <div className="pending">
-            <h3>Withdraw Instruction</h3>
-          </div>
-
-          <div className="pending">
-            <h3>Payment may take 15 Minutes to process. Thank you!</h3>
-          </div>
-        </article>
-      </section>
+            <div className="pending">
+              <h3>Payment may take 15 Minutes to process. Thank you!</h3>
+            </div>
+          </article>
+        </section>
+      </div>
       <FooterMobile />
     </Wrapper>
   );

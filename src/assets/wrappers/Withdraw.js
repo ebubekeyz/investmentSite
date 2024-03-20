@@ -6,20 +6,6 @@ const Wrapper = styled.div`
     padding-top: 1rem;
   }
 
-  @media screen and (min-width: 800px) {
-    .withdraw {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: flex-start;
-      place-items: flex-start;
-      justify-items: center;
-      width: 90vw;
-      margin: 0 auto;
-      padding: 3rem 0;
-    }
-    .withdrawForm {
-    }
-  }
   .withdraw {
     padding: 3rem 1.5rem;
   }
@@ -60,6 +46,25 @@ const Wrapper = styled.div`
   #select,
   .input {
     margin: 1rem 0;
+  }
+  @media screen and (min-width: 800px) {
+    .withdraw {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      align-items: flex-start;
+      width: 100%;
+      margin: 0;
+    }
+    .withdraw-pending {
+      margin: 0;
+    }
+    .container {
+      display: grid;
+
+      grid-template-columns: 25% 70%;
+      gap: 2rem;
+    }
   }
 `;
 

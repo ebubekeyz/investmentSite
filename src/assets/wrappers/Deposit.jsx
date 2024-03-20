@@ -2,17 +2,12 @@ import styled from 'styled-components';
 
 const Wrapper = styled.section`
   background: rgb(39, 37, 37);
-  .section-center {
-    width: 90vw;
-    margin: 0 auto;
-    max-width: 1170px;
-  }
 
   .card {
     display: grid;
     grid-template-columns: 1fr 1fr;
     place-items: center;
-    padding-bottom: 6rem;
+    gap: 1rem;
   }
   .card article:hover {
     transform: scale(1.02);
@@ -25,7 +20,6 @@ const Wrapper = styled.section`
 
     color: white;
 
-    margin-top: 1rem;
     text-align: center;
     border-radius: 0.5rem;
     border: 1px solid var(--grey-700);
@@ -43,6 +37,16 @@ const Wrapper = styled.section`
   @media screen and (min-width: 800px) {
     .card {
       grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .deposit {
+      width: 100%;
+      margin: 0;
+    }
+    .container {
+      display: grid;
+
+      grid-template-columns: 25% 70%;
+      gap: 2rem;
     }
   }
 
@@ -147,9 +151,7 @@ const Wrapper = styled.section`
     place-items: center;
     align-self: center;
     border-bottom: 1px solid var(--grey-800);
-    padding-top: 2rem;
-    width: 90vw;
-    margin: 0 auto;
+    padding: 2rem 2.5rem;
   }
 `;
 

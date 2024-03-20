@@ -68,9 +68,20 @@ const Wrapper = styled.section`
     grid-template-columns: 1fr 1fr;
     gap: 12px;
   }
+
   @media screen and (min-width: 800px) {
     .pending {
       grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .dashboard {
+      width: 100%;
+      margin: 0;
+    }
+    .container {
+      display: grid;
+
+      grid-template-columns: 22% 70%;
+      gap: 2rem;
     }
   }
   .icon-main {
