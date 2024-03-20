@@ -255,17 +255,39 @@ const Dashboard = () => {
 
   useEffect(() => {
     withdrawMainFetch();
-  }, []);
+  }, [withdrawMainFetch]);
 
   const filterWithdraw = withdrawAmount.filter(
-    (item) => item.status === 'pending'
+    (item) => item.status === 'processing'
   );
-  console.log(filterWithdraw);
 
   const reduceWithdraw = filterWithdraw.reduce((acc, curr) => {
     return acc + curr.amount;
   }, 0);
 
+  const [totalWithdraw, setTotalWithdraw] = useState([]);
+
+  const totalWithdrawFetch = async () => {
+    try {
+      const response = await mainFetch.get(`api/v1/withdraw/showUserWithdraw`, {
+        withCredentials: true,
+      });
+
+      const withdrawal = response.data.withdraw;
+
+      setTotalWithdraw(withdrawal);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    totalWithdrawFetch();
+  }, [totalWithdrawFetch]);
+
+  const reduceTotalWithdrawal = totalWithdraw.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
   return (
     <Wrapper>
       <Navbar2 />
@@ -296,7 +318,7 @@ const Dashboard = () => {
 
               <p>Total Withdraw</p>
 
-              <h4>{formatter.format(withdrawAmt)}</h4>
+              <h4>{formatter.format(reduceTotalWithdrawal)}</h4>
             </article>
           </div>
 
