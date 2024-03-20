@@ -399,7 +399,7 @@ const Dashboard = () => {
 
         <div className="pending">
           <article>
-            <span className="pend-icon">
+            <span className="pend-icon" id="icon1">
               <IoIosFlash className="icon-main" />
             </span>
             <h5>Current Plan</h5>
@@ -407,7 +407,7 @@ const Dashboard = () => {
           </article>
 
           <article>
-            <span className="pend-icon">
+            <span className="pend-icon" id="icon2">
               <IoIosWallet className="icon-main" />
             </span>
             <h5>Pending Invest</h5>
@@ -415,7 +415,7 @@ const Dashboard = () => {
           </article>
 
           <article>
-            <span className="pend-icon">
+            <span className="pend-icon" id="icon3">
               <MdHourglassEmpty className="icon-main" />
             </span>
             <h5>Pending Withdrawal</h5>
@@ -423,8 +423,8 @@ const Dashboard = () => {
           </article>
 
           <article>
-            <span className="pend-icon">
-              <GiTwoCoins className="icon-main" />
+            <span className="pend-icon" id="icon4">
+              <GiTwoCoins className="icon-main" id="icon4" />
             </span>
             <h5>Referral Earn</h5>
             <h4>{formatter.format(Number(0).toFixed(2))}</h4>

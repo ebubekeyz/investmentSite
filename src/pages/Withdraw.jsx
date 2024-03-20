@@ -174,10 +174,10 @@ const Withdraw = () => {
         <article>
           <form className="withdrawForm" onSubmit={handleSubmit}>
             <div className="withdrawForm-inner">
-              <h4>
+              {/* <h4>
                 Current balance{' '}
                 {formatter.format(Number(mainBalance).toFixed(2))}
-              </h4>
+              </h4> */}
               <h4>Withdraw Method</h4>
               <select
                 className="form-input"

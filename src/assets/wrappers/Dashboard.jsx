@@ -54,6 +54,15 @@ const Wrapper = styled.section`
     border-bottom: 0.1rem solid var(--grey-600);
     padding-bottom: 1rem;
   }
+  #icon4 {
+    background: green;
+  }
+  #icon3 {
+    background: violet;
+  }
+  #icon2 {
+    background: brown;
+  }
   .pending {
     display: grid;
     grid-template-columns: 1fr 1fr;
