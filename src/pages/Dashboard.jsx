@@ -22,7 +22,7 @@ const Dashboard = () => {
       });
       const { username } = response.data.user;
       setUsername(username);
-      setUserIdd(`https://trex-holding.netlify.app/register/${username}`);
+      setUserIdd(`https://trex-holding.com/register/${username}`);
     } catch (error) {
       console.log(error);
       console.log(error.response.data.msg);
@@ -45,6 +45,7 @@ const Dashboard = () => {
     days: '',
     plan: '',
     status: '',
+    createdAt: '',
   });
 
   const showBalance = async () => {
@@ -56,6 +57,7 @@ const Dashboard = () => {
       const payMajor = res.data.payReceipt;
       const num = payMajor.length - 1;
       const {
+        createdAt,
         status,
         amount: {
           amount: amt,
@@ -69,6 +71,7 @@ const Dashboard = () => {
         percent: percent,
         days: days,
         plan: plan,
+        createdAt: createdAt,
       });
     } catch (error) {
       console.log(error);
@@ -88,32 +91,6 @@ const Dashboard = () => {
   };
   useEffect(() => {
     calculateTotalPercent();
-  }, []);
-
-  const profit = () => {
-    const date = new Date();
-
-    let getDate = date.getDate();
-    const num = calculateTotalPercent();
-
-    if (getDate) {
-      getDate = 0;
-    }
-    if (getDate === getDate + balance.days) {
-      getDate = num;
-    }
-    if (getDate === getDate + balance.days + 1) {
-      getDate = 0;
-      setBalance({
-        amount: 0,
-      });
-      setWithdrawAmt(0);
-    }
-
-    return getDate;
-  };
-  useEffect(() => {
-    profit();
   }, []);
 
   const [withdrawAmt, setWithdrawAmt] = useState('');
@@ -137,6 +114,31 @@ const Dashboard = () => {
   useEffect(() => {
     withdrawalFetch();
   }, []);
+
+  const profit = () => {
+    const date = new Date();
+    const investDate = new Date(balance.createdAt);
+
+    let getInvestDate = investDate.getDate();
+    let getDate = date.getDate();
+    let num = calculateTotalPercent();
+
+    if (getDate === getInvestDate) {
+      num = 0;
+    }
+    if (getDate === getInvestDate + balance.days) {
+      num = num;
+    }
+    if (getDate + getInvestDate + balance.days + 1) {
+      num = 0;
+    }
+
+    return num;
+  };
+  useEffect(() => {
+    profit();
+  }, []);
+  console.log(profit());
 
   // const reduceWithdrawal = withdrawAmt.reduce((acc, curr) => {
   //   return acc + curr.amount;
@@ -234,9 +236,10 @@ const Dashboard = () => {
   const filterInvest = invest.filter((item) => item.status === 'pending');
 
   const reduceInvest = filterInvest.reduce((acc, curr) => {
+    const number = curr.length - 1;
     const {
       amount: { amount: amt },
-    } = curr;
+    } = curr[number];
     return acc + amt;
   }, 0);
 
