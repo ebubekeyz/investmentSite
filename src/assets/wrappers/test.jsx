@@ -1,431 +1,955 @@
-import {
-  Form,
-  Link,
-  redirect,
-  useNavigation,
-  useParams,
-} from 'react-router-dom';
-import Wrapper from '../assets/wrappers/Login';
-import { useEffect, useState } from 'react';
-import logo from '../assets/logo.png';
-import { mainFetch } from '../utils';
-import { toast } from 'react-toastify';
+import { Link, useNavigation } from 'react-router-dom';
 
-export const action = async ({ request }) => {
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData);
+import Hero from '../components/Hero';
+import InvestmentCard from '../components/InvestmentCard';
+import img from '../assets/changpeng-zhao.jpg';
+import Submenu from '../components/Submenu';
+import Wrapper from '../assets/wrappers/Landing';
+import Wrapper2 from '../assets/wrappers/AboutPage';
+import Wrapper3 from '../assets/wrappers/Landing2';
+import Wrapper4 from '../assets/wrappers/Card';
+import Wrapper5 from '../assets/wrappers/Coins';
+import { FaArrowRight } from 'react-icons/fa';
+import image1 from '../assets/mission.jpg';
+import image2 from '../assets/operation.jpg';
+import image3 from '../assets/aim2.jpg';
+import image4 from '../assets/legal.jpg';
+import image5 from '../assets/operations.jpg';
+import image6 from '../assets/finance.jpg';
+import Title2 from '../components/Title2';
+import Title from '../components/Title';
+import { BiBookBookmark } from 'react-icons/bi';
+import { IoIosCloudOutline } from 'react-icons/io';
+import { PiSpeakerSimpleNone } from 'react-icons/pi';
+import { BsHouses } from 'react-icons/bs';
+import { CiBoxes } from 'react-icons/ci';
+import { RiMoneyDollarBoxLine } from 'react-icons/ri';
+import { CiMusicNote1 } from 'react-icons/ci';
+import { SlEarphones } from 'react-icons/sl';
+import { PiShoppingCartSimpleLight } from 'react-icons/pi';
+import { MdOutlineSupportAgent } from 'react-icons/md';
+import axios from 'axios';
+import { useLoaderData } from 'react-router-dom';
+import { GoBriefcase } from 'react-icons/go';
+import { FaCarAlt } from 'react-icons/fa';
+import { IoIosFlash } from 'react-icons/io';
+import { FaRegHeart } from 'react-icons/fa';
+import { CiDeliveryTruck } from 'react-icons/ci';
+import { TbDeviceIpadSearch } from 'react-icons/tb';
+import Ceo from '../components/Ceo';
+import btcImg from '../assets/btc.png';
+import { coinFetch } from '../utils';
+import { nanoid } from 'nanoid';
+import ethImg from '../assets/eth.png';
+import bnbImg from '../assets/bnb.png';
+import dogeImg from '../assets/doge.png';
+import xrpImg from '../assets/xrp.png';
+import ltcImg from '../assets/ltc.png';
+import bchImg from '../assets/bch.png';
+import tetherImg from '../assets/tether.png';
+import trxImg from '../assets/trx.png';
+import daiImg from '../assets/dai.png';
 
-  try {
-    const response = await mainFetch.post('/api/v1/auth/register', data, {
-      withCredentials: true,
-    });
+const API = import.meta.env.VITE_COIN_API;
 
-    toast.success(response.data.msg);
-    return redirect('/login');
-  } catch (error) {
-    toast.error(error?.response?.data?.msg);
-    console.log(error);
-    return error;
-  }
+// const coinsQuery = () => {
+//   return {
+//     queryKey: ['coins'],
+//     queryFn: async () => {
+//       const response = await coinFetch.get(`api/coins`);
+//       return { coins: response.data.coins };
+//     },
+//   };
+// };
+
+// export const loader = (queryClient) => async () => {
+//   await queryClient.ensureQueryData(coinsQuery());
+//   return { coins: response.data.coins  };
+// };
+
+export const loader = async () => {
+  const response = await coinFetch.get(`api/coins`);
+
+  return { coins: response.data.coins };
 };
 
-const Register = () => {
-  const { id } = useParams();
+const Landing = () => {
+  const { coins } = useLoaderData();
+  // const { coins } = useQuery(coinsQuery());
 
-  const postReferral = async () => {
-    try {
-      const response = await mainFetch.post(
-        '/api/v1/referral',
-        { refId: id },
-        { withCredentials: true }
-      );
-      console.log(response.data.referral);
-    } catch (error) {
-      console.log(error);
-      console.log(error.response.data.msg);
-    }
-  };
+  const formatter = new Intl.NumberFormat('en-DE', {
+    style: 'currency',
+    currency: 'EUR',
+  });
 
-  useEffect(() => {
-    postReferral();
-  }, []);
-
-  const referral = `${id}`;
-  const [ref, useRef] = useState(referral);
-  const [date, setDate] = useState(new Date());
-  const mainDate = date.getFullYear();
-
-  const navigation = useNavigation();
-  const submitting = navigation.state === 'submitting';
   return (
-    <Wrapper>
-      <div
+    <>
+      {/* <Submenu /> */}
+      <Hero />
+      <Wrapper5>
+        <section className="coins-main">
+          <article className="coins">
+            <div className="coins-inner">
+              <img src={tetherImg} alt="btc-image" />
+              <h5>{coins[0].name}</h5>
+              <span>[{coins[0].symbol}]</span>
+              <span>{formatter.format(Number(coins[0].price).toFixed(2))}</span>
+              <span
+                style={{
+                  color: Number(coins[0].delta_24h) >= 0 ? 'green' : 'red',
+                }}
+              >
+                {coins[0].delta_24h}%
+              </span>
+            </div>
+          </article>
+
+          <article className="coins">
+            <div className="coins-inner">
+              <img src={btcImg} alt="btc-image" />
+              <h5>{coins[1].name}</h5>
+              <span>[{coins[1].symbol}]</span>
+              <span>{formatter.format(Number(coins[1].price).toFixed(2))}</span>
+              <span
+                style={{
+                  color: Number(coins[1].delta_24h) < 0 ? 'red' : 'green',
+                }}
+              >
+                {coins[1].delta_24h}%
+              </span>
+            </div>
+          </article>
+
+          <article className="coins">
+            <div className="coins-inner">
+              <img src={ethImg} alt="btc-image" />
+              <h5>{coins[2].name}</h5>
+              <span>[{coins[2].symbol}]</span>
+              <span>{formatter.format(Number(coins[2].price).toFixed(2))}</span>
+              <span
+                style={{
+                  color: coins[2].delta_24h < 0 ? 'red' : 'green',
+                }}
+              >
+                {coins[2].delta_24h}%
+              </span>
+            </div>
+          </article>
+          <article className="coins">
+            <div className="coins-inner">
+              <img src={bnbImg} alt="btc-image" />
+              <h5>{coins[3].name}</h5>
+              <span>[{coins[3].symbol}]</span>
+              <span>{formatter.format(Number(coins[3].price).toFixed(2))}</span>
+              <span
+                style={{
+                  color: coins[3].delta_24h < 0 ? 'red' : 'green',
+                }}
+              >
+                {coins[3].delta_24h}%
+              </span>
+            </div>
+          </article>
+          <article className="coins">
+            <div className="coins-inner">
+              <img src={dogeImg} alt="btc-image" />
+              <h5>{coins[4].name}</h5>
+              <span>[{coins[4].symbol}]</span>
+              <span>{formatter.format(Number(coins[4].price).toFixed(2))}</span>
+              <span
+                style={{
+                  color: coins[4].delta_24h < 0 ? 'red' : 'green',
+                }}
+              >
+                {coins[4].delta_24h}%
+              </span>
+            </div>
+          </article>
+          <article className="coins">
+            <div className="coins-inner">
+              <img src={xrpImg} alt="btc-image" />
+              <h5>{coins[8].name}</h5>
+              <span>[{coins[8].symbol}]</span>
+              <span>{formatter.format(Number(coins[8].price).toFixed(2))}</span>
+              <span
+                style={{
+                  color: coins[8].delta_24h < 0 ? 'red' : 'green',
+                }}
+              >
+                {coins[8].delta_24h}%
+              </span>
+            </div>
+          </article>
+          <article className="coins">
+            <div className="coins-inner">
+              <img src={ltcImg} alt="btc-image" />
+              <h5>{coins[15].name}</h5>
+              <span>[{coins[15].symbol}]</span>
+              <span>
+                {formatter.format(Number(coins[15].price).toFixed(2))}
+              </span>
+              <span
+                style={{
+                  color: coins[15].delta_24h < 0 ? 'red' : 'green',
+                }}
+              >
+                {coins[15].delta_24h}%
+              </span>
+            </div>
+          </article>
+          <article className="coins">
+            <div className="coins-inner">
+              <img src={trxImg} alt="btc-image" />
+              <h5>{coins[24].name}</h5>
+              <span>[{coins[24].symbol}]</span>
+              <span>
+                {formatter.format(Number(coins[24].price).toFixed(2))}
+              </span>
+              <span
+                style={{
+                  color: Number(coins[24].delta_24h) >= 0 ? 'green' : 'red',
+                }}
+              >
+                {coins[24].delta_24h}%
+              </span>
+            </div>
+          </article>
+        </section>
+      </Wrapper5>
+
+      <Wrapper>
+        <div className="landing">
+          <article>
+            <h2>Investing with us is straightforward</h2>
+          </article>
+          <article className="land-inner">
+            <h4>The future of finance has arrived – trexholding.com.</h4>
+          </article>
+
+          <article className="know-arrow">
+            <Link to="/about" style={{ fontWeight: '700', color: 'red' }}>
+              Know More About{' '}
+            </Link>
+
+            <FaArrowRight className="landing-btn" />
+          </article>
+        </div>
+
+        <div className="about-gal">
+          <article>
+            <img src={image1} alt="abt1" className="abt-img2" />
+            <h4 style={{ marginBottom: '0.8rem' }}>Mission and vision</h4>
+            <p>
+              We believe that those who prepare for the future now will be its
+              rightful owners. We extend the opportunity to qualified investors
+              to invest in companies and products that are shaping the future of
+              humanity.
+            </p>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+
+                borderRadius: '2rem',
+              }}
+              className="selectText"
+            >
+              <Link
+                to="/investment"
+                style={{
+                  fontWeight: '700',
+                  color: 'var(--primary-500)',
+                  padding: '0.8rem 0rem',
+                }}
+              >
+                START INVESTING
+              </Link>
+              <FaArrowRight
+                style={{
+                  marginLeft: '1rem',
+                  fontWeight: '700',
+                  color: 'var(--primary-500)',
+                }}
+              />
+            </div>
+          </article>
+          <article>
+            <img src={image2} alt="abt2" className="abt-img" />
+            <h4 style={{ marginBottom: '0.8rem' }}>Our Value</h4>
+            <p>
+              Trexholding stands out as a unique investment platform that
+              provides a diverse array of investment opportunities for
+              investors. Our focus is on comprehending our clients' goals to
+              assist them in achieving success.
+            </p>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+
+                borderRadius: '2rem',
+              }}
+              className="selectText"
+            >
+              <Link
+                to="/signUp"
+                style={{
+                  fontWeight: '700',
+                  color: 'var(--primary-500)',
+                  padding: '0.8rem 0rem',
+                }}
+              >
+                JOIN US NOW
+              </Link>
+              <FaArrowRight
+                style={{
+                  marginLeft: '1rem',
+                  fontWeight: '700',
+                  color: 'var(--primary-500)',
+                }}
+              />
+            </div>
+          </article>
+          <article>
+            <img src={image3} alt="abt3" className="abt-img" />
+            <h4 style={{ marginBottom: '0.8rem' }}>Our Aim</h4>
+            <p>
+              We sincerely desire success for our clients. When you open an
+              account with us, we will prudently manage and grow your capital in
+              trust for you.
+            </p>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+
+                borderRadius: '2rem',
+              }}
+              className="selectText"
+            >
+              <Link
+                to="/signUp"
+                style={{
+                  fontWeight: '700',
+                  color: 'var(--primary-500)',
+                  padding: '0.8rem 0rem',
+                }}
+              >
+                JOIN US NOW
+              </Link>
+              <FaArrowRight
+                style={{
+                  marginLeft: '1rem',
+                  fontWeight: '700',
+                  color: 'var(--primary-500)',
+                }}
+              />
+            </div>
+          </article>
+
+          <article>
+            <p
+              style={{
+                borderBottom: '4px solid red',
+                width: '100%',
+                marginBottom: '2rem',
+              }}
+            ></p>
+
+            <h3
+              style={{
+                color: 'red',
+                fontWeight: '700',
+                fontSize: '1.4rem',
+                letterSpacing: '0',
+                marginBottom: '1rem',
+              }}
+            >
+              Quality Circle Program
+            </h3>
+            <p>
+              A one-of-a-kind initiative aimed at spreading financial awareness
+              among people and educating them about the fundamental dos and
+              don'ts of financial management.
+            </p>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+
+                borderRadius: '2rem',
+              }}
+              className="selectText"
+            >
+              <Link
+                to="/investment"
+                style={{
+                  fontWeight: '700',
+                  color: 'var(--primary-500)',
+                  padding: '0.8rem 0rem',
+                }}
+              >
+                START INVESTING
+              </Link>
+              <FaArrowRight
+                style={{
+                  marginLeft: '1rem',
+                  fontWeight: '700',
+                  color: 'var(--primary-500)',
+                }}
+              />
+            </div>
+
+            <div
+              style={{
+                background: 'var(--primary-500',
+                padding: '2rem',
+                color: 'white',
+                marginTop: '2rem',
+                borderRadius: '0.8rem',
+              }}
+            >
+              <h3
+                style={{
+                  fontWeight: 'bold',
+                  fontSize: '1.4rem',
+                  marginBottom: '1rem',
+                }}
+              >
+                Careers with us
+              </h3>
+              <p style={{ color: 'white' }}>
+                There is always space for individuals with intelligence who are
+                enthusiastic about the world of finance and are consistently
+                eager to anticipate what comes next.
+              </p>
+            </div>
+
+            <div style={{ textAlign: 'center' }}>
+              <img src={img} style={{ margin: '1rem 0' }} alt="ceo-bitcoin" />
+              <h3
+                style={{
+                  fontSize: '1rem',
+                  texAlign: 'center',
+                  color: 'var(--primary-500)',
+                  fontWeight: '700',
+                }}
+              >
+                Changpeng Zhao
+              </h3>
+            </div>
+          </article>
+        </div>
+
+        <Title title="A WIDE RANGE OF OPTIONS" text="" />
+
+        <section className="box-container">
+          <article className="bond">
+            <div className="box-inner">
+              <BiBookBookmark
+                style={{ marginRight: '2rem', color: 'red', fontSize: '3rem' }}
+              />
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>BONDS</h3>
+            </div>
+          </article>
+
+          <article>
+            <div className="box-inner">
+              <RiMoneyDollarBoxLine
+                style={{ marginRight: '2rem', color: 'red', fontSize: '3rem' }}
+              />
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>CRYPTO</h3>
+            </div>
+          </article>
+
+          <article>
+            <div className="box-inner">
+              <IoIosCloudOutline
+                style={{
+                  marginRight: '2rem',
+                  color: 'red',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>STOCKS</h3>
+            </div>
+          </article>
+
+          <article>
+            <div className="box-inner">
+              <PiSpeakerSimpleNone
+                style={{ marginRight: '2rem', color: 'red', fontSize: '3rem' }}
+              />
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>ETFS</h3>
+            </div>
+          </article>
+
+          <article>
+            <div className="box-inner">
+              <CiBoxes
+                style={{ marginRight: '2rem', color: 'red', fontSize: '3rem' }}
+              />
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>FOREX</h3>
+            </div>
+          </article>
+
+          <article className="estate">
+            <div className="box-inner">
+              <BsHouses
+                style={{ marginRight: '2rem', color: 'red', fontSize: '3rem' }}
+              />
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                REAL ESTATE
+              </h3>
+            </div>
+          </article>
+        </section>
+      </Wrapper>
+
+      <section
         style={{
-          padding: '4rem 0',
-          background: 'rgb(39, 37, 37)',
+          background: 'var(--primary-500)',
+          padding: '6rem',
+          textAlign: 'center',
+          color: 'white',
         }}
       >
-        <Form method="POST" style={{ width: '90vw', margin: '0 auto' }}>
-          <h2
-            className="logo"
-            style={{
-              zIndex: '4',
-              textAlign: 'center',
-              fontSize: '2rem',
-              marginBottom: '1rem',
-            }}
-          >
-            <Link to="/">
-              <img src={logo} alt="logo" className="logo2" />
-            </Link>
-          </h2>
-          <h4 style={{ color: 'var(--grey-400)' }}>Register </h4>
-          <div className="form-control">
-            <input
-              type="text "
-              className="form-input"
-              name="fullName"
-              placeholder="Full Name"
-            />
-            <input
-              type="text "
-              className="form-input"
-              name="username"
-              placeholder="Username"
-            />
-            <input
-              type="text "
-              className="form-input"
-              name="email"
-              placeholder="Email"
-            />
-            <input
-              readOnly
-              style={{ color: 'var(--grey-400)' }}
-              type="text "
-              className="form-input"
-              name="referralId"
-              defaultValue={ref}
-              placeholder="Invitation Code"
-            />
-            <input
-              type="text "
-              className="form-input"
-              name="phone"
-              placeholder="Phone Number"
-            />
-            <input
-              type="password"
-              className="form-input"
-              name="password"
-              placeholder="Password"
-            />
+        <h3
+          style={{
+            fontWeight: 'bold',
+            maxWidth: '60rem',
+            margin: '2rem auto',
+            fontSize: '2.4rem',
+          }}
+        >
+          Our emphasis lies on industries and assets.
+        </h3>
+        <p style={{ color: 'white' }}>
+          Well-positioned and equipped to guide you towards your economic
+          aspirations.
+        </p>
+      </section>
 
-            <select
-              className="form-input"
-              name="country"
-              style={{ color: 'var(--grey-400)' }}
-            >
-              <option value="United States">Australia</option>
-              <option value="Afghanistan">Afghanistan</option>
-              <option value="Albania">Albania</option>
-              <option value="Algeria">Algeria</option>
-              <option value="American Samoa">American Samoa</option>
-              <option value="Andorra">Andorra</option>
-              <option value="Angola">Angola</option>
-              <option value="Anguilla">Anguilla</option>
-              <option value="Antartica">Antarctica</option>
-              <option value="Antigua and Barbuda">Antigua and Barbuda</option>
-              <option value="Argentina">Argentina</option>
-              <option value="Armenia">Armenia</option>
-              <option value="Aruba">Aruba</option>
-              <option value="Australia">Australia</option>
-              <option value="Austria">Austria</option>
-              <option value="Azerbaijan">Azerbaijan</option>
-              <option value="Bahamas">Bahamas</option>
-              <option value="Bahrain">Bahrain</option>
-              <option value="Bangladesh">Bangladesh</option>
-              <option value="Barbados">Barbados</option>
-              <option value="Belarus">Belarus</option>
-              <option value="Belgium">Belgium</option>
-              <option value="Belize">Belize</option>
-              <option value="Benin">Benin</option>
-              <option value="Bermuda">Bermuda</option>
-              <option value="Bhutan">Bhutan</option>
-              <option value="Bolivia">Bolivia</option>
-              <option value="Bosnia and Herzegowina">
-                Bosnia and Herzegowina
-              </option>
-              <option value="Botswana">Botswana</option>
-              <option value="Bouvet Island">Bouvet Island</option>
-              <option value="Brazil">Brazil</option>
-              <option value="British Indian Ocean Territory">
-                British Indian Ocean Territory
-              </option>
-              <option value="Brunei Darussalam">Brunei Darussalam</option>
-              <option value="Bulgaria">Bulgaria</option>
-              <option value="Burkina Faso">Burkina Faso</option>
-              <option value="Burundi">Burundi</option>
-              <option value="Cambodia">Cambodia</option>
-              <option value="Cameroon">Cameroon</option>
-              <option value="Canada">Canada</option>
-              <option value="Cape Verde">Cape Verde</option>
-              <option value="Cayman Islands">Cayman Islands</option>
-              <option value="Central African Republic">
-                Central African Republic
-              </option>
-              <option value="Chad">Chad</option>
-              <option value="Chile">Chile</option>
-              <option value="China">China</option>
-              <option value="Christmas Island">Christmas Island</option>
-              <option value="Cocos Islands">Cocos (Keeling) Islands</option>
-              <option value="Colombia">Colombia</option>
-              <option value="Comoros">Comoros</option>
-              <option value="Congo">Congo</option>
-              <option value="Congo">
-                Congo, the Democratic Republic of the
-              </option>
-              <option value="Cook Islands">Cook Islands</option>
-              <option value="Costa Rica">Costa Rica</option>
-              <option value="Cota D'Ivoire">Cote d'Ivoire</option>
-              <option value="Croatia">Croatia (Hrvatska)</option>
-              <option value="Cuba">Cuba</option>
-              <option value="Cyprus">Cyprus</option>
-              <option value="Czech Republic">Czech Republic</option>
-              <option value="Denmark">Denmark</option>
-              <option value="Djibouti">Djibouti</option>
-              <option value="Dominica">Dominica</option>
-              <option value="Dominican Republic">Dominican Republic</option>
-              <option value="East Timor">East Timor</option>
-              <option value="Ecuador">Ecuador</option>
-              <option value="Egypt">Egypt</option>
-              <option value="El Salvador">El Salvador</option>
-              <option value="Equatorial Guinea">Equatorial Guinea</option>
-              <option value="Eritrea">Eritrea</option>
-              <option value="Estonia">Estonia</option>
-              <option value="Ethiopia">Ethiopia</option>
-              <option value="Falkland Islands">
-                Falkland Islands (Malvinas)
-              </option>
-              <option value="Faroe Islands">Faroe Islands</option>
-              <option value="Fiji">Fiji</option>
-              <option value="Finland">Finland</option>
-              <option value="France">France</option>
-              <option value="France Metropolitan">France, Metropolitan</option>
-              <option value="French Guiana">French Guiana</option>
-              <option value="French Polynesia">French Polynesia</option>
-              <option value="French Southern Territories">
-                French Southern Territories
-              </option>
-              <option value="Gabon">Gabon</option>
-              <option value="Gambia">Gambia</option>
-              <option value="Georgia">Georgia</option>
-              <option value="Germany">Germany</option>
-              <option value="Ghana">Ghana</option>
-              <option value="Gibraltar">Gibraltar</option>
-              <option value="Greece">Greece</option>
-              <option value="Greenland">Greenland</option>
-              <option value="Grenada">Grenada</option>
-              <option value="Guadeloupe">Guadeloupe</option>
-              <option value="Guam">Guam</option>
-              <option value="Guatemala">Guatemala</option>
-              <option value="Guinea">Guinea</option>
-              <option value="Guinea-Bissau">Guinea-Bissau</option>
-              <option value="Guyana">Guyana</option>
-              <option value="Haiti">Haiti</option>
-              <option value="Heard and McDonald Islands">
-                Heard and Mc Donald Islands
-              </option>
-              <option value="Holy See">Holy See (Vatican City State)</option>
-              <option value="Honduras">Honduras</option>
-              <option value="Hong Kong">Hong Kong</option>
-              <option value="Hungary">Hungary</option>
-              <option value="Iceland">Iceland</option>
-              <option value="India">India</option>
-              <option value="Indonesia">Indonesia</option>
-              <option value="Iran">Iran (Islamic Republic of)</option>
-              <option value="Iraq">Iraq</option>
-              <option value="Ireland">Ireland</option>
-              <option value="Israel">Israel</option>
-              <option value="Italy">Italy</option>
-              <option value="Jamaica">Jamaica</option>
-              <option value="Japan">Japan</option>
-              <option value="Jordan">Jordan</option>
-              <option value="Kazakhstan">Kazakhstan</option>
-              <option value="Kenya">Kenya</option>
-              <option value="Kiribati">Kiribati</option>
-              <option value="Democratic People's Republic of Korea">
-                Korea, Democratic People's Republic of
-              </option>
-              <option value="Korea">Korea, Republic of</option>
-              <option value="Kuwait">Kuwait</option>
-              <option value="Kyrgyzstan">Kyrgyzstan</option>
-              <option value="Lao">Lao People's Democratic Republic</option>
-              <option value="Latvia">Latvia</option>
-              <option value="Lebanon">Lebanon</option>
-              <option value="Lesotho">Lesotho</option>
-              <option value="Liberia">Liberia</option>
-              <option value="Libyan Arab Jamahiriya">
-                Libyan Arab Jamahiriya
-              </option>
-              <option value="Liechtenstein">Liechtenstein</option>
-              <option value="Lithuania">Lithuania</option>
-              <option value="Luxembourg">Luxembourg</option>
-              <option value="Macau">Macau</option>
-              <option value="Macedonia">
-                Macedonia, The Former Yugoslav Republic of
-              </option>
-              <option value="Madagascar">Madagascar</option>
-              <option value="Malawi">Malawi</option>
-              <option value="Malaysia">Malaysia</option>
-              <option value="Maldives">Maldives</option>
-              <option value="Mali">Mali</option>
-              <option value="Malta">Malta</option>
-              <option value="Marshall Islands">Marshall Islands</option>
-              <option value="Martinique">Martinique</option>
-              <option value="Mauritania">Mauritania</option>
-              <option value="Mauritius">Mauritius</option>
-              <option value="Mayotte">Mayotte</option>
-              <option value="Mexico">Mexico</option>
-              <option value="Micronesia">
-                Micronesia, Federated States of
-              </option>
-              <option value="Moldova">Moldova, Republic of</option>
-              <option value="Monaco">Monaco</option>
-              <option value="Mongolia">Mongolia</option>
-              <option value="Montserrat">Montserrat</option>
-              <option value="Morocco">Morocco</option>
-              <option value="Mozambique">Mozambique</option>
-              <option value="Myanmar">Myanmar</option>
-              <option value="Namibia">Namibia</option>
-              <option value="Nauru">Nauru</option>
-              <option value="Nepal">Nepal</option>
-              <option value="Netherlands">Netherlands</option>
-              <option value="Netherlands Antilles">Netherlands Antilles</option>
-              <option value="New Caledonia">New Caledonia</option>
-              <option value="New Zealand">New Zealand</option>
-              <option value="Nicaragua">Nicaragua</option>
-              <option value="Niger">Niger</option>
-              <option value="Nigeria">Nigeria</option>
-              <option value="Niue">Niue</option>
-              <option value="Norfolk Island">Norfolk Island</option>
-              <option value="Northern Mariana Islands">
-                Northern Mariana Islands
-              </option>
-              <option value="Norway">Norway</option>
-              <option value="Oman">Oman</option>
-              <option value="Pakistan">Pakistan</option>
-              <option value="Palau">Palau</option>
-              <option value="Panama">Panama</option>
-              <option value="Papua New Guinea">Papua New Guinea</option>
-              <option value="Paraguay">Paraguay</option>
-              <option value="Peru">Peru</option>
-              <option value="Philippines">Philippines</option>
-              <option value="Pitcairn">Pitcairn</option>
-              <option value="Poland">Poland</option>
-              <option value="Portugal">Portugal</option>
-              <option value="Puerto Rico">Puerto Rico</option>
-              <option value="Qatar">Qatar</option>
-              <option value="Reunion">Reunion</option>
-              <option value="Romania">Romania</option>
-              <option value="Russia">Russian Federation</option>
-              <option value="Rwanda">Rwanda</option>
-              <option value="Saint Kitts and Nevis">
-                Saint Kitts and Nevis
-              </option>
-              <option value="Saint Lucia">Saint LUCIA</option>
-              <option value="Saint Vincent">
-                Saint Vincent and the Grenadines
-              </option>
-              <option value="Samoa">Samoa</option>
-              <option value="San Marino">San Marino</option>
-              <option value="Sao Tome and Principe">
-                Sao Tome and Principe
-              </option>
-              <option value="Saudi Arabia">Saudi Arabia</option>
-              <option value="Senegal">Senegal</option>
-              <option value="Seychelles">Seychelles</option>
-              <option value="Sierra">Sierra Leone</option>
-              <option value="Singapore">Singapore</option>
-              <option value="Slovakia">Slovakia (Slovak Republic)</option>
-              <option value="Slovenia">Slovenia</option>
-              <option value="Solomon Islands">Solomon Islands</option>
-              <option value="Somalia">Somalia</option>
-              <option value="South Africa">South Africa</option>
-              <option value="South Georgia">
-                South Georgia and the South Sandwich Islands
-              </option>
-              <option value="Span">Spain</option>
-              <option value="Sri Lanka">Sri Lanka</option>
-              <option value="St. Helena">St. Helena</option>
-              <option value="St. Pierre and Miguelon">
-                St. Pierre and Miquelon
-              </option>
-              <option value="Sudan">Sudan</option>
-              <option value="Suriname">Suriname</option>
-              <option value="Svalbard">Svalbard and Jan Mayen Islands</option>
-              <option value="Swaziland">Swaziland</option>
-              <option value="Sweden">Sweden</option>
-              <option value="Switzerland">Switzerland</option>
-              <option value="Syria">Syrian Arab Republic</option>
-              <option value="Taiwan">Taiwan, Province of China</option>
-              <option value="Tajikistan">Tajikistan</option>
-              <option value="Tanzania">Tanzania, United Republic of</option>
-              <option value="Thailand">Thailand</option>
-              <option value="Togo">Togo</option>
-              <option value="Tokelau">Tokelau</option>
-              <option value="Tonga">Tonga</option>
-              <option value="Trinidad and Tobago">Trinidad and Tobago</option>
-              <option value="Tunisia">Tunisia</option>
-              <option value="Turkey">Turkey</option>
-              <option value="Turkmenistan">Turkmenistan</option>
-              <option value="Turks and Caicos">Turks and Caicos Islands</option>
-              <option value="Tuvalu">Tuvalu</option>
-              <option value="Uganda">Uganda</option>
-              <option value="Ukraine">Ukraine</option>
-              <option value="United Arab Emirates">United Arab Emirates</option>
-              <option value="United Kingdom">United Kingdom</option>
-              <option value="United States Minor Outlying Islands">
-                United States Minor Outlying Islands
-              </option>
-              <option value="Uruguay">Uruguay</option>
-              <option value="Uzbekistan">Uzbekistan</option>
-              <option value="Vanuatu">Vanuatu</option>
-              <option value="Venezuela">Venezuela</option>
-              <option value="Vietnam">Viet Nam</option>
-              <option value="Virgin Islands (British)">
-                Virgin Islands (British)
-              </option>
-              <option value="Virgin Islands (U.S)">
-                Virgin Islands (U.S.)
-              </option>
-              <option value="Wallis and Futana Islands">
-                Wallis and Futuna Islands
-              </option>
-              <option value="Western Sahara">Western Sahara</option>
-              <option value="Yemen">Yemen</option>
-              <option value="Serbia">Serbia</option>
-              <option value="Zambia">Zambia</option>
-              <option value="Zimbabwe">Zimbabwe</option>
-            </select>
+      <Wrapper4>
+        <section className="card-main">
+          <article className="card">
+            <div>
+              <FaCarAlt
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>
+                Automotive
+              </h3>
+            </div>
 
-            <button type="submit" className="btn">
-              {submitting ? 'submitting' : 'register'}
-            </button>
+            <div>
+              <SlEarphones
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>
+                Community Service
+              </h3>
+            </div>
+
+            <div>
+              <PiShoppingCartSimpleLight
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>Retail</h3>
+            </div>
+
+            <div>
+              <BiBookBookmark
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>
+                Education
+              </h3>
+            </div>
+
+            <div>
+              <RiMoneyDollarBoxLine
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>
+                Financial Service
+              </h3>
+            </div>
+
+            <div>
+              <TbDeviceIpadSearch
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>
+                Publishing
+              </h3>
+            </div>
+          </article>
+
+          <article className="card">
+            <div>
+              <MdOutlineSupportAgent
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>Support</h3>
+            </div>
+
+            <div>
+              <GoBriefcase
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>Travel</h3>
+            </div>
+
+            <div>
+              <CiMusicNote1
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>
+                Media and Entertainment
+              </h3>
+            </div>
+
+            <div>
+              <CiDeliveryTruck
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>
+                Logistics and Distribution
+              </h3>
+            </div>
+
+            <div>
+              <IoIosFlash
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>Mining</h3>
+            </div>
+
+            <div>
+              <FaRegHeart
+                style={{
+                  marginRight: '2rem',
+                  color: 'var(--grey-400)',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>
+                Healthcare
+              </h3>
+            </div>
+          </article>
+        </section>
+      </Wrapper4>
+
+      <Title2
+        title="Invest in the future of financial innovation."
+        text="Invest intelligently in the disruption of a multi-trillion-dollar industry."
+      />
+
+      <Wrapper>
+        <section className="box-container">
+          <article className="bond">
+            <div className="box-inner">
+              <IoIosCloudOutline
+                style={{ marginRight: '2rem', color: 'red', fontSize: '3rem' }}
+              />
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                GLOBAL INVESTOR REACH
+              </h3>
+            </div>
+            <p className="bond-text" style={{ marginTop: '1.2rem' }}>
+              Our vibrant community of investors has surpassed 15,000 members
+              from over 150 countries. Blockchain transcends geographical
+              boundaries.
+            </p>
+          </article>
+
+          <article>
+            <div className="box-inner">
+              <BiBookBookmark
+                style={{ marginRight: '2rem', color: 'red', fontSize: '3rem' }}
+              />
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                INVEST SECURELY
+              </h3>
+            </div>
+            <p className="bond-text" style={{ marginTop: '1.2rem' }}>
+              We implement security measures equivalent to those of banks,
+              including secure socket layers and two-factor authentication.
+              Additionally, we are registered with our Monetary Authority to
+              conduct securities business and facilitate secure fund transfers
+              through dedicated client money accounts.
+            </p>
+          </article>
+
+          <article>
+            <div className="box-inner">
+              <PiSpeakerSimpleNone
+                style={{
+                  marginRight: '2rem',
+                  color: 'red',
+                  fontSize: '3rem',
+                }}
+              />
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                INVEST WITH PROTECTION
+              </h3>
+            </div>
+            <p className="bond-text" style={{ marginTop: '1.2rem' }}>
+              Experience professional-grade protection with our distinctive
+              pooled investment structure, enabling your investments to grow in
+              a tax-efficient manner.
+            </p>
+          </article>
+
+          <article>
+            <div className="box-inner">
+              <CiBoxes
+                style={{ marginRight: '2rem', color: 'red', fontSize: '3rem' }}
+              />
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                INVEST WITH SPECIALISTS
+              </h3>
+            </div>
+            <p className="bond-text" style={{ marginTop: '1.2rem' }}>
+              We stand as the world's largest online investment community,
+              comprised of professional investors dedicated to investing in
+              financial innovation and technology.
+            </p>
+          </article>
+
+          <article>
+            <div className="box-inner">
+              <RiMoneyDollarBoxLine
+                style={{ marginRight: '2rem', color: 'red', fontSize: '3rem' }}
+              />
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                ONGOING INVESTOR RELATIONS
+              </h3>
+            </div>
+            <p className="bond-text" style={{ marginTop: '1.2rem' }}>
+              Investors and businesses can conveniently stay connected online
+              throughout the investment lifecycle and store all documentation in
+              a centralized location.
+            </p>
+          </article>
+
+          <article className="estate">
+            <div className="box-inner">
+              <BsHouses
+                style={{ marginRight: '2rem', color: 'red', fontSize: '3rem' }}
+              />
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                NATIVELY DIGITAL
+              </h3>
+            </div>
+            <p className="bond-text" style={{ marginTop: '1.2rem' }}>
+              We serve as the digital alternative to traditional asset
+              management—borderless, hyper-efficient, and accessible from any
+              smartphone. No paperwork is necessary.
+            </p>
+          </article>
+        </section>
+      </Wrapper>
+
+      <InvestmentCard />
+
+      <section>
+        <h2
+          style={{
+            textAlign: 'center',
+            fontWeight: '700',
+            fontSize: '2.5rem',
+            color: 'var(--primary-500',
+            marginTop: '3rem',
+            marginBottom: '2rem',
+          }}
+        >
+          HERE FOR YOU
+        </h2>
+        <h3
+          style={{
+            textAlign: 'center',
+            fontWeight: '700',
+            fontSize: '1rem',
+            marginBottom: '3rem',
+          }}
+        >
+          Explore More
+        </h3>
+      </section>
+
+      <Wrapper3>
+        <div className="about-gal">
+          <article>
+            <img src={image4} alt="abt1" className="abt-img" />
+            <h4 style={{ marginBottom: '0.8rem', fontSize: '1rem' }}>Legal</h4>
             <p>
-              <Link to="/login" className="reg">
-                Login{' '}
+              We are a well-established and reputable brokerage firm. With our
+              extensive experience, clients from all over the world have
+              consistently expressed positive feedback. Our commitment is to
+              provide a market-leading, industry-standard brokerage service.
+            </p>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+
+                borderRadius: '2rem',
+              }}
+              className="selectText"
+            >
+              <Link
+                to="/about"
+                style={{
+                  fontWeight: '700',
+                  color: 'var(--primary-500)',
+                  padding: '0.8rem 0rem',
+                }}
+              >
+                Learn more
               </Link>
-              if you already have an account
+              <FaArrowRight
+                style={{
+                  marginLeft: '1rem',
+                  fontWeight: '700',
+                  color: 'var(--primary-500)',
+                }}
+              />
+            </div>
+          </article>
+          <article>
+            <img src={image5} alt="abt2" className="abt-img" />
+            <h4 style={{ marginBottom: '0.8rem', fontSize: '1rem' }}>
+              Operations
+            </h4>
+            <p>
+              We are a well-regulated and secure trading platform, trusted by
+              thousands. Forex Birds addresses this concern effectively, being
+              registered with and duly regulated by the UK's Securities and
+              Investments Commission (ASIC).
             </p>
-            <p style={{ marginTop: '1rem' }}>
-              © Copyright &nbsp;<span>{mainDate}&nbsp;</span> Trexhoding.com
-              &nbsp; All Rights Reserved.
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+
+                borderRadius: '2rem',
+              }}
+              className="selectText"
+            >
+              <Link
+                to="/about"
+                style={{
+                  fontWeight: '700',
+                  color: 'var(--primary-500)',
+                  padding: '0.8rem 0rem',
+                }}
+              >
+                Learn more
+              </Link>
+              <FaArrowRight
+                style={{
+                  marginLeft: '1rem',
+                  fontWeight: '700',
+                  color: 'var(--primary-500)',
+                }}
+              />
+            </div>
+          </article>
+          <article>
+            <img src={image6} alt="abt3" className="abt-img" />
+            <h4 style={{ marginBottom: '0.8rem', fontSize: '1rem' }}>
+              Finance
+            </h4>
+            <p>
+              We secured millions in venture capital funding to safeguard
+              against market hazards, ensuring full insurance coverage for our
+              funds.
             </p>
-          </div>
-        </Form>
-      </div>
-    </Wrapper>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+
+                borderRadius: '2rem',
+              }}
+              className="selectText"
+            >
+              <Link
+                to="/about"
+                style={{
+                  fontWeight: '700',
+                  color: 'var(--primary-500)',
+                  padding: '0.8rem 0rem',
+                }}
+              >
+                Learn more
+              </Link>
+              <FaArrowRight
+                style={{
+                  marginLeft: '1rem',
+                  fontWeight: '700',
+                  color: 'var(--primary-500)',
+                }}
+              />
+            </div>
+          </article>
+        </div>
+      </Wrapper3>
+    </>
   );
 };
-export default Register;
+export default Landing;
