@@ -60,7 +60,7 @@ const DepositLog = () => {
 
           <article className="withdraw-pending">
             <div className="pending">
-              <h4>Investment log</h4>
+              <h4>Deposit log</h4>
               <p></p>
             </div>
 

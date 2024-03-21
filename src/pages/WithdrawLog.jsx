@@ -60,7 +60,7 @@ const WithdrawLog = () => {
 
           <article className="withdraw-pending">
             <div className="pending">
-              <h4>Investment log</h4>
+              <h4>Withdrawal log</h4>
               <p></p>
             </div>
 
