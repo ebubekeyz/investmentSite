@@ -98,7 +98,7 @@ const Footer = () => {
               101 Collins St L 21, Melbourne, Victoria, 3000, Australia.
             </p>
 
-            <h5 style={{ fontWeight: '700' }}>trexhoding539@gmail.com</h5>
+            <h5 style={{ fontWeight: '700' }}>support@trex-holding.com</h5>
           </article>
         </div>
 
