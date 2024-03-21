@@ -40,12 +40,15 @@ const Sidebar = () => {
     }
   };
 
-  const [plan, setPlan] = useState('');
+  const [plan, setPlan] = useState([]);
   const planFunc = async () => {
     try {
-      const res = await mainFetch.get('/api/v1/payReceipt/showUserPayReceipt', {
-        withCredentials: true,
-      });
+      const response = await mainFetch.get(
+        '/api/v1/payReceipt/showUserPayReceipt',
+        {
+          withCredentials: true,
+        }
+      );
       const planMain = response.data.payReceipt;
       const num = planMain.length - 1;
       const {
@@ -58,13 +61,15 @@ const Sidebar = () => {
       setPlan(plan);
     } catch (error) {
       console.log(error);
-      console.log(error.res.data.msg);
+      console.log(error.response.data.msg);
     }
   };
 
   useEffect(() => {
     planFunc();
   }, [planFunc]);
+
+  console.log(plan);
 
   return (
     <Wrapper>

@@ -8,7 +8,6 @@ const Wrapper = styled.div`
     .sidebar {
       display: block;
       background: rgb(31, 29, 29);
-      height: 100%;
     }
 
     .tog-text {

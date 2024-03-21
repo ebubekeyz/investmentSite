@@ -22,6 +22,7 @@ const Wrapper = styled.section`
     }
     .investDash {
       width: 100%;
+      height: 100%;
       margin: 0;
     }
     .container {
