@@ -47,7 +47,7 @@ const WithdrawLog = () => {
         <Sidebar />
         <section className="section-center">
           <article className="top2 top">
-            <h4>Investment log</h4>
+            <h4>Withdraw log</h4>
 
             <div className="top-inner">
               <span className="space">

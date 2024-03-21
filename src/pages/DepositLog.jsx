@@ -47,7 +47,7 @@ const DepositLog = () => {
         <Sidebar />
         <section className="section-center">
           <article className="top2 top">
-            <h4>Investment log</h4>
+            <h4>Deposit log</h4>
 
             <div className="top-inner">
               <span className="space">
