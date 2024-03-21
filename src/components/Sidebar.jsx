@@ -143,7 +143,9 @@ const Sidebar = () => {
                 <span>
                   <MdKeyboardDoubleArrowRight className="ico" />
                 </span>
-                <span className="tog-text2 tog-text">Withdraw Log</span>
+                <Link to="/withdrawLog" className="tog-text2 tog-text">
+                  Withdraw Log
+                </Link>
               </div>
             </article>
 
@@ -246,7 +248,7 @@ const Sidebar = () => {
           </article>
         </aside>
 
-        <Link to="/invest" type="button" className="btn">
+        <Link to="/investDash" type="button" className="btn">
           <p>Your Current Plan - {plan ? plan : 'N/A'}</p>
           <p>Update Plan</p>
         </Link>

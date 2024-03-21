@@ -10,6 +10,7 @@ export { default as SinglePageError } from './SinglePageError';
 export { default as About } from './About';
 export { default as InvestDash } from './InvestDash';
 export { default as WithdrawLog } from './WithdrawLog';
+export { default as DepositLog } from './DepositLog';
 export { default as InvestLog } from './InvestLog';
 export { default as Bitcoin } from './Bitcoin';
 export { default as Terms } from './Terms';

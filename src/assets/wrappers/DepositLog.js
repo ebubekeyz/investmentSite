@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
-  background: rgb(39, 37, 37);
+ background: rgb(39, 37, 37);
   padding-bottom: 15rem;
   
   .back {
     color: var(--grey-400);
   }
-
+.receipt {
+    width: 1rem;
+}
   .space {
     margin-right: 0.6rem;
   }
@@ -73,7 +75,7 @@ const Wrapper = styled.section`
   .header {
       border-bottom: 1px solid var(--grey-400);
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
     padding: 0.5rem 0;
     place-items: center;
     background:linear-gradient(
