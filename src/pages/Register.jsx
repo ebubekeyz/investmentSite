@@ -27,6 +27,10 @@ const Register = () => {
     email: '',
     country: '',
   });
+
+  const referral = `${id}`;
+  const [ref, useRef] = useState(referral);
+
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
@@ -38,7 +42,7 @@ const Register = () => {
           email: regUser.email,
           phone: regUser.phone,
           country: regUser.country,
-          referralId: regUser.referralId,
+          referralId: ref,
           username: regUser.username,
           password: regUser.password,
         },
@@ -67,26 +71,24 @@ const Register = () => {
     }
   };
 
-  const postReferral = async () => {
-    try {
-      const response = await mainFetch.post(
-        '/api/v1/referral',
-        { refId: id },
-        { withCredentials: true }
-      );
-      console.log(response.data.referral);
-    } catch (error) {
-      console.log(error);
-      console.log(error.response.data.msg);
-    }
-  };
+  // const postReferral = async () => {
+  //   try {
+  //     const response = await mainFetch.post(
+  //       '/api/v1/referral',
+  //       { refId: id },
+  //       { withCredentials: true }
+  //     );
+  //     console.log(response.data.referral);
+  //   } catch (error) {
+  //     console.log(error);
+  //     console.log(error.response.data.msg);
+  //   }
+  // };
 
-  useEffect(() => {
-    postReferral();
-  }, [handleRegister]);
+  // useEffect(() => {
+  //   postReferral();
+  // }, [handleRegister]);
 
-  const referral = `${id}`;
-  const [ref, useRef] = useState(referral);
   const [date, setDate] = useState(new Date());
   const mainDate = date.getFullYear();
 
@@ -155,9 +157,8 @@ const Register = () => {
               type="text "
               className="form-input"
               name="referralId"
-              defaultValue={ref}
               placeholder="Invitation Code"
-              value={id}
+              value={ref}
               onChange={(e) => {
                 setRegUser({ ...regUser, [e.target.name]: e.target.value });
               }}

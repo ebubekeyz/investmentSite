@@ -14,14 +14,14 @@ import { GiTwoCoins } from 'react-icons/gi';
 
 const Dashboard = () => {
   const [userIdd, setUserIdd] = useState('');
-
+  const [username, setUsername] = useState('');
   const fetchUser = async () => {
     try {
       const response = await mainFetch.get('/api/v1/users/showMe', {
         withCredentials: true,
       });
       const { username } = response.data.user;
-
+      setUsername(username);
       setUserIdd(`https://trex-holding.netlify.app/register/${username}`);
     } catch (error) {
       console.log(error);
@@ -291,6 +291,27 @@ const Dashboard = () => {
   const reduceTotalWithdrawal = totalWithdraw.reduce((acc, curr) => {
     return acc + curr.amount;
   }, 0);
+
+  const [user, setUser] = useState([]);
+
+  const showUserRef = async () => {
+    try {
+      const response = await mainFetch.get('/api/v1/users', {
+        withCredentials: true,
+      });
+
+      setUser(response.data.users);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    showUserRef();
+  }, [showUserRef]);
+
+  const filterUser = user.filter((item) => item.referralId === `${username}`);
+
   return (
     <Wrapper>
       <Navbar2 />
@@ -387,15 +408,20 @@ const Dashboard = () => {
           </article>
 
           <article className="ref-tree">
-            <h4>Reference tree</h4>
+            <h4>Reference tree (You have {filterUser.length} referral)</h4>
+
             <div className="main-tree">
-              {refTree.map((item) => {
-                return (
-                  <div className="main-tree">
-                    <p>{item.refId}</p>;
-                  </div>
-                );
-              })}
+              {filterUser
+                ? filterUser.map((item) => {
+                    const { _id: id, username } = item;
+
+                    return (
+                      <div className="main-tree">
+                        <p key={id}>{username}</p>;
+                      </div>
+                    );
+                  })
+                : '<p>You dont have any referral yet. PLease invite a user and earn</p>'}
             </div>
           </article>
 

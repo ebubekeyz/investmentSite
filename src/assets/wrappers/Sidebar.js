@@ -10,6 +10,7 @@ const Wrapper = styled.div`
       background: rgb(31, 29, 29);
       height: 100%;
     }
+
     .tog-text {
       transition: var(--transition);
     }
@@ -20,6 +21,23 @@ const Wrapper = styled.div`
     .home {
       display: flex;
       align-self: center;
+    }
+    .btn p {
+      color: white;
+    }
+    .btn {
+      width: 80%;
+      margin: 1rem;
+      padding: 1rem;
+    }
+    #ico1 {
+      margin-left: 7rem;
+    }
+    #ico2 {
+      margin-left: 7.6rem;
+    }
+    #ico3 {
+      margin-left: 8.5rem;
     }
     .home {
       padding: 1rem 0;
@@ -43,8 +61,7 @@ const Wrapper = styled.div`
     .ico {
       color: white;
       font-size: 1.2rem;
-      margin-left: 2rem;
-
+      text-align: right;
       cursor: pointer;
     }
     .icon {
@@ -54,7 +71,7 @@ const Wrapper = styled.div`
     .tog-text {
       color: white;
       margin-left: 1rem;
-      margin-right: 4rem;
+
       cursor: pointer;
     }
     .tog-text2 {

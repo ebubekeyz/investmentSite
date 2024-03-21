@@ -26,58 +26,10 @@ const Withdraw = () => {
     currentBalance: '',
     walletAddress: '',
     status: '',
-    charge: '',
   });
 
   const [code, setCode] = useState('');
   const [chargePercentage, setChargePercentage] = useState('');
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    let {
-      withdrawalMethod,
-      amount,
-      currentBalance,
-      walletAddress,
-      status,
-      charge,
-    } = withdraw;
-
-    charge = (amount * 10) / 100;
-
-    try {
-      setIsLoading('submitting');
-      const res = await mainFetch.post(
-        '/api/v1/withdraw',
-        {
-          withdrawalMethod: withdrawalMethod,
-          amount: amount,
-          currentBalance: currentBalance,
-          walletAddress: walletAddress,
-          charge,
-        },
-        { withCredentials: true }
-      );
-      setIsLoading('success');
-
-      //   setChargePercentage(charge);
-
-      //   console.log(code, chargePercentage);
-      toast.success('Withdrawal Successful');
-      const data = res.data.withdraw;
-      setWithdraw({
-        withdrawalMethod: '',
-        amount: '',
-        currentBalance: '',
-        walletAddress: '',
-        status: '',
-        charge: '',
-      });
-    } catch (error) {
-      console.log(error);
-      setIsLoading('withdraw');
-      toast.error(error.res.data.msg);
-    }
-  };
 
   const [withdrawAmt, setWithdrawAmt] = useState(0);
 
@@ -92,8 +44,8 @@ const Withdraw = () => {
       if (withdrawal.length !== 0) {
         // console.log('hi');
         const num = withdrawal.length - 1;
-        const percent = (withdrawal[num].amount * 10) / 100;
-        const withdrawAmtCalc = withdrawal[num].amount - percent;
+
+        const withdrawAmtCalc = withdrawal[num].amount;
 
         setWithdrawAmt(withdrawAmtCalc);
       }
@@ -152,7 +104,7 @@ const Withdraw = () => {
       console.log(bal);
       const num = bal.length - 1;
       const { balance } = bal[num];
-      setMainBalance(balance - reduceWithdrawal);
+      setMainBalance(balance - withdrawAmt);
     } catch (error) {
       console.log(error);
       console.log(error.res.data.msg);
@@ -162,6 +114,41 @@ const Withdraw = () => {
   useEffect(() => {
     showBalance();
   }, [showBalance]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let { withdrawalMethod, amount, currentBalance, walletAddress, status } =
+      withdraw;
+
+    try {
+      setIsLoading('submitting');
+      const res = await mainFetch.post(
+        '/api/v1/withdraw',
+        {
+          withdrawalMethod: withdrawalMethod,
+          amount: amount,
+          currentBalance: currentBalance,
+          walletAddress: walletAddress,
+        },
+        { withCredentials: true }
+      );
+      setIsLoading('success');
+
+      toast.success('Withdrawal Successful');
+      const data = res.data.withdraw;
+      setWithdraw({
+        withdrawalMethod: '',
+        amount: '',
+        currentBalance: '',
+        walletAddress: '',
+        status: '',
+      });
+    } catch (error) {
+      console.log(error);
+      setIsLoading('withdraw');
+      toast.error(error.res.data.msg);
+    }
+  };
 
   // console.log(mainBalance);
 
@@ -232,20 +219,6 @@ const Withdraw = () => {
                     name="walletAddress"
                     className="form-input input"
                     value={withdraw.walletAddress}
-                    onChange={(e) => {
-                      setWithdraw({
-                        ...withdraw,
-                        [e.target.name]: e.target.value,
-                      });
-                    }}
-                  />
-
-                  <h5>Withdraw Charge</h5>
-                  <input
-                    type="text"
-                    name="charge"
-                    className="form-input input"
-                    value={(withdraw.amount * 10) / 100}
                     onChange={(e) => {
                       setWithdraw({
                         ...withdraw,

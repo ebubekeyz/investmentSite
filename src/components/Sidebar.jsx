@@ -10,8 +10,61 @@ import { IoIosLogOut } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import { GoBriefcase } from 'react-icons/go';
 import { RiMoneyDollarBoxLine } from 'react-icons/ri';
+import { useEffect, useState } from 'react';
+import { CiSettings } from 'react-icons/ci';
 
 const Sidebar = () => {
+  const [show, setShow] = useState(false);
+
+  const showFunc = () => {
+    setShow(!show);
+  };
+  const [show2, setShow2] = useState(false);
+
+  const showFunc2 = () => {
+    setShow2(!show2);
+  };
+  const [show3, setShow3] = useState(false);
+
+  const showFunc3 = () => {
+    setShow3(!show3);
+  };
+
+  const logout = async () => {
+    try {
+      await mainFetch.get('/api/v1/auth/logout', { withCredentials: true });
+      nav('/login');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const [plan, setPlan] = useState('');
+  const planFunc = async () => {
+    try {
+      const res = await mainFetch.get('/api/v1/payReceipt/showUserPayReceipt', {
+        withCredentials: true,
+      });
+      const planMain = response.data.payReceipt;
+      const num = planMain.length - 1;
+      const {
+        amount: {
+          coin: {
+            invest: { plan: plan },
+          },
+        },
+      } = planMain[num];
+      setPlan(plan);
+    } catch (error) {
+      console.log(error);
+      console.log(error.res.data.msg);
+    }
+  };
+
+  useEffect(() => {
+    planFunc();
+  }, [planFunc]);
+
   return (
     <Wrapper>
       <div className="sidebar">
@@ -31,37 +84,38 @@ const Sidebar = () => {
                 <IoIosFlash className="icon" />
               </span>
               <span className="tog-text">Investment</span>
-              <span>
-                <MdKeyboardArrowDown className="ico" />
+              <span onClick={showFunc}>
+                <MdKeyboardArrowDown className="ico" id="ico1" />
               </span>
             </div>
           </article>
         </aside>
 
-        <div className="">
-          <article id="dash2">
-            <div className="tog">
-              <span>
-                <MdKeyboardDoubleArrowRight className="ico" />
-              </span>
-              <Link to="/investLog" className="tog-text2 tog-text">
-                Invest Log
-              </Link>
-            </div>
-          </article>
+        {show && (
+          <div>
+            <article id="dash2">
+              <div className="tog">
+                <span>
+                  <MdKeyboardDoubleArrowRight className="ico" />
+                </span>
+                <Link to="/investLog" className="tog-text2 tog-text">
+                  Invest Log
+                </Link>
+              </div>
+            </article>
 
-          <article id="dash2">
-            <div className="tog">
-              <span>
-                <MdKeyboardDoubleArrowRight className="ico" />
-              </span>
-              <Link to="" className="tog-text2 tog-text">
-                Invest Plan
-              </Link>
-            </div>
-          </article>
-        </div>
-
+            <article id="dash2">
+              <div className="tog">
+                <span>
+                  <MdKeyboardDoubleArrowRight className="ico" />
+                </span>
+                <Link to="" className="tog-text2 tog-text">
+                  Invest Plan
+                </Link>
+              </div>
+            </article>
+          </div>
+        )}
         <aside id="dash2">
           <article className="home">
             <div className="tog">
@@ -69,34 +123,36 @@ const Sidebar = () => {
                 <IoFolderOpenOutline className="icon" />
               </span>
               <span className="tog-text">Withdraw</span>
-              <span>
-                <MdKeyboardArrowDown className="ico" />
+              <span onClick={showFunc2}>
+                <MdKeyboardArrowDown className="ico" id="ico2" />
               </span>
             </div>
           </article>
         </aside>
 
-        <div className="">
-          <article id="dash2">
-            <div className="tog">
-              <span>
-                <MdKeyboardDoubleArrowRight className="ico" />
-              </span>
-              <span className="tog-text2 tog-text">Withdraw Log</span>
-            </div>
-          </article>
+        {show2 && (
+          <div className="">
+            <article id="dash2">
+              <div className="tog">
+                <span>
+                  <MdKeyboardDoubleArrowRight className="ico" />
+                </span>
+                <span className="tog-text2 tog-text">Withdraw Log</span>
+              </div>
+            </article>
 
-          <article id="dash2">
-            <div className="tog">
-              <span>
-                <MdKeyboardDoubleArrowRight className="ico" />
-              </span>
-              <Link to="/withdraw" className="tog-text2 tog-text">
-                Withdraw
-              </Link>
-            </div>
-          </article>
-        </div>
+            <article id="dash2">
+              <div className="tog">
+                <span>
+                  <MdKeyboardDoubleArrowRight className="ico" />
+                </span>
+                <Link to="/withdraw" className="tog-text2 tog-text">
+                  Withdraw
+                </Link>
+              </div>
+            </article>
+          </div>
+        )}
 
         <aside id="dash2">
           <article className="home">
@@ -105,34 +161,36 @@ const Sidebar = () => {
                 <GoBriefcase className="icon" />
               </span>
               <span className="tog-text">Deposit</span>
-              <span>
-                <MdKeyboardArrowDown className="ico" />
+              <span onClick={showFunc3}>
+                <MdKeyboardArrowDown className="ico" id="ico3" />
               </span>
             </div>
           </article>
         </aside>
 
-        <div className="">
-          <article id="dash2">
-            <div className="tog">
-              <span>
-                <MdKeyboardDoubleArrowRight className="ico" />
-              </span>
-              <span className="tog-text2 tog-text">Deposit Log</span>
-            </div>
-          </article>
+        {show3 && (
+          <div className="">
+            <article id="dash2">
+              <div className="tog">
+                <span>
+                  <MdKeyboardDoubleArrowRight className="ico" />
+                </span>
+                <span className="tog-text2 tog-text">Deposit Log</span>
+              </div>
+            </article>
 
-          <article id="dash2">
-            <div className="tog">
-              <span>
-                <MdKeyboardDoubleArrowRight className="ico" />
-              </span>
-              <Link to="/deposit" className="tog-text2 tog-text">
-                Deposit
-              </Link>
-            </div>
-          </article>
-        </div>
+            <article id="dash2">
+              <div className="tog">
+                <span>
+                  <MdKeyboardDoubleArrowRight className="ico" />
+                </span>
+                <Link to="/deposit" className="tog-text2 tog-text">
+                  Deposit
+                </Link>
+              </div>
+            </article>
+          </div>
+        )}
 
         <aside id="dash2">
           <article className="home">
@@ -160,12 +218,32 @@ const Sidebar = () => {
           <article className="home">
             <div className="tog">
               <span>
-                <IoIosLogOut className="icon" />
+                <CiSettings className="icon" />
               </span>
-              <span className="tog-text">Logout</span>
+              <Link to="/settings" className="tog-text">
+                Settings
+              </Link>
             </div>
           </article>
         </aside>
+
+        <aside id="dash2">
+          <article className="home">
+            <div className="tog">
+              <span>
+                <IoIosLogOut className="icon" />
+              </span>
+              <span onClick={logout} className="tog-text">
+                Logout
+              </span>
+            </div>
+          </article>
+        </aside>
+
+        <Link to="/invest" type="button" className="btn">
+          <p>Your Current Plan - {plan ? plan : 'N/A'}</p>
+          <p>Update Plan</p>
+        </Link>
       </div>
       ;
     </Wrapper>

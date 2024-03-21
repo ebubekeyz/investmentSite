@@ -8,7 +8,7 @@ import Sidebar from '../components/Sidebar';
 
 const InvestLog = () => {
   const [receipt, setReceipt] = useState([]);
-  const [sow, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
   const showAmountId = async () => {
     try {

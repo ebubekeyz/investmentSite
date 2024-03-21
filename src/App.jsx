@@ -25,6 +25,7 @@ import {
   Bitcoin,
   InvestLog,
   SignUp,
+  InvestDash,
 } from './pages';
 import { loader as landingLoader } from './pages/Landing.jsx';
 import { action as actionLoader } from './pages/Login.jsx';
@@ -143,6 +144,11 @@ const router = createBrowserRouter([
   {
     path: '/investLog',
     element: <InvestLog />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/investDash',
+    element: <InvestDash />,
     errorElement: <SinglePageError />,
   },
 ]);
