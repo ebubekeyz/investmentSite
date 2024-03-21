@@ -84,14 +84,10 @@ const Withdraw = () => {
     withdrawMainFetch();
   }, [withdrawMainFetch]);
 
-  // console.log(withdrawAmount)
-  const filterWithdraw = withdrawAmount.filter(
-    (item) => item.status === 'processing'
-  );
+  // console.log(withdrawAmount);
 
-  const reduceWithdrawal = filterWithdraw.reduce((acc, curr) => {
-    const num = curr.length - 1;
-    return acc + curr[num].amount;
+  const reduceWithdrawal = withdrawAmount.reduce((acc, curr) => {
+    return acc + curr.amount;
   }, 0);
 
   // console.log(reduceWithdrawal);
@@ -242,9 +238,7 @@ const Withdraw = () => {
           <article className="withdraw-pending">
             <div className="pending">
               <h3>Pending withdrawal</h3>
-              <p>
-                {formatter.format(Number(reduceWithdrawal).toFixed(2)) || 0}
-              </p>
+              <p>{formatter.format(Number(withdrawAmt).toFixed(2))}</p>
             </div>
 
             <div className="pending">
