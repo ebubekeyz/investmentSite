@@ -394,7 +394,7 @@ const Dashboard = () => {
             <div className="upgrade">
               <p style={{ maxWidth: '10rem' }}>{balance.plan}</p>
               {/* <p>{balance.coin}</p> */}
-              <Link to="/investment" type="btn" className="upgrade-btn">
+              <Link to="/investDash" type="btn" className="upgrade-btn">
                 Upgrade
               </Link>
             </div>
