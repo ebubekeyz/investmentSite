@@ -236,10 +236,9 @@ const Dashboard = () => {
   const filterInvest = invest.filter((item) => item.status === 'pending');
 
   const reduceInvest = filterInvest.reduce((acc, curr) => {
-    const number = curr.length - 1;
     const {
       amount: { amount: amt },
-    } = curr[number];
+    } = curr;
     return acc + amt;
   }, 0);
 
