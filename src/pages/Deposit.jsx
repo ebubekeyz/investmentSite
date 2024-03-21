@@ -80,7 +80,7 @@ const Deposit = () => {
       setOpen(true);
     } catch (error) {
       toast.error('Please select an investment plan');
-      nav('/investment');
+      nav('/investDash');
       console.log(error);
       console.log(error.response.data.msg);
     }
@@ -98,7 +98,7 @@ const Deposit = () => {
       setOpen(true);
     } catch (error) {
       toast.error('Please select an investment plan');
-      nav('/investment');
+      nav('/investDash');
       console.log(error);
       console.log(error.response.data.msg);
     }
@@ -115,7 +115,7 @@ const Deposit = () => {
 
       setOpen(true);
     } catch (error) {
-      nav('/investment');
+      nav('/investDash');
       toast.error('Please select an investment plan');
       console.log(error);
       console.log(error.response.data.msg);
@@ -133,7 +133,7 @@ const Deposit = () => {
 
       setOpen(true);
     } catch (error) {
-      nav('/investment');
+      nav('/investDash');
       toast.error('Please select an investment plan');
       console.log(error);
       console.log(error.response.data.msg);
@@ -151,7 +151,7 @@ const Deposit = () => {
 
       setOpen(true);
     } catch (error) {
-      nav('/investment');
+      nav('/investDash');
       toast.error('Please select an investment plan');
       console.log(error);
       console.log(error.response.data.msg);

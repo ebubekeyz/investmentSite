@@ -462,7 +462,7 @@ const Dashboard = () => {
           </div>
         </section>
       </div>
-      <FooterMobile />
+
       <FooterMobile />
     </Wrapper>
   );

@@ -12,6 +12,7 @@ import { GoBriefcase } from 'react-icons/go';
 import { RiMoneyDollarBoxLine } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
 import { CiSettings } from 'react-icons/ci';
+import { mainFetch } from '../utils';
 
 const Sidebar = () => {
   const [show, setShow] = useState(false);
@@ -109,7 +110,7 @@ const Sidebar = () => {
                 <span>
                   <MdKeyboardDoubleArrowRight className="ico" />
                 </span>
-                <Link to="" className="tog-text2 tog-text">
+                <Link to="/investDash" className="tog-text2 tog-text">
                   Invest Plan
                 </Link>
               </div>

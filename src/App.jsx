@@ -26,6 +26,7 @@ import {
   InvestLog,
   SignUp,
   InvestDash,
+  WithdrawLog,
 } from './pages';
 import { loader as landingLoader } from './pages/Landing.jsx';
 import { action as actionLoader } from './pages/Login.jsx';
@@ -149,6 +150,11 @@ const router = createBrowserRouter([
   {
     path: '/investDash',
     element: <InvestDash />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/WithdrawLog',
+    element: <WithdrawLog />,
     errorElement: <SinglePageError />,
   },
 ]);
