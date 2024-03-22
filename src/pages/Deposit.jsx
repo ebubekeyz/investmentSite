@@ -174,7 +174,7 @@ const Deposit = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
+    if (max >= max && investAmount <= investAmount) {
       setIsLoading('Depositing..');
       const response = await mainFetch.post(
         '/api/v1/amount',
@@ -188,9 +188,8 @@ const Deposit = () => {
       setIsLoading('Deposited..');
       toast.success('Deposit Successful');
       nav('/bitcoin');
-    } catch (error) {
-      console.log(error);
-      toast.success(error.response.data.msg);
+    } else {
+      toast.error(`Please input a valid amount`);
     }
   };
 
