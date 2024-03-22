@@ -204,7 +204,7 @@ const Deposit = () => {
         <Sidebar />
         <section className="deposit">
           <article className="top2 top">
-            <h4>Password</h4>
+            <h4>Deposit</h4>
 
             <div className="top-inner">
               <span className="space">
