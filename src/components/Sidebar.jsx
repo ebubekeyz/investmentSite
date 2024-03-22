@@ -69,8 +69,6 @@ const Sidebar = () => {
     planFunc();
   }, [planFunc]);
 
-  console.log(plan);
-
   return (
     <Wrapper>
       <div className="sidebar">

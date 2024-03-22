@@ -100,6 +100,9 @@ const Wrapper = styled.section`
   }
 
     @media screen and (min-width: 800px) {
+      .top2 {
+        width: 95%;
+      }
     .section-center {
       width: 100%;
       margin: 0;

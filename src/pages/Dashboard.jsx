@@ -71,6 +71,7 @@ const Dashboard = () => {
         percent: percent,
         days: days,
         plan: plan,
+        status: status,
         createdAt: createdAt,
       });
     } catch (error) {
@@ -81,16 +82,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     showBalance();
-  }, []);
-
-  const [calcPercentage, setCalcPercentage] = useState(0);
-  const calculateTotalPercent = () => {
-    const total = (balance.amount * balance.percent) / 100;
-
-    return total;
-  };
-  useEffect(() => {
-    calculateTotalPercent();
   }, []);
 
   const [withdrawAmt, setWithdrawAmt] = useState('');
@@ -115,6 +106,53 @@ const Dashboard = () => {
     withdrawalFetch();
   }, []);
 
+  const [totalBal, setTotalBal] = useState([]);
+
+  const showTotalBal = async () => {
+    try {
+      const res = await mainFetch.get('/api/v1/payReceipt/showUserPayReceipt', {
+        withCredentials: true,
+      });
+
+      const payMajor = res.data.payReceipt;
+      setTotalBal(payMajor);
+    } catch (error) {
+      console.log(error);
+      console.log(error.res.data.msg);
+    }
+  };
+
+  useEffect(() => {
+    showTotalBal();
+  }, []);
+
+  const balSent = totalBal.filter((item) => item.status === 'paid');
+
+  // const totalBalSent = balSent.reduce((acc, curr) => {
+  //   const {
+  //     createdAt,
+  //     status,
+  //     amount: {
+  //       amount: amt,
+  //       coin: {
+  //         invest: { percent: percent, days: days, plan: plan },
+  //       },
+  //     },
+  //   } = curr;
+
+  //   return (acc + amt * percent) / (balSent.length * 100);
+  // }, 0);
+
+  const [calcPercentage, setCalcPercentage] = useState(0);
+  const calculateTotalPercent = () => {
+    const total = (balance.amount * balance.percent) / 100;
+
+    return total;
+  };
+  useEffect(() => {
+    calculateTotalPercent();
+  }, []);
+
   const profit = () => {
     const date = new Date();
     const investDate = new Date(balance.createdAt);
@@ -123,14 +161,11 @@ const Dashboard = () => {
     let getDate = date.getDate();
     let num = calculateTotalPercent();
 
-    if (getDate === getInvestDate) {
-      num = 0;
-    }
     if (getDate === getInvestDate + balance.days) {
-      num = num;
+      return num;
     }
-    if (getDate + getInvestDate + balance.days + 1) {
-      num = 0;
+    if (getDate === getInvestDate + balance.days + 1) {
+      return (num = 0);
     }
 
     return num;
@@ -138,7 +173,6 @@ const Dashboard = () => {
   useEffect(() => {
     profit();
   }, []);
-  console.log(profit());
 
   // const reduceWithdrawal = withdrawAmt.reduce((acc, curr) => {
   //   return acc + curr.amount;
@@ -184,27 +218,7 @@ const Dashboard = () => {
     showReferral();
   }, []);
 
-  const [totalBal, setTotalBal] = useState([]);
-
-  const showTotalBal = async () => {
-    try {
-      const res = await mainFetch.get('/api/v1/payReceipt/showUserPayReceipt', {
-        withCredentials: true,
-      });
-
-      const payMajor = res.data.payReceipt;
-      setTotalBal(payMajor);
-    } catch (error) {
-      console.log(error);
-      console.log(error.res.data.msg);
-    }
-  };
-
-  useEffect(() => {
-    showTotalBal();
-  }, []);
-
-  const totalAmount = totalBal?.reduce((acc, curr) => {
+  const totalAmount = balSent?.reduce((acc, curr) => {
     const {
       amount: { amount: amt },
     } = curr;
@@ -290,6 +304,14 @@ const Dashboard = () => {
     totalWithdrawFetch();
   }, [totalWithdrawFetch]);
 
+  const filterTotalWithdraw = totalWithdraw.filter(
+    (item) => item.status === 'sent'
+  );
+
+  const reduceSentWithdrawal = filterTotalWithdraw.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
+
   const reduceTotalWithdrawal = totalWithdraw.reduce((acc, curr) => {
     return acc + curr.amount;
   }, 0);
@@ -326,14 +348,16 @@ const Dashboard = () => {
                 <h3 id="circle-one"></h3>
                 <h3 id="circ-two"></h3>
               </div>
-
               <p>Account balance</p>
-
-              <h4>
-                {formatter.format(
-                  Number(balance.amount + profit() - withdrawAmt).toFixed(2)
-                )}
-              </h4>
+              {balance.status === 'paid' ? (
+                <h4>
+                  {formatter.format(
+                    Number(balance.amount + profit() - withdrawAmt).toFixed(2)
+                  )}
+                </h4>
+              ) : (
+                <h4>{formatter.format(0)}</h4>
+              )}
             </article>
           </div>
           <aside className="box">
@@ -346,7 +370,11 @@ const Dashboard = () => {
 
                 <p>Total Withdraw</p>
 
-                <h4>{formatter.format(reduceTotalWithdrawal)}</h4>
+                {filterTotalWithdraw ? (
+                  <h4>{formatter.format(reduceSentWithdrawal)}</h4>
+                ) : (
+                  <h4>{formatter.format(0)}</h4>
+                )}
               </article>
             </div>
 
@@ -359,7 +387,11 @@ const Dashboard = () => {
 
                 <p>Total profit</p>
 
-                <h4>{formatter.format(Number(profit()).toFixed(2))}</h4>
+                {balance.status === 'paid' ? (
+                  <h4>{formatter.format(Number(profit()).toFixed(2))}</h4>
+                ) : (
+                  <h4>{formatter.format(Number(0).toFixed(2))}</h4>
+                )}
               </article>
             </div>
 
@@ -372,7 +404,11 @@ const Dashboard = () => {
 
                 <p>Current Invest</p>
 
-                <h4>{formatter.format(balance.amount)}</h4>
+                {balance.status === 'paid' ? (
+                  <h4>{formatter.format(balance.amount)}</h4>
+                ) : (
+                  <h4>{formatter.format(0)}</h4>
+                )}
               </article>
             </div>
 
@@ -385,7 +421,11 @@ const Dashboard = () => {
 
                 <p>Total Invest</p>
 
-                <h4>{formatter.format(Number(totalAmount).toFixed(2))}</h4>
+                {balSent ? (
+                  <h4>{formatter.format(Number(totalAmount).toFixed(2))}</h4>
+                ) : (
+                  <h4>{formatter.format(0)}</h4>
+                )}
               </article>
             </div>
           </aside>
@@ -441,7 +481,11 @@ const Dashboard = () => {
                 <IoIosWallet className="icon-main" />
               </span>
               <h5>Pending Invest</h5>
-              <h4>{formatter.format(Number(reduceInvest).toFixed(2))}</h4>
+              {filterInvest ? (
+                <h4>{formatter.format(Number(reduceInvest).toFixed(2))}</h4>
+              ) : (
+                <h4>{formatter.format(Number(0).toFixed(2))}</h4>
+              )}
             </article>
 
             <article>
@@ -449,7 +493,11 @@ const Dashboard = () => {
                 <MdHourglassEmpty className="icon-main" />
               </span>
               <h5>Pending Withdrawal</h5>
-              <h4>{formatter.format(Number(reduceWithdraw).toFixed(2))}</h4>
+              {filterWithdraw ? (
+                <h4>{formatter.format(Number(reduceWithdraw).toFixed(2))}</h4>
+              ) : (
+                <h4>{formatter.format(Number(0).toFixed(2))}</h4>
+              )}
             </article>
 
             <article>
