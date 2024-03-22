@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
-   background: rgb(39, 37, 37);
+ background: rgb(39, 37, 37);
   padding-bottom: 15rem;
   
   .back {
     color: var(--grey-400);
   }
-
+.receipt {
+    width: 1rem;
+}
   .space {
     margin-right: 0.6rem;
   }
@@ -21,7 +23,7 @@ const Wrapper = styled.section`
     justify-content: space-between;
     place-items: center;
     align-self: center;
-    border-bottom: 1px solid var(--grey-800);
+    border-bottom: 1px solid white;
     padding-bottom: 1.2rem;
   }
 
@@ -40,7 +42,7 @@ const Wrapper = styled.section`
     display: flex;
     justify-content: space-between;
 
-    border-bottom: 1px solid var(--grey-800);
+   
     padding-top: 2rem;
     width: 90vw;
     margin: 0 auto;
@@ -97,7 +99,83 @@ const Wrapper = styled.section`
     font-size: 1rem;
   }
 
+  #card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+  }
+  .deposit-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+   
+  }
+  .label {
+    margin-top: 1rem;
+  }
+  .btn-info {
+    text-align: right;
+  }
+  .deposit-btn {
+    margin-left: 1rem;
+  }
+  .input {
+    width: 100%;
+    background:  rgb(39, 37, 37);
+    color: white;
+    border: none;
+    padding: 0.7rem 1rem;
+    margin: 1rem 0;;
+  }
+  .input:focus {
+ background:  rgb(39, 37, 37);
+  }
+
+  .form-main {
+    margin: 1rem auto;
+    max-width: 25rem;
+    background: rgb(17, 17, 17);
+    color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+  }
+ 
+
+  #card article {
+   background: black;
+  padding-bottom: 4rem;
+  padding-top: 1rem;
+    text-align: center;
+   width: 12rem;
+    height: 15rem;
+    margin: 2rem auto;
+    border-radius: 0.7rem;
+    transition: var(--transition);
+  }
+
+  #card article:hover {
+transform: scale(1.02);
+  }
+  .deposit-text {
+    color: white;
+    font-size: 1rem;
+    margin: 0.3rem 0;
+  }
+
+  .deposit-img {
+    object-fit: contain
+    
+  }
     @media screen and (min-width: 800px) {
+      .top2 {
+        width: 95%;
+      }
+       #card {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+  }
     .section-center {
       width: 100%;
       margin: 0;

@@ -176,7 +176,7 @@ const Deposit = () => {
       setIsLoading('Depositing..');
       const response = await mainFetch.post(
         '/api/v1/amount',
-        { amount: investAmount, coin: coinId },
+        { amount: amountMain.amount, coin: coinId },
         { withCredentials: true }
       );
 
@@ -212,7 +212,7 @@ const Deposit = () => {
               <span className="back">Back</span>
             </div>
           </article>
-          <div className="card">
+          <div id="card">
             <article>
               <img src={img1} className="deposit-img img" alt="bitcoin" />
               <h3 className="deposit-text">BITCOIN</h3>
@@ -279,7 +279,7 @@ const Deposit = () => {
                       className="input"
                       name="amount"
                       placeholder="Enter amount"
-                      value={investAmount}
+                      value={amountMain.amount}
                       onChange={(e) => {
                         setAmountMain({
                           ...amountMain,

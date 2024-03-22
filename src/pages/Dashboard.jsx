@@ -456,13 +456,10 @@ const Dashboard = () => {
             <div className="main-tree">
               {filterUser
                 ? filterUser.map((item) => {
-                    const { _id: id, username } = item;
+                  
+                    const { _id: id, fullName } = item;
 
-                    return (
-                      <div className="main-tree">
-                        <p key={id}>{username}</p>;
-                      </div>
-                    );
+                    return <p>{fullName}</p>;
                   })
                 : '<p>You dont have any referral yet. PLease invite a user and earn</p>'}
             </div>

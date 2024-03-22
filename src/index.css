@@ -528,6 +528,7 @@ nav {
   }
   .social-icons a:hover {
     color: var(--primary-300);
+    color: rgb(17, 17, 17);
   }
 }
 
