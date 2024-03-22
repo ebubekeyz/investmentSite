@@ -67,7 +67,7 @@ const DepositLog = () => {
             {receipt ? (
               <div>
                 <article className="header">
-                  <h4>PLAN</h4>
+                  <h4>COIN</h4>
                   <h4>RECEIPT</h4>
                   <h4>AMOUNT</h4>
                   <h4>STATUS</h4>
@@ -83,6 +83,7 @@ const DepositLog = () => {
                     amount: {
                       amount: amt,
                       coin: {
+                        coinType: coin,
                         invest: { plan: plan },
                       },
                     },
@@ -93,7 +94,7 @@ const DepositLog = () => {
 
                   return (
                     <article key={id} className="header">
-                      <h4>{plan}</h4>
+                      <h4>{coin}</h4>
                       <div className="receipt">
                         <img src={img} alt="image" />
                       </div>

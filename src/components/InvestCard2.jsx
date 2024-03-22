@@ -84,7 +84,7 @@ const InvestCard2 = () => {
 
       nav('/deposit');
     } catch (error) {
-      nav('/investment');
+      nav('/login');
       console.log(error);
       console.log(error.response.data.msg);
     }
