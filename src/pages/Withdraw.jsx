@@ -245,7 +245,7 @@ const Withdraw = () => {
             <div className="pending">
               <h3>Pending withdrawal</h3>
               {withdrawAmt.status === 'processing' ? (
-                <p>{formatter.format(Number(withdrawAmt).toFixed(2))}</p>
+                <p>{formatter.format(Number(withdrawAmt.amount).toFixed(2))}</p>
               ) : (
                 <p>{formatter.format(Number(0).toFixed(2))}</p>
               )}
