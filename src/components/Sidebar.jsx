@@ -181,7 +181,9 @@ const Sidebar = () => {
                 <span>
                   <MdKeyboardDoubleArrowRight className="ico" />
                 </span>
-                <span className="tog-text2 tog-text">Deposit Log</span>
+                <Link to="/depositLog" className="tog-text2 tog-text">
+                  Deposit Log
+                </Link>
               </div>
             </article>
 
@@ -198,7 +200,7 @@ const Sidebar = () => {
           </div>
         )}
 
-        <aside id="dash2">
+        {/* <aside id="dash2">
           <article className="home">
             <div className="tog">
               <span>
@@ -207,9 +209,9 @@ const Sidebar = () => {
               <span className="tog-text">Profit Log</span>
             </div>
           </article>
-        </aside>
+        </aside> */}
 
-        <aside id="dash2">
+        {/* <aside id="dash2">
           <article className="home">
             <div className="tog">
               <span>
@@ -218,7 +220,7 @@ const Sidebar = () => {
               <span className="tog-text">Referral Log</span>
             </div>
           </article>
-        </aside>
+        </aside> */}
 
         <aside id="dash2">
           <article className="home">

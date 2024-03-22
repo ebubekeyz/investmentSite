@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.section`
  background: rgb(39, 37, 37);
-  padding-bottom: 15rem;
+  padding-bottom: 20rem;
   
   .back {
     color: var(--grey-400);
