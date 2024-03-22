@@ -337,6 +337,9 @@ const Dashboard = () => {
   const filterUser = user.filter((item) => item.referralId === `${username}`);
 
   console.log(filterUser.length);
+  const earn = filterUser.length * 50;
+
+  const accountBalance = balance.amount + profit() - withdrawAmt + earn;
 
   return (
     <Wrapper>
@@ -352,11 +355,7 @@ const Dashboard = () => {
               </div>
               <p>Account balance</p>
               {balance.status === 'paid' ? (
-                <h4>
-                  {formatter.format(
-                    Number(balance.amount + profit() - withdrawAmt).toFixed(2)
-                  )}
-                </h4>
+                <h4>{formatter.format(Number(accountBalance).toFixed(2))}</h4>
               ) : (
                 <h4>{formatter.format(0)}</h4>
               )}
@@ -507,7 +506,7 @@ const Dashboard = () => {
                 <GiTwoCoins className="icon-main" id="icon4" />
               </span>
               <h5>Referral Earn</h5>
-              <h4>{formatter.format(Number(0).toFixed(2))}</h4>
+              <h4>{formatter.format(Number(earn).toFixed(2))}</h4>
             </article>
           </div>
         </section>

@@ -31,7 +31,10 @@ const Withdraw = () => {
   const [code, setCode] = useState('');
   const [chargePercentage, setChargePercentage] = useState('');
 
-  const [withdrawAmt, setWithdrawAmt] = useState(0);
+  const [withdrawAmt, setWithdrawAmt] = useState({
+    amount: '',
+    status: '',
+  });
 
   const withdrawalFetch = async () => {
     try {
@@ -45,9 +48,12 @@ const Withdraw = () => {
         // console.log('hi');
         const num = withdrawal.length - 1;
 
-        const withdrawAmtCalc = withdrawal[num].amount;
+        const { amount, status } = withdrawal[num];
 
-        setWithdrawAmt(withdrawAmtCalc);
+        setWithdrawAmt({
+          status: status,
+          amount: amount,
+        });
       }
     } catch (error) {
       console.log(error);
@@ -238,7 +244,11 @@ const Withdraw = () => {
           <article className="withdraw-pending">
             <div className="pending">
               <h3>Pending withdrawal</h3>
-              <p>{formatter.format(Number(withdrawAmt).toFixed(2))}</p>
+              {withdrawAmt.status === 'processing' ? (
+                <p>{formatter.format(Number(withdrawAmt).toFixed(2))}</p>
+              ) : (
+                <p>{formatter.format(Number(0).toFixed(2))}</p>
+              )}
             </div>
 
             <div className="pending">
