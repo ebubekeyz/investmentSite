@@ -336,6 +336,8 @@ const Dashboard = () => {
 
   const filterUser = user.filter((item) => item.referralId === `${username}`);
 
+  console.log(filterUser.length);
+
   return (
     <Wrapper>
       <Navbar2 />
