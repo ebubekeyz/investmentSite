@@ -41,6 +41,7 @@ const Sidebar = () => {
   };
 
   const [plan, setPlan] = useState([]);
+  const [status, setStatus] = useState([]);
   const planFunc = async () => {
     try {
       const response = await mainFetch.get(
@@ -52,6 +53,7 @@ const Sidebar = () => {
       const planMain = response.data.payReceipt;
       const num = planMain.length - 1;
       const {
+        status,
         amount: {
           coin: {
             invest: { plan: plan },
@@ -59,6 +61,7 @@ const Sidebar = () => {
         },
       } = planMain[num];
       setPlan(plan);
+      setStatus(status);
     } catch (error) {
       console.log(error);
       console.log(error.response.data.msg);
@@ -249,7 +252,7 @@ const Sidebar = () => {
         </aside>
 
         <Link to="/investDash" type="button" className="btn">
-          <p>Your Current Plan - {plan ? plan : 'N/A'}</p>
+          <p>Your Current Plan - {status === 'paid' ? plan : 'N/A'}</p>
           <p>Update Plan</p>
         </Link>
       </div>
