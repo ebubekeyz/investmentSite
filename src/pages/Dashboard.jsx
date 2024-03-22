@@ -456,7 +456,6 @@ const Dashboard = () => {
             <div className="main-tree">
               {filterUser
                 ? filterUser.map((item) => {
-                  
                     const { _id: id, fullName } = item;
 
                     return <p>{fullName}</p>;

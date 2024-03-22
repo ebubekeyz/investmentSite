@@ -11,6 +11,7 @@ const InvestmentCard = () => {
   const [invest, setInvest] = useState({
     plan: 'T-H1 Plan',
     amount: 50,
+    max: 3000,
     percent: 5,
     days: 1,
   });
@@ -18,6 +19,7 @@ const InvestmentCard = () => {
   const [invest2, setInvest2] = useState({
     plan: 'T-H2 Plan',
     amount: 3100,
+    max: 7000,
     percent: 12,
     days: 2,
   });
@@ -25,6 +27,7 @@ const InvestmentCard = () => {
   const [invest3, setInvest3] = useState({
     plan: 'T-H3 Plan',
     amount: 7100,
+    max: 20000,
     percent: 18,
     days: 3,
   });
@@ -32,6 +35,7 @@ const InvestmentCard = () => {
   const [invest4, setInvest4] = useState({
     plan: 'T-H4 Plan',
     amount: 20500,
+    max: 40000,
     percent: 24,
     days: 4,
   });
@@ -39,6 +43,7 @@ const InvestmentCard = () => {
   const [invest5, setInvest5] = useState({
     plan: 'T-H STAKE Plan',
     amount: 41000,
+    max: 90000,
     percent: 7,
     days: 1,
   });
@@ -46,6 +51,7 @@ const InvestmentCard = () => {
   const [invest6, setInvest6] = useState({
     plan: 'T-H STAKE2 Plan',
     amount: 91000,
+    max: 200000,
     percent: 9.1,
     days: 1,
   });
@@ -53,6 +59,7 @@ const InvestmentCard = () => {
   const [invest7, setInvest7] = useState({
     plan: 'T-H STAKE3 Plan',
     amount: 201000,
+    max: 500000,
     percent: 10,
     days: 1,
   });
@@ -60,6 +67,7 @@ const InvestmentCard = () => {
   const [invest8, setInvest8] = useState({
     plan: 'T-H4 STAKE4 Plan',
     amount: 501000,
+    max: 5000000,
     percent: 25,
     days: 1,
   });
@@ -75,6 +83,7 @@ const InvestmentCard = () => {
         {
           plan: invest.plan,
           amount: invest.amount,
+          max: invest.max,
           percent: invest.percent,
           days: invest.days,
         },
@@ -84,7 +93,7 @@ const InvestmentCard = () => {
 
       nav('/deposit');
     } catch (error) {
-      nav('/investment');
+      nav('/login');
       console.log(error);
       console.log(error.response.data.msg);
     }
@@ -99,6 +108,7 @@ const InvestmentCard = () => {
         {
           plan: invest2.plan,
           amount: invest2.amount,
+          max: invest2.max,
           percent: invest2.percent,
           days: invest2.days,
         },
@@ -123,6 +133,7 @@ const InvestmentCard = () => {
         {
           plan: invest3.plan,
           amount: invest3.amount,
+          max: invest3.max,
           percent: invest3.percent,
           days: invest3.days,
         },
@@ -147,6 +158,7 @@ const InvestmentCard = () => {
         {
           plan: invest4.plan,
           amount: invest4.amount,
+          max: invest4.max,
           percent: invest4.percent,
           days: invest4.days,
         },
@@ -171,6 +183,7 @@ const InvestmentCard = () => {
         {
           plan: invest5.plan,
           amount: invest5.amount,
+          max: invest5.max,
           percent: invest5.percent,
           days: invest5.days,
         },
@@ -195,6 +208,7 @@ const InvestmentCard = () => {
         {
           plan: invest6.plan,
           amount: invest6.amount,
+          max: invest6.max,
           percent: invest6.percent,
           days: invest6.days,
         },
@@ -219,6 +233,7 @@ const InvestmentCard = () => {
         {
           plan: invest7.plan,
           amount: invest7.amount,
+          max: invest7.max,
           percent: invest7.percent,
           days: invest7.days,
         },
@@ -243,6 +258,7 @@ const InvestmentCard = () => {
         {
           plan: invest8.plan,
           amount: invest8.amount,
+          max: invest8.max,
           percent: invest8.percent,
           days: invest8.days,
         },

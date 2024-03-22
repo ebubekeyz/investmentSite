@@ -27,6 +27,7 @@ const Deposit = () => {
 
   const [investId, setInvestId] = useState('');
   const [investAmount, setInvestAmount] = useState('');
+  const [max, setMax] = useState('');
 
   const showInvestId = async () => {
     try {
@@ -35,9 +36,10 @@ const Deposit = () => {
       });
       const investment = res.data.invest;
       const num = investment.length - 1;
-      const { _id, amount } = investment[num];
+      const { _id, amount, max } = investment[num];
       setInvestId(_id);
       setInvestAmount(amount);
+      setMax(max);
     } catch (error) {
       console.log(error);
       console.log(error.res.data.msg);
@@ -196,6 +198,7 @@ const Deposit = () => {
     window.history.back();
   };
 
+  const condition = `Min Amount: ${investAmount}, Max Amount: ${max}`;
   return (
     <Wrapper>
       <div className="container">
@@ -278,7 +281,7 @@ const Deposit = () => {
                       type="text"
                       className="input"
                       name="amount"
-                      placeholder="Enter amount"
+                      placeholder={condition}
                       value={amountMain.amount}
                       onChange={(e) => {
                         setAmountMain({
