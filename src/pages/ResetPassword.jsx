@@ -9,7 +9,9 @@ export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 
-  const { id } = useParams();
+  const params = window.location.search;
+  const id = new URLSearchParams(params).get('id');
+  console.log(id);
 
   const resetUrl = 'api/v1/auth';
   try {
