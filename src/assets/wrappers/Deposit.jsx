@@ -101,7 +101,7 @@ const Wrapper = styled.section`
 
   #card {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
 
   }
   .deposit-form {

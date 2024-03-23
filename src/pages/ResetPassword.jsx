@@ -1,4 +1,4 @@
-import { Form, Link, useNavigation } from 'react-router-dom';
+import { Form, Link, useNavigation, useParams } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/Login';
 import { useState } from 'react';
 import logo from '../assets/logo.png';
@@ -9,9 +9,11 @@ export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 
+  const { id } = useParams();
+
   const resetUrl = 'api/v1/auth';
   try {
-    const response = await mainFetch.patch(`/api/v1/auth/${idCard}`, data);
+    const response = await mainFetch.patch(`/api/v1/auth/${id}`, data);
     console.log(data);
     toast.success('Password successfully reset. Please login');
     return redirect('/login');
