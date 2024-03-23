@@ -453,8 +453,6 @@ nav {
   background: var(--primary-100);
   color: var(--primary-500);
   padding-left: 1.5rem;
-  color: rgba(182, 177, 177, 0.04);
-  color: linear-gradient(to right, rgba(226, 48, 17, 0.7), rgba(1, 5, 4, 0.7));
 }
 
 .links-container {

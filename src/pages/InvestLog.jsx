@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { mainFetch } from '../utils';
 import { toast } from 'react-toastify';
 import Sidebar from '../components/Sidebar';
+import Navbar2 from '../components/Navbar2';
 
 const InvestLog = () => {
   const [receipt, setReceipt] = useState([]);
@@ -44,6 +45,7 @@ const InvestLog = () => {
   });
   return (
     <Wrapper>
+      <Navbar2 />
       <div className="container">
         <Sidebar />
         <section className="section-center">

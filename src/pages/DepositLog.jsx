@@ -4,6 +4,7 @@ import FooterMobile from '../components/FooterMobile';
 import Sidebar from '../components/Sidebar';
 import { useEffect, useState } from 'react';
 import { mainFetch } from '../utils';
+import Navbar2 from '../components/Navbar2';
 
 const DepositLog = () => {
   const [receipt, setReceipt] = useState([]);
@@ -43,6 +44,7 @@ const DepositLog = () => {
   });
   return (
     <Wrapper>
+      <Navbar2 />
       <div className="container">
         <Sidebar />
         <section className="section-center">

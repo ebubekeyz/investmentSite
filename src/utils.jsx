@@ -78,13 +78,13 @@ export const questions = [
   {
     id: nanoid(),
     title: 'What are the minimum and maximum deposit amounts?',
-    info: 'The minimum deposit is $50 USD, and the maximum deposit per transaction is $200,000. You can have as many active investments as you desire concurrently.',
+    info: 'The minimum deposit is €50 USD, and the maximum deposit per transaction is €200,000. You can have as many active investments as you desire concurrently.',
   },
   {
     id: nanoid(),
     title:
       'What does the affiliate program entail, and how can I take advantage of its benefits?',
-    info: 'The primary idea behind our affiliate program is to offer our members an additional financial opportunity by encouraging them to refer others to our project. Simply share your referral link, found in your account, with others, and you will receive a 7% commission from their deposits credited to your account balance. If you aspire to earn an even higher commission (10%) from your referrals deposits, you can apply for Representative status.',
+    info: 'The primary idea behind our affiliate program is to offer our members an additional financial opportunity by encouraging them to refer others to our project. Simply share your referral link, found in your account, with others, and you will receive a 10% commission from their deposits credited to your account balance. If you aspire to earn an even higher commission (30%) from your referrals deposits, you can apply for Representative status.',
   },
   {
     id: nanoid(),
@@ -95,7 +95,7 @@ export const questions = [
   {
     id: nanoid(),
     title: 'How can I become a representative?',
-    info: 'To qualify as a Regional Representative for Digital Capital Markets, you need the capability to endorse and advocate for our project in your region through various means, such as maintaining a personal blog, conducting online/offline presentations, and organizing client meetings. For application, please send an email to trexholding539@gmail.com.',
+    info: 'To qualify as a Regional Representative for Digital Capital Markets, you need the capability to endorse and advocate for our project in your region through various means, such as maintaining a personal blog, conducting online/offline presentations, and organizing client meetings. For application, please send an email to support@trex-holding.com',
   },
   {
     id: nanoid(),

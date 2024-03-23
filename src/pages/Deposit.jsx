@@ -4,6 +4,7 @@ import img2 from '../assets/etherum-img.png';
 import img3 from '../assets/usdt.png';
 import img4 from '../assets/tron.png';
 import img5 from '../assets/bnb.png';
+import Navbar2 from '../components/Navbar2';
 import Sidebar from '../components/Sidebar';
 import { LiaTimesSolid } from 'react-icons/lia';
 import { useEffect, useState } from 'react';
@@ -208,6 +209,7 @@ const Deposit = () => {
   const condition = `Min Amount: ${investAmount}, Max Amount: ${max}`;
   return (
     <Wrapper>
+      <Navbar2 />
       <div className="container">
         <Sidebar />
         <section className="deposit">

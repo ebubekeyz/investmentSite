@@ -8,6 +8,8 @@ import { mainFetch } from '../utils';
 import copy from 'copy-to-clipboard';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Navbar2 from '../components/Navbar2';
+import Sidebar from '../components/Sidebar';
 
 const Bitcoin = () => {
   const [copyText, setCopyText] = useState({
@@ -113,89 +115,92 @@ const Bitcoin = () => {
   };
   return (
     <Wrapper>
-      <div className="section-center">
-        <article className="top2 top">
-          <h4>Payment Informations</h4>
+      <Navbar2 />
+      <div className="container">
+        <Sidebar />
+        <div className="section-center">
+          <article className="top2 top">
+            <h4>Payment Informations</h4>
 
-          <div className="top-inner">
-            <span className="space">
-              {' '}
-              <FaArrowLeft onClick={backHandler} className="back-icon" />
-            </span>
-            <span className="back">Back</span>
-          </div>
-        </article>
+            <div className="top-inner">
+              <span className="space">
+                {' '}
+                <FaArrowLeft onClick={backHandler} className="back-icon" />
+              </span>
+              <span className="back">Back</span>
+            </div>
+          </article>
 
-        <article className="withdraw-pending">
-          <div className="pending">
-            <h3>Pending Information</h3>
-            <p>To guarantee a smooth and continuous service experience,</p>
-            <p>
-              We kindly ask that all forthcoming deposits be directed to one of
-              the subsequent wallet addresses:
-            </p>
-          </div>
+          <article className="withdraw-pending">
+            <div className="pending">
+              <h3>Pending Information</h3>
+              <p>To guarantee a smooth and continuous service experience,</p>
+              <p>
+                We kindly ask that all forthcoming deposits be directed to one
+                of the subsequent wallet addresses:
+              </p>
+            </div>
 
-          <div className="pending">
-            <h3 className="coin">BITCOIN ADDRESS</h3>
-            <p id="address">{copyText.bitcoin}</p>
-            <button onClick={copyBitcoin} type="button" className="btn">
-              Copy
-            </button>
-          </div>
-
-          <div className="pending">
-            <h3 className="coin">ETHERIUM ADDRESS</h3>
-
-            <p id="address">{copyText.etherium}</p>
-            <button onClick={copyEtherium} type="button" className="btn">
-              Copy
-            </button>
-          </div>
-
-          <div className="pending">
-            <h3 className="coin">usdt ADDRESS</h3>
-            <p id="address">{copyText.usdt}</p>
-            <button onClick={copyUsdt} type="button" className="btn">
-              Copy
-            </button>
-          </div>
-
-          <div className="pending">
-            <h3 className="coin">TRON ADDRESS</h3>
-            <p id="address">{copyText.tron}</p>
-            <button onClick={copyTron} type="button" className="btn">
-              Copy
-            </button>
-          </div>
-          <div className="pending">
-            <h3 className="coin">BNB ADDRESS</h3>
-            <p id="address">{copyText.bnb}</p>
-            <button onClick={copyBnb} type="button" className="btn">
-              Copy
-            </button>
-          </div>
-
-          <div className="pending">
-            <h3>Requirements</h3>
-          </div>
-
-          <div className="pending">
-            <form onSubmit={handleSubmit} className="receipt-form">
-              <input
-                onChange={submitReceipt}
-                type="file"
-                name="receipt"
-                value={receipt}
-              />
-              <button type="submit" className="receipt-btn btn">
-                {isLoading}
+            <div className="pending">
+              <h3 className="coin">BITCOIN ADDRESS</h3>
+              <p id="address">{copyText.bitcoin}</p>
+              <button onClick={copyBitcoin} type="button" className="btn">
+                Copy
               </button>
-            </form>
-          </div>
-        </article>
-      </div>
+            </div>
 
+            <div className="pending">
+              <h3 className="coin">ETHERIUM ADDRESS</h3>
+
+              <p id="address">{copyText.etherium}</p>
+              <button onClick={copyEtherium} type="button" className="btn">
+                Copy
+              </button>
+            </div>
+
+            <div className="pending">
+              <h3 className="coin">usdt ADDRESS</h3>
+              <p id="address">{copyText.usdt}</p>
+              <button onClick={copyUsdt} type="button" className="btn">
+                Copy
+              </button>
+            </div>
+
+            <div className="pending">
+              <h3 className="coin">TRON ADDRESS</h3>
+              <p id="address">{copyText.tron}</p>
+              <button onClick={copyTron} type="button" className="btn">
+                Copy
+              </button>
+            </div>
+            <div className="pending">
+              <h3 className="coin">BNB ADDRESS</h3>
+              <p id="address">{copyText.bnb}</p>
+              <button onClick={copyBnb} type="button" className="btn">
+                Copy
+              </button>
+            </div>
+
+            <div className="pending">
+              <h3>Requirements</h3>
+            </div>
+
+            <div className="pending">
+              <form onSubmit={handleSubmit} className="receipt-form">
+                <input
+                  onChange={submitReceipt}
+                  type="file"
+                  name="receipt"
+                  value={receipt}
+                />
+                <button type="submit" className="receipt-btn btn">
+                  {isLoading}
+                </button>
+              </form>
+            </div>
+          </article>
+        </div>
+      </div>
       <FooterMobile />
     </Wrapper>
   );

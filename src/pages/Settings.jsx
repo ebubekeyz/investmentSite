@@ -7,6 +7,7 @@ import { mainFetch } from '../utils';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
+import Navbar2 from '../components/Navbar2';
 
 const Settings = () => {
   const [isLoading, setIsLoading] = useState('update');
@@ -116,6 +117,7 @@ const Settings = () => {
 
   return (
     <Wrapper>
+      <Navbar2 />
       <div className="container">
         <Sidebar />
         <section className="settings">

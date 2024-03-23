@@ -7,7 +7,6 @@ const Wrapper = styled.div`
   .section-center {
     width: 90vw;
     margin: 0 auto;
-    max-width: 1170px;
   }
   .receipt-btn {
     margin-top: 1rem;
@@ -90,6 +89,20 @@ const Wrapper = styled.div`
     padding-top: 2rem;
     width: 90vw;
     margin: 0 auto;
+  }
+  @media screen and (min-width: 800px) {
+    .top2 {
+      width: 100%;
+    }
+    .section-center {
+      width: 100%;
+      margin: 0;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 25% 70%;
+      gap: 2rem;
+    }
   }
 `;
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Wrapper from '../assets/wrappers/WithdrawLog';
 import FooterMobile from '../components/FooterMobile';
+import Navbar2 from '../components/Navbar2';
 import Sidebar from '../components/Sidebar';
 import { mainFetch } from '../utils';
 import { FaArrowLeft } from 'react-icons/fa';
@@ -43,6 +44,7 @@ const WithdrawLog = () => {
   });
   return (
     <Wrapper>
+      <Navbar2 />
       <div className="container">
         <Sidebar />
         <section className="section-center">

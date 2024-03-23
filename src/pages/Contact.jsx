@@ -3,8 +3,47 @@ import Hero2 from '../components/Hero2';
 
 import img from '../assets/faqs.jpg';
 import { nanoid } from 'nanoid';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import { mainFetch } from '../utils';
 
 const Contact = () => {
+  const [isLoading, setIsLoading] = useState('Send Message');
+  const [contact, setContact] = useState({
+    name: '',
+    email: '',
+    enquiryType: '',
+    enquiryDescription: '',
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setIsLoading('Sending...');
+      const response = await mainFetch.post(
+        '/api/v1/contact',
+        {
+          name: contact.name,
+          email: contact.email,
+          enquiryType: contact.enquiryType,
+          enquiryDescription: contact.enquiryDescription,
+        },
+        { withCredentials: true }
+      );
+      setIsLoading('Message Sent');
+      setContact({
+        name: '',
+        email: '',
+        enquiryType: '',
+        enquiryDescription: '',
+      });
+
+      toast.success('Message sent successfully');
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.msg);
+    }
+  };
   return (
     <Wrapper>
       <div>
@@ -43,6 +82,7 @@ const Contact = () => {
           </article>
 
           <form
+            onSubmit={handleSubmit}
             style={{
               background: 'white',
               boxShadow: 'var(--shadow-4)',
@@ -66,6 +106,13 @@ const Contact = () => {
               className="form-input"
               placeholder="Name"
               name="name"
+              value={contact.name}
+              onChange={(e) => {
+                setContact({
+                  ...contact,
+                  [e.target.name]: e.target.value,
+                });
+              }}
             />
 
             <input
@@ -73,18 +120,39 @@ const Contact = () => {
               className="form-input"
               placeholder="Email Address"
               name="email"
+              value={contact.email}
+              onChange={(e) => {
+                setContact({
+                  ...contact,
+                  [e.target.name]: e.target.value,
+                });
+              }}
             />
             <input
               type="text"
               className="form-input"
               placeholder="Enquiry Type"
               name="enquiryType"
+              value={contact.enquiryType}
+              onChange={(e) => {
+                setContact({
+                  ...contact,
+                  [e.target.name]: e.target.value,
+                });
+              }}
             />
             <textarea
               type="text"
               className="form-input"
               placeholder="Enquiry Description"
               name="enquiryDescription"
+              value={contact.enquiryDescription}
+              onChange={(e) => {
+                setContact({
+                  ...contact,
+                  [e.target.name]: e.target.value,
+                });
+              }}
               style={{ height: '10rem', marginBottom: '1rem' }}
             />
 
@@ -116,7 +184,7 @@ const Contact = () => {
                 marginTop: '2rem',
               }}
             >
-              send Message
+              {isLoading}
             </button>
           </form>
         </aside>

@@ -336,8 +336,10 @@ const Dashboard = () => {
 
   const filterUser = user.filter((item) => item.referralId === `${username}`);
 
-  console.log(filterUser.length);
-  const earn = filterUser.length * 50;
+  // const earn = filterUser.length * 50;
+  const verifiedUser = filterUser.filter((item) => item.status === 'verified');
+
+  const earn = verifiedUser.length * 20;
 
   const accountBalance = balance.amount + profit() - withdrawAmt + earn;
 
@@ -456,9 +458,9 @@ const Dashboard = () => {
             <div className="main-tree">
               {filterUser
                 ? filterUser.map((item) => {
-                    const { _id: id, fullName } = item;
+                    const { _id: id, username } = item;
 
-                    return <p>{fullName}</p>;
+                    return <p>{username}</p>;
                   })
                 : '<p>You dont have any referral yet. PLease invite a user and earn</p>'}
             </div>
@@ -502,7 +504,11 @@ const Dashboard = () => {
                 <GiTwoCoins className="icon-main" id="icon4" />
               </span>
               <h5>Referral Earn</h5>
-              <h4>{formatter.format(Number(earn).toFixed(2))}</h4>
+              {verifiedUser ? (
+                <h4>{formatter.format(Number(earn).toFixed(2))}</h4>
+              ) : (
+                <h4>{formatter.format(Number(0).toFixed(2))}</h4>
+              )}
             </article>
           </div>
         </section>
