@@ -6,6 +6,7 @@ const Wrapper = styled.section`
   
   .back {
     color: var(--grey-400);
+    font-size: 0.9rem;
   }
 .receipt {
     width: 1rem;
@@ -36,7 +37,7 @@ const Wrapper = styled.section`
   }
   .top h4 {
     color: white;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   .top2 {
     display: flex;
@@ -144,23 +145,24 @@ const Wrapper = styled.section`
 
   #card article {
    background: black;
-  padding-bottom: 4rem;
+  padding-bottom: 4.5rem;
   padding-top: 1rem;
     text-align: center;
-   width: 12rem;
-    height: 15rem;
+   width: 10rem;
+    height: 12rem;
     margin: 2rem auto;
     border-radius: 0.7rem;
     transition: var(--transition);
   }
+
 
   #card article:hover {
 transform: scale(1.02);
   }
   .deposit-text {
     color: white;
-    font-size: 1rem;
-    margin: 0.3rem 0;
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
   }
 
   .deposit-img {
