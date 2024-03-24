@@ -2,8 +2,7 @@ import Wrapper from '../assets/wrappers/Sidebar';
 import { GoHome } from 'react-icons/go';
 import { IoIosFlash } from 'react-icons/io';
 import { IoFolderOpenOutline } from 'react-icons/io5';
-import { FaFileAlt } from 'react-icons/fa';
-import { FaUser } from 'react-icons/fa6';
+import { FaFileAlt, FaUser } from 'react-icons/fa';
 import { MdKeyboardDoubleArrowRight } from 'react-icons/md';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { MdKeyboardArrowUp } from 'react-icons/md';
@@ -12,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { GoBriefcase } from 'react-icons/go';
 import { RiMoneyDollarBoxLine } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
+
 import { CiSettings } from 'react-icons/ci';
 import { mainFetch } from '../utils';
 
@@ -79,7 +79,7 @@ const Sidebar2 = () => {
         <aside id="dash">
           <article className="home">
             <GoHome className="icon" />
-            <Link to="/dashboard" className="tog-text">
+            <Link to="/adminDash" className="tog-text">
               Admin Dashboard
             </Link>
           </article>
@@ -91,78 +91,25 @@ const Sidebar2 = () => {
               <span>
                 <FaUser className="icon" />
               </span>
-              <span className="tog-text">Users</span>
-              <span onClick={showFunc}>
-                <MdKeyboardArrowDown className="ico" id="ico1" />
-              </span>
+              <Link to="/adminDash" className="tog-text">
+                Users
+              </Link>
             </div>
           </article>
         </aside>
 
-        {show && (
-          <div>
-            <article id="dash2">
-              <div className="tog">
-                <span>
-                  <MdKeyboardDoubleArrowRight className="ico" />
-                </span>
-                <Link to="/investLog" className="tog-text2 tog-text">
-                  All Users
-                </Link>
-              </div>
-            </article>
-
-            <article id="dash2">
-              <div className="tog">
-                <span>
-                  <MdKeyboardDoubleArrowRight className="ico" />
-                </span>
-                <Link to="/investDash" className="tog-text2 tog-text">
-                  Edit Users
-                </Link>
-              </div>
-            </article>
-          </div>
-        )}
         <aside id="dash2">
           <article className="home">
             <div className="tog">
               <span>
                 <GoBriefcase className="icon" />
               </span>
-              <span className="tog-text">Deposit</span>
-              <span onClick={showFunc2}>
-                <MdKeyboardArrowDown className="ico" id="ico2" />
-              </span>
+              <Link to="/adminDeposit" className="tog-text">
+                Deposit
+              </Link>
             </div>
           </article>
         </aside>
-
-        {show2 && (
-          <div className="">
-            <article id="dash2">
-              <div className="tog">
-                <span>
-                  <MdKeyboardDoubleArrowRight className="ico" />
-                </span>
-                <Link to="/withdrawLog" className="tog-text2 tog-text">
-                  All Deposit
-                </Link>
-              </div>
-            </article>
-
-            <article id="dash2">
-              <div className="tog">
-                <span>
-                  <MdKeyboardDoubleArrowRight className="ico" />
-                </span>
-                <Link to="/withdraw" className="tog-text2 tog-text">
-                  Edit Deposit
-                </Link>
-              </div>
-            </article>
-          </div>
-        )}
 
         <aside id="dash2">
           <article className="home">
@@ -170,39 +117,12 @@ const Sidebar2 = () => {
               <span>
                 <RiMoneyDollarBoxLine className="icon" />
               </span>
-              <span className="tog-text">Withdrawal</span>
-              <span onClick={showFunc3}>
-                <MdKeyboardArrowDown className="ico" id="ico3" />
-              </span>
+              <Link to="/adminWithdraw" className="tog-text">
+                Withdrawal
+              </Link>
             </div>
           </article>
         </aside>
-
-        {show3 && (
-          <div className="">
-            <article id="dash2">
-              <div className="tog">
-                <span>
-                  <MdKeyboardDoubleArrowRight className="ico" />
-                </span>
-                <Link to="/depositLog" className="tog-text2 tog-text">
-                  All Withdrawal
-                </Link>
-              </div>
-            </article>
-
-            <article id="dash2">
-              <div className="tog">
-                <span>
-                  <MdKeyboardDoubleArrowRight className="ico" />
-                </span>
-                <Link to="/deposit" className="tog-text2 tog-text">
-                  Edit Withdrawal
-                </Link>
-              </div>
-            </article>
-          </div>
-        )}
 
         <aside id="dash2">
           <article className="home">
@@ -232,7 +152,7 @@ const Sidebar2 = () => {
               <span>
                 <CiSettings className="icon" />
               </span>
-              <Link to="/settings" className="tog-text">
+              <Link to="/adminSettings" className="tog-text">
                 Settings
               </Link>
             </div>

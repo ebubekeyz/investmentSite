@@ -28,6 +28,19 @@ import {
   InvestDash,
   WithdrawLog,
   DepositLog,
+  AdminDash,
+  EditUser,
+  DeleteUser,
+  AdminDeposit,
+  EditDeposit,
+  DeleteDeposit,
+  RefBonus,
+  AdminWithdraw,
+  EditWithdraw,
+  DeleteWithdraw,
+  Messages,
+  DeleteMessage,
+  AdminSettings,
 } from './pages';
 import { loader as landingLoader } from './pages/Landing.jsx';
 import { action as actionLoader } from './pages/Login.jsx';
@@ -161,6 +174,71 @@ const router = createBrowserRouter([
   {
     path: '/depositLog',
     element: <DepositLog />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/adminDash',
+    element: <AdminDash />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/editUser',
+    element: <EditUser />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/deleteUser',
+    element: <DeleteUser />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/adminDeposit',
+    element: <AdminDeposit />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/editDeposit',
+    element: <EditDeposit />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/deleteDeposit',
+    element: <DeleteDeposit />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/refBonus',
+    element: <RefBonus />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/adminWithdraw',
+    element: <AdminWithdraw />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/editWithdraw',
+    element: <EditWithdraw />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/deleteWithdraw',
+    element: <DeleteWithdraw />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/messages',
+    element: <Messages />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/deleteMessage',
+    element: <DeleteMessage />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/adminSettings',
+    element: <AdminSettings />,
     errorElement: <SinglePageError />,
   },
 ]);

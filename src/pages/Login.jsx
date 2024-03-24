@@ -13,9 +13,14 @@ export const action = async ({ request }) => {
     const response = await mainFetch.post('/api/v1/auth/login', data, {
       withCredentials: true,
     });
-    toast.success(response.data.msg);
-
-    return redirect('/dashboard');
+    if (response.data.user.role === 'admin') {
+      toast.success(response.data.msg);
+      return redirect('/adminDash');
+    }
+    if (response.data.user.role === 'user') {
+      toast.success(response.data.msg);
+      return redirect('/dashboard');
+    }
   } catch (error) {
     toast.error(error?.response?.data?.msg);
     console.log(error);
