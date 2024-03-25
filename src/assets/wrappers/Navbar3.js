@@ -67,9 +67,18 @@ const Wrapper = styled.nav`
   #auth2 {
     margin: 0 1rem;
   }
+
+  .avatar,
+  .toggle2 {
+    display: none;
+  }
   @media screen and (min-width: 800px) {
     #auth,
     #auth2 {
+      display: none;
+    }
+
+    .links {
       display: none;
     }
 
@@ -113,6 +122,40 @@ const Wrapper = styled.nav`
     .social-icons a:hover {
       color: var(--primary-300);
       color: rgb(17, 17, 17);
+    }
+    .links-container {
+      display: none;
+    }
+
+    .avatar {
+      display: flex;
+      align-self: center;
+    }
+
+    .logo {
+      height: 45px;
+    }
+    .icon2 {
+      font-size: 1.5rem;
+    }
+    .icon {
+      cursor: pointer;
+    }
+
+    .toggle2 {
+      background: white;
+      padding: 1.8rem;
+      display: none;
+      border-radius: 0.5rem;
+
+      position: absolute;
+      right: 6rem;
+      top: 5.5rem;
+    }
+    .toggle2 li {
+      padding: 0.4rem 0;
+      font-size: 1rem;
+      cursor: pointer;
     }
   }
 

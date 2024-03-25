@@ -6,111 +6,176 @@ import Sidebar2 from '../components/Sidebar2';
 import { mainFetch } from '../utils';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Navbar3 from '../components/Navbar3';
 
 const AdminDash = () => {
-  const [user, setUser] = useState([]);
+  const [pay, setPay] = useState([]);
 
-  const userFunc = async () => {
+  const payFunc = async () => {
     try {
-      const response = await mainFetch.get('/api/v1/users', {
+      const res = await mainFetch.get('/api/v1/payReceipt', {
         withCredentials: true,
       });
-
-      setUser(response.data.users);
+      setPay(res.data.payReceipt);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    userFunc();
-  }, [userFunc]);
+    payFunc();
+  }, []);
 
-  let idd = 0;
+  const filterPay = pay.filter((item) => item.status === 'paid');
+
+  const dupFilterPay = [...new Set(filterPay)];
+
+  const filterPayPend = pay.filter((item) => item.status === 'pending');
+
+  const dupFilterPay2 = [...new Set(filterPayPend)];
+
+  const [members, setMembers] = useState([]);
+
+  const membersFunc = async () => {
+    try {
+      const res = await mainFetch.get('/api/v1/users', {
+        withCredentials: true,
+      });
+      setMembers(res.data.users);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    membersFunc();
+  }, []);
+
+  const filterMembers = members.filter((item) => item.status === 'verified');
+  const filterUnverifiedMembers = members.filter(
+    (item) => item.status === 'unverified'
+  );
+
+  const remDupMem = [...new Set(filterMembers)];
+  const remDupMem2 = [...new Set(filterUnverifiedMembers)];
+
+  const [withdraw, setWithdraw] = useState([]);
+
+  const withdrawFunc = async () => {
+    try {
+      const res = await mainFetch.get('/api/v1/withdraw', {
+        withCredentials: true,
+      });
+      setWithdraw(res.data.withdraw);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    withdrawFunc();
+  }, []);
+
+  console.log(withdraw);
+  const filterWithdraw1 = withdraw.filter((item) => item.status === 'sent');
+  const filterWithdraw2 = withdraw.filter(
+    (item) => item.status === 'processing'
+  );
+
+  const reduceWithdraw1 = filterWithdraw1.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
+
+  const reduceWithdraw2 = filterWithdraw2.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
+
+  const formatter = new Intl.NumberFormat('en-DE', {
+    style: 'currency',
+    currency: 'EUR',
+  });
 
   return (
     <Wrapper>
-      <Navbar2 />
+      <Navbar3 />
 
       <div className="container">
         <Sidebar2 />
         <section className="admin">
-          <div className="table-wrapper">
-            <table class="fl-table">
-              <thead>
-                <tr>
-                  <th>S/N</th>
-                  <th>Name</th>
-                  <th>Username</th>
-                  <th>Email</th>
+          <h4>Information</h4>
 
-                  <th>Country</th>
-                  <th>City</th>
-                  <th>Phone</th>
-                  <th>Update</th>
-                  <th>Delete</th>
-                </tr>
-              </thead>
-              <tbody>
-                {user
-                  ? user.map((item) => {
-                      item.idd = idd++;
-                      const {
-                        _id: id,
-                        fullName,
-                        username,
-                        email,
-                        phone,
-                        city,
-                        country,
-                        status,
-                        referralId,
-                      } = item;
-                      const update = `/editUser?id=${id}`;
-                      const del = `/deleteUser?id=${id}`;
+          <div className="members">
+            <h5>Members</h5>
+            <p>
+              Total: <span>{members.length}</span>
+            </p>
+            <p>
+              Active: <span>{remDupMem.length}</span>
+            </p>
+            <p>
+              Inactive: <span>{remDupMem2.length}</span>
+            </p>
+            <p>
+              Made Deposit: <span>{remDupMem.length}</span>
+            </p>
+            <p>
+              Not Made Deposit: <span>{remDupMem2.length}</span>
+            </p>
+          </div>
 
-                      return (
-                        <tr>
-                          <td>{idd}</td>
-                          <td>{fullName}</td>
-                          <td>{username}</td>
-                          <td>{email}</td>
+          <div className="members">
+            <h5>Investment Packages</h5>
+            <p>
+              Active: <span>{dupFilterPay.length}</span>
+            </p>
+            <p>
+              Inactive: <span>{dupFilterPay2.length}</span>
+            </p>
+          </div>
 
-                          <td>{country}</td>
-                          <td>{city}</td>
-                          <td>{phone}</td>
-                          <td>
-                            <Link to={update} type="button" className="btn">
-                              update
-                            </Link>
-                          </td>
-                          <td>
-                            <Link
-                              to={del}
-                              type="button"
-                              style={{ background: 'red' }}
-                              className="btn"
-                            >
-                              delete
-                            </Link>
-                          </td>
-                          {/* <td
-                            style={{
-                              color: status === 'verified' ? 'green' : 'red',
-                            }}
-                          >
-                            {status}
-                          </td> */}
-                        </tr>
-                      );
-                    })
-                  : '<p>No User</p>'}
-              </tbody>
-            </table>
+          <div className="members" id="total">
+            <h5>Total System Earnings:</h5>
+            <p>
+              €<span>20</span>
+            </p>
+          </div>
+
+          <div className="members" id="total">
+            <h5>Total Members Balance:</h5>
+            <p>
+              €<span>20</span>
+            </p>
+          </div>
+
+          <div className="members" id="total">
+            <h5>Total Members Deposit:</h5>
+            <p>
+              €<span>20</span>
+            </p>
+          </div>
+          <div className="members" id="total">
+            <h5>Total Referral Commission:</h5>
+            <p>
+              €<span>20</span>
+            </p>
+          </div>
+          <div className="withdraw members" id="total">
+            <h5>Total Withdrawals:</h5>
+            <p>
+              <span>
+                {formatter.format(Number(reduceWithdraw1).toFixed(2))}
+              </span>
+            </p>
+          </div>
+          <div className="members" id="total">
+            <h5>Pending Withdrawals:</h5>
+            <p>
+              <span>
+                {formatter.format(Number(reduceWithdraw2).toFixed(2))}
+              </span>
+            </p>
           </div>
         </section>
       </div>
-      <FooterMobile />
     </Wrapper>
   );
 };

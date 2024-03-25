@@ -6,6 +6,8 @@ import Line from '../components/Line';
 import { useState } from 'react';
 import Whatsapp from '../components/Whatsapp';
 import { questions as data } from '../utils';
+import Navbar3 from '../components/Navbar3';
+import Navbar01 from '../components/Navbar01';
 
 const HomeLayout = () => {
   const navigation = useNavigation();
@@ -15,7 +17,7 @@ const HomeLayout = () => {
     <div>
       {/* <SubNav />
       <Line /> */}
-      <Navbar />
+      <Navbar01 />
       <section className="page">
         {isPageLoading ? (
           <aside className="loading-cont">

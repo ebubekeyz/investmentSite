@@ -3,7 +3,47 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   background: rgb(39, 37, 37);
   padding-bottom: 8rem;
+
+  .admin {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .members h5 {
+    color: yellow;
+    padding: 1rem 0;
+  }
+  .members {
+    border-bottom: 1px solid yellow;
+    padding-bottom: 0.5rem;
+  }
+
+  .members p {
+    color: rgb(206, 202, 202);
+  }
+  .admin h4 {
+    color: white;
+    padding-top: 1rem;
+    letter-spacing: 0;
+    font-size: 1.5rem;
+  }
+
+  #total p {
+    font-size: 1.3rem;
+  }
   @media screen and (min-width: 800px) {
+    .members p {
+      margin-left: 1rem;
+    }
+
+    .members p span {
+      font-weight: bold;
+    }
+
+    .members {
+      display: flex;
+      align-self: center;
+      align-items: center;
+    }
     .admin {
       width: 100%;
       margin: 0;
@@ -13,119 +53,6 @@ const Wrapper = styled.div`
 
       grid-template-columns: 22% 70%;
       gap: 2rem;
-    }
-  }
-
-  .table-wrapper {
-    margin: 1rem auto;
-    width: 90%;
-    box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
-  }
-
-  .fl-table {
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: normal;
-    border: none;
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 100%;
-    white-space: nowrap;
-    background-color: white;
-  }
-
-  .fl-table td,
-  .fl-table th {
-    text-align: center;
-    padding: 8px;
-  }
-
-  .fl-table td {
-    border-right: 1px solid #f8f8f8;
-    font-size: 12px;
-  }
-
-  .fl-table thead th {
-    color: #ffffff;
-    background: #4fc3a1;
-  }
-
-  .fl-table thead th:nth-child(odd) {
-    color: #ffffff;
-    background: #324960;
-  }
-
-  .fl-table tr:nth-child(even) {
-    background: #f8f8f8;
-  }
-
-  /* Responsive */
-
-  @media (max-width: 767px) {
-    .fl-table {
-      display: block;
-      width: 100%;
-    }
-
-    .table-wrapper:before {
-      content: 'Scroll horizontally >';
-      display: block;
-      text-align: right;
-      font-size: 11px;
-      color: white;
-      padding: 0 0 10px;
-    }
-    .fl-table thead,
-    .fl-table tbody,
-    .fl-table thead th {
-      display: block;
-    }
-    .fl-table thead th:last-child {
-      border-bottom: none;
-    }
-    .fl-table thead {
-      float: left;
-    }
-    .fl-table tbody {
-      width: auto;
-      position: relative;
-      overflow-x: auto;
-    }
-    .fl-table td,
-    .fl-table th {
-      padding: 20px 0.625em 0.625em 0.625em;
-      height: 60px;
-      vertical-align: middle;
-      box-sizing: border-box;
-      overflow-x: hidden;
-      overflow-y: auto;
-      width: 120px;
-      font-size: 13px;
-      text-overflow: ellipsis;
-    }
-    .fl-table thead th {
-      text-align: left;
-      border-bottom: 1px solid #f7f7f9;
-    }
-    .fl-table tbody tr {
-      display: table-cell;
-    }
-    .fl-table tbody tr:nth-child(odd) {
-      background: none;
-    }
-    .fl-table tr:nth-child(even) {
-      background: transparent;
-    }
-    .fl-table tr td:nth-child(odd) {
-      background: #f8f8f8;
-      border-right: 1px solid #e6e4e4;
-    }
-    .fl-table tr td:nth-child(even) {
-      border-right: 1px solid #e6e4e4;
-    }
-    .fl-table tbody td {
-      display: block;
-      text-align: center;
     }
   }
 `;

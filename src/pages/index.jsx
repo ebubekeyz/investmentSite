@@ -2,6 +2,8 @@ export { default as HomeLayout } from './HomeLayout';
 export { default as Landing } from './Landing';
 export { default as Login } from './Login';
 export { default as Register } from './Register';
+export { default as Members } from './Members';
+export { default as UserDash } from './UserDash';
 export { default as Error } from './Error';
 export { default as Deposit } from './Deposit';
 export { default as SignUp } from './SignUp';

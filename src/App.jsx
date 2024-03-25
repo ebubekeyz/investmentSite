@@ -41,6 +41,8 @@ import {
   Messages,
   DeleteMessage,
   AdminSettings,
+  Members,
+  UserDash,
 } from './pages';
 import { loader as landingLoader } from './pages/Landing.jsx';
 import { action as actionLoader } from './pages/Login.jsx';
@@ -239,6 +241,16 @@ const router = createBrowserRouter([
   {
     path: '/adminSettings',
     element: <AdminSettings />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/members',
+    element: <Members />,
+    errorElement: <SinglePageError />,
+  },
+  {
+    path: '/userDash',
+    element: <UserDash />,
     errorElement: <SinglePageError />,
   },
 ]);

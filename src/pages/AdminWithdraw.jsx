@@ -25,8 +25,6 @@ const AdminWithdraw = () => {
     withdrawFunc();
   }, [withdrawFunc]);
 
-  console.log(withdraw);
-
   let idd = 0;
   return (
     <Wrapper>
@@ -39,6 +37,7 @@ const AdminWithdraw = () => {
               <thead>
                 <tr>
                   <th>S/N</th>
+                  <th>Username</th>
                   <th>WithdrawalMethod</th>
                   <th>WalletAddress</th>
                   <th>Amount</th>
@@ -56,14 +55,17 @@ const AdminWithdraw = () => {
                         amount,
                         walletAddress,
                         status,
+                        user: { username: username },
                       } = item;
 
                       item.idd = idd++;
                       const update = `/editWithdraw?id=${withdrawId}`;
                       const del = `/deleteWithdraw?id=${withdrawId}`;
+
                       return (
                         <tr>
                           <td>{idd}</td>
+                          <td>{username}</td>
                           <td>{withdrawalMethod}</td>
                           <td>{walletAddress}</td>
                           <td>€{amount}</td>
@@ -75,7 +77,7 @@ const AdminWithdraw = () => {
                           >
                             {status}
                           </td>
-                          <td>
+                          <td onClick={toggle}>
                             <Link to={update} type="button" className="btn">
                               Acknowledge
                             </Link>

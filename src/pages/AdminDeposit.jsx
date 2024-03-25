@@ -37,6 +37,7 @@ const AdminDeposit = () => {
               <thead>
                 <tr>
                   <th>S/N</th>
+                  <th>Username</th>
                   <th>Coin</th>
                   <th>Plan</th>
                   <th>Amount</th>
@@ -45,17 +46,18 @@ const AdminDeposit = () => {
                   <th>status</th>
                   <th>Edit</th>
                   <th>Delete</th>
-                  <th>Ref Bonus</th>
                 </tr>
               </thead>
               <tbody>
                 {deposit
                   ? deposit.map((item) => {
+                      console.log(item);
                       const {
                         _id: id,
                         createdAt,
                         status,
                         receipt,
+                        user: { username: username },
                         amount: {
                           _id: amountId,
                           amount: amt,
@@ -82,6 +84,7 @@ const AdminDeposit = () => {
                       return (
                         <tr>
                           <td>{idd}</td>
+                          <td>{username}</td>
                           <td>{coin}</td>
                           <td>{plan}</td>
                           <td>€{amt}</td>
@@ -114,11 +117,6 @@ const AdminDeposit = () => {
                               className="btn"
                             >
                               delete
-                            </Link>
-                          </td>
-                          <td>
-                            <Link to={bon} type="button" className="btn">
-                              Add Bonus
                             </Link>
                           </td>
                         </tr>

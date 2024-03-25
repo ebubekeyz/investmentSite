@@ -124,6 +124,19 @@ const Sidebar2 = () => {
           </article>
         </aside>
 
+        <aside id="dash2">
+          <article className="home">
+            <div className="tog">
+              <span>
+                <RiMoneyDollarBoxLine className="icon" />
+              </span>
+              <Link to="/" className="tog-text">
+                Add Funds
+              </Link>
+            </div>
+          </article>
+        </aside>
+
         {/* <aside id="dash2">
           <article className="home">
             <div className="tog">
@@ -141,7 +154,20 @@ const Sidebar2 = () => {
               <span>
                 <CiSettings className="icon" />
               </span>
-              <Link to="/adminDash" className="tog-text">
+              <Link to="/adminSettings" className="tog-text">
+                Account Checking
+              </Link>
+            </div>
+          </article>
+        </aside>
+
+        <aside id="dash2">
+          <article className="home">
+            <div className="tog">
+              <span>
+                <CiSettings className="icon" />
+              </span>
+              <Link to="/" className="tog-text">
                 Transactions
               </Link>
             </div>

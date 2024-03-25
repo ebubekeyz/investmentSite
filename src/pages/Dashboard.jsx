@@ -13,6 +13,307 @@ import { IoIosWallet } from 'react-icons/io';
 import { GiTwoCoins } from 'react-icons/gi';
 
 const Dashboard = () => {
+  // user id
+  const [userId, setUserId] = useState('');
+
+  const fetchUserId = async () => {
+    try {
+      const response = await mainFetch.get('/api/v1/users/showMe', {
+        withCredentials: true,
+      });
+      const { userId } = response.data.user;
+
+      setUserId(userId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserId();
+  }, []);
+
+  // end userId
+
+  // main balance
+  const [mainBalance, setMainBalance] = useState({
+    amount: '',
+    percent: '',
+    days: '',
+    plan: '',
+    status: '',
+    createdAt: '',
+    coin: '',
+  });
+  const fetchMainBalance = async () => {
+    try {
+      const response = await mainFetch.get(
+        '/api/v1/payReceipt/showUserPayReceipt',
+        {
+          withCredentials: true,
+        }
+      );
+
+      const bal = response.data.payReceipt;
+      const length = bal.length - 1;
+
+      const {
+        createdAt,
+        status,
+        amount: {
+          amount: amt,
+          coin: {
+            coinType: coin,
+            invest: { percent: percent, days: days, plan: plan },
+          },
+        },
+      } = bal[length];
+      setMainBalance({
+        amount: amt,
+        percent: percent,
+        days: days,
+        plan: plan,
+        status: status,
+        coin: coin,
+        createdAt: createdAt,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchMainBalance();
+  }, []);
+
+  const calculateTotalPercent = () => {
+    const total = (mainBalance.amount * mainBalance.percent) / 100;
+
+    return total;
+  };
+  useEffect(() => {
+    calculateTotalPercent();
+  }, []);
+  console.log(mainBalance.days);
+
+  const profit = () => {
+    const date = new Date();
+    const investDate = new Date(mainBalance.createdAt);
+
+    let getInvestDate = investDate.getDate();
+    let getDate = date.getDate();
+    let num = calculateTotalPercent();
+
+    if (getDate === getInvestDate + mainBalance.days) {
+      return num;
+    } else {
+      return (num = 0);
+    }
+    // if (getDate === getInvestDate + mainBalance.days + 1) {
+    //   return (num = 0);
+    // }
+
+    return num;
+  };
+  useEffect(() => {
+    profit();
+  }, []);
+
+  const postProfit = async () => {
+    try {
+      const response = await mainFetch.post(
+        '/api/v1/profit',
+        { amount: profit() },
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    postProfit();
+  }, []);
+
+  // end main balance
+
+  // Balance
+
+  const [accountBalance, setAccountBalance] = useState([]);
+
+  const fetchBalance = async () => {
+    try {
+      const response = await mainFetch.get('/api/v1/payReceipt', {
+        withCredentials: true,
+      });
+
+      setAccountBalance(response.data.payReceipt);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBalance();
+  }, []);
+
+  const filterBalance = accountBalance.filter((item) => item.user === userId);
+
+  const filterBalancePaid = filterBalance.filter(
+    (item) => item.status === 'paid'
+  );
+
+  const filterBalancePending = filterBalance.filter(
+    (item) => item.status === 'pending'
+  );
+
+  const filterBalancePaidReduce = filterBalancePaid.reduce((acc, curr) => {
+    const {
+      amount: { amount: amt },
+    } = curr;
+    return acc + amt;
+  }, 0);
+  const filterBalancePendingReduce = filterBalancePending.reduce(
+    (acc, curr) => {
+      const {
+        amount: { amount: amt },
+      } = curr;
+      return acc + amt;
+    },
+    0
+  );
+
+  const formatter = new Intl.NumberFormat('en-DE', {
+    style: 'currency',
+    currency: 'EUR',
+  });
+
+  const [refTree, setRefTree] = useState([]);
+  const showReferral = async () => {
+    try {
+      const res = await mainFetch.get('/api/v1/referral/showUserReferral', {
+        withCredentials: true,
+      });
+
+      setRefTree(res.data.referral);
+    } catch (error) {
+      console.log(error);
+      console.log(error.res.data.msg);
+    }
+  };
+
+  useEffect(() => {
+    showReferral();
+  }, []);
+
+  // post earning
+
+  const [earning, setEarning] = useState([]);
+  const fetchEarning = async () => {
+    try {
+      const response = await mainFetch.get('/api/v1/earning/showUserEarning', {
+        withCredentials: true,
+      });
+
+      setEarning(response.data.earning);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchEarning();
+  }, []);
+
+  const earningReduce = earning.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
+
+  // end earning
+
+  // curr withdraw
+  const [currWithdraw, setCurrWithdraw] = useState([]);
+
+  const fetchCurrWithdraw = async () => {
+    try {
+      const response = await mainFetch.get(
+        '/api/v1/withdraw/showUserWithdraw',
+        {
+          withCredentials: true,
+        }
+      );
+      const withdrawal = response.data.withdraw;
+      const length = withdrawal.length - 1;
+      const { amount } = withdrawal[length];
+      setCurrWithdraw(amount);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCurrWithdraw();
+  }, []);
+
+  // end curr withdraw
+
+  // Total Withdraw
+  const [withdraw, setWithdraw] = useState([]);
+
+  const fetchWithdraw = async () => {
+    try {
+      const response = await mainFetch.get(
+        '/api/v1/withdraw/showUserWithdraw',
+        {
+          withCredentials: true,
+        }
+      );
+      setWithdraw(response.data.withdraw);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchWithdraw();
+  }, []);
+
+  const filterWithdraw = withdraw.filter((item) => item.status === 'sent');
+  const filterWithdrawProcessing = withdraw.filter(
+    (item) => item.status === 'processing'
+  );
+
+  const totalWithdraw = filterWithdraw.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
+  const totalWithdrawProcessing = filterWithdrawProcessing.reduce(
+    (acc, curr) => {
+      return acc + curr.amount;
+    },
+    0
+  );
+
+  //endTotal withdraw
+
+  const mainAccountBalance =
+    mainBalance.amount + earningReduce + profit() - currWithdraw;
+  console.log(mainAccountBalance);
+
+  const postBalance = async () => {
+    try {
+      const response = await mainFetch.post(
+        '/api/v1/balance',
+        { balance: mainAccountBalance },
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    postBalance();
+  }, [postBalance]);
+
+  // referral copy
   const [userIdd, setUserIdd] = useState('');
   const [username, setUsername] = useState('');
   const fetchUser = async () => {
@@ -38,284 +339,6 @@ const Dashboard = () => {
     toast.success(`You have copied ${userIdd}`);
   };
 
-  // const [bonus, setBonus] = useState(200);
-  const [balance, setBalance] = useState({
-    amount: '',
-    percent: '',
-    days: '',
-    plan: '',
-    status: '',
-    createdAt: '',
-  });
-
-  const showBalance = async () => {
-    try {
-      const res = await mainFetch.get('/api/v1/payReceipt/showUserPayReceipt', {
-        withCredentials: true,
-      });
-
-      const payMajor = res.data.payReceipt;
-      const num = payMajor.length - 1;
-      const {
-        createdAt,
-        status,
-        amount: {
-          amount: amt,
-          coin: {
-            invest: { percent: percent, days: days, plan: plan },
-          },
-        },
-      } = payMajor[num];
-      setBalance({
-        amount: amt,
-        percent: percent,
-        days: days,
-        plan: plan,
-        status: status,
-        createdAt: createdAt,
-      });
-    } catch (error) {
-      console.log(error);
-      console.log(error.res.data.msg);
-    }
-  };
-
-  useEffect(() => {
-    showBalance();
-  }, []);
-
-  const [withdrawAmt, setWithdrawAmt] = useState('');
-
-  const withdrawalFetch = async () => {
-    try {
-      const response = await mainFetch.get(`api/v1/withdraw/showUserWithdraw`, {
-        withCredentials: true,
-      });
-
-      const withdrawal = response.data.withdraw;
-      const num = withdrawal.length - 1;
-      const { amount } = withdrawal[num];
-
-      setWithdrawAmt(amount);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    withdrawalFetch();
-  }, []);
-
-  const [totalBal, setTotalBal] = useState([]);
-
-  const showTotalBal = async () => {
-    try {
-      const res = await mainFetch.get('/api/v1/payReceipt/showUserPayReceipt', {
-        withCredentials: true,
-      });
-
-      const payMajor = res.data.payReceipt;
-      setTotalBal(payMajor);
-    } catch (error) {
-      console.log(error);
-      console.log(error.res.data.msg);
-    }
-  };
-
-  useEffect(() => {
-    showTotalBal();
-  }, []);
-
-  const balSent = totalBal.filter((item) => item.status === 'paid');
-
-  // const totalBalSent = balSent.reduce((acc, curr) => {
-  //   const {
-  //     createdAt,
-  //     status,
-  //     amount: {
-  //       amount: amt,
-  //       coin: {
-  //         invest: { percent: percent, days: days, plan: plan },
-  //       },
-  //     },
-  //   } = curr;
-
-  //   return (acc + amt * percent) / (balSent.length * 100);
-  // }, 0);
-
-  const [calcPercentage, setCalcPercentage] = useState(0);
-  const calculateTotalPercent = () => {
-    const total = (balance.amount * balance.percent) / 100;
-
-    return total;
-  };
-  useEffect(() => {
-    calculateTotalPercent();
-  }, []);
-
-  const profit = () => {
-    const date = new Date();
-    const investDate = new Date(balance.createdAt);
-
-    let getInvestDate = investDate.getDate();
-    let getDate = date.getDate();
-    let num = calculateTotalPercent();
-
-    if (getDate === getInvestDate + balance.days) {
-      return num;
-    }
-    if (getDate === getInvestDate + balance.days + 1) {
-      return (num = 0);
-    }
-
-    return num;
-  };
-  useEffect(() => {
-    profit();
-  }, []);
-
-  // const reduceWithdrawal = withdrawAmt.reduce((acc, curr) => {
-  //   return acc + curr.amount;
-  // }, 0);
-
-  const accBalance = async () => {
-    const balance = balance.amount + profit();
-    try {
-      const response = await mainFetch.post(
-        '/api/v1/balance',
-        { balance: balance },
-        { withCredentials: true }
-      );
-    } catch (error) {
-      console.log(error);
-      console.log(error.response.data.msg);
-    }
-  };
-  useEffect(() => {
-    accBalance();
-  }, [accBalance]);
-
-  const formatter = new Intl.NumberFormat('en-DE', {
-    style: 'currency',
-    currency: 'EUR',
-  });
-
-  const [refTree, setRefTree] = useState([]);
-  const showReferral = async () => {
-    try {
-      const res = await mainFetch.get('/api/v1/referral/showUserReferral', {
-        withCredentials: true,
-      });
-
-      setRefTree(res.data.referral);
-    } catch (error) {
-      console.log(error);
-      console.log(error.res.data.msg);
-    }
-  };
-
-  useEffect(() => {
-    showReferral();
-  }, []);
-
-  const totalAmount = balSent?.reduce((acc, curr) => {
-    const {
-      amount: { amount: amt },
-    } = curr;
-
-    return acc + amt;
-  }, 0);
-
-  const [invest, setInvest] = useState([]);
-
-  const showInvest = async () => {
-    try {
-      const response = await mainFetch.get(
-        '/api/v1/payReceipt/showUserPayReceipt',
-        {
-          withCredentials: true,
-        }
-      );
-
-      setInvest(response.data.payReceipt);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    showInvest();
-  }, []);
-
-  const filterInvest = invest.filter((item) => item.status === 'pending');
-
-  const reduceInvest = filterInvest.reduce((acc, curr) => {
-    const {
-      amount: { amount: amt },
-    } = curr;
-    return acc + amt;
-  }, 0);
-
-  const [withdrawAmount, setWithdrawAmount] = useState([]);
-
-  const withdrawMainFetch = async () => {
-    try {
-      const response = await mainFetch.get(`api/v1/withdraw/showUserWithdraw`, {
-        withCredentials: true,
-      });
-
-      const withdrawal = response.data.withdraw;
-
-      setWithdrawAmount(withdrawal);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    withdrawMainFetch();
-  }, [withdrawMainFetch]);
-
-  const filterWithdraw = withdrawAmount.filter(
-    (item) => item.status === 'processing'
-  );
-
-  const reduceWithdraw = filterWithdraw.reduce((acc, curr) => {
-    return acc + curr.amount;
-  }, 0);
-
-  const [totalWithdraw, setTotalWithdraw] = useState([]);
-
-  const totalWithdrawFetch = async () => {
-    try {
-      const response = await mainFetch.get(`api/v1/withdraw/showUserWithdraw`, {
-        withCredentials: true,
-      });
-
-      const withdrawal = response.data.withdraw;
-
-      setTotalWithdraw(withdrawal);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    totalWithdrawFetch();
-  }, [totalWithdrawFetch]);
-
-  const filterTotalWithdraw = totalWithdraw.filter(
-    (item) => item.status === 'sent'
-  );
-
-  const reduceSentWithdrawal = filterTotalWithdraw.reduce((acc, curr) => {
-    return acc + curr.amount;
-  }, 0);
-
-  const reduceTotalWithdrawal = totalWithdraw.reduce((acc, curr) => {
-    return acc + curr.amount;
-  }, 0);
-
   const [user, setUser] = useState([]);
 
   const showUserRef = async () => {
@@ -336,13 +359,7 @@ const Dashboard = () => {
 
   const filterUser = user.filter((item) => item.referralId === `${username}`);
 
-  // const earn = filterUser.length * 50;
-  const verifiedUser = filterUser.filter((item) => item.status === 'verified');
-
-  const earn = verifiedUser.length * 20;
-
-  const accountBalance = balance.amount + profit() - withdrawAmt + earn;
-
+  // end referral
   return (
     <Wrapper>
       <Navbar2 />
@@ -356,8 +373,10 @@ const Dashboard = () => {
                 <h3 id="circ-two"></h3>
               </div>
               <p>Account balance</p>
-              {balance.status === 'paid' ? (
-                <h4>{formatter.format(Number(accountBalance).toFixed(2))}</h4>
+              {mainBalance.status === 'paid' ? (
+                <h4>
+                  {formatter.format(Number(mainAccountBalance).toFixed(2))}
+                </h4>
               ) : (
                 <h4>{formatter.format(0)}</h4>
               )}
@@ -373,8 +392,8 @@ const Dashboard = () => {
 
                 <p>Total Withdraw</p>
 
-                {filterTotalWithdraw ? (
-                  <h4>{formatter.format(reduceSentWithdrawal)}</h4>
+                {filterWithdraw ? (
+                  <h4>{formatter.format(totalWithdraw)}</h4>
                 ) : (
                   <h4>{formatter.format(0)}</h4>
                 )}
@@ -390,7 +409,7 @@ const Dashboard = () => {
 
                 <p>Total profit</p>
 
-                {balance.status === 'paid' ? (
+                {mainBalance.status === 'paid' ? (
                   <h4>{formatter.format(Number(profit()).toFixed(2))}</h4>
                 ) : (
                   <h4>{formatter.format(Number(0).toFixed(2))}</h4>
@@ -407,8 +426,8 @@ const Dashboard = () => {
 
                 <p>Current Invest</p>
 
-                {balance.status === 'paid' ? (
-                  <h4>{formatter.format(balance.amount)}</h4>
+                {mainBalance.status === 'paid' ? (
+                  <h4>{formatter.format(mainBalance.amount)}</h4>
                 ) : (
                   <h4>{formatter.format(0)}</h4>
                 )}
@@ -424,8 +443,12 @@ const Dashboard = () => {
 
                 <p>Total Invest</p>
 
-                {balSent ? (
-                  <h4>{formatter.format(Number(totalAmount).toFixed(2))}</h4>
+                {filterBalancePaid ? (
+                  <h4>
+                    {formatter.format(
+                      Number(filterBalancePaidReduce).toFixed(2)
+                    )}
+                  </h4>
                 ) : (
                   <h4>{formatter.format(0)}</h4>
                 )}
@@ -435,8 +458,10 @@ const Dashboard = () => {
           <article className="upgrade-main">
             <h3>Your Current Level</h3>
             <div className="upgrade">
-              <p style={{ maxWidth: '10rem' }}>{balance.plan}</p>
-              {/* <p>{balance.coin}</p> */}
+              <p style={{ maxWidth: '10rem' }}>
+                {mainBalance.status === 'paid' ? mainBalance.plan : 'N/A'}
+              </p>
+
               <Link to="/investDash" type="btn" className="upgrade-btn">
                 Upgrade
               </Link>
@@ -472,7 +497,9 @@ const Dashboard = () => {
                 <IoIosFlash className="icon-main" />
               </span>
               <h5>Current Plan</h5>
-              <h4>{balance.plan}</h4>
+              <h4>
+                {mainBalance.status === 'paid' ? mainBalance.plan : 'N/A'}
+              </h4>
             </article>
 
             <article>
@@ -480,8 +507,12 @@ const Dashboard = () => {
                 <IoIosWallet className="icon-main" />
               </span>
               <h5>Pending Invest</h5>
-              {filterInvest ? (
-                <h4>{formatter.format(Number(reduceInvest).toFixed(2))}</h4>
+              {filterBalancePending ? (
+                <h4>
+                  {formatter.format(
+                    Number(filterBalancePendingReduce).toFixed(2)
+                  )}
+                </h4>
               ) : (
                 <h4>{formatter.format(Number(0).toFixed(2))}</h4>
               )}
@@ -492,8 +523,10 @@ const Dashboard = () => {
                 <MdHourglassEmpty className="icon-main" />
               </span>
               <h5>Pending Withdrawal</h5>
-              {filterWithdraw ? (
-                <h4>{formatter.format(Number(reduceWithdraw).toFixed(2))}</h4>
+              {filterWithdrawProcessing ? (
+                <h4>
+                  {formatter.format(Number(totalWithdrawProcessing).toFixed(2))}
+                </h4>
               ) : (
                 <h4>{formatter.format(Number(0).toFixed(2))}</h4>
               )}
@@ -504,8 +537,8 @@ const Dashboard = () => {
                 <GiTwoCoins className="icon-main" id="icon4" />
               </span>
               <h5>Referral Earn</h5>
-              {verifiedUser ? (
-                <h4>{formatter.format(Number(earn).toFixed(2))}</h4>
+              {earning.length !== 0 ? (
+                <h4>{formatter.format(Number(earningReduce).toFixed(2))}</h4>
               ) : (
                 <h4>{formatter.format(Number(0).toFixed(2))}</h4>
               )}

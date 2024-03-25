@@ -12,14 +12,16 @@ import Navbar2 from '../components/Navbar2';
 const Settings = () => {
   const [isLoading, setIsLoading] = useState('update');
   const [user, setUser] = useState({
-    fullName: '',
-    username: '',
-    email: '',
-    phone: '',
-    country: '',
-    city: '',
-    zip: '',
-    state: '',
+    // fullName: '',
+    // username: '',
+    // email: '',
+    // phone: '',
+    // country: '',
+    coins: '',
+    walletAddress: '',
+    // city: '',
+    // zip: '',
+    // state: '',
   });
 
   const [id, setId] = useState({
@@ -28,6 +30,8 @@ const Settings = () => {
     email: '',
     phone: '',
     country: '',
+    coins: '',
+    walletAddress: '',
     city: '',
     zip: '',
     state: '',
@@ -51,6 +55,8 @@ const Settings = () => {
         phone,
         country,
         city,
+        coins,
+        walletAddress,
         zip,
         state,
       } = response.data.user;
@@ -60,6 +66,8 @@ const Settings = () => {
         email: email,
         phone: phone,
         country: country,
+        coins: coins,
+        walletAddress: walletAddress,
         city: city,
         zip: zip,
         state: state,
@@ -85,11 +93,13 @@ const Settings = () => {
           fullName: user.fullName,
           username: user.username,
           //   email: user.email,
-          phone: user.phone,
-          country: user.country,
-          city: user.city,
-          zip: user.zip,
-          state: user.state,
+          // phone: user.phone,
+          coins: user.coins,
+          walletAddress: user.walletAddress,
+          // country: user.country,
+          // city: user.city,
+          // zip: user.zip,
+          // state: user.state,
         },
         {
           withCredentials: true,
@@ -97,15 +107,17 @@ const Settings = () => {
       );
       setIsLoading('Updated');
       setUser({
-        fullName: id.fullName,
-        username: id.username,
+        // fullName: id.fullName,
+        // username: id.username,
         // email: '',
-        phone: id.phone,
-        country: id.country,
-        city: id.city,
-        zip: id.zip,
-        state: id.state,
-        userId: id.userId,
+        // phone: id.phone,
+        // country: id.country,
+        coins: id.coins,
+        walletAddress: id.walletAddress,
+        // city: id.city,
+        // zip: id.zip,
+        // state: id.state,
+        // userId: id.userId,
       });
       toast.success('Update Successful');
     } catch (error) {
@@ -148,7 +160,7 @@ const Settings = () => {
 
             <article className="form-main">
               <form onSubmit={handleSubmit}>
-                <div className="form-container">
+                {/* <div className="form-container">
                   <label htmlFor="firstName" className="label">
                     Full Name
                   </label>
@@ -292,6 +304,44 @@ const Settings = () => {
                     name="state"
                     placeholder={id.state}
                     value={user.state}
+                    onChange={(e) => {
+                      setUser({
+                        ...user,
+                        [e.target.name]: e.target.value,
+                      });
+                    }}
+                  />
+                </div> */}
+
+                <div className="form-container">
+                  <label htmlFor="state" className="label">
+                    Coins
+                  </label>
+                  <input
+                    type="text"
+                    className="input"
+                    name="coins"
+                    placeholder={id.coins}
+                    value={user.coins}
+                    onChange={(e) => {
+                      setUser({
+                        ...user,
+                        [e.target.name]: e.target.value,
+                      });
+                    }}
+                  />
+                </div>
+
+                <div className="form-container">
+                  <label htmlFor="state" className="label">
+                    Wallet Address
+                  </label>
+                  <input
+                    type="text"
+                    className="input"
+                    name="walletAddress"
+                    placeholder={id.walletAddress}
+                    value={user.walletAddress}
                     onChange={(e) => {
                       setUser({
                         ...user,

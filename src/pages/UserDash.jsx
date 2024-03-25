@@ -33,11 +33,14 @@ const UserDash = () => {
   }, []);
 
   const {
+    fullName,
     username,
     phone,
     country,
     city,
     state,
+    coins,
+    walletAddress,
     createdAt,
     status,
     _id: idd,
@@ -177,13 +180,15 @@ const UserDash = () => {
   });
 
   const [update, setUpdate] = useState({
-    fullName: '',
-    username: '',
-    email: '',
-    phone: '',
-    country: '',
-    city: '',
-    state: '',
+    // fullName: '',
+    // username: '',
+    // email: '',
+    // phone: '',
+    // country: '',
+    // city: '',
+    // state: '',
+    coins,
+    walletAddress,
     status: 'verified',
   });
   const [pass, setPass] = useState({
@@ -198,13 +203,15 @@ const UserDash = () => {
       const response = await mainFetch.patch(
         `/api/v1/users/${id}`,
         {
-          fullName: update.fullName,
-          username: update.username,
+          // fullName: update.fullName,
+          // username: update.username,
           //   email: update.email,
-          phone: update.phone,
-          city: update.city,
-          state: update.state,
-          country: update.country,
+          // phone: update.phone,
+          // city: update.city,
+          // state: update.state,
+          // country: update.country,
+          coins: update.coins,
+          walletAddress: update.walletAddress,
           status: update.status,
         },
         {
@@ -213,13 +220,15 @@ const UserDash = () => {
       );
       toast.success('Update Successful');
       setUpdate({
-        fullName: '',
-        username: '',
-        email: '',
-        phone: '',
-        country: '',
-        city: '',
-        state: '',
+        // fullName: '',
+        // username: '',
+        // email: '',
+        // phone: '',
+        coins: '',
+        walletAddress: '',
+        // country: '',
+        // city: '',
+        // state: '',
       });
       setIsLoad1('update complete');
     } catch (error) {
@@ -283,6 +292,7 @@ const UserDash = () => {
   };
 
   const [bonusId, setBonusId] = useState('');
+  const [bonusAmt, setBonusAmt] = useState('');
 
   const fetchBonus = async () => {
     try {
@@ -292,8 +302,9 @@ const UserDash = () => {
       );
       const earn = response.data.earning;
       const len = earn.length - 1;
-      const { _id: id } = earn[len];
-      setBonusId(id);
+      const { _id, amount } = earn[len];
+      setBonusId(_id);
+      setBonusAmt(amount);
     } catch (error) {
       console.log(error);
     }
@@ -302,7 +313,7 @@ const UserDash = () => {
   useEffect(() => {
     fetchBonus();
   }, []);
-
+  console.log(bonusId);
   const handleSubmit4 = async (e) => {
     e.preventDefault();
     try {
@@ -328,6 +339,29 @@ const UserDash = () => {
       toast.error(error.response.data.msg);
     }
   };
+
+  const [allUsers, setAllUsers] = useState([]);
+
+  const fetchAllUsers = async () => {
+    try {
+      const response = await mainFetch.get('/api/v1/users', {
+        withCredentials: true,
+      });
+      setAllUsers(response.data.users);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllUsers();
+  }, []);
+
+  const filterUsers = allUsers.filter((item) => item.referral === username);
+
+  const referralNumber = filterUsers.length;
+  console.log(referralNumber);
+
   return (
     <Wrapper>
       <MembersNavbar />
@@ -346,19 +380,29 @@ const UserDash = () => {
           <div className="balance">
             <h4>Balance</h4>
             <p>
-              Username: <span>{username}</span>
+              Username: <span>{username ? username : 'N/A'}</span>
             </p>
             <p>
-              Phone: <span>{phone}</span>
+              Phone: <span>{phone ? phone : 'N/A'}</span>
             </p>
             <p>
-              Country: <span>{country}</span>
+              Country: <span>{country ? country : 'N/A'}</span>
             </p>
             <p>
-              City: <span>{city}</span>
+              City: <span>{city ? city : 'N/A'}</span>
             </p>
             <p>
-              State: <span>{state}</span>
+              State: <span>{state ? state : 'N/A'}</span>
+            </p>
+            <p>
+              Coins: <span>{coins ? coins : 'N/A'}</span>
+            </p>
+            <p>
+              Wallet Address:{' '}
+              <span>{walletAddress ? walletAddress : 'N/A'}</span>
+            </p>
+            <p>
+              Total Referral: <span>{referralNumber}</span>
             </p>
 
             <p>
@@ -417,7 +461,7 @@ const UserDash = () => {
 
           <form onSubmit={handleSubmit1} className="updateForm">
             <h4>Update User</h4>
-            <div className="inner">
+            {/* <div className="inner">
               <label htmlFor="fullName" className="label">
                 FullName
               </label>
@@ -425,6 +469,7 @@ const UserDash = () => {
                 type="text"
                 className="input"
                 name="fullName"
+                placeholder={fullName}
                 value={update.name}
                 onChange={(e) => {
                   setUpdate({ ...update, [e.target.name]: e.target.value });
@@ -439,6 +484,7 @@ const UserDash = () => {
               <input
                 type="text"
                 className="input"
+                placeholder={username}
                 name="username"
                 value={update.username}
                 onChange={(e) => {
@@ -455,6 +501,7 @@ const UserDash = () => {
                 type="text"
                 className="input"
                 name="phone"
+                placeholder={phone}
                 value={update.phone}
                 onChange={(e) => {
                   setUpdate({ ...update, [e.target.name]: e.target.value });
@@ -469,6 +516,7 @@ const UserDash = () => {
               <input
                 type="text"
                 className="input"
+                placeholder={country}
                 name="country"
                 value={update.country}
                 onChange={(e) => {
@@ -484,6 +532,7 @@ const UserDash = () => {
               <input
                 type="text"
                 className="input"
+                placeholder={city}
                 name="city"
                 value={update.city}
                 onChange={(e) => {
@@ -500,7 +549,40 @@ const UserDash = () => {
                 type="text"
                 className="input"
                 name="state"
+                placeholder={state}
                 value={update.state}
+                onChange={(e) => {
+                  setUpdate({ ...update, [e.target.name]: e.target.value });
+                }}
+              />
+            </div> */}
+
+            <div className="inner">
+              <label htmlFor="state" className="label">
+                Coins
+              </label>
+              <input
+                type="text"
+                className="input"
+                name="coins"
+                placeholder={coins}
+                value={update.coins}
+                onChange={(e) => {
+                  setUpdate({ ...update, [e.target.name]: e.target.value });
+                }}
+              />
+            </div>
+
+            <div className="inner">
+              <label htmlFor="state" className="label">
+                Wallet Address
+              </label>
+              <input
+                type="text"
+                className="input"
+                name="walletAddress"
+                placeholder={walletAddress}
+                value={update.walletAddress}
                 onChange={(e) => {
                   setUpdate({ ...update, [e.target.name]: e.target.value });
                 }}
@@ -514,6 +596,7 @@ const UserDash = () => {
               <input
                 type="text"
                 className="input"
+                placeholder={status}
                 name="status"
                 value={update.status}
                 onChange={(e) => {
@@ -564,7 +647,7 @@ const UserDash = () => {
             </button>
           </form>
 
-          <form onSubmit={handleSubmit3} className="change updateForm">
+          {/* <form onSubmit={handleSubmit3} className="change updateForm">
             <h4>Update Balance</h4>
             <div className="inner">
               <label htmlFor="newPassword" className="label">
@@ -587,7 +670,7 @@ const UserDash = () => {
             <button type="submit" className="btn">
               {isLoad3}
             </button>
-          </form>
+          </form> */}
 
           <form onSubmit={handleSubmit4} className="change updateForm">
             <h4>Add Bonus</h4>
@@ -599,6 +682,7 @@ const UserDash = () => {
                 type="text"
                 className="input"
                 name="amount"
+                placeholder={bonusAmt}
                 value={updateBonus.amount}
                 onChange={(e) => {
                   setUpdateBonus({

@@ -1,68 +1,146 @@
-import Wrapper from '../assets/wrappers/Sidebar';
-import { GoHome } from 'react-icons/go';
-import { IoIosFlash } from 'react-icons/io';
-import { IoFolderOpenOutline } from 'react-icons/io5';
-import { FaFileAlt } from 'react-icons/fa';
-import { FaUser } from 'react-icons/fa6';
-import { MdKeyboardDoubleArrowRight } from 'react-icons/md';
-import { MdKeyboardArrowDown } from 'react-icons/md';
-import { MdKeyboardArrowUp } from 'react-icons/md';
-import { IoIosLogOut } from 'react-icons/io';
-import { Link } from 'react-router-dom';
-import { GoBriefcase } from 'react-icons/go';
-import { RiMoneyDollarBoxLine } from 'react-icons/ri';
+// import { useState, useEffect } from 'react';
+// import Wrapper from '../assets/wrappers/Members';
+// import FooterMobile from '../components/FooterMobile';
+// import Navbar2 from '../components/Navbar2';
+// import Sidebar2 from '../components/Sidebar2';
+// import { mainFetch } from '../utils';
+// import { Link } from 'react-router-dom';
+// import { toast } from 'react-toastify';
+// import Navbar3 from '../components/Navbar3';
+
+// const AdminDash = () => {
+//   const [user, setUser] = useState([]);
+
+//   const userFunc = async () => {
+//     try {
+//       const response = await mainFetch.get('/api/v1/users', {
+//         withCredentials: true,
+//       });
+
+//       setUser(response.data.users);
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+
+//   useEffect(() => {
+//     userFunc();
+//   }, [userFunc]);
+
+//   let idd = 0;
+
+//   return (
+//     <Wrapper>
+//       <Navbar3 />
+
+//       <div className="container">
+//         <Sidebar2 />
+//         <section className="admin">
+//           <div className="table-wrapper">
+//             <table class="fl-table">
+//               <thead>
+//                 <tr>
+//                   <th>S/N</th>
+//                   <th>Name</th>
+//                   <th>Username</th>
+//                   <th>Email</th>
+
+//                   <th>Country</th>
+//                   <th>City</th>
+//                   <th>Phone</th>
+//                   <th>Update</th>
+//                   <th>Delete</th>
+//                 </tr>
+//               </thead>
+//               <tbody>
+//                 {user
+//                   ? user.map((item) => {
+//                       item.idd = idd++;
+//                       const {
+//                         _id: id,
+//                         fullName,
+//                         username,
+//                         email,
+//                         phone,
+//                         city,
+//                         country,
+//                         status,
+//                         referralId,
+//                       } = item;
+//                       const update = `/editUser?id=${id}`;
+//                       const del = `/deleteUser?id=${id}`;
+
+//                       return (
+//                         <tr>
+//                           <td>{idd}</td>
+//                           <td>{fullName}</td>
+//                           <td>{username}</td>
+//                           <td>{email}</td>
+
+//                           <td>{country}</td>
+//                           <td>{city}</td>
+//                           <td>{phone}</td>
+//                           <td>
+//                             <Link to={update} type="button" className="btn">
+//                               update
+//                             </Link>
+//                           </td>
+//                           <td>
+//                             <Link
+//                               to={del}
+//                               type="button"
+//                               style={{ background: 'red' }}
+//                               className="btn"
+//                             >
+//                               delete
+//                             </Link>
+//                           </td>
+//                           {/* <td
+//                             style={{
+//                               color: status === 'verified' ? 'green' : 'red',
+//                             }}
+//                           >
+//                             {status}
+//                           </td> */}
+//                         </tr>
+//                       );
+//                     })
+//                   : '<p>No User</p>'}
+//               </tbody>
+//             </table>
+//           </div>
+//         </section>
+//       </div>
+//     </Wrapper>
+//   );
+// };
+// export default AdminDash;
+
+import { Link, useNavigate } from 'react-router-dom';
+import Wrapper from '../assets/wrappers/Dashboard';
+import Navbar2 from '../components/Navbar2';
+import Sidebar from '../components/Sidebar';
 import { useEffect, useState } from 'react';
-import { CiSettings } from 'react-icons/ci';
 import { mainFetch } from '../utils';
+import FooterMobile from '../components/FooterMobile';
+import copy from 'copy-to-clipboard';
+import { toast } from 'react-toastify';
+import { IoIosFlash } from 'react-icons/io';
+import { MdHourglassEmpty } from 'react-icons/md';
+import { IoIosWallet } from 'react-icons/io';
+import { GiTwoCoins } from 'react-icons/gi';
 
-const Sidebar2 = () => {
-  const [show, setShow] = useState(false);
-
-  const showFunc = () => {
-    setShow(!show);
-  };
-  const [show2, setShow2] = useState(false);
-
-  const showFunc2 = () => {
-    setShow2(!show2);
-  };
-  const [show3, setShow3] = useState(false);
-
-  const showFunc3 = () => {
-    setShow3(!show3);
-  };
-
-  const logout = async () => {
+const Dashboard = () => {
+  const [userIdd, setUserIdd] = useState('');
+  const [username, setUsername] = useState('');
+  const fetchUser = async () => {
     try {
-      await mainFetch.get('/api/v1/auth/logout', { withCredentials: true });
-      nav('/login');
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const [plan, setPlan] = useState([]);
-  const [status, setStatus] = useState([]);
-  const planFunc = async () => {
-    try {
-      const response = await mainFetch.get(
-        '/api/v1/payReceipt/showUserPayReceipt',
-        {
-          withCredentials: true,
-        }
-      );
-      const planMain = response.data.payReceipt;
-      const num = planMain.length - 1;
-      const {
-        status,
-        amount: {
-          coin: {
-            invest: { plan: plan },
-          },
-        },
-      } = planMain[num];
-      setPlan(plan);
-      setStatus(status);
+      const response = await mainFetch.get('/api/v1/users/showMe', {
+        withCredentials: true,
+      });
+      const { username } = response.data.user;
+      setUsername(username);
+      setUserIdd(`https://trex-holding.com/register/${username}`);
     } catch (error) {
       console.log(error);
       console.log(error.response.data.msg);
@@ -70,195 +148,492 @@ const Sidebar2 = () => {
   };
 
   useEffect(() => {
-    planFunc();
-  }, [planFunc]);
+    fetchUser();
+  }, []);
+
+  const copyReferral = () => {
+    copy(userIdd);
+    toast.success(`You have copied ${userIdd}`);
+  };
+
+  // const [bonus, setBonus] = useState(200);
+  const [balance, setBalance] = useState({
+    amount: '',
+    percent: '',
+    days: '',
+    plan: '',
+    status: '',
+    createdAt: '',
+  });
+
+  const showBalance = async () => {
+    try {
+      const res = await mainFetch.get('/api/v1/payReceipt/showUserPayReceipt', {
+        withCredentials: true,
+      });
+
+      const payMajor = res.data.payReceipt;
+      const num = payMajor.length - 1;
+      const {
+        createdAt,
+        status,
+        amount: {
+          amount: amt,
+          coin: {
+            invest: { percent: percent, days: days, plan: plan },
+          },
+        },
+      } = payMajor[num];
+      setBalance({
+        amount: amt,
+        percent: percent,
+        days: days,
+        plan: plan,
+        status: status,
+        createdAt: createdAt,
+      });
+    } catch (error) {
+      console.log(error);
+      console.log(error.res.data.msg);
+    }
+  };
+
+  useEffect(() => {
+    showBalance();
+  }, []);
+
+  const [withdrawAmt, setWithdrawAmt] = useState('');
+
+  const withdrawalFetch = async () => {
+    try {
+      const response = await mainFetch.get(`api/v1/withdraw/showUserWithdraw`, {
+        withCredentials: true,
+      });
+
+      const withdrawal = response.data.withdraw;
+      const num = withdrawal.length - 1;
+      const { amount } = withdrawal[num];
+
+      setWithdrawAmt(amount);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    withdrawalFetch();
+  }, []);
+
+  const [totalBal, setTotalBal] = useState([]);
+
+  const showTotalBal = async () => {
+    try {
+      const res = await mainFetch.get('/api/v1/payReceipt/showUserPayReceipt', {
+        withCredentials: true,
+      });
+
+      const payMajor = res.data.payReceipt;
+      setTotalBal(payMajor);
+    } catch (error) {
+      console.log(error);
+      console.log(error.res.data.msg);
+    }
+  };
+
+  useEffect(() => {
+    showTotalBal();
+  }, []);
+
+  const balSent = totalBal.filter((item) => item.status === 'paid');
+
+  // const totalBalSent = balSent.reduce((acc, curr) => {
+  //   const {
+  //     createdAt,
+  //     status,
+  //     amount: {
+  //       amount: amt,
+  //       coin: {
+  //         invest: { percent: percent, days: days, plan: plan },
+  //       },
+  //     },
+  //   } = curr;
+
+  //   return (acc + amt * percent) / (balSent.length * 100);
+  // }, 0);
+
+  const [calcPercentage, setCalcPercentage] = useState(0);
+  const calculateTotalPercent = () => {
+    const total = (balance.amount * balance.percent) / 100;
+
+    return total;
+  };
+  useEffect(() => {
+    calculateTotalPercent();
+  }, []);
+
+  const profit = () => {
+    const date = new Date();
+    const investDate = new Date(balance.createdAt);
+
+    let getInvestDate = investDate.getDate();
+    let getDate = date.getDate();
+    let num = calculateTotalPercent();
+
+    if (getDate === getInvestDate + balance.days) {
+      return num;
+    }
+    if (getDate === getInvestDate + balance.days + 1) {
+      return (num = 0);
+    }
+
+    return num;
+  };
+  useEffect(() => {
+    profit();
+  }, []);
+
+  // const reduceWithdrawal = withdrawAmt.reduce((acc, curr) => {
+  //   return acc + curr.amount;
+  // }, 0);
+
+  const accBalance = async () => {
+    const balance = balance.amount + profit();
+    try {
+      const response = await mainFetch.post(
+        '/api/v1/balance',
+        { balance: balance },
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+      console.log(error.response.data.msg);
+    }
+  };
+  useEffect(() => {
+    accBalance();
+  }, [accBalance]);
+
+  const formatter = new Intl.NumberFormat('en-DE', {
+    style: 'currency',
+    currency: 'EUR',
+  });
+
+  const [refTree, setRefTree] = useState([]);
+  const showReferral = async () => {
+    try {
+      const res = await mainFetch.get('/api/v1/referral/showUserReferral', {
+        withCredentials: true,
+      });
+
+      setRefTree(res.data.referral);
+    } catch (error) {
+      console.log(error);
+      console.log(error.res.data.msg);
+    }
+  };
+
+  useEffect(() => {
+    showReferral();
+  }, []);
+
+  const totalAmount = balSent?.reduce((acc, curr) => {
+    const {
+      amount: { amount: amt },
+    } = curr;
+
+    return acc + amt;
+  }, 0);
+
+  const [invest, setInvest] = useState([]);
+
+  const showInvest = async () => {
+    try {
+      const response = await mainFetch.get(
+        '/api/v1/payReceipt/showUserPayReceipt',
+        {
+          withCredentials: true,
+        }
+      );
+
+      setInvest(response.data.payReceipt);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    showInvest();
+  }, []);
+
+  const filterInvest = invest.filter((item) => item.status === 'pending');
+
+  const reduceInvest = filterInvest.reduce((acc, curr) => {
+    const {
+      amount: { amount: amt },
+    } = curr;
+    return acc + amt;
+  }, 0);
+
+  const [withdrawAmount, setWithdrawAmount] = useState([]);
+
+  const withdrawMainFetch = async () => {
+    try {
+      const response = await mainFetch.get(`api/v1/withdraw/showUserWithdraw`, {
+        withCredentials: true,
+      });
+
+      const withdrawal = response.data.withdraw;
+
+      setWithdrawAmount(withdrawal);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    withdrawMainFetch();
+  }, [withdrawMainFetch]);
+
+  const filterWithdraw = withdrawAmount.filter(
+    (item) => item.status === 'processing'
+  );
+
+  const reduceWithdraw = filterWithdraw.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
+
+  const [totalWithdraw, setTotalWithdraw] = useState([]);
+
+  const totalWithdrawFetch = async () => {
+    try {
+      const response = await mainFetch.get(`api/v1/withdraw/showUserWithdraw`, {
+        withCredentials: true,
+      });
+
+      const withdrawal = response.data.withdraw;
+
+      setTotalWithdraw(withdrawal);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    totalWithdrawFetch();
+  }, [totalWithdrawFetch]);
+
+  const filterTotalWithdraw = totalWithdraw.filter(
+    (item) => item.status === 'sent'
+  );
+
+  const reduceSentWithdrawal = filterTotalWithdraw.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
+
+  const reduceTotalWithdrawal = totalWithdraw.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
+
+  const [user, setUser] = useState([]);
+
+  const showUserRef = async () => {
+    try {
+      const response = await mainFetch.get('/api/v1/users', {
+        withCredentials: true,
+      });
+
+      setUser(response.data.users);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    showUserRef();
+  }, [showUserRef]);
+
+  const filterUser = user.filter((item) => item.referralId === `${username}`);
+
+  // const earn = filterUser.length * 50;
+  const verifiedUser = filterUser.filter((item) => item.status === 'verified');
+
+  const earn = verifiedUser.length * 20;
+
+  const accountBalance = balance.amount + profit() - withdrawAmt + earn;
 
   return (
     <Wrapper>
-      <div className="sidebar">
-        <aside id="dash">
-          <article className="home">
-            <GoHome className="icon" />
-            <Link to="/dashboard" className="tog-text">
-              Admin Dashboard
-            </Link>
-          </article>
-        </aside>
-
-        <aside id="dash2">
-          <article className="home">
-            <div className="tog">
-              <span>
-                <FaUser className="icon" />
-              </span>
-              <span className="tog-text">Users</span>
-              <span onClick={showFunc}>
-                <MdKeyboardArrowDown className="ico" id="ico1" />
-              </span>
-            </div>
-          </article>
-        </aside>
-
-        {show && (
-          <div>
-            <article id="dash2">
-              <div className="tog">
-                <span>
-                  <MdKeyboardDoubleArrowRight className="ico" />
-                </span>
-                <Link to="/investLog" className="tog-text2 tog-text">
-                  All Users
-                </Link>
+      <Navbar2 />
+      <div className="container">
+        <Sidebar className="" />
+        <section className="dashboard">
+          <div className="acc-bal">
+            <article>
+              <div className="circle">
+                <h3 id="circle-one"></h3>
+                <h3 id="circ-two"></h3>
               </div>
-            </article>
-
-            <article id="dash2">
-              <div className="tog">
-                <span>
-                  <MdKeyboardDoubleArrowRight className="ico" />
-                </span>
-                <Link to="/investDash" className="tog-text2 tog-text">
-                  Edit Users
-                </Link>
-              </div>
+              <p>Account balance</p>
+              {balance.status === 'paid' ? (
+                <h4>{formatter.format(Number(accountBalance).toFixed(2))}</h4>
+              ) : (
+                <h4>{formatter.format(0)}</h4>
+              )}
             </article>
           </div>
-        )}
-        <aside id="dash2">
-          <article className="home">
-            <div className="tog">
-              <span>
-                <GoBriefcase className="icon" />
-              </span>
-              <span className="tog-text">Deposit</span>
-              <span onClick={showFunc2}>
-                <MdKeyboardArrowDown className="ico" id="ico2" />
-              </span>
+          <aside className="box">
+            <div className="acc-bal" id="acc-bal-1">
+              <article>
+                <div className="circle">
+                  <h3 id="circle-one"></h3>
+                  <h3 id="circ-two"></h3>
+                </div>
+
+                <p>Total Withdraw</p>
+
+                {filterTotalWithdraw ? (
+                  <h4>{formatter.format(reduceSentWithdrawal)}</h4>
+                ) : (
+                  <h4>{formatter.format(0)}</h4>
+                )}
+              </article>
             </div>
-          </article>
-        </aside>
 
-        {show2 && (
-          <div className="">
-            <article id="dash2">
-              <div className="tog">
-                <span>
-                  <MdKeyboardDoubleArrowRight className="ico" />
-                </span>
-                <Link to="/withdrawLog" className="tog-text2 tog-text">
-                  All Deposit
-                </Link>
-              </div>
-            </article>
+            <div className="acc-bal" id="acc-bal-2">
+              <article>
+                <div className="circle">
+                  <h3 id="circle-one"></h3>
+                  <h3 id="circ-two"></h3>
+                </div>
 
-            <article id="dash2">
-              <div className="tog">
-                <span>
-                  <MdKeyboardDoubleArrowRight className="ico" />
-                </span>
-                <Link to="/withdraw" className="tog-text2 tog-text">
-                  Edit Deposit
-                </Link>
-              </div>
-            </article>
-          </div>
-        )}
+                <p>Total profit</p>
 
-        <aside id="dash2">
-          <article className="home">
-            <div className="tog">
-              <span>
-                <RiMoneyDollarBoxLine className="icon" />
-              </span>
-              <span className="tog-text">Withdrawal</span>
-              <span onClick={showFunc3}>
-                <MdKeyboardArrowDown className="ico" id="ico3" />
-              </span>
+                {balance.status === 'paid' ? (
+                  <h4>{formatter.format(Number(profit()).toFixed(2))}</h4>
+                ) : (
+                  <h4>{formatter.format(Number(0).toFixed(2))}</h4>
+                )}
+              </article>
             </div>
-          </article>
-        </aside>
 
-        {show3 && (
-          <div className="">
-            <article id="dash2">
-              <div className="tog">
-                <span>
-                  <MdKeyboardDoubleArrowRight className="ico" />
-                </span>
-                <Link to="/depositLog" className="tog-text2 tog-text">
-                  All Withdrawal
-                </Link>
-              </div>
-            </article>
+            <div className="acc-bal" id="acc-bal-3">
+              <article>
+                <div className="circle">
+                  <h3 id="circle-one"></h3>
+                  <h3 id="circ-two"></h3>
+                </div>
 
-            <article id="dash2">
-              <div className="tog">
-                <span>
-                  <MdKeyboardDoubleArrowRight className="ico" />
-                </span>
-                <Link to="/deposit" className="tog-text2 tog-text">
-                  Edit Withdrawal
-                </Link>
-              </div>
-            </article>
-          </div>
-        )}
+                <p>Current Invest</p>
 
-        <aside id="dash2">
-          <article className="home">
-            <div className="tog">
-              <span>
-                <RiMoneyDollarBoxLine className="icon" />
-              </span>
-              <span className="tog-text">Contact Messages</span>
+                {balance.status === 'paid' ? (
+                  <h4>{formatter.format(balance.amount)}</h4>
+                ) : (
+                  <h4>{formatter.format(0)}</h4>
+                )}
+              </article>
             </div>
-          </article>
-        </aside>
 
-        {/* <aside id="dash2">
-          <article className="home">
-            <div className="tog">
-              <span>
-                <FaFileAlt className="icon" />
-              </span>
-              <span className="tog-text">Referral Log</span>
+            <div className="acc-bal" id="acc-bal-1">
+              <article>
+                <div className="circle">
+                  <h3 id="circle-one"></h3>
+                  <h3 id="circ-two"></h3>
+                </div>
+
+                <p>Total Invest</p>
+
+                {balSent ? (
+                  <h4>{formatter.format(Number(totalAmount).toFixed(2))}</h4>
+                ) : (
+                  <h4>{formatter.format(0)}</h4>
+                )}
+              </article>
             </div>
-          </article>
-        </aside> */}
-
-        <aside id="dash2">
-          <article className="home">
-            <div className="tog">
-              <span>
-                <CiSettings className="icon" />
-              </span>
-              <Link to="/settings" className="tog-text">
-                Settings
+          </aside>
+          <article className="upgrade-main">
+            <h3>Your Current Level</h3>
+            <div className="upgrade">
+              <p style={{ maxWidth: '10rem' }}>{balance.plan}</p>
+              {/* <p>{balance.coin}</p> */}
+              <Link to="/investDash" type="btn" className="upgrade-btn">
+                Upgrade
               </Link>
             </div>
           </article>
-        </aside>
-
-        <aside id="dash2">
-          <article className="home">
-            <div className="tog">
-              <span>
-                <IoIosLogOut className="icon" />
-              </span>
-              <span onClick={logout} className="tog-text">
-                Logout
-              </span>
+          <article className="upgrade-main">
+            <h3>Invitation Link</h3>
+            <div className="upgrade">
+              <p>{userIdd}</p>
+              <button type="btn" onClick={copyReferral} className="upgrade-btn">
+                Copy
+              </button>
             </div>
           </article>
-        </aside>
 
-        <Link to="/investDash" type="button" className="btn">
-          <p>Your Current Plan - {status === 'paid' ? plan : 'N/A'}</p>
-          <p>Update Plan</p>
-        </Link>
+          <article className="ref-tree">
+            <h4>Reference tree (You have {filterUser.length} referral)</h4>
+
+            <div className="main-tree">
+              {filterUser
+                ? filterUser.map((item) => {
+                    const { _id: id, username } = item;
+
+                    return <p>{username}</p>;
+                  })
+                : '<p>You dont have any referral yet. PLease invite a user and earn</p>'}
+            </div>
+          </article>
+
+          <div className="pending">
+            <article>
+              <span className="pend-icon" id="icon1">
+                <IoIosFlash className="icon-main" />
+              </span>
+              <h5>Current Plan</h5>
+              <h4>{balance.plan}</h4>
+            </article>
+
+            <article>
+              <span className="pend-icon" id="icon2">
+                <IoIosWallet className="icon-main" />
+              </span>
+              <h5>Pending Invest</h5>
+              {filterInvest ? (
+                <h4>{formatter.format(Number(reduceInvest).toFixed(2))}</h4>
+              ) : (
+                <h4>{formatter.format(Number(0).toFixed(2))}</h4>
+              )}
+            </article>
+
+            <article>
+              <span className="pend-icon" id="icon3">
+                <MdHourglassEmpty className="icon-main" />
+              </span>
+              <h5>Pending Withdrawal</h5>
+              {filterWithdraw ? (
+                <h4>{formatter.format(Number(reduceWithdraw).toFixed(2))}</h4>
+              ) : (
+                <h4>{formatter.format(Number(0).toFixed(2))}</h4>
+              )}
+            </article>
+
+            <article>
+              <span className="pend-icon" id="icon4">
+                <GiTwoCoins className="icon-main" id="icon4" />
+              </span>
+              <h5>Referral Earn</h5>
+              {verifiedUser ? (
+                <h4>{formatter.format(Number(earn).toFixed(2))}</h4>
+              ) : (
+                <h4>{formatter.format(Number(0).toFixed(2))}</h4>
+              )}
+            </article>
+          </div>
+        </section>
       </div>
-      ;
+
+      <FooterMobile />
     </Wrapper>
   );
 };
-export default Sidebar2;
+export default Dashboard;

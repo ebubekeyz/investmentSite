@@ -63,7 +63,6 @@ const Withdraw = () => {
   useEffect(() => {
     withdrawalFetch();
   }, [withdrawalFetch]);
-  console.log(withdrawAmt);
 
   const formatter = new Intl.NumberFormat('en-DE', {
     style: 'currency',
@@ -90,13 +89,9 @@ const Withdraw = () => {
     withdrawMainFetch();
   }, [withdrawMainFetch]);
 
-  // console.log(withdrawAmount);
-
   const reduceWithdrawal = withdrawAmount.reduce((acc, curr) => {
     return acc + curr.amount;
   }, 0);
-
-  // console.log(reduceWithdrawal);
 
   const [mainBalance, setMainBalance] = useState('');
 
@@ -107,7 +102,7 @@ const Withdraw = () => {
       });
 
       const bal = res.data.balance;
-      console.log(bal);
+
       const num = bal.length - 1;
       const { balance } = bal[num];
       setMainBalance(balance - withdrawAmt);
@@ -160,6 +155,44 @@ const Withdraw = () => {
 
   const navigation = useNavigation();
   const submitting = navigation.state === 'submitting';
+
+  // const [user, setUser] = useState('');
+
+  // const getUsers = async () => {
+  //   try {
+  //     const response = await mainFetch.get('/api/v1/users/showMe', {
+  //       withCredentials: true,
+  //     });
+
+  //     const { userId } = response.data.user;
+
+  //     setUser(userId);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   getUsers();
+  // }, []);
+
+  // const [user2, setUser2] = useState('');
+
+  // const getUsers2 = async () => {
+  //   try {
+  //     const response = await mainFetch.get(`/api/v1/users/${user}`, {
+  //       withCredentials: true,
+  //     });
+
+  //     setUser2(response.data.user.city);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   getUsers2();
+  // }, []);
+
+  // console.log(user2);
 
   return (
     <Wrapper>
