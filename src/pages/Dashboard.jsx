@@ -84,7 +84,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchMainBalance();
-  }, []);
+  }, [fetchMainBalance]);
 
   const calculateTotalPercent = () => {
     const total = (mainBalance.amount * mainBalance.percent) / 100;
@@ -117,7 +117,7 @@ const Dashboard = () => {
   };
   useEffect(() => {
     profit();
-  }, []);
+  }, [profit]);
 
   const postProfit = async () => {
     try {
@@ -222,7 +222,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchEarning();
-  }, []);
+  }, [fetchEarning]);
 
   const earningReduce = earning.reduce((acc, curr) => {
     return acc + curr.amount;
@@ -296,7 +296,7 @@ const Dashboard = () => {
 
   const mainAccountBalance =
     mainBalance.amount + earningReduce + profit() - currWithdraw;
-  console.log(mainAccountBalance);
+  console.log(mainBalance.amount);
 
   const postBalance = async () => {
     try {

@@ -139,19 +139,6 @@ const Sidebar2 = () => {
           <article className="home">
             <div className="tog">
               <span>
-                <CiSettings className="icon" />
-              </span>
-              <Link to="/adminDash" className="tog-text">
-                Transactions
-              </Link>
-            </div>
-          </article>
-        </aside>
-
-        <aside id="dash2">
-          <article className="home">
-            <div className="tog">
-              <span>
                 <IoIosLogOut className="icon" />
               </span>
               <span onClick={logout} className="tog-text">

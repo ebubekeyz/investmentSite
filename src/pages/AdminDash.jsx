@@ -28,6 +28,13 @@ const AdminDash = () => {
 
   const filterPay = pay.filter((item) => item.status === 'paid');
 
+  const reduceDeposit = filterPay.reduce((acc, curr) => {
+    const {
+      amount: { amount: amt },
+    } = curr;
+    return acc + amt;
+  }, 0);
+
   const dupFilterPay = [...new Set(filterPay)];
 
   const filterPayPend = pay.filter((item) => item.status === 'pending');
@@ -75,7 +82,6 @@ const AdminDash = () => {
     withdrawFunc();
   }, []);
 
-  console.log(withdraw);
   const filterWithdraw1 = withdraw.filter((item) => item.status === 'sent');
   const filterWithdraw2 = withdraw.filter(
     (item) => item.status === 'processing'
@@ -94,6 +100,68 @@ const AdminDash = () => {
     currency: 'EUR',
   });
 
+  const [profit, setProfit] = useState([]);
+  const getProfit = async () => {
+    try {
+      const response = await mainFetch('api/v1/profit', {
+        withCredentials: true,
+      });
+      setProfit(response.data.profit);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getProfit();
+  }, []);
+
+  const reduceProfit = profit.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
+
+  const [earning, setEarning] = useState([]);
+  const getEarning = async () => {
+    try {
+      const response = await mainFetch('api/v1/earning', {
+        withCredentials: true,
+      });
+      setEarning(response.data.earning);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getEarning();
+  }, []);
+  const reduceEarning = earning.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
+
+  const totalEarning = reduceEarning + reduceProfit;
+
+  const [balance, setBalance] = useState([]);
+
+  const getBalance = async () => {
+    try {
+      const response = await mainFetch.get('/api/v1/balance', {
+        withCredentials: true,
+      });
+      setBalance(response.data.balance);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getBalance();
+  }, []);
+
+  const setNewBalance = [...new Set(balance)];
+  const reduceBalance = setNewBalance.reduce((acc, curr) => {
+    return acc + curr.balance;
+  }, 0);
+  console.log(reduceBalance);
   return (
     <Wrapper>
       <Navbar3 />
@@ -135,29 +203,29 @@ const AdminDash = () => {
           <div className="members" id="total">
             <h5>Total System Earnings:</h5>
             <p>
-              €<span>20</span>
+              <span>{formatter.format(Number(totalEarning))}</span>
             </p>
           </div>
 
-          <div className="members" id="total">
+          {/* <div className="members" id="total">
             <h5>Total Members Balance:</h5>
             <p>
-              €<span>20</span>
+              <span>{formatter.format(Number(reduceBalance))}</span>
             </p>
-          </div>
+          </div> */}
 
           <div className="members" id="total">
             <h5>Total Members Deposit:</h5>
             <p>
-              €<span>20</span>
+              <span>{formatter.format(Number(reduceDeposit))}</span>
             </p>
           </div>
-          <div className="members" id="total">
+          {/* <div className="members" id="total">
             <h5>Total Referral Commission:</h5>
             <p>
               €<span>20</span>
             </p>
-          </div>
+          </div> */}
           <div className="withdraw members" id="total">
             <h5>Total Withdrawals:</h5>
             <p>

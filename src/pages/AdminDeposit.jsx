@@ -26,6 +26,9 @@ const AdminDeposit = () => {
   }, [payReceiptFunc]);
 
   let idd = 0;
+  const filterPending = deposit.filter((item) => item.status === 'pending');
+  const filterPaid = deposit.filter((item) => item.status === 'paid');
+
   return (
     <Wrapper>
       <Navbar2 />
@@ -45,7 +48,7 @@ const AdminDeposit = () => {
                   <th>Receipt</th>
                   <th>status</th>
                   <th>Edit</th>
-                  <th>Delete</th>
+                  <th>Decline</th>
                 </tr>
               </thead>
               <tbody>
@@ -90,7 +93,14 @@ const AdminDeposit = () => {
                           <td>€{amt}</td>
 
                           <td>
-                            <img src={img} style={{ width: '5rem' }} />
+                            <img
+                              src={img}
+                              style={{
+                                width: '5rem',
+                                height: '2rem',
+                                objectFit: 'contain',
+                              }}
+                            />
                           </td>
                           <td
                             style={{
@@ -116,7 +126,7 @@ const AdminDeposit = () => {
                               style={{ background: 'red' }}
                               className="btn"
                             >
-                              delete
+                              decline
                             </Link>
                           </td>
                         </tr>

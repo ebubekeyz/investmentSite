@@ -40,6 +40,7 @@ const UserDash = () => {
     city,
     state,
     coins,
+    email,
     walletAddress,
     createdAt,
     status,
@@ -357,10 +358,96 @@ const UserDash = () => {
     fetchAllUsers();
   }, []);
 
-  const filterUsers = allUsers.filter((item) => item.referral === username);
+  const filterUsers = allUsers.filter((item) => item.referralId === username);
 
   const referralNumber = filterUsers.length;
-  console.log(referralNumber);
+  console.log(filterUsers);
+
+  // deposit
+  const [deposit, setDeposit] = useState([]);
+
+  const getDeposit = async () => {
+    try {
+      const response = await mainFetch.get(
+        `/api/v1/payReceipt/${id}/showUserPayReceipt`,
+        { withCredentials: true }
+      );
+      setDeposit(response.data.payReceipt);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getDeposit();
+  }, []);
+
+  const pendingDeposit = deposit.filter((item) => item.status === 'pending');
+  const paidDeposit = deposit.filter((item) => item.status === 'paid');
+
+  const reducePendingDeposit = pendingDeposit.reduce((acc, curr) => {
+    const {
+      amount: { amount: amt },
+    } = curr;
+    return acc + amt;
+  }, 0);
+
+  const reducePaidDeposit = paidDeposit.reduce((acc, curr) => {
+    const {
+      amount: { amount: amt },
+    } = curr;
+
+    return acc + amt;
+  }, 0);
+
+  console.log(reducePendingDeposit, reducePaidDeposit);
+  const [currentDeposit, setCurrentDeposit] = useState({
+    amount: '',
+    status: '',
+    plan: '',
+    createdAt: '',
+    days: '',
+  });
+
+  const getCurrentDeposit = async () => {
+    try {
+      const response = await mainFetch.get(
+        `/api/v1/payReceipt/${id}/showUserPayReceipt`,
+        { withCredentials: true }
+      );
+      const currDep = response.data.payReceipt;
+      const len = currDep.length - 1;
+      const {
+        createdAt,
+        status,
+        amount: {
+          amount: amt,
+          coin: {
+            coinType: coin,
+            invest: { percent: percent, days: days, plan: plan },
+          },
+        },
+      } = currDep[len];
+      setCurrentDeposit({
+        amount: amt,
+        status: status,
+        plan: plan,
+        days: days,
+        createdAt: createdAt,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getCurrentDeposit();
+  }, []);
+
+  const date2 = new Date(createdAt);
+  const day2 = date2.getDate();
+  const month2 = date2.getMonth();
+  const year2 = date2.getFullYear();
 
   return (
     <Wrapper>
@@ -386,6 +473,9 @@ const UserDash = () => {
               Phone: <span>{phone ? phone : 'N/A'}</span>
             </p>
             <p>
+              Email: <span>{email ? email : 'N/A'}</span>
+            </p>
+            <p>
               Country: <span>{country ? country : 'N/A'}</span>
             </p>
             <p>
@@ -403,6 +493,44 @@ const UserDash = () => {
             </p>
             <p>
               Total Referral: <span>{referralNumber}</span>
+            </p>
+
+            <p>
+              Current Plan:{' '}
+              <span>
+                {currentDeposit.status === 'paid' ? currentDeposit.plan : 'N/A'}
+              </span>
+            </p>
+            <p>
+              Duration:{' '}
+              <span>
+                {currentDeposit.status === 'paid' ? currentDeposit.days : 'N/A'}{' '}
+                day(s)
+              </span>
+            </p>
+            <p>
+             Started:{' '}
+              <span>
+                {day2}/{month2 + 1}/{year2}
+              </span>
+            </p>
+            <p>
+              Expires:{' '}
+              <span>
+                {day2 + currentDeposit.days}/{month2 + 1}/{year2}
+              </span>
+            </p>
+            <p>
+              Referral Names:{' '}
+              <span>
+                {filterUsers
+                  ? filterUsers.map((item) => {
+                      const { _id, username } = item;
+
+                      return <span>{username}</span>;
+                    })
+                  : 'N/A'}
+              </span>
             </p>
 
             <p>
@@ -456,6 +584,34 @@ const UserDash = () => {
             <div className="amount">
               <h4>{formatter.format(Number(reduceFilter2).toFixed(2))}</h4>
               <p>PENDING WITHDRAWAL</p>
+            </div>
+          </div>
+
+          <div className="balance" id="main">
+            <IoPower className="power" />
+            <div className="amount">
+              <h4>
+                {formatter.format(Number(reducePendingDeposit).toFixed(2))}
+              </h4>
+              <p>PENDING DEPOSIT</p>
+            </div>
+          </div>
+          <div className="balance" id="main">
+            <IoPower className="power" />
+            <div className="amount">
+              <h4>
+                {currentDeposit.status === 'paid'
+                  ? formatter.format(Number(currentDeposit.amount).toFixed(2))
+                  : formatter.format(Number(0).toFixed(2))}
+              </h4>
+              <p>CURRENT DEPOSIT</p>
+            </div>
+          </div>
+          <div className="balance" id="main">
+            <IoPower className="power" />
+            <div className="amount">
+              <h4>{formatter.format(Number(reducePaidDeposit).toFixed(2))}</h4>
+              <p>TOTAL DEPOSIT</p>
             </div>
           </div>
 

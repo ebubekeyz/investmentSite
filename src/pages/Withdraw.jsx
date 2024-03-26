@@ -156,43 +156,40 @@ const Withdraw = () => {
   const navigation = useNavigation();
   const submitting = navigation.state === 'submitting';
 
-  // const [user, setUser] = useState('');
+  const [user, setUser] = useState('');
 
-  // const getUsers = async () => {
-  //   try {
-  //     const response = await mainFetch.get('/api/v1/users/showMe', {
-  //       withCredentials: true,
-  //     });
+  const getUsers = async () => {
+    try {
+      const response = await mainFetch.get('/api/v1/users/showMe', {
+        withCredentials: true,
+      });
 
-  //     const { userId } = response.data.user;
+      setUser(response.data.user.userId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getUsers();
+  }, [getUsers]);
 
-  //     setUser(userId);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   getUsers();
-  // }, []);
+  const userIdd = user;
+  const [user2, setUser2] = useState([]);
 
-  // const [user2, setUser2] = useState('');
-
-  // const getUsers2 = async () => {
-  //   try {
-  //     const response = await mainFetch.get(`/api/v1/users/${user}`, {
-  //       withCredentials: true,
-  //     });
-
-  //     setUser2(response.data.user.city);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   getUsers2();
-  // }, []);
-
-  // console.log(user2);
+  const getUsers2 = async () => {
+    try {
+      const response = await mainFetch.get(`/api/v1/users/${user}`, {
+        withCredentials: true,
+      });
+      console.log(response.data.user);
+      // setUser2(response.data.user.city);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getUsers2();
+  }, []);
 
   return (
     <Wrapper>

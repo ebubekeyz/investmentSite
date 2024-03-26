@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Wrapper from '../assets/wrappers/AdminDeposit';
 import FooterMobile2 from '../components/FooterMobile2';
 import Sidebar2 from '../components/Sidebar2';
@@ -26,6 +26,7 @@ const AdminWithdraw = () => {
   }, [withdrawFunc]);
 
   let idd = 0;
+
   return (
     <Wrapper>
       <Navbar2 />
@@ -43,7 +44,7 @@ const AdminWithdraw = () => {
                   <th>Amount</th>
                   <th>status</th>
                   <th>Edit</th>
-                  <th>Delete</th>
+                  <th>Decline</th>
                 </tr>
               </thead>
               <tbody>
@@ -77,7 +78,7 @@ const AdminWithdraw = () => {
                           >
                             {status}
                           </td>
-                          <td onClick={toggle}>
+                          <td>
                             <Link to={update} type="button" className="btn">
                               Acknowledge
                             </Link>
@@ -89,7 +90,7 @@ const AdminWithdraw = () => {
                               style={{ background: 'red' }}
                               className="btn"
                             >
-                              delete
+                              decline
                             </Link>
                           </td>
                         </tr>
