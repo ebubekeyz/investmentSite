@@ -42,7 +42,7 @@ const Dashboard = () => {
     days: '',
     plan: '',
     status: '',
-    createdAt: '',
+    updatedAt: '',
     coin: '',
   });
   const fetchMainBalance = async () => {
@@ -58,10 +58,10 @@ const Dashboard = () => {
       const length = bal.length - 1;
 
       const {
-        createdAt,
         status,
         amount: {
           amount: amt,
+          updatedAt,
           coin: {
             coinType: coin,
             invest: { percent: percent, days: days, plan: plan },
@@ -75,7 +75,7 @@ const Dashboard = () => {
         plan: plan,
         status: status,
         coin: coin,
-        createdAt: createdAt,
+        updatedAt: updatedAt,
       });
     } catch (error) {
       console.log(error);
@@ -94,16 +94,44 @@ const Dashboard = () => {
   useEffect(() => {
     calculateTotalPercent();
   }, []);
-  console.log(mainBalance.days);
+
+  const [amount, setAmount] = useState({
+    id: '',
+    update: '',
+  });
+  const fetchAmountMain = async () => {
+    try {
+      const response = await mainFetch.get(
+        `/api/v1/amount/${userId}/showUserAmount`,
+        {
+          withCredentials: true,
+        }
+      );
+      const am = response.data.amount;
+      const len = am.length - 1;
+      const { amount, _id, updatedAt } = am[len];
+      setAmount({
+        id: _id,
+        update: updatedAt,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log(amount.update);
+  useEffect(() => {
+    fetchAmountMain();
+  }, [fetchAmountMain]);
 
   const profit = () => {
     const date = new Date();
-    const investDate = new Date(mainBalance.createdAt);
+    const investDate = new Date(amount.update);
 
     let getInvestDate = investDate.getDate();
     let getDate = date.getDate();
     let num = calculateTotalPercent();
 
+    // getInvestDate + mainBalance.days
     if (getDate === getInvestDate + mainBalance.days) {
       return num;
     } else {
@@ -118,6 +146,9 @@ const Dashboard = () => {
   useEffect(() => {
     profit();
   }, [profit]);
+
+  //get the last balance, patch your balance into amount in payReceipt then use updatedAt to calculate your date
+  // create a button, give it condition if profit > 0 the button appears else dissapears
 
   const postProfit = async () => {
     try {
@@ -253,6 +284,54 @@ const Dashboard = () => {
     return acc + curr.amount;
   }, 0);
 
+  const postEarning = async () => {
+    try {
+      const response = await mainFetch.post(
+        '/api/v1/earning',
+        { amount: 0 },
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    postEarning();
+  }, []);
+
+  const postPercentage = async () => {
+    try {
+      const response = await mainFetch.post(
+        '/api/v1/percentage',
+        { amount: 0 },
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    postPercentage();
+  }, []);
+
+  const postPenalty = async () => {
+    try {
+      const response = await mainFetch.post(
+        '/api/v1/penalty',
+        { amount: 0 },
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    postPenalty();
+  }, []);
+
   // end penalty
 
   // get percentage
@@ -350,7 +429,7 @@ const Dashboard = () => {
   const mainAccountBalance =
     mainBalance.amount +
     earningReduce +
-    profit() +
+    profit() -
     percentageReduce -
     penaltyReduce -
     currWithdraw;
@@ -418,6 +497,48 @@ const Dashboard = () => {
   const filterUser = user.filter((item) => item.referralId === `${username}`);
 
   // end referral
+
+  const [balance, setBalance] = useState('');
+
+  const fetchBalanceMain = async () => {
+    try {
+      const response = await mainFetch.get(
+        `/api/v1/balance/${userId}/showUserBalance`,
+        {
+          withCredentials: true,
+        }
+      );
+      const bal = response.data.balance;
+      const len = bal.length - 1;
+      const { balance } = bal[len];
+      setBalance(balance);
+      // setBalanceId(id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBalanceMain();
+  }, [fetchBalanceMain]);
+
+  const [isInvest, setIsInvest] = useState('reinvest');
+  const reinvestFunc = async (e) => {
+    e.preventDefault();
+
+    setIsInvest('reinvesting balance...');
+    const response = await mainFetch.patch(
+      `/api/v1/amount/${amount.id}`,
+      { amount: mainAccountBalance },
+      { withCredentials: true }
+    );
+    if (response.status === 200) {
+      setIsInvest('Balance Reinvested');
+      toast.success('Balance Successfully Reinvested');
+    }
+  };
+
+  console.log(amount.id);
   return (
     <Wrapper>
       <Navbar2 />
@@ -437,6 +558,26 @@ const Dashboard = () => {
                 </h4>
               ) : (
                 <h4>{formatter.format(0)}</h4>
+              )}
+
+              {profit() > 0 ? (
+                <button
+                  style={{ marginTop: '1rem', background: 'var(--grey-600' }}
+                  type="button"
+                  className="btn"
+                  onClick={reinvestFunc}
+                >
+                  {isInvest}
+                </button>
+              ) : (
+                <Link
+                  style={{ marginTop: '1rem', background: 'var(--grey-600' }}
+                  to="/investDash"
+                  type="button"
+                  className="btn"
+                >
+                  Upgrade
+                </Link>
               )}
             </article>
           </div>

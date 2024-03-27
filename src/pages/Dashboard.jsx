@@ -173,9 +173,12 @@ const Dashboard = () => {
 
   const fetchBalance = async () => {
     try {
-      const response = await mainFetch.get('/api/v1/payReceipt', {
-        withCredentials: true,
-      });
+      const response = await mainFetch.get(
+        `/api/v1/payReceipt/${userId}/showUserPayReceipt`,
+        {
+          withCredentials: true,
+        }
+      );
 
       setAccountBalance(response.data.payReceipt);
     } catch (error) {
@@ -187,13 +190,11 @@ const Dashboard = () => {
     fetchBalance();
   }, []);
 
-  const filterBalance = accountBalance.filter((item) => item.user === userId);
-
-  const filterBalancePaid = filterBalance.filter(
+  const filterBalancePaid = accountBalance.filter(
     (item) => item.status === 'paid'
   );
 
-  const filterBalancePending = filterBalance.filter(
+  const filterBalancePending = accountBalance.filter(
     (item) => item.status === 'pending'
   );
 
