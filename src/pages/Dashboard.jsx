@@ -132,7 +132,7 @@ const Dashboard = () => {
     let num = calculateTotalPercent();
 
     // getInvestDate + mainBalance.days
-    if (getDate === getInvestDate + mainBalance.days) {
+    if (getDate === 27) {
       return num;
     } else {
       return (num = 0);
@@ -524,19 +524,85 @@ const Dashboard = () => {
   }, [fetchBalanceMain]);
 
   const [isInvest, setIsInvest] = useState('reinvest');
-  const reinvestFunc = async (e) => {
-    e.preventDefault();
+  // const reinvestFunc = async (e) => {
+  //   e.preventDefault();
 
+  //   setIsInvest('reinvesting balance...');
+  //   try {
+  //     const response = await mainFetch.patch(
+  //       `/api/v1/amount/${amount.id}`,
+  //       { amount: mainAccountBalance },
+  //       { withCredentials: true }
+  //     );
+  //     if (response.status === 200) {
+  //       setIsInvest('Balance Reinvested');
+  //       toast.success('Balance Successfully Reinvested');
+  //       await mainFetch.delete(`/api/v1/withdraw/${userId}/deleteUserWithdraw`);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const one = async () => {
     setIsInvest('reinvesting balance...');
-    const response = await mainFetch.patch(
+    const res = await mainFetch.patch(
       `/api/v1/amount/${amount.id}`,
       { amount: mainAccountBalance },
       { withCredentials: true }
     );
-    if (response.status === 200) {
+    if (res.status === 200) {
       setIsInvest('Balance Reinvested');
       toast.success('Balance Successfully Reinvested');
     }
+  };
+  const two = async () => {
+    try {
+      const response = await mainFetch.delete(
+        `/api/v1/withdraw/${userId}/deleteUserWithdraw`,
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const three = async () => {
+    try {
+      const response = await mainFetch.delete(
+        `/api/v1/profit/${userId}/deleteUserProfit`,
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const four = async () => {
+    try {
+      const response = await mainFetch.delete(
+        `/api/v1/earning/${userId}/deleteUserEarning`,
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const five = async () => {
+    try {
+      const response = await mainFetch.delete(
+        `/api/v1/percentage/${userId}/deleteUserPercentage`,
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const reinvestFunc = (e) => {
+    e.preventDefault();
+    Promise.all([one(), two(), three(), four(), five()]);
   };
 
   console.log(amount.id);
