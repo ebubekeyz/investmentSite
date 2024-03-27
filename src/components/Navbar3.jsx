@@ -103,11 +103,11 @@ const Navbar3 = () => {
                 </NavLink>
               </li>
 
-              <li>
+              {/* <li>
                 <NavLink to="/adminDash" className="link-btn">
                   Transactions
                 </NavLink>
-              </li>
+              </li> */}
 
               <li>
                 <NavLink to="/adminDeposit" className="link-btn">
