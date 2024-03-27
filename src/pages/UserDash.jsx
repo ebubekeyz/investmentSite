@@ -21,7 +21,6 @@ const UserDash = () => {
         withCredentials: true,
       });
 
-      console.log(response.data.user);
       setUser(response.data.user);
     } catch (error) {
       console.log(error);
@@ -172,6 +171,15 @@ const UserDash = () => {
   const [isLoad2, setIsLoad2] = useState('change password');
   const [isLoad3, setIsLoad3] = useState('update');
   const [isLoad4, setIsLoad4] = useState('update');
+  const [isLoad5, setIsLoad5] = useState('add referral bonus');
+  const [isLoad6, setIsLoad6] = useState('add penalty');
+
+  const [percentage, setPercentage] = useState({
+    amount: '',
+  });
+  const [penalty, setPenalty] = useState({
+    amount: '',
+  });
 
   const [updateBal, setUpdateBal] = useState({
     balance: '',
@@ -265,7 +273,6 @@ const UserDash = () => {
     }
   };
 
-  console.log(balance);
   const handleSubmit3 = async (e) => {
     e.preventDefault();
     try {
@@ -314,7 +321,7 @@ const UserDash = () => {
   useEffect(() => {
     fetchBonus();
   }, []);
-  console.log(bonusId);
+
   const handleSubmit4 = async (e) => {
     e.preventDefault();
     try {
@@ -341,6 +348,108 @@ const UserDash = () => {
     }
   };
 
+  // percentage
+  const [percentageId, setPercentageId] = useState('');
+  const [percentageAmt, setPercentageAmt] = useState('');
+
+  const fetchPercentage = async () => {
+    try {
+      const response = await mainFetch.get(
+        `/api/v1/percentage/${id}/showUserPercentage`,
+        { withCredentials: true }
+      );
+      const percent = response.data.percentage;
+      const len = percent.length - 1;
+      const { _id, amount } = percent[len];
+      setPercentageId(_id);
+      setPercentageAmt(amount);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPercentage();
+  }, []);
+
+  const handleSubmit5 = async (e) => {
+    e.preventDefault();
+    try {
+      setIsLoad5('updating referral bonus...');
+      const response = await mainFetch.patch(
+        `/api/v1/percentage/${percentageId}`,
+        {
+          amount: percentage.amount,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      toast.success('Referral Bonus Added');
+      setPercentage({
+        amount: '',
+      });
+
+      setIsLoad5('Referral Bonus Added');
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.msg);
+    }
+  };
+  // end percentage
+
+  // penalty
+  const [penaltyId, setPenaltyId] = useState('');
+  const [penaltyAmt, setPenaltyAmt] = useState('');
+
+  const fetchPenalty = async () => {
+    try {
+      const response = await mainFetch.get(
+        `/api/v1/penalty/${id}/showUserPenalty`,
+        { withCredentials: true }
+      );
+      const penal = response.data.penalty;
+      const len = penal.length - 1;
+      const { _id, amount } = penal[len];
+      setPenaltyId(_id);
+      setPenaltyAmt(amount);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPenalty();
+  }, []);
+  console.log(penaltyId, penaltyAmt);
+  const handleSubmit6 = async (e) => {
+    e.preventDefault();
+    try {
+      setIsLoad6('adding penalty...');
+      const response = await mainFetch.patch(
+        `/api/v1/penalty/${penaltyId}`,
+        {
+          amount: penalty.amount,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      toast.success('Penalty Added');
+      setPenalty({
+        amount: '',
+      });
+
+      setIsLoad6('Penalty Added');
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.msg);
+    }
+  };
+  // end penalty
+
   const [allUsers, setAllUsers] = useState([]);
 
   const fetchAllUsers = async () => {
@@ -361,7 +470,6 @@ const UserDash = () => {
   const filterUsers = allUsers.filter((item) => item.referralId === username);
 
   const referralNumber = filterUsers.length;
-  console.log(filterUsers);
 
   // deposit
   const [deposit, setDeposit] = useState([]);
@@ -400,7 +508,6 @@ const UserDash = () => {
     return acc + amt;
   }, 0);
 
-  console.log(reducePendingDeposit, reducePaidDeposit);
   const [currentDeposit, setCurrentDeposit] = useState({
     amount: '',
     status: '',
@@ -444,14 +551,47 @@ const UserDash = () => {
     getCurrentDeposit();
   }, []);
 
-  const date2 = new Date(createdAt);
+  // const date2 = new Date(currentDeposit.createdAt);
+  // const day2 = date2.getDate();
+  // const month2 = date2.getMonth();
+  // const year2 = date2.getFullYear();
+
+  const [amount, setAmount] = useState({
+    id: '',
+    update: '',
+  });
+  const fetchAmountMain = async () => {
+    try {
+      const response = await mainFetch.get(
+        `/api/v1/amount/${userId}/showUserAmount`,
+        {
+          withCredentials: true,
+        }
+      );
+      const am = response.data.amount;
+      const len = am.length - 1;
+      const { amount, _id, updatedAt } = am[len];
+      setAmount({
+        id: _id,
+        update: updatedAt,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log(amount.update);
+  useEffect(() => {
+    fetchAmountMain();
+  }, [fetchAmountMain]);
+
+  const date2 = new Date(amount.update);
   const day2 = date2.getDate();
   const month2 = date2.getMonth();
   const year2 = date2.getFullYear();
 
   return (
     <Wrapper>
-      <MembersNavbar />
+      <Navbar3 />
 
       <div className="container">
         <Sidebar2 />
@@ -509,15 +649,27 @@ const UserDash = () => {
               </span>
             </p>
             <p>
-             Started:{' '}
+              Started:{' '}
               <span>
-                {day2}/{month2 + 1}/{year2}
+                {currentDeposit.status === 'paid' ? (
+                  <span>
+                    {day2}/{month2 + 1}/{year2}
+                  </span>
+                ) : (
+                  'N/A'
+                )}
               </span>
             </p>
             <p>
               Expires:{' '}
               <span>
-                {day2 + currentDeposit.days}/{month2 + 1}/{year2}
+                {currentDeposit.status === 'paid' ? (
+                  <span>
+                    {day2 + currentDeposit.days}/{month2 + 1}/{year2}
+                  </span>
+                ) : (
+                  'N/A'
+                )}
               </span>
             </p>
             <p>
@@ -829,7 +981,7 @@ const UserDash = () => {
           </form> */}
 
           <form onSubmit={handleSubmit4} className="change updateForm">
-            <h4>Add Bonus</h4>
+            <h4>Add Balance</h4>
             <div className="inner">
               <label htmlFor="newPassword" className="label">
                 Amount
@@ -851,6 +1003,58 @@ const UserDash = () => {
 
             <button type="submit" className="btn">
               {isLoad4}
+            </button>
+          </form>
+
+          <form onSubmit={handleSubmit5} className="change updateForm">
+            <h4>Add Referral Bonus</h4>
+            <div className="inner">
+              <label htmlFor="amount" className="label">
+                Amount
+              </label>
+              <input
+                type="text"
+                className="input"
+                name="amount"
+                placeholder={percentageAmt}
+                value={percentage.amount}
+                onChange={(e) => {
+                  setPercentage({
+                    ...percentage,
+                    [e.target.name]: e.target.value,
+                  });
+                }}
+              />
+            </div>
+
+            <button type="submit" className="btn">
+              {isLoad5}
+            </button>
+          </form>
+
+          <form onSubmit={handleSubmit6} className="change updateForm">
+            <h4>Add Penalty</h4>
+            <div className="inner">
+              <label htmlFor="amount" className="label">
+                Amount
+              </label>
+              <input
+                type="text"
+                className="input"
+                name="amount"
+                placeholder={penaltyAmt}
+                value={penalty.amount}
+                onChange={(e) => {
+                  setPenalty({
+                    ...penalty,
+                    [e.target.name]: e.target.value,
+                  });
+                }}
+              />
+            </div>
+
+            <button type="submit" className="btn">
+              {isLoad6}
             </button>
           </form>
         </section>

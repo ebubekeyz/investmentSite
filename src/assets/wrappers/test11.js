@@ -42,7 +42,7 @@ const Dashboard = () => {
     days: '',
     plan: '',
     status: '',
-    createdAt: '',
+    updatedAt: '',
     coin: '',
   });
   const fetchMainBalance = async () => {
@@ -58,7 +58,7 @@ const Dashboard = () => {
       const length = bal.length - 1;
 
       const {
-        createdAt,
+        updatedAt,
         status,
         amount: {
           amount: amt,
@@ -75,7 +75,7 @@ const Dashboard = () => {
         plan: plan,
         status: status,
         coin: coin,
-        createdAt: createdAt,
+        updatedAt: updatedAt,
       });
     } catch (error) {
       console.log(error);
@@ -98,7 +98,7 @@ const Dashboard = () => {
 
   const profit = () => {
     const date = new Date();
-    const investDate = new Date(mainBalance.createdAt);
+    const investDate = new Date(mainBalance.updatedAt);
 
     let getInvestDate = investDate.getDate();
     let getDate = date.getDate();
@@ -106,9 +106,10 @@ const Dashboard = () => {
 
     if (getDate === getInvestDate + mainBalance.days) {
       return num;
-    } else {
-      return (num = 0);
     }
+    //  else {
+    //   return (num = 0);
+    // }
     // if (getDate === getInvestDate + mainBalance.days + 1) {
     //   return (num = 0);
     // }
@@ -119,6 +120,10 @@ const Dashboard = () => {
     profit();
   }, [profit]);
 
+  //get the last balance, patch your balance into amount in payReceipt then use updatedAt to calculate your date
+  // create a button, give it condition if profit > 0 the button appears else dissapears
+
+  const reinvestFunc = () => {};
   const postProfit = async () => {
     try {
       const response = await mainFetch.post(

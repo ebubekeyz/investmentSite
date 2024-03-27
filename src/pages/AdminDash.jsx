@@ -157,9 +157,10 @@ const AdminDash = () => {
     getBalance();
   }, []);
 
-  const setNewBalance = [...new Set(balance)];
-  const reduceBalance = setNewBalance.reduce((acc, curr) => {
-    return acc + curr.balance;
+  const reduceBalance = balance.reduce((acc, curr) => {
+    const balArr = [...curr.balance];
+    const newBal = [...new Set(balArr)];
+    return acc + newBal;
   }, 0);
   console.log(reduceBalance);
   return (
@@ -207,12 +208,12 @@ const AdminDash = () => {
             </p>
           </div>
 
-          {/* <div className="members" id="total">
+          <div className="members" id="total">
             <h5>Total Members Balance:</h5>
             <p>
               <span>{formatter.format(Number(reduceBalance))}</span>
             </p>
-          </div> */}
+          </div>
 
           <div className="members" id="total">
             <h5>Total Members Deposit:</h5>

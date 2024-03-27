@@ -36,15 +36,7 @@ const Dashboard = () => {
   // end userId
 
   // main balance
-  const [mainBalance, setMainBalance] = useState({
-    amount: '',
-    percent: '',
-    days: '',
-    plan: '',
-    status: '',
-    createdAt: '',
-    coin: '',
-  });
+  const [mainBalance, setMainBalance] = useState([]);
   const fetchMainBalance = async () => {
     try {
       const response = await mainFetch.get(
@@ -54,29 +46,7 @@ const Dashboard = () => {
         }
       );
 
-      const bal = response.data.payReceipt;
-      const length = bal.length - 1;
-
-      const {
-        createdAt,
-        status,
-        amount: {
-          amount: amt,
-          coin: {
-            coinType: coin,
-            invest: { percent: percent, days: days, plan: plan },
-          },
-        },
-      } = bal[length];
-      setMainBalance({
-        amount: amt,
-        percent: percent,
-        days: days,
-        plan: plan,
-        status: status,
-        coin: coin,
-        createdAt: createdAt,
-      });
+      setMainBalance(response.data.payReceipt);
     } catch (error) {
       console.log(error);
     }
@@ -86,93 +56,74 @@ const Dashboard = () => {
     fetchMainBalance();
   }, [fetchMainBalance]);
 
+  const filterMainBalance = mainBalance.filter(
+    (item) => item.status === 'paid'
+  );
+
+  const mapMainBalance = filterMainBalance.map((item) => {
+    const {
+      createdAt,
+      status,
+      amount: {
+        amount: amt,
+        coin: {
+          coinType: coin,
+          invest: { percent: percent, days: days, plan: plan },
+        },
+      },
+    } = item;
+
+    return { createdAt, status, amt, coin, percent, days, plan };
+  });
+
+  //get the last balance, patch your balance into amount in payReceipt then use updatedAt to calculate your date
+  // create a button, give it condition if profit > 0 the button appears else dissapears
+
+  const reduceMainBalanceAmount = filterMainBalance.reduce((acc, curr) => {
+    const {
+      amount: { amount: amt },
+    } = curr;
+    return acc + amt;
+  }, 0);
+
+  const reduceMainBalancePercent = filterMainBalance.reduce((acc, curr) => {
+    const {
+      amount: {
+        coin: {
+          invest: { percent: percent },
+        },
+      },
+    } = curr;
+    return acc + percent;
+  }, 0);
+
+  const reduceMainBalanceDays = filterMainBalance.reduce((acc, curr) => {
+    const {
+      amount: {
+        coin: {
+          invest: { days: days },
+        },
+      },
+    } = curr;
+    return acc + days;
+  }, 0);
+
   const calculateTotalPercent = () => {
-    const total = (mainBalance.amount * mainBalance.percent) / 100;
+    const total =
+      (reduceMainBalanceAmount * reduceMainBalancePercent) /
+      (filterMainBalance.length * 100);
 
     return total;
   };
   useEffect(() => {
     calculateTotalPercent();
   }, []);
-  console.log(mainBalance.days);
 
-  const profit = () => {
-    const date = new Date();
-    const investDate = new Date(mainBalance.createdAt);
-
-    let getInvestDate = investDate.getDate();
-    let getDate = date.getDate();
-    let num = calculateTotalPercent();
-
-    if (getDate === getInvestDate + mainBalance.days) {
-      return num;
-    } else {
-      return (num = 0);
-    }
-    // if (getDate === getInvestDate + mainBalance.days + 1) {
-    //   return (num = 0);
-    // }
-
-    return num;
-  };
-  useEffect(() => {
-    profit();
-  }, [profit]);
-
-  const postProfit = async () => {
-    try {
-      const response = await mainFetch.post(
-        '/api/v1/profit',
-        { amount: profit() },
-        { withCredentials: true }
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    postProfit();
-  }, []);
-
-  // end main balance
-
-  // Balance
-
-  const [accountBalance, setAccountBalance] = useState([]);
-
-  const fetchBalance = async () => {
-    try {
-      const response = await mainFetch.get('/api/v1/payReceipt', {
-        withCredentials: true,
-      });
-
-      setAccountBalance(response.data.payReceipt);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchBalance();
-  }, []);
-
-  const filterBalance = accountBalance.filter((item) => item.user === userId);
-
-  const filterBalancePaid = filterBalance.filter(
-    (item) => item.status === 'paid'
-  );
-
-  const filterBalancePending = filterBalance.filter(
+  const filterMainBalancePending = mainBalance.filter(
     (item) => item.status === 'pending'
   );
 
-  const filterBalancePaidReduce = filterBalancePaid.reduce((acc, curr) => {
-    const {
-      amount: { amount: amt },
-    } = curr;
-    return acc + amt;
-  }, 0);
-  const filterBalancePendingReduce = filterBalancePending.reduce(
+  const reduceMainBalanceAmountPending = filterMainBalancePending.reduce(
     (acc, curr) => {
       const {
         amount: { amount: amt },
@@ -181,6 +132,10 @@ const Dashboard = () => {
     },
     0
   );
+
+  // end main balance
+
+  // Balance
 
   const formatter = new Intl.NumberFormat('en-DE', {
     style: 'currency',
@@ -348,19 +303,63 @@ const Dashboard = () => {
   //endTotal withdraw
 
   const mainAccountBalance =
-    mainBalance.amount +
+    reduceMainBalanceAmount +
     earningReduce +
-    profit() +
     percentageReduce -
     penaltyReduce -
-    currWithdraw;
-  // console.log(mainBalance.amount);
+    totalWithdraw;
+
+  const profit = () => {
+    const date = new Date();
+
+    const length = bal.length - 1;
+
+    const {
+      updatedAt,
+      amount: {
+        coin: {
+          invest: { days: days },
+        },
+      },
+    } = mainBalance[length];
+    const investDate = new Date(updatedAt);
+
+    let getInvestDate = investDate.getDate();
+    let getDate = date.getDate();
+    let num = calculateTotalPercent();
+
+    if (getDate === getInvestDate + days) {
+      return num;
+    }
+
+    return num;
+  };
+  useEffect(() => {
+    profit();
+  }, [profit]);
+
+  const postProfit = async () => {
+    try {
+      const response = await mainFetch.post(
+        '/api/v1/profit',
+        { amount: profit() },
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    postProfit();
+  }, []);
+
+  const balMain = mainAccountBalance + profit();
 
   const postBalance = async () => {
     try {
       const response = await mainFetch.post(
         '/api/v1/balance',
-        { balance: mainAccountBalance },
+        { balance: balMain },
         { withCredentials: true }
       );
     } catch (error) {
@@ -418,6 +417,19 @@ const Dashboard = () => {
   const filterUser = user.filter((item) => item.referralId === `${username}`);
 
   // end referral
+
+  const length = bal.length - 1;
+
+  const {
+    createdAt,
+    status,
+    amount: {
+      amount: amt,
+      coin: {
+        invest: { plan: plan, days: days },
+      },
+    },
+  } = mainBalance[length];
   return (
     <Wrapper>
       <Navbar2 />
@@ -431,10 +443,8 @@ const Dashboard = () => {
                 <h3 id="circ-two"></h3>
               </div>
               <p>Account balance</p>
-              {mainBalance.status === 'paid' ? (
-                <h4>
-                  {formatter.format(Number(mainAccountBalance).toFixed(2))}
-                </h4>
+              {filterMainBalance ? (
+                <h4>{formatter.format(Number(balMain).toFixed(2))}</h4>
               ) : (
                 <h4>{formatter.format(0)}</h4>
               )}
@@ -467,7 +477,7 @@ const Dashboard = () => {
 
                 <p>Total profit</p>
 
-                {mainBalance.status === 'paid' ? (
+                {filterMainBalance ? (
                   <h4>{formatter.format(Number(profit()).toFixed(2))}</h4>
                 ) : (
                   <h4>{formatter.format(Number(0).toFixed(2))}</h4>
@@ -484,8 +494,8 @@ const Dashboard = () => {
 
                 <p>Current Invest</p>
 
-                {mainBalance.status === 'paid' ? (
-                  <h4>{formatter.format(mainBalance.amount)}</h4>
+                {status === 'paid' ? (
+                  <h4>{formatter.format(amt)}</h4>
                 ) : (
                   <h4>{formatter.format(0)}</h4>
                 )}
@@ -501,10 +511,10 @@ const Dashboard = () => {
 
                 <p>Total Invest</p>
 
-                {filterBalancePaid ? (
+                {filterMainBalance ? (
                   <h4>
                     {formatter.format(
-                      Number(filterBalancePaidReduce).toFixed(2)
+                      Number(reduceMainBalanceAmount).toFixed(2)
                     )}
                   </h4>
                 ) : (
@@ -517,7 +527,7 @@ const Dashboard = () => {
             <h3>Your Current Level</h3>
             <div className="upgrade">
               <p style={{ maxWidth: '10rem' }}>
-                {mainBalance.status === 'paid' ? mainBalance.plan : 'N/A'}
+                {status === 'paid' ? plan : 'N/A'}
               </p>
 
               <Link to="/investDash" type="btn" className="upgrade-btn">
@@ -555,9 +565,7 @@ const Dashboard = () => {
                 <IoIosFlash className="icon-main" />
               </span>
               <h5>Current Plan</h5>
-              <h4>
-                {mainBalance.status === 'paid' ? mainBalance.plan : 'N/A'}
-              </h4>
+              <h4>{status === 'paid' ? plan : 'N/A'}</h4>
             </article>
 
             <article>
@@ -565,10 +573,10 @@ const Dashboard = () => {
                 <IoIosWallet className="icon-main" />
               </span>
               <h5>Pending Invest</h5>
-              {filterBalancePending ? (
+              {filterMainBalancePending ? (
                 <h4>
                   {formatter.format(
-                    Number(filterBalancePendingReduce).toFixed(2)
+                    Number(reduceMainBalanceAmountPending).toFixed(2)
                   )}
                 </h4>
               ) : (
