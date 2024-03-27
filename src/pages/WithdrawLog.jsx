@@ -42,70 +42,61 @@ const WithdrawLog = () => {
     month: '',
     year: '',
   });
+  let idd = 0;
   return (
     <Wrapper>
       <Navbar2 />
       <div className="container">
         <Sidebar />
         <section className="section-center">
-          <article className="top2 top">
-            <h4>Withdraw log</h4>
+          <div className="table-wrapper">
+            <table class="fl-table">
+              <thead>
+                <tr>
+                  <th>S/N</th>
+                  <th>METHOD</th>
+                  <th>AMOUNT</th>
+                  <th>WALLET ADDRESS</th>
+                  <th>WITHDRAWAL BATCH</th>
+                  <th>STATUS</th>
+                  <th>DATE</th>
+                </tr>
+              </thead>
+              <tbody>
+                {receipt
+                  ? receipt.map((item) => {
+                      const {
+                        _id: id,
+                        withdrawalMethod,
+                        amount,
+                        walletAddress,
+                        withdrawalCode,
+                        status,
+                        createdAt,
+                      } = item;
 
-            <div className="top-inner">
-              <span className="space">
-                {' '}
-                <FaArrowLeft className="back-icon" onClick={backHandler} />
-              </span>
-              <span className="back">Back</span>
-            </div>
-          </article>
+                      item.idd = idd++;
 
-          <article className="withdraw-pending">
-            <div className="pending">
-              <h4>Withdrawal log</h4>
-              <p></p>
-            </div>
-
-            {receipt ? (
-              <div>
-                <article className="header">
-                  <h4>METHOD</h4>
-                  <h4>AMOUNT</h4>
-                  <h4>WALLET ADDRESS</h4>
-                  <h4>STATUS</h4>
-                  <h4>DATE</h4>
-                </article>
-
-                {receipt.map((item) => {
-                  const {
-                    _id: id,
-                    withdrawalMethod,
-                    amount,
-                    walletAddress,
-                    status,
-                    createdAt,
-                  } = item;
-
-                  return (
-                    <article key={id} className="header">
-                      <h4>{withdrawalMethod}</h4>
-
-                      <h4>{formatter.format(Number(amount).toFixed(2))}</h4>
-                      <h4>{walletAddress}</h4>
-                      <h4>{status}</h4>
-                      <h4>
-                        {new Date(createdAt).getDate()}/
-                        {new Date(createdAt).getMonth() + 1}/
-                        {new Date(createdAt).getFullYear()}
-                      </h4>
-                    </article>
-                  );
-                })}
-              </div>
-            ) : (
-              <h3 className="empty">No Log Found</h3>
-            )}
-          </article>
+                      return (
+                        <tr key={id}>
+                          <td>{idd}</td>
+                          <td>{withdrawalMethod}</td>
+                          <td>{formatter.format(Number(amount).toFixed(2))}</td>
+                          <td>{walletAddress}</td>
+                          <td>€{withdrawalCode}</td>
+                          <td>€{status}</td>
+                          <td>
+                            {new Date(createdAt).getDate()}/
+                            {new Date(createdAt).getMonth() + 1}/
+                            {new Date(createdAt).getFullYear()}
+                          </td>
+                        </tr>
+                      );
+                    })
+                  : 'No Log Found'}
+              </tbody>
+            </table>
+          </div>
         </section>
       </div>
 

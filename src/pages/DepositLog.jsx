@@ -42,80 +42,71 @@ const DepositLog = () => {
     month: '',
     year: '',
   });
+  let idd = 0;
+
   return (
     <Wrapper>
       <Navbar2 />
       <div className="container">
         <Sidebar />
         <section className="section-center">
-          <article className="top2 top">
-            <h4>Deposit log</h4>
+          <div className="table-wrapper">
+            <table class="fl-table">
+              <thead>
+                <tr>
+                  <th>S/N</th>
+                  <th>COIN</th>
+                  <th>RECEIPT</th>
+                  <th>AMOUNT</th>
+                  <th>STATUS</th>
+                  <th>DATE</th>
+                </tr>
+              </thead>
+              <tbody>
+                {receipt
+                  ? receipt.map((item) => {
+                      const {
+                        _id: id,
+                        receipt,
+                        status,
+                        createdAt,
+                        amount: {
+                          amount: amt,
+                          coin: {
+                            coinType: coin,
+                            invest: { plan: plan },
+                          },
+                        },
+                      } = item;
 
-            <div className="top-inner">
-              <span className="space">
-                {' '}
-                <FaArrowLeft className="back-icon" onClick={backHandler} />
-              </span>
-              <span className="back">Back</span>
-            </div>
-          </article>
+                      const url = 'https://trex-holding-server.com';
 
-          <article className="withdraw-pending">
-            <div className="pending">
-              <h4>Deposit log</h4>
-              <p></p>
-            </div>
+                      const img = `${url}/${receipt}`;
 
-            {receipt ? (
-              <div>
-                <article className="header">
-                  <h4>COIN</h4>
-                  <h4>RECEIPT</h4>
-                  <h4>AMOUNT</h4>
-                  <h4>STATUS</h4>
-                  <h4>DATE</h4>
-                </article>
+                      item.idd = idd++;
 
-                {receipt.map((item) => {
-                  const {
-                    _id: id,
-                    receipt,
-                    status,
-                    createdAt,
-                    amount: {
-                      amount: amt,
-                      coin: {
-                        coinType: coin,
-                        invest: { plan: plan },
-                      },
-                    },
-                  } = item;
-                  const url = 'https://trex-holding-server.com';
-
-                  const img = `${url}/${receipt}`;
-
-                  return (
-                    <article key={id} className="header">
-                      <h4>{coin}</h4>
-                      <div className="receipt">
-                        <img src={img} alt="image" />
-                      </div>
-
-                      <h4>{formatter.format(Number(amt).toFixed(2))}</h4>
-                      <h4>{status}</h4>
-                      <h4>
-                        {new Date(createdAt).getDate()}/
-                        {new Date(createdAt).getMonth() + 1}/
-                        {new Date(createdAt).getFullYear()}
-                      </h4>
-                    </article>
-                  );
-                })}
-              </div>
-            ) : (
-              <h3 className="empty">No Log Found</h3>
-            )}
-          </article>
+                      return (
+                        <tr key={id}>
+                          <td>{idd}</td>
+                          <td>{coin}</td>
+                          <td className="receipt">
+                            {' '}
+                            <img src={img} alt="image" />
+                          </td>
+                          <td>{formatter.format(Number(amt).toFixed(2))}</td>
+                          <td>{status}</td>
+                          <td>
+                            {new Date(createdAt).getDate()}/
+                            {new Date(createdAt).getMonth() + 1}/
+                            {new Date(createdAt).getFullYear()}
+                          </td>
+                        </tr>
+                      );
+                    })
+                  : 'No Log Found'}
+              </tbody>
+            </table>
+          </div>
         </section>
       </div>
 

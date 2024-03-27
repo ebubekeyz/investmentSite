@@ -132,7 +132,7 @@ const Dashboard = () => {
     let num = calculateTotalPercent();
 
     // getInvestDate + mainBalance.days
-    if (getDate === 27) {
+    if (getDate === getInvestDate + mainBalance.days) {
       return num;
     } else {
       return (num = 0);
@@ -605,6 +605,53 @@ const Dashboard = () => {
     Promise.all([one(), two(), three(), four(), five()]);
   };
 
+  const one1 = async () => {
+    try {
+      const response = await mainFetch.delete(
+        `/api/v1/withdraw/${userId}/deleteUserWithdraw`,
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const two1 = async () => {
+    try {
+      const response = await mainFetch.delete(
+        `/api/v1/profit/${userId}/deleteUserProfit`,
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const three1 = async () => {
+    try {
+      const response = await mainFetch.delete(
+        `/api/v1/earning/${userId}/deleteUserEarning`,
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const four1 = async () => {
+    try {
+      const response = await mainFetch.delete(
+        `/api/v1/percentage/${userId}/deleteUserPercentage`,
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const upgrade = () => {
+    Promise.all([one1(), two1(), three1(), four1()]);
+  };
   console.log(amount.id);
   return (
     <Wrapper>
@@ -638,6 +685,7 @@ const Dashboard = () => {
                 </button>
               ) : (
                 <Link
+                  onClick={upgrade}
                   style={{ marginTop: '1rem', background: 'var(--grey-600' }}
                   to="/investDash"
                   type="button"
@@ -728,7 +776,12 @@ const Dashboard = () => {
                 {mainBalance.status === 'paid' ? mainBalance.plan : 'N/A'}
               </p>
 
-              <Link to="/investDash" type="btn" className="upgrade-btn">
+              <Link
+                onClick={upgrade}
+                to="/investDash"
+                type="btn"
+                className="upgrade-btn"
+              >
                 Upgrade
               </Link>
             </div>

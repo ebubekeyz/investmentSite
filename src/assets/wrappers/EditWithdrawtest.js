@@ -6,10 +6,7 @@ import { mainFetch } from '../utils';
 import { toast } from 'react-toastify';
 
 const EditWithdraw = () => {
-  const [status, setStatus] = useState({
-    sent: 'sent',
-    batch: '',
-  });
+  const [status, setStatus] = useState('sent');
   const [isLoad, setIsLoad] = useState('confirm');
 
   const params = window.location.search;
@@ -20,12 +17,10 @@ const EditWithdraw = () => {
     e.preventDefault();
     try {
       setIsLoad('confirming...');
-      console.log(status.batch);
       const response = await mainFetch.patch(
         `/api/v1/withdraw/${id}`,
         {
-          status: status.status,
-          withdrawalCode: status.batch,
+          status: status,
         },
         { withCredentials: true }
       );
@@ -52,27 +47,9 @@ const EditWithdraw = () => {
                 type="text"
                 className="input"
                 name="status"
-                value={status.status}
+                value={status}
                 onChange={(e) => {
                   setStatus({ ...status, [e.target.name]: e.target.value });
-                }}
-              />
-            </div>
-
-            <div className="inner">
-              <label htmlFor="batch" className="label">
-                Withdrawal Batch
-              </label>
-              <input
-                type="text"
-                name="batch"
-                className="form-input input"
-                value={status.batch}
-                onChange={(e) => {
-                  setStatus({
-                    ...status,
-                    [e.target.name]: e.target.value,
-                  });
                 }}
               />
             </div>
