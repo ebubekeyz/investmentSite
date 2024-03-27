@@ -4,7 +4,7 @@ import FooterMobile2 from '../components/FooterMobile2';
 import Sidebar2 from '../components/Sidebar2';
 import { mainFetch } from '../utils';
 import { Link } from 'react-router-dom';
-import Navbar2 from '../components/Navbar2';
+import Navbar3 from '../components/Navbar3';
 
 const AdminDeposit = () => {
   const [deposit, setDeposit] = useState([]);
