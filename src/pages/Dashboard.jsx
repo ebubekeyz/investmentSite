@@ -570,7 +570,14 @@ const Dashboard = () => {
                   {isInvest}
                 </button>
               ) : (
-                ''
+                <Link
+                  style={{ marginTop: '1rem', background: 'var(--grey-600' }}
+                  to="/investDash"
+                  type="button"
+                  className="btn"
+                >
+                  Upgrade
+                </Link>
               )}
             </article>
           </div>

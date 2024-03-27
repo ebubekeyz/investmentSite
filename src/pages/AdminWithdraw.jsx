@@ -29,7 +29,7 @@ const AdminWithdraw = () => {
 
   return (
     <Wrapper>
-      <Navbar2 />
+      <Navbar3 />
       <div className="container">
         <Sidebar2 />
         <section className="deposit">
@@ -102,8 +102,6 @@ const AdminWithdraw = () => {
           </div>
         </section>
       </div>
-
-      <FooterMobile2 />
     </Wrapper>
   );
 };
