@@ -649,8 +649,23 @@ const Dashboard = () => {
     }
   };
 
-  const upgrade = () => {
-    Promise.all([one1(), two1(), three1(), four1()]);
+  const five1 = async () => {
+    try {
+      const response = await mainFetch.delete(
+        `/api/v1/payReceipt/${userId}/deleteUserPayReceipt`,
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const nav = useNavigate();
+  const upgrade = (e) => {
+    e.preventDefault();
+    Promise.all([one1(), two1(), three1(), four1(), five1()]).then(() =>
+      nav('/investDash')
+    );
   };
   console.log(amount.id);
   return (
@@ -684,15 +699,14 @@ const Dashboard = () => {
                   {isInvest}
                 </button>
               ) : (
-                <Link
+                <button
                   onClick={upgrade}
                   style={{ marginTop: '1rem', background: 'var(--grey-600' }}
-                  to="/investDash"
                   type="button"
                   className="btn"
                 >
                   Upgrade
-                </Link>
+                </button>
               )}
             </article>
           </div>
@@ -776,14 +790,9 @@ const Dashboard = () => {
                 {mainBalance.status === 'paid' ? mainBalance.plan : 'N/A'}
               </p>
 
-              <Link
-                onClick={upgrade}
-                to="/investDash"
-                type="btn"
-                className="upgrade-btn"
-              >
+              <button onClick={upgrade} type="btn" className="upgrade-btn">
                 Upgrade
-              </Link>
+              </button>
             </div>
           </article>
           <article className="upgrade-main">
