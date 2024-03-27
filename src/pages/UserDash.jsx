@@ -563,7 +563,7 @@ const UserDash = () => {
   const fetchAmountMain = async () => {
     try {
       const response = await mainFetch.get(
-        `/api/v1/amount/${userId}/showUserAmount`,
+        `/api/v1/amount/${id}/showUserAmount`,
         {
           withCredentials: true,
         }
