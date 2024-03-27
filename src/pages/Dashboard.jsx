@@ -428,7 +428,8 @@ const Dashboard = () => {
   //endTotal withdraw
 
   const mainAccountBalance =
-    mainBalance.amount +
+    // mainBalance.amount +
+    filterBalancePaidReduce +
     earningReduce +
     profit() -
     percentageReduce -

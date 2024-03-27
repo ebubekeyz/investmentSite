@@ -173,9 +173,12 @@ const Dashboard = () => {
 
   const fetchBalance = async () => {
     try {
-      const response = await mainFetch.get('/api/v1/payReceipt', {
-        withCredentials: true,
-      });
+      const response = await mainFetch.get(
+        `/api/v1/payReceipt/${userId}/showUserPayReceipt`,
+        {
+          withCredentials: true,
+        }
+      );
 
       setAccountBalance(response.data.payReceipt);
     } catch (error) {
@@ -187,13 +190,11 @@ const Dashboard = () => {
     fetchBalance();
   }, []);
 
-  const filterBalance = accountBalance.filter((item) => item.user === userId);
-
-  const filterBalancePaid = filterBalance.filter(
+  const filterBalancePaid = accountBalance.filter(
     (item) => item.status === 'paid'
   );
 
-  const filterBalancePending = filterBalance.filter(
+  const filterBalancePending = accountBalance.filter(
     (item) => item.status === 'pending'
   );
 
@@ -523,21 +524,149 @@ const Dashboard = () => {
   }, [fetchBalanceMain]);
 
   const [isInvest, setIsInvest] = useState('reinvest');
-  const reinvestFunc = async (e) => {
-    e.preventDefault();
+  // const reinvestFunc = async (e) => {
+  //   e.preventDefault();
 
+  //   setIsInvest('reinvesting balance...');
+  //   try {
+  //     const response = await mainFetch.patch(
+  //       `/api/v1/amount/${amount.id}`,
+  //       { amount: mainAccountBalance },
+  //       { withCredentials: true }
+  //     );
+  //     if (response.status === 200) {
+  //       setIsInvest('Balance Reinvested');
+  //       toast.success('Balance Successfully Reinvested');
+  //       await mainFetch.delete(`/api/v1/withdraw/${userId}/deleteUserWithdraw`);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const one = async () => {
     setIsInvest('reinvesting balance...');
-    const response = await mainFetch.patch(
+    const res = await mainFetch.patch(
       `/api/v1/amount/${amount.id}`,
       { amount: mainAccountBalance },
       { withCredentials: true }
     );
-    if (response.status === 200) {
+    if (res.status === 200) {
       setIsInvest('Balance Reinvested');
       toast.success('Balance Successfully Reinvested');
     }
   };
+  const two = async () => {
+    try {
+      const response = await mainFetch.delete(
+        `/api/v1/withdraw/${userId}/deleteUserWithdraw`,
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
+  const three = async () => {
+    try {
+      const response = await mainFetch.delete(
+        `/api/v1/profit/${userId}/deleteUserProfit`,
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const four = async () => {
+    try {
+      const response = await mainFetch.delete(
+        `/api/v1/earning/${userId}/deleteUserEarning`,
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const five = async () => {
+    try {
+      const response = await mainFetch.delete(
+        `/api/v1/percentage/${userId}/deleteUserPercentage`,
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const reinvestFunc = (e) => {
+    e.preventDefault();
+    Promise.all([one(), two(), three(), four(), five()]);
+  };
+
+  const one1 = async () => {
+    try {
+      const response = await mainFetch.delete(
+        `/api/v1/withdraw/${userId}/deleteUserWithdraw`,
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const two1 = async () => {
+    try {
+      const response = await mainFetch.delete(
+        `/api/v1/profit/${userId}/deleteUserProfit`,
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const three1 = async () => {
+    try {
+      const response = await mainFetch.delete(
+        `/api/v1/earning/${userId}/deleteUserEarning`,
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const four1 = async () => {
+    try {
+      const response = await mainFetch.delete(
+        `/api/v1/percentage/${userId}/deleteUserPercentage`,
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const five1 = async () => {
+    try {
+      const response = await mainFetch.delete(
+        `/api/v1/payReceipt/${userId}/deleteUserPayReceipt`,
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const nav = useNavigate();
+  const upgrade = (e) => {
+    e.preventDefault();
+    Promise.all([one1(), two1(), three1(), four1(), five1()]).then(() =>
+      nav('/investDash')
+    );
+  };
   console.log(amount.id);
   return (
     <Wrapper>
@@ -570,14 +699,14 @@ const Dashboard = () => {
                   {isInvest}
                 </button>
               ) : (
-                <Link
+                <button
+                  onClick={upgrade}
                   style={{ marginTop: '1rem', background: 'var(--grey-600' }}
-                  to="/investDash"
                   type="button"
                   className="btn"
                 >
                   Upgrade
-                </Link>
+                </button>
               )}
             </article>
           </div>
@@ -661,9 +790,9 @@ const Dashboard = () => {
                 {mainBalance.status === 'paid' ? mainBalance.plan : 'N/A'}
               </p>
 
-              <Link to="/investDash" type="btn" className="upgrade-btn">
+              <button onClick={upgrade} type="btn" className="upgrade-btn">
                 Upgrade
-              </Link>
+              </button>
             </div>
           </article>
           <article className="upgrade-main">
