@@ -121,10 +121,10 @@ const Withdraw = () => {
     e.preventDefault();
     let { withdrawalMethod, amount, currentBalance, walletAddress, status } =
       withdraw;
-    // if (amount > accountBalance) {
-    //   toast.success('Insufficient Balance, please reinvest');
-    //   return;
-    // }
+    if (amount > accountBalance) {
+      toast.success('Insufficient Balance, please reinvest');
+      return;
+    }
 
     try {
       setIsLoading('submitting');

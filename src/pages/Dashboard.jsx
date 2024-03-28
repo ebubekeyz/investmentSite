@@ -87,7 +87,7 @@ const Dashboard = () => {
   }, [fetchMainBalance]);
 
   const calculateTotalPercent = () => {
-    const total = (mainBalance.amount * mainBalance.percent) / 100;
+    const total = (mainBalance.amount * filterBalancePercentageReduce) / 100;
 
     return total;
   };
@@ -204,6 +204,20 @@ const Dashboard = () => {
     } = curr;
     return acc + amt;
   }, 0);
+
+  const filterBalancePercentageReduce = filterBalancePaid.reduce(
+    (acc, curr) => {
+      const {
+        amount: {
+          coin: {
+            invest: { percent: percentage },
+          },
+        },
+      } = curr;
+      return acc + percentage;
+    },
+    0
+  );
   const filterBalancePendingReduce = filterBalancePending.reduce(
     (acc, curr) => {
       const {

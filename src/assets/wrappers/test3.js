@@ -94,7 +94,7 @@ const Withdraw = () => {
   }, 0);
 
   const [mainBalance, setMainBalance] = useState('');
-  const [accountBalance, setAccountBalance] = useState('');
+
   const showBalance = async () => {
     try {
       const res = await mainFetch.get('/api/v1/balance', {
@@ -106,7 +106,6 @@ const Withdraw = () => {
       const num = bal.length - 1;
       const { balance } = bal[num];
       setMainBalance(balance - withdrawAmt);
-      setAccountBalance(balance);
     } catch (error) {
       console.log(error);
       console.log(error.res.data.msg);
@@ -121,10 +120,6 @@ const Withdraw = () => {
     e.preventDefault();
     let { withdrawalMethod, amount, currentBalance, walletAddress, status } =
       withdraw;
-    // if (amount > accountBalance) {
-    //   toast.success('Insufficient Balance, please reinvest');
-    //   return;
-    // }
 
     try {
       setIsLoading('submitting');
