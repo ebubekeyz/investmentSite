@@ -135,6 +135,8 @@ const AdminDash = () => {
   useEffect(() => {
     getEarning();
   }, []);
+
+  //admin 
   const reduceEarning = earning.reduce((acc, curr) => {
     return acc + curr.amount;
   }, 0);

@@ -25,6 +25,8 @@ const AdminDeposit = () => {
     payReceiptFunc();
   }, [payReceiptFunc]);
 
+  //new
+
   let idd = 0;
   const filterPending = deposit.filter((item) => item.status === 'pending');
   const filterPaid = deposit.filter((item) => item.status === 'paid');
