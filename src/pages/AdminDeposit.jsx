@@ -54,7 +54,6 @@ const AdminDeposit = () => {
               <tbody>
                 {deposit
                   ? deposit.map((item) => {
-                      console.log(item);
                       const {
                         _id: id,
                         createdAt,
@@ -74,7 +73,7 @@ const AdminDeposit = () => {
                           },
                         },
                       } = item;
-                      console.log(amountId);
+
                       item.idd = idd++;
                       const update = `/editDeposit?id=${id}`;
                       const del = `/deleteDeposit?id=${id}`;

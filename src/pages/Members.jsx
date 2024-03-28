@@ -33,8 +33,6 @@ const Members = () => {
   // search
   const [search, setSearch] = useState('');
 
-  console.log(search);
-
   let filterUser = user.filter((item) => item.username === search);
 
   const handleChange = (e) => {

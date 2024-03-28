@@ -55,9 +55,12 @@ const UserDash = () => {
   const [pay, setPay] = useState([]);
   const payFunc = async () => {
     try {
-      const response = await mainFetch.get(`/api/v1/withdraw`, {
-        withCredentials: true,
-      });
+      const response = await mainFetch.get(
+        `/api/v1/withdraw${id}showUserWithdraw`,
+        {
+          withCredentials: true,
+        }
+      );
 
       setPay(response.data.withdraw);
     } catch (error) {
@@ -69,11 +72,9 @@ const UserDash = () => {
     payFunc();
   }, []);
 
-  const filterPay = pay.filter((item) => item.user === id);
+  const filterPaySent = pay.filter((item) => item.status === 'sent');
 
-  const filterPaySent = filterPay.filter((item) => item.status === 'sent');
-
-  const filterPayProcessing = filterPay.filter(
+  const filterPayProcessing = pay.filter(
     (item) => item.status === 'processing'
   );
 
@@ -93,10 +94,8 @@ const UserDash = () => {
         `/api/v1/profit/${id}/showUserProfit`,
         { withCredentials: true }
       );
-      const prof = response.data.profit;
-      const len = prof.length - 1;
-      const { amount } = prof[len];
-      setProfit(amount);
+
+      setProfit(response.data.profit);
     } catch (error) {
       console.log(error);
     }
@@ -104,6 +103,10 @@ const UserDash = () => {
   useEffect(() => {
     fetchProfit();
   }, []);
+
+  const reduceProfit = profit.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
 
   // end profit
 
@@ -113,9 +116,12 @@ const UserDash = () => {
 
   const fetchEarning = async () => {
     try {
-      const response = await mainFetch.get('/api/v1/earning', {
-        withCredentials: true,
-      });
+      const response = await mainFetch.get(
+        `/api/v1/earning/${id}/showUserEarning`,
+        {
+          withCredentials: true,
+        }
+      );
       setEarning(response.data.earning);
     } catch (error) {
       console.log(error);
@@ -126,13 +132,11 @@ const UserDash = () => {
     fetchEarning();
   }, []);
 
-  const filterEarningUser = earning.filter((item) => item.user === id);
-
-  const reduceEarning = filterEarningUser.reduce((acc, curr) => {
+  const reduceEarning = earning.reduce((acc, curr) => {
     return acc + curr.amount;
   }, 0);
 
-  const totalEarnings = reduceEarning + profit;
+  const totalEarnings = reduceEarning + reduceProfit;
 
   // end earning
 
@@ -422,7 +426,7 @@ const UserDash = () => {
   useEffect(() => {
     fetchPenalty();
   }, []);
-  console.log(penaltyId, penaltyAmt);
+
   const handleSubmit6 = async (e) => {
     e.preventDefault();
     try {
@@ -579,7 +583,7 @@ const UserDash = () => {
       console.log(error);
     }
   };
-  console.log(amount.update);
+
   useEffect(() => {
     fetchAmountMain();
   }, [fetchAmountMain]);
@@ -711,7 +715,7 @@ const UserDash = () => {
             <IoPower className="power" />
             <div className="amount">
               <h4>
-                {filterEarningUser
+                {earning
                   ? formatter.format(Number(totalEarnings).toFixed(2))
                   : formatter.format(Number(0).toFixed(2))}
               </h4>

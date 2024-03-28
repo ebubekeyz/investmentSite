@@ -118,7 +118,7 @@ const Dashboard = () => {
       console.log(error);
     }
   };
-  console.log(amount.update);
+
   useEffect(() => {
     fetchAmountMain();
   }, [fetchAmountMain]);
@@ -449,7 +449,6 @@ const Dashboard = () => {
     percentageReduce -
     penaltyReduce -
     currWithdraw;
-  // console.log(mainBalance.amount);
 
   const postBalance = async () => {
     try {
@@ -682,7 +681,7 @@ const Dashboard = () => {
       nav('/investDash')
     );
   };
-  console.log(amount.id);
+
   return (
     <Wrapper>
       <Navbar2 />
