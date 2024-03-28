@@ -630,7 +630,7 @@ const Dashboard = () => {
     }
   };
 
-  //dashboard
+  //dash
   const two1 = async () => {
     try {
       const response = await mainFetch.delete(
